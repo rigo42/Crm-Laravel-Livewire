@@ -44,25 +44,24 @@
             <div class="container-fluid">
             <!--begin::Dashboard-->
 
-            <form action="#" >
-                <!--begin::Card-->
-                <div class="card mb-7">
-                    <!--begin::Card body-->
-                    <div class="card-body">
-                        <!--begin::Compact form-->
-                        <div class="input-icon">
-                            <input type="text" class="form-control" placeholder="Buscar...">
-                            <span>
-                                <i class="flaticon2-search-1 icon-md"></i>
-                            </span>
+                <form action="#" >
+                    <!--begin::Card-->
+                    <div class="card mb-7">
+                        <!--begin::Card body-->
+                        <div class="card-body">
+                            <!--begin::Compact form-->
+                            <div class="input-icon">
+                                <input type="text" class="form-control" placeholder="Buscar...">
+                                <span>
+                                    <i class="flaticon2-search-1 icon-md"></i>
+                                </span>
+                            </div>
+                            <!--end::Compact form-->
                         </div>
-                        <!--end::Compact form-->
+                        <!--end::Card body-->
                     </div>
-                    <!--end::Card body-->
-                </div>
-                <!--end::Card-->
-            </form>
-
+                    <!--end::Card-->
+                </form>
 
                 <!--begin::Row-->
                 <div class="row">

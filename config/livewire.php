@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'asset_url' => env('APP_URL', 'https://admin.brandbean.mx'),
+    'asset_url' => env('APP_URL'),
 
     /*
     |--------------------------------------------------------------------------
