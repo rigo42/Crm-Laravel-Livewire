@@ -19,8 +19,8 @@
                         <!--end::Page Title-->
                         <!--begin::Breadcrumb-->
                         <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
-                            <li class="breadcrumb-item ">
-                                <a href="" class="text-muted">General</a>
+                            <li class="breadcrumb-item active">
+                                <a href="#" class="text-muted">General</a>
                             </li>
                         </ul>
                         <!--end::Breadcrumb-->
@@ -28,13 +28,6 @@
                     <!--end::Page Heading-->
                 </div>
                 <!--end::Info-->
-                <!--begin::Toolbar-->
-                <div class="d-flex align-items-center">
-                    <!--begin::Actions-->
-                    <a href="#" class="btn btn-light font-weight-bold btn-sm">Nuevo</a>
-                    <!--end::Actions-->
-                </div>
-                <!--end::Toolbar-->
             </div>
         </div>
         
@@ -463,9 +456,7 @@
 @endsection
 
 @section('footer')
-    <!--begin::Page Vendors(used by this page)-->
-    <script src="{{ asset('assets') }}/plugins/custom/flot/flot.bundle.js"></script>
-    <!--end::Page Vendors-->
     <!--begin::Page Scripts(used by this page)-->
+    <script src="{{ asset('assets') }}/plugins/custom/flot/flot.bundle.js"></script>
     <script src="{{ asset('assets') }}/js/pages/features/charts/flotcharts.js"></script>
 @endsection

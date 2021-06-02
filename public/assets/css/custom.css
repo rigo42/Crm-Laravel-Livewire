@@ -1,0 +1,12 @@
+.image-edit {
+    cursor: pointer;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+}
+.image-remove {
+    cursor: pointer;
+    position: absolute;
+    right: -10px;
+    bottom: -10px;
+}

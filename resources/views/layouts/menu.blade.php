@@ -10,7 +10,7 @@
                     <span class="menu-text">Dashboard</span>
                 </a>
             </li>
-            <li class="menu-item {{ active('client.index') }}" >
+            <li class="menu-item {{ active('client.*') }}" >
                 <a href="{{ route('client.index') }}" class="menu-link">
                     <i class="menu-icon fa fa-users"></i>
                     <span class="menu-text">Clientes</span>

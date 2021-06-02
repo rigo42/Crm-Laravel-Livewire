@@ -3,7 +3,6 @@
 @section('title', 'Clientes')
 
 @section('content')
-
     <!--begin::page-->
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         
@@ -15,23 +14,16 @@
                     <!--begin::Page Heading-->
                     <div class="d-flex align-items-baseline mr-5">
                         <!--begin::Page Title-->
-                        <h5 class="text-dark font-weight-bold my-2 mr-5">@yield('title')</h5>
+                        <a href="#"><h5 class="text-dark font-weight-bold my-2 mr-5">@yield('title')</h5></a>
                         <!--end::Page Title-->
-                        <!--begin::Breadcrumb-->
-                        <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
-                            <li class="breadcrumb-item ">
-                                <a href="#" class="text-muted">Clientes</a>
-                            </li>
-                        </ul>
-                        <!--end::Breadcrumb-->
                     </div>
                     <!--end::Page Heading-->
                 </div>
                 <!--end::Info-->
-                <!--begin::Toolbar-->
-                <div class="d-flex align-items-center">
+                 <!--begin::Toolbar-->
+               <div class="d-flex align-items-center">
                     <!--begin::Actions-->
-                    <a href="{{ route('client.create') }}" class="btn btn-primary btn-shadow font-weight-bold mr-2"><i class="fa fa-plus"></i> Nuevo</a>
+                    <a href="{{ route('client.create') }}" class="btn btn-primary btn-shadow font-weight-bold mr-2 "><i class="fa fa-plus"></i> Nuevo</a>
                     <!--end::Actions-->
                 </div>
                 <!--end::Toolbar-->
@@ -41,7 +33,7 @@
         <!--begin::Entry-->
         <div class="d-flex flex-column-fluid">
             <!--begin::Container-->
-            <div class="container-fluid">
+            <div class="container">
             <!--begin::Dashboard-->
 
                 <form action="#" >
@@ -66,7 +58,129 @@
                 <!--begin::Row-->
                 <div class="row">
                     <!--begin::Col-->
-                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3">
+                        <!--begin::Card-->
+                        <div class="card card-custom gutter-b card-stretch">
+                            <!--begin::Body-->
+                            <div class="card-body pt-4">
+                                <!--start::Toolbar-->
+                                <div class="d-flex justify-content-end">
+                                    <div class="dropdown dropdown-inline" data-toggle="tooltip"  data-placement="left">
+                                        <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="ki ki-bold-more-hor"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
+                                            <!--begin::Navigation-->
+                                            <ul class="navi navi-hover py-5">
+                                                <li class="navi-item">
+                                                    <a href="#" class="navi-link">
+                                                        <span class="navi-icon">
+                                                            <i class="fa fa-eye"></i>
+                                                        </span>
+                                                        <span class="navi-text">Ver</span>
+                                                    </a>
+                                                </li>
+                                                <li class="navi-item">
+                                                    <a href="#" class="navi-link">
+                                                        <span class="navi-icon">
+                                                            <i class="fa fa-pen"></i>
+                                                        </span>
+                                                        <span class="navi-text">Editar</span>
+                                                    </a>
+                                                </li>
+                                                <li class="navi-item">
+                                                    <a href="#" class="navi-link">
+                                                        <span class="navi-icon">
+                                                            <i class="fa fa-trash"></i>
+                                                        </span>
+                                                        <span class="navi-text">Eliminar</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <!--end::Navigation-->
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!--begin::User-->
+                                <div class="d-flex align-items-end mb-7">
+                                    <!--begin::Pic-->
+                                    <div class="d-flex align-items-center">
+                                        <!--begin::Pic-->
+                                        <div class="flex-shrink-0 mr-4 mt-lg-0 mt-3">
+                                            <div class="symbol symbol-circle symbol-lg-75">
+                                                <img src="assets/media/users/300_1.jpg" alt="image" />
+                                            </div>
+                                        </div>
+                                        <!--end::Pic-->
+                                        <!--begin::Title-->
+                                        <div class="d-flex flex-column">
+                                            <a href="#" class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">Luca Doncic</a>
+                                            <span class="text-muted font-weight-bold">Head of Development</span>
+                                        </div>
+                                        <!--end::Title-->
+                                    </div>
+                                    <!--end::Title-->
+                                </div>
+                                <!--end::User-->
+                                <!--begin::Desc-->
+                                <p class="mb-7">I distinguish three
+                                <a href="#" class="text-primary pr-1">#XRS-54PQ</a>objectives First objectives and nice cooked rice</p>
+                                <!--end::Desc-->
+                                <!--begin::Info-->
+                                <div class="mb-7">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-dark-75 font-weight-bolder mr-2">Email:</span>
+                                        <a href="#" class="text-muted text-hover-primary">luca@festudios.com</a>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-cente my-1">
+                                        <span class="text-dark-75 font-weight-bolder mr-2">Phone:</span>
+                                        <a href="#" class="text-muted text-hover-primary">44(76)34254578</a>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-dark-75 font-weight-bolder mr-2">Location:</span>
+                                        <span class="text-muted font-weight-bold">Barcelona</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-dark-75 font-weight-bolder mr-2">Pertenece a:</span>
+                                        <span class="text-muted font-weight-bold">Rigoberto</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="d-flex align-items-center flex-wrap mb-4">
+                                    <!--begin: Item-->
+                                    <div class="d-flex align-items-center flex-lg-fill mr-5 my-1 text-success">
+                                        <span class="mr-4">
+                                            <i class="flaticon-piggy-bank icon-2x  font-weight-bold  text-success"></i>
+                                        </span>
+                                        <div class="d-flex flex-column ">
+                                            <span class="font-weight-bolder font-size-sm ">Pagos</span>
+                                            <span class="font-weight-bolder font-size-h5">
+                                            <span class="font-weight-bold ">$</span>249,500</span>
+                                        </div>
+                                    </div>
+                                    <!--end: Item-->
+                                    <!--begin: Item-->
+                                    <div class="d-flex align-items-center flex-lg-fill mr-5 my-1 text-danger">
+                                        <span class="mr-4">
+                                            <i class="flaticon-confetti icon-2x font-weight-bold text-danger"></i>
+                                        </span>
+                                        <div class="d-flex flex-column">
+                                            <span class="font-weight-bolder font-size-sm">Gastos</span>
+                                            <span class="font-weight-bolder font-size-h5">
+                                            <span class="font-weight-bold">$</span>164,700</span>
+                                        </div>
+                                    </div>
+                                    <!--end: Item-->
+                                </div>
+                                <a href="#" class="btn btn-block btn-sm btn-light-primary font-weight-bolder text-uppercase py-4">Redactar correo</a>
+                            </div>
+                            <!--end::Body-->
+                        </div>
+                        <!--end::Card-->
+                    </div>
+                     <!--begin::Col-->
+                     <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3">
                         <!--begin::Card-->
                         <div class="card card-custom gutter-b card-stretch">
                             <!--begin::Body-->
