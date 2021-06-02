@@ -53,18 +53,16 @@
 		<script type="module" src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
 		<script nomodule src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine-ie11.min.js"></script>
 
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10">
+		</script>
+		
+		<x-livewire-alert::scripts />
+
 		@yield('footer')
 
-		<script>
-			swal.fire({
-				position: 'top-end',
-				icon: 'success',
-				title: 'Completado con exito',
-				toast: false,
-				showConfirmButton: false,
-				timer: 1500
-			});
-		</script>
+		
+		@include('component.alert')
+		
 	</body>
 	<!--end::Body-->
 </html>

@@ -26,19 +26,9 @@
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Entry-->
         <div class="d-flex flex-column-fluid">
-             <!--begin::Container-->
-             <div class="container">
-                <!--begin::Card-->
-                <div class="card card-custom gutter-b">
-                    <!--begin::Body-->
-                    <div class="card-body p-0">
-                        <div class="row justify-content-center my-10 px-8 my-lg-15 px-lg-10">
-                            @livewire('client.general.form')
-                        </div>
-                    </div>
-                    <!--end::Body-->
-                </div>
-                <!--end::Card-->
+            <!--begin::Container-->
+            <div class="container">
+                @livewire('client.general.form', ['method' => 'update'])
             </div>
             <!--end::Container-->
         </div>

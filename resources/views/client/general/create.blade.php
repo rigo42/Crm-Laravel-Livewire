@@ -2,11 +2,6 @@
 
 @section('title', 'Clientes')
 
-@section('head')
-    <!--begin::Page Custom Styles(used by this page)-->
-    <link href="{{ asset('assets') }}/css/pages/wizard/wizard-1.css" rel="stylesheet" type="text/css" />
-@endsection
-
 @section('content')
     <!--begin::Bread-->
     <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">

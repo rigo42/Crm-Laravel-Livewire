@@ -16,5 +16,8 @@ class Form extends Component
     public function store(){
         session()->flash('alert','Cliente agregado con exito');
         session()->flash('alert-type','success');
+        return redirect()->route('dashboard.index');
     }
+
+   
 }
