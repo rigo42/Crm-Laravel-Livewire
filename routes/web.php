@@ -6,10 +6,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
-Auth::routes();
+
 
 //Dashboard
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
+
+//Login
+Auth::routes(['register' => false]);
 
 //Clients
 Route::resource('clientes', ClientController::class)->parameters(['clientes' => 'client'])->names('client');

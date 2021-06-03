@@ -2,30 +2,60 @@
 
 namespace App\Http\Livewire\Client\General;
 
+use App\Models\Client;
+use Exception;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
+    use WithPagination;
 
-    public $user;
+    //Tools
+    public $perPage = 100;
+    public $search;
+    protected $queryString = ['search' => ['except' => '']];
 
-    protected $listeners = ['destroy'];
+    //Theme
+    protected $paginationTheme = 'bootstrap';
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
     public function render()
     {
-        return view('livewire.client.general.index');
+        $count = Client::count();
+        $clients = Client::orderBy('id', 'desc');
+
+        if($this->search){
+            $clients = $clients->where('name', 'LIKE', "%{$this->search}%");
+        }
+
+        $clients = $clients->paginate($this->perPage);
+        return view('livewire.client.general.index', compact('count', 'clients'));
     }
 
-    public function destroy()
+    public function destroy($id)
     {
-        $this->user; //Delete()
-        $this->alert('success', 'Eliminación con exito');
+        try{
+            $client = Client::findOrFail($id);
+            if($client->image && Storage::exists($client->image->image)){
+                Storage::delete($client->image->image);
+            }
+            $client->delete();
+            $this->alert('success', 'Eliminación con exito');
+        }catch(Exception $e){
+            $this->alert('error', 
+                'Ocurrio un error en la eliminación: '.$e->getMessage(), 
+                [
+                    'showConfirmButton' => true,
+                    'confirmButtonText' => 'Entiendo',
+                    'timer' => null,
+                ]);
+        }
     }
 
-    public function confirmDestroy($user)
-    {
-        $this->confirm('¿Estás seguro?', [
-            'text' =>  'No podrá recuperar este cliente y todas las facturas, estimaciones y pagos relacionados.', 
-        ]);
-    }
 }

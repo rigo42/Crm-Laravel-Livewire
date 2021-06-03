@@ -50,6 +50,19 @@
                                 <span class="navi-text text-muted text-hover-primary">jm@softplus.com</span>
                             </span>
                         </a>
+                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="navi-item">
+                            <span class="navi-link p-0 pb-2 ">
+                                <span class="navi-icon mr-1">
+                                    <span class="svg-icon svg-icon-lg svg-icon-primary">
+                                        <i class="flaticon-logout text-primary"></i>
+                                    </span>
+                                </span>
+                                <span  class="navi-text text-muted text-hover-primary">Cerrar sesión</span>
+                            </span>
+                        </a>
+                        <form action="{{ route('logout') }}" method="POST" id="logout-form"  class="d-none">
+                            @csrf    
+                        </form>
                     </div>
                 </div>
             </div>

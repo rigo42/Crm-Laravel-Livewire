@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Client extends Model
 {
     use HasFactory;
+
+    protected $guareded = [];
+
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
+    public function user(){
+        return $this->belongsTo(Client::class);
+    }
 }

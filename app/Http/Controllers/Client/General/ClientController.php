@@ -17,8 +17,7 @@ class ClientController extends Controller
         return view('client.general.create', compact('client'));
     }
 
-    public function edit(){
-        $client = new Client();
+    public function edit(Client $client){
         return view('client.general.edit', compact('client'));
     }
 }

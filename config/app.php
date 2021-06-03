@@ -56,6 +56,8 @@ return [
 
     'asset_url' => env('ASSET_URL', null),
 
+    'logo' => env('APP_LOGO', null),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
@@ -166,6 +168,8 @@ return [
          * Package Service Providers...
          */
         Spatie\Permission\PermissionServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
+        Laraveles\Spanish\SpanishServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -226,7 +230,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];
