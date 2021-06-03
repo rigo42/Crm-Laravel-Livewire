@@ -94,7 +94,16 @@ class Form extends Component
     }
 
     public function removeImage(){
+        if($this->client->image){
+            if(Storage::exists($this->client->image->url)){
+                Storage::delete($this->client->image->url);
+            }
+            
+            $this->client->image()->delete();
+            $this->client->image = null;
+        }
         $this->reset('imageTmp');
+        $this->alert('success', 'Imagen eliminada con exito');
     }
    
 }

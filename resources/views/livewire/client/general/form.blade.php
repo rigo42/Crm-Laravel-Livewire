@@ -57,9 +57,10 @@
                                                 <progress max="100" x-bind:value="progress"></progress>
                                             </div>
                                         </div>
-                                        @if ($imageTmp)
+                                        @if ($imageTmp || $client->image)
                                         <span 
                                             wire:click="removeImage()"
+                                            wire:loading.class="spinner spinner-primary spinner-sm" wire:target="removeImage"
                                             class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow image-remove" 
                                             title="Remover imagen">
                                             <i class="ki ki-bold-close icon-xs text-muted"></i>

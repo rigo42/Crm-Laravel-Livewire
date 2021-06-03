@@ -4,9 +4,9 @@
             position: 'top-end',
             icon: '{!! session()->get("alert-type") !!}',
             title: '{!! session()->get("alert") !!}',
-            toast: false,
+            toast: true,
             showConfirmButton: false,
-            timer: 1500
+            timer: 2000
         });
     </script>
 @endif
