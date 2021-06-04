@@ -133,7 +133,6 @@
                                 </div>
                                 <!--end: Item-->
                             </div>
-                            <a href="#" class="btn btn-block btn-sm btn-light-primary font-weight-bolder text-uppercase py-4">Redactar correo</a>
                         </div>
                         <!--end::Body-->
                     </div>

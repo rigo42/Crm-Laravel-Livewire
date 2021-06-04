@@ -24,13 +24,13 @@
       -webkit-transition: fill 0.3s ease;
       transition: fill 0.3s ease; }
     .header-menu .menu-nav > .menu-item.menu-item-active > .menu-link .menu-bullet.menu-bullet-dot > span {
-      background-color: #6993FF; }
+      background-color: var(--primary); }
     .header-menu .menu-nav > .menu-item.menu-item-active > .menu-link .menu-bullet.menu-bullet-line > span {
-      background-color: #6993FF; }
+      background-color: var(--primary); }
     .header-menu .menu-nav > .menu-item.menu-item-active > .menu-link .menu-text {
-      color: #6993FF; }
+      color: var(--primary); }
     .header-menu .menu-nav > .menu-item.menu-item-active > .menu-link > .menu-arrow {
-      color: #6993FF; }
+      color: var(--primary); }
   .header-menu .menu-nav > .menu-item.menu-item-here > .menu-link {
     background-color: none; }
     .header-menu .menu-nav > .menu-item.menu-item-here > .menu-link .menu-icon.svg-icon svg g [fill] {
@@ -40,13 +40,13 @@
       -webkit-transition: fill 0.3s ease;
       transition: fill 0.3s ease; }
     .header-menu .menu-nav > .menu-item.menu-item-here > .menu-link .menu-bullet.menu-bullet-dot > span {
-      background-color: #6993FF; }
+      background-color: var(--primary); }
     .header-menu .menu-nav > .menu-item.menu-item-here > .menu-link .menu-bullet.menu-bullet-line > span {
-      background-color: #6993FF; }
+      background-color: var(--primary); }
     .header-menu .menu-nav > .menu-item.menu-item-here > .menu-link .menu-text {
-      color: #6993FF; }
+      color: var(--primary); }
     .header-menu .menu-nav > .menu-item.menu-item-here > .menu-link > .menu-arrow {
-      color: #6993FF; }
+      color: var(--primary); }
   .header-menu .menu-nav > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link, .header-menu .menu-nav > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link {
     background-color: none; }
     .header-menu .menu-nav > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-icon.svg-icon svg g [fill], .header-menu .menu-nav > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-icon.svg-icon svg g [fill] {
@@ -56,13 +56,13 @@
       -webkit-transition: fill 0.3s ease;
       transition: fill 0.3s ease; }
     .header-menu .menu-nav > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-bullet.menu-bullet-dot > span, .header-menu .menu-nav > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-bullet.menu-bullet-dot > span {
-      background-color: #6993FF; }
+      background-color: var(--primary); }
     .header-menu .menu-nav > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-bullet.menu-bullet-line > span, .header-menu .menu-nav > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-bullet.menu-bullet-line > span {
-      background-color: #6993FF; }
+      background-color: var(--primary); }
     .header-menu .menu-nav > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-text, .header-menu .menu-nav > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-text {
-      color: #6993FF; }
+      color: var(--primary); }
     .header-menu .menu-nav > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link > .menu-arrow, .header-menu .menu-nav > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link > .menu-arrow {
-      color: #6993FF; }
+      color: var(--primary); }
   .header-menu .menu-nav > .menu-item .menu-submenu {
     background-color: #ffffff;
     -webkit-box-shadow: 0px 15px 50px 0px rgba(82, 63, 105, 0.15);
@@ -87,60 +87,60 @@
     .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item.menu-item-active > .menu-link {
       background-color: #F3F6F9; }
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item.menu-item-active > .menu-link .menu-icon {
-        color: #6993FF; }
+        color: var(--primary); }
         .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item.menu-item-active > .menu-link .menu-icon.svg-icon svg g [fill] {
           -webkit-transition: fill 0.3s ease;
           transition: fill 0.3s ease;
-          fill: #6993FF; }
+          fill: var(--primary); }
         .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item.menu-item-active > .menu-link .menu-icon.svg-icon svg:hover g [fill] {
           -webkit-transition: fill 0.3s ease;
           transition: fill 0.3s ease; }
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item.menu-item-active > .menu-link .menu-bullet.menu-bullet-dot > span {
-        background-color: #6993FF; }
+        background-color: var(--primary); }
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item.menu-item-active > .menu-link .menu-bullet.menu-bullet-line > span {
-        background-color: #6993FF; }
+        background-color: var(--primary); }
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item.menu-item-active > .menu-link .menu-text {
-        color: #6993FF; }
+        color: var(--primary); }
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item.menu-item-active > .menu-link > .menu-arrow {
-        color: #6993FF; }
+        color: var(--primary); }
     .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item.menu-item-here > .menu-link {
       background-color: #F3F6F9; }
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item.menu-item-here > .menu-link .menu-icon {
-        color: #6993FF; }
+        color: var(--primary); }
         .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item.menu-item-here > .menu-link .menu-icon.svg-icon svg g [fill] {
           -webkit-transition: fill 0.3s ease;
           transition: fill 0.3s ease;
-          fill: #6993FF; }
+          fill: var(--primary); }
         .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item.menu-item-here > .menu-link .menu-icon.svg-icon svg:hover g [fill] {
           -webkit-transition: fill 0.3s ease;
           transition: fill 0.3s ease; }
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item.menu-item-here > .menu-link .menu-bullet.menu-bullet-dot > span {
-        background-color: #6993FF; }
+        background-color: var(--primary); }
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item.menu-item-here > .menu-link .menu-bullet.menu-bullet-line > span {
-        background-color: #6993FF; }
+        background-color: var(--primary); }
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item.menu-item-here > .menu-link .menu-text {
-        color: #6993FF; }
+        color: var(--primary); }
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item.menu-item-here > .menu-link > .menu-arrow {
-        color: #6993FF; }
+        color: var(--primary); }
     .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link, .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link {
       background-color: #F3F6F9; }
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-icon, .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-icon {
-        color: #6993FF; }
+        color: var(--primary); }
         .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-icon.svg-icon svg g [fill], .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-icon.svg-icon svg g [fill] {
           -webkit-transition: fill 0.3s ease;
           transition: fill 0.3s ease;
-          fill: #6993FF; }
+          fill: var(--primary); }
         .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-icon.svg-icon svg:hover g [fill], .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-icon.svg-icon svg:hover g [fill] {
           -webkit-transition: fill 0.3s ease;
           transition: fill 0.3s ease; }
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-bullet.menu-bullet-dot > span, .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-bullet.menu-bullet-dot > span {
-        background-color: #6993FF; }
+        background-color: var(--primary); }
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-bullet.menu-bullet-line > span, .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-bullet.menu-bullet-line > span {
-        background-color: #6993FF; }
+        background-color: var(--primary); }
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-text, .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-text {
-        color: #6993FF; }
+        color: var(--primary); }
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link > .menu-arrow, .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link > .menu-arrow {
-        color: #6993FF; }
+        color: var(--primary); }
     .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content > .menu-item {
       border-right: 1px solid #ECF0F3; }
     .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-heading > .menu-text {
@@ -167,60 +167,60 @@
     .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item.menu-item-active > .menu-link {
       background-color: #F3F6F9; }
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item.menu-item-active > .menu-link .menu-icon {
-        color: #6993FF; }
+        color: var(--primary); }
         .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item.menu-item-active > .menu-link .menu-icon.svg-icon svg g [fill] {
           -webkit-transition: fill 0.3s ease;
           transition: fill 0.3s ease;
-          fill: #6993FF; }
+          fill: var(--primary); }
         .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item.menu-item-active > .menu-link .menu-icon.svg-icon svg:hover g [fill] {
           -webkit-transition: fill 0.3s ease;
           transition: fill 0.3s ease; }
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item.menu-item-active > .menu-link .menu-bullet.menu-bullet-dot > span {
-        background-color: #6993FF; }
+        background-color: var(--primary); }
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item.menu-item-active > .menu-link .menu-bullet.menu-bullet-line > span {
-        background-color: #6993FF; }
+        background-color: var(--primary); }
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item.menu-item-active > .menu-link .menu-text {
-        color: #6993FF; }
+        color: var(--primary); }
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item.menu-item-active > .menu-link > .menu-arrow {
-        color: #6993FF; }
+        color: var(--primary); }
     .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item.menu-item-here > .menu-link {
       background-color: #F3F6F9; }
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item.menu-item-here > .menu-link .menu-icon {
-        color: #6993FF; }
+        color: var(--primary); }
         .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item.menu-item-here > .menu-link .menu-icon.svg-icon svg g [fill] {
           -webkit-transition: fill 0.3s ease;
           transition: fill 0.3s ease;
-          fill: #6993FF; }
+          fill: var(--primary); }
         .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item.menu-item-here > .menu-link .menu-icon.svg-icon svg:hover g [fill] {
           -webkit-transition: fill 0.3s ease;
           transition: fill 0.3s ease; }
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item.menu-item-here > .menu-link .menu-bullet.menu-bullet-dot > span {
-        background-color: #6993FF; }
+        background-color: var(--primary); }
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item.menu-item-here > .menu-link .menu-bullet.menu-bullet-line > span {
-        background-color: #6993FF; }
+        background-color: var(--primary); }
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item.menu-item-here > .menu-link .menu-text {
-        color: #6993FF; }
+        color: var(--primary); }
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item.menu-item-here > .menu-link > .menu-arrow {
-        color: #6993FF; }
+        color: var(--primary); }
     .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link, .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link {
       background-color: #F3F6F9; }
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-icon, .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-icon {
-        color: #6993FF; }
+        color: var(--primary); }
         .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-icon.svg-icon svg g [fill], .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-icon.svg-icon svg g [fill] {
           -webkit-transition: fill 0.3s ease;
           transition: fill 0.3s ease;
-          fill: #6993FF; }
+          fill: var(--primary); }
         .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-icon.svg-icon svg:hover g [fill], .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-icon.svg-icon svg:hover g [fill] {
           -webkit-transition: fill 0.3s ease;
           transition: fill 0.3s ease; }
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-bullet.menu-bullet-dot > span, .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-bullet.menu-bullet-dot > span {
-        background-color: #6993FF; }
+        background-color: var(--primary); }
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-bullet.menu-bullet-line > span, .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-bullet.menu-bullet-line > span {
-        background-color: #6993FF; }
+        background-color: var(--primary); }
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-text, .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-text {
-        color: #6993FF; }
+        color: var(--primary); }
       .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link > .menu-arrow, .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link > .menu-arrow {
-        color: #6993FF; } }
+        color: var(--primary); } }
 
 @media (max-width: 991.98px) {
   .header-menu-mobile {
@@ -257,28 +257,28 @@
         background-color: #F3F6F9 ; }
         .header-menu-mobile .menu-nav > .menu-item.menu-item-open > .menu-heading .menu-text,
         .header-menu-mobile .menu-nav > .menu-item.menu-item-open > .menu-link .menu-text {
-          color: #6993FF ; }
+          color: var(--primary) ; }
         .header-menu-mobile .menu-nav > .menu-item.menu-item-open > .menu-heading .menu-icon,
         .header-menu-mobile .menu-nav > .menu-item.menu-item-open > .menu-link .menu-icon {
-          color: #6993FF ; }
+          color: var(--primary) ; }
           .header-menu-mobile .menu-nav > .menu-item.menu-item-open > .menu-heading .menu-icon.svg-icon svg g [fill],
           .header-menu-mobile .menu-nav > .menu-item.menu-item-open > .menu-link .menu-icon.svg-icon svg g [fill] {
             -webkit-transition: fill 0.3s ease;
             transition: fill 0.3s ease;
-            fill: #6993FF; }
+            fill: var(--primary); }
           .header-menu-mobile .menu-nav > .menu-item.menu-item-open > .menu-heading .menu-icon.svg-icon svg:hover g [fill],
           .header-menu-mobile .menu-nav > .menu-item.menu-item-open > .menu-link .menu-icon.svg-icon svg:hover g [fill] {
             -webkit-transition: fill 0.3s ease;
             transition: fill 0.3s ease; }
         .header-menu-mobile .menu-nav > .menu-item.menu-item-open > .menu-heading .menu-bullet.menu-bullet-dot > span,
         .header-menu-mobile .menu-nav > .menu-item.menu-item-open > .menu-link .menu-bullet.menu-bullet-dot > span {
-          background-color: #6993FF ; }
+          background-color: var(--primary) ; }
         .header-menu-mobile .menu-nav > .menu-item.menu-item-open > .menu-heading .menu-bullet.menu-bullet-line > span,
         .header-menu-mobile .menu-nav > .menu-item.menu-item-open > .menu-link .menu-bullet.menu-bullet-line > span {
-          background-color: #6993FF ; }
+          background-color: var(--primary) ; }
         .header-menu-mobile .menu-nav > .menu-item.menu-item-open > .menu-heading .menu-arrow,
         .header-menu-mobile .menu-nav > .menu-item.menu-item-open > .menu-link .menu-arrow {
-          color: #6993FF ; }
+          color: var(--primary) ; }
     .header-menu-mobile .menu-nav > .menu-item.menu-item-here {
       -webkit-transition: background-color 0.3s;
       transition: background-color 0.3s; }
@@ -287,28 +287,28 @@
         background-color: #F3F6F9 ; }
         .header-menu-mobile .menu-nav > .menu-item.menu-item-here > .menu-heading .menu-text,
         .header-menu-mobile .menu-nav > .menu-item.menu-item-here > .menu-link .menu-text {
-          color: #6993FF ; }
+          color: var(--primary) ; }
         .header-menu-mobile .menu-nav > .menu-item.menu-item-here > .menu-heading .menu-icon,
         .header-menu-mobile .menu-nav > .menu-item.menu-item-here > .menu-link .menu-icon {
-          color: #6993FF ; }
+          color: var(--primary) ; }
           .header-menu-mobile .menu-nav > .menu-item.menu-item-here > .menu-heading .menu-icon.svg-icon svg g [fill],
           .header-menu-mobile .menu-nav > .menu-item.menu-item-here > .menu-link .menu-icon.svg-icon svg g [fill] {
             -webkit-transition: fill 0.3s ease;
             transition: fill 0.3s ease;
-            fill: #6993FF; }
+            fill: var(--primary); }
           .header-menu-mobile .menu-nav > .menu-item.menu-item-here > .menu-heading .menu-icon.svg-icon svg:hover g [fill],
           .header-menu-mobile .menu-nav > .menu-item.menu-item-here > .menu-link .menu-icon.svg-icon svg:hover g [fill] {
             -webkit-transition: fill 0.3s ease;
             transition: fill 0.3s ease; }
         .header-menu-mobile .menu-nav > .menu-item.menu-item-here > .menu-heading .menu-bullet.menu-bullet-dot > span,
         .header-menu-mobile .menu-nav > .menu-item.menu-item-here > .menu-link .menu-bullet.menu-bullet-dot > span {
-          background-color: #6993FF ; }
+          background-color: var(--primary) ; }
         .header-menu-mobile .menu-nav > .menu-item.menu-item-here > .menu-heading .menu-bullet.menu-bullet-line > span,
         .header-menu-mobile .menu-nav > .menu-item.menu-item-here > .menu-link .menu-bullet.menu-bullet-line > span {
-          background-color: #6993FF ; }
+          background-color: var(--primary) ; }
         .header-menu-mobile .menu-nav > .menu-item.menu-item-here > .menu-heading .menu-arrow,
         .header-menu-mobile .menu-nav > .menu-item.menu-item-here > .menu-link .menu-arrow {
-          color: #6993FF ; }
+          color: var(--primary) ; }
     .header-menu-mobile .menu-nav > .menu-item.menu-item-active {
       -webkit-transition: background-color 0.3s;
       transition: background-color 0.3s; }
@@ -317,28 +317,28 @@
         background-color: #F3F6F9 ; }
         .header-menu-mobile .menu-nav > .menu-item.menu-item-active > .menu-heading .menu-text,
         .header-menu-mobile .menu-nav > .menu-item.menu-item-active > .menu-link .menu-text {
-          color: #6993FF ; }
+          color: var(--primary) ; }
         .header-menu-mobile .menu-nav > .menu-item.menu-item-active > .menu-heading .menu-icon,
         .header-menu-mobile .menu-nav > .menu-item.menu-item-active > .menu-link .menu-icon {
-          color: #6993FF ; }
+          color: var(--primary) ; }
           .header-menu-mobile .menu-nav > .menu-item.menu-item-active > .menu-heading .menu-icon.svg-icon svg g [fill],
           .header-menu-mobile .menu-nav > .menu-item.menu-item-active > .menu-link .menu-icon.svg-icon svg g [fill] {
             -webkit-transition: fill 0.3s ease;
             transition: fill 0.3s ease;
-            fill: #6993FF; }
+            fill: var(--primary); }
           .header-menu-mobile .menu-nav > .menu-item.menu-item-active > .menu-heading .menu-icon.svg-icon svg:hover g [fill],
           .header-menu-mobile .menu-nav > .menu-item.menu-item-active > .menu-link .menu-icon.svg-icon svg:hover g [fill] {
             -webkit-transition: fill 0.3s ease;
             transition: fill 0.3s ease; }
         .header-menu-mobile .menu-nav > .menu-item.menu-item-active > .menu-heading .menu-bullet.menu-bullet-dot > span,
         .header-menu-mobile .menu-nav > .menu-item.menu-item-active > .menu-link .menu-bullet.menu-bullet-dot > span {
-          background-color: #6993FF ; }
+          background-color: var(--primary) ; }
         .header-menu-mobile .menu-nav > .menu-item.menu-item-active > .menu-heading .menu-bullet.menu-bullet-line > span,
         .header-menu-mobile .menu-nav > .menu-item.menu-item-active > .menu-link .menu-bullet.menu-bullet-line > span {
-          background-color: #6993FF ; }
+          background-color: var(--primary) ; }
         .header-menu-mobile .menu-nav > .menu-item.menu-item-active > .menu-heading .menu-arrow,
         .header-menu-mobile .menu-nav > .menu-item.menu-item-active > .menu-link .menu-arrow {
-          color: #6993FF ; }
+          color: var(--primary) ; }
     .header-menu-mobile .menu-nav > .menu-item:not(.menu-item-parent):not(.menu-item-open):not(.menu-item-here):not(.menu-item-active):hover {
       -webkit-transition: background-color 0.3s;
       transition: background-color 0.3s; }
@@ -347,28 +347,28 @@
         background-color: #F3F6F9 ; }
         .header-menu-mobile .menu-nav > .menu-item:not(.menu-item-parent):not(.menu-item-open):not(.menu-item-here):not(.menu-item-active):hover > .menu-heading .menu-text,
         .header-menu-mobile .menu-nav > .menu-item:not(.menu-item-parent):not(.menu-item-open):not(.menu-item-here):not(.menu-item-active):hover > .menu-link .menu-text {
-          color: #6993FF ; }
+          color: var(--primary) ; }
         .header-menu-mobile .menu-nav > .menu-item:not(.menu-item-parent):not(.menu-item-open):not(.menu-item-here):not(.menu-item-active):hover > .menu-heading .menu-icon,
         .header-menu-mobile .menu-nav > .menu-item:not(.menu-item-parent):not(.menu-item-open):not(.menu-item-here):not(.menu-item-active):hover > .menu-link .menu-icon {
-          color: #6993FF ; }
+          color: var(--primary) ; }
           .header-menu-mobile .menu-nav > .menu-item:not(.menu-item-parent):not(.menu-item-open):not(.menu-item-here):not(.menu-item-active):hover > .menu-heading .menu-icon.svg-icon svg g [fill],
           .header-menu-mobile .menu-nav > .menu-item:not(.menu-item-parent):not(.menu-item-open):not(.menu-item-here):not(.menu-item-active):hover > .menu-link .menu-icon.svg-icon svg g [fill] {
             -webkit-transition: fill 0.3s ease;
             transition: fill 0.3s ease;
-            fill: #6993FF; }
+            fill: var(--primary); }
           .header-menu-mobile .menu-nav > .menu-item:not(.menu-item-parent):not(.menu-item-open):not(.menu-item-here):not(.menu-item-active):hover > .menu-heading .menu-icon.svg-icon svg:hover g [fill],
           .header-menu-mobile .menu-nav > .menu-item:not(.menu-item-parent):not(.menu-item-open):not(.menu-item-here):not(.menu-item-active):hover > .menu-link .menu-icon.svg-icon svg:hover g [fill] {
             -webkit-transition: fill 0.3s ease;
             transition: fill 0.3s ease; }
         .header-menu-mobile .menu-nav > .menu-item:not(.menu-item-parent):not(.menu-item-open):not(.menu-item-here):not(.menu-item-active):hover > .menu-heading .menu-bullet.menu-bullet-dot > span,
         .header-menu-mobile .menu-nav > .menu-item:not(.menu-item-parent):not(.menu-item-open):not(.menu-item-here):not(.menu-item-active):hover > .menu-link .menu-bullet.menu-bullet-dot > span {
-          background-color: #6993FF ; }
+          background-color: var(--primary) ; }
         .header-menu-mobile .menu-nav > .menu-item:not(.menu-item-parent):not(.menu-item-open):not(.menu-item-here):not(.menu-item-active):hover > .menu-heading .menu-bullet.menu-bullet-line > span,
         .header-menu-mobile .menu-nav > .menu-item:not(.menu-item-parent):not(.menu-item-open):not(.menu-item-here):not(.menu-item-active):hover > .menu-link .menu-bullet.menu-bullet-line > span {
-          background-color: #6993FF ; }
+          background-color: var(--primary) ; }
         .header-menu-mobile .menu-nav > .menu-item:not(.menu-item-parent):not(.menu-item-open):not(.menu-item-here):not(.menu-item-active):hover > .menu-heading .menu-arrow,
         .header-menu-mobile .menu-nav > .menu-item:not(.menu-item-parent):not(.menu-item-open):not(.menu-item-here):not(.menu-item-active):hover > .menu-link .menu-arrow {
-          color: #6993FF ; }
+          color: var(--primary) ; }
     .header-menu-mobile .menu-nav > .menu-item > .menu-arrow {
       color: #ffffff; }
     .header-menu-mobile .menu-nav > .menu-section .menu-text {
@@ -409,25 +409,25 @@
         background-color: #F3F6F9 ; }
         .header-menu-mobile .menu-nav > .menu-item .menu-submenu .menu-item.menu-item-open > .menu-heading .menu-text,
         .header-menu-mobile .menu-nav > .menu-item .menu-submenu .menu-item.menu-item-open > .menu-link .menu-text {
-          color: #6993FF ; }
+          color: var(--primary) ; }
         .header-menu-mobile .menu-nav > .menu-item .menu-submenu .menu-item.menu-item-open > .menu-heading .menu-icon,
         .header-menu-mobile .menu-nav > .menu-item .menu-submenu .menu-item.menu-item-open > .menu-link .menu-icon {
-          color: #6993FF ; }
+          color: var(--primary) ; }
           .header-menu-mobile .menu-nav > .menu-item .menu-submenu .menu-item.menu-item-open > .menu-heading .menu-icon.svg-icon svg g [fill],
           .header-menu-mobile .menu-nav > .menu-item .menu-submenu .menu-item.menu-item-open > .menu-link .menu-icon.svg-icon svg g [fill] {
             -webkit-transition: fill 0.3s ease;
             transition: fill 0.3s ease;
-            fill: #6993FF; }
+            fill: var(--primary); }
           .header-menu-mobile .menu-nav > .menu-item .menu-submenu .menu-item.menu-item-open > .menu-heading .menu-icon.svg-icon svg:hover g [fill],
           .header-menu-mobile .menu-nav > .menu-item .menu-submenu .menu-item.menu-item-open > .menu-link .menu-icon.svg-icon svg:hover g [fill] {
             -webkit-transition: fill 0.3s ease;
             transition: fill 0.3s ease; }
         .header-menu-mobile .menu-nav > .menu-item .menu-submenu .menu-item.menu-item-open > .menu-heading .menu-bullet.menu-bullet-dot > span,
         .header-menu-mobile .menu-nav > .menu-item .menu-submenu .menu-item.menu-item-open > .menu-link .menu-bullet.menu-bullet-dot > span {
-          background-color: #6993FF ; }
+          background-color: var(--primary) ; }
         .header-menu-mobile .menu-nav > .menu-item .menu-submenu .menu-item.menu-item-open > .menu-heading .menu-bullet.menu-bullet-line > span,
         .header-menu-mobile .menu-nav > .menu-item .menu-submenu .menu-item.menu-item-open > .menu-link .menu-bullet.menu-bullet-line > span {
-          background-color: #6993FF ; }
+          background-color: var(--primary) ; }
         .header-menu-mobile .menu-nav > .menu-item .menu-submenu .menu-item.menu-item-open > .menu-heading .menu-arrow,
         .header-menu-mobile .menu-nav > .menu-item .menu-submenu .menu-item.menu-item-open > .menu-link .menu-arrow {
           color: #6993FF ; }

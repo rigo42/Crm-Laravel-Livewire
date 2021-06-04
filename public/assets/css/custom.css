@@ -10,3 +10,23 @@
     right: -10px;
     bottom: -10px;
 }
+
+.aside-menu .menu-nav > .menu-item > .menu-heading .menu-text, .aside-menu .menu-nav > .menu-item > .menu-link .menu-text{
+    color: #3f4254;
+    font-weight: 500;
+}
+
+.border-gray-300 {
+    border-color: #e4e6ef!important;
+}
+
+.border-dashed {
+    border-style: dashed!important;
+    border-color: #e4e6ef;
+}
+
+.rounded {
+    border-radius: .475rem!important;
+}
+
+
