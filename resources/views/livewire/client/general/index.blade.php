@@ -2,28 +2,42 @@
 
     @if ($count)
             
-        <!--begin::Card-->
+        <!--Filters-->
         <div class="card mb-7">
-            <!--begin::Card body-->
             <div class="card-body">
-                <!--begin::Compact form-->
-                <form action="#" >
-                    <div class="input-icon">
-                        <input 
-                            wire:model="search"
-                            type="search" 
-                            class="form-control"
-                            placeholder="Buscar...">
-                        <span>
-                            <i class="flaticon2-search-1 icon-md"></i>
-                        </span>
+                <div class="mb-5 ">
+                    <div class="row align-items-center">
+                        <div class="col-lg-9 col-xl-8">
+                            <div class="row align-items-center">
+                                <div class="col-md-6 my-2 my-md-0">
+                                    <div class="input-icon">
+                                        <input 
+                                            wire:model="search"
+                                            type="search" 
+                                            class="form-control"
+                                            placeholder="Buscar...">
+                                        <span>
+                                            <i class="flaticon2-search-1 text-muted"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 my-2 my-md-0">
+                                    <div class="d-flex align-items-center">
+                                        <label class="mr-3 mb-0 d-none d-md-block">Mostrar:</label>
+                                        <select class="form-control" wire:model="perPage">
+                                            <option value="10">10 Entradas</option>
+                                            <option value="20">20 Entradas</option>
+                                            <option value="50">50 Entradas</option>
+                                            <option value="100">100 Entradas</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </form>
-                <!--end::Compact form-->
+                </div>
             </div>
-            <!--end::Card body-->
         </div>
-        <!--end::Card-->
         
         <!--begin::Row-->
         <div class="row">

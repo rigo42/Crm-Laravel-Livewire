@@ -5,13 +5,13 @@ function active($routeNames){
     if(is_array($routeNames)){
         foreach($routeNames as $routeName){
            if(setActive($routeName)){
-                $class = "menu-item-active";
+                $class = "menu-item-active active";
                 break;
            }
         }
     }else{
         if(setActive($routeNames)){
-            $class = "menu-item-active";
+            $class = "menu-item-active active";
         }
     }
    return $class;

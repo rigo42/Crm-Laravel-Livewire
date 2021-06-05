@@ -648,18 +648,18 @@
                                                             <h3 class="card-title"></h3>
                                                             <div class="card-toolbar">
                                                                 <!--start::Toolbar-->
-                            <div class="d-flex justify-content-end">
-                                <div class="dropdown dropdown-inline" data-toggle="tooltip"  data-placement="left">
-                                    <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="ki ki-bold-more-hor"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                                        <a class="dropdown-item" href="{{ route('client.show', $client) }}"><i class="fa fa-eye mr-2"></i> Ver</a>
-                                        <a class="dropdown-item" href="{{ route('client.edit', $client) }}"><i class="fa fa-pen mr-2"></i> Editar</a>
-                                        <a class="dropdown-item" href="#" onclick="event.preventDefault(); confirmDestroy({{ $client->id }})"><i class="fa fa-trash mr-2"></i> Eliminar</a>
-                                    </div>
-                                </div>
-                            </div>
+                                                                <div class="d-flex justify-content-end">
+                                                                    <div class="dropdown dropdown-inline" data-toggle="tooltip"  data-placement="left">
+                                                                        <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                            <i class="ki ki-bold-more-hor"></i>
+                                                                        </a>
+                                                                        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                                                                            <a class="dropdown-item" href="{{ route('client.show', $client) }}"><i class="fa fa-eye mr-2"></i> Ver</a>
+                                                                            <a class="dropdown-item" href="{{ route('client.edit', $client) }}"><i class="fa fa-pen mr-2"></i> Editar</a>
+                                                                            <a class="dropdown-item" href="#" onclick="event.preventDefault(); confirmDestroy({{ $client->id }})"><i class="fa fa-trash mr-2"></i> Eliminar</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="card-body">
@@ -684,18 +684,18 @@
                                                             <h3 class="card-title"></h3>
                                                             <div class="card-toolbar">
                                                                 <!--start::Toolbar-->
-                            <div class="d-flex justify-content-end">
-                                <div class="dropdown dropdown-inline" data-toggle="tooltip"  data-placement="left">
-                                    <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="ki ki-bold-more-hor"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                                        <a class="dropdown-item" href="{{ route('client.show', $client) }}"><i class="fa fa-eye mr-2"></i> Ver</a>
-                                        <a class="dropdown-item" href="{{ route('client.edit', $client) }}"><i class="fa fa-pen mr-2"></i> Editar</a>
-                                        <a class="dropdown-item" href="#" onclick="event.preventDefault(); confirmDestroy({{ $client->id }})"><i class="fa fa-trash mr-2"></i> Eliminar</a>
-                                    </div>
-                                </div>
-                            </div>
+                                                                <div class="d-flex justify-content-end">
+                                                                    <div class="dropdown dropdown-inline" data-toggle="tooltip"  data-placement="left">
+                                                                        <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                            <i class="ki ki-bold-more-hor"></i>
+                                                                        </a>
+                                                                        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                                                                            <a class="dropdown-item" href="{{ route('client.show', $client) }}"><i class="fa fa-eye mr-2"></i> Ver</a>
+                                                                            <a class="dropdown-item" href="{{ route('client.edit', $client) }}"><i class="fa fa-pen mr-2"></i> Editar</a>
+                                                                            <a class="dropdown-item" href="#" onclick="event.preventDefault(); confirmDestroy({{ $client->id }})"><i class="fa fa-trash mr-2"></i> Eliminar</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="card-body">
@@ -720,18 +720,18 @@
                                                             <h3 class="card-title"></h3>
                                                             <div class="card-toolbar">
                                                                 <!--start::Toolbar-->
-                            <div class="d-flex justify-content-end">
-                                <div class="dropdown dropdown-inline" data-toggle="tooltip"  data-placement="left">
-                                    <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="ki ki-bold-more-hor"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                                        <a class="dropdown-item" href="{{ route('client.show', $client) }}"><i class="fa fa-eye mr-2"></i> Ver</a>
-                                        <a class="dropdown-item" href="{{ route('client.edit', $client) }}"><i class="fa fa-pen mr-2"></i> Editar</a>
-                                        <a class="dropdown-item" href="#" onclick="event.preventDefault(); confirmDestroy({{ $client->id }})"><i class="fa fa-trash mr-2"></i> Eliminar</a>
-                                    </div>
-                                </div>
-                            </div>
+                                                                <div class="d-flex justify-content-end">
+                                                                    <div class="dropdown dropdown-inline" data-toggle="tooltip"  data-placement="left">
+                                                                        <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                            <i class="ki ki-bold-more-hor"></i>
+                                                                        </a>
+                                                                        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                                                                            <a class="dropdown-item" href="{{ route('client.show', $client) }}"><i class="fa fa-eye mr-2"></i> Ver</a>
+                                                                            <a class="dropdown-item" href="{{ route('client.edit', $client) }}"><i class="fa fa-pen mr-2"></i> Editar</a>
+                                                                            <a class="dropdown-item" href="#" onclick="event.preventDefault(); confirmDestroy({{ $client->id }})"><i class="fa fa-trash mr-2"></i> Eliminar</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="card-body">
@@ -756,18 +756,18 @@
                                                             <h3 class="card-title"></h3>
                                                             <div class="card-toolbar">
                                                                 <!--start::Toolbar-->
-                            <div class="d-flex justify-content-end">
-                                <div class="dropdown dropdown-inline" data-toggle="tooltip"  data-placement="left">
-                                    <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="ki ki-bold-more-hor"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                                        <a class="dropdown-item" href="{{ route('client.show', $client) }}"><i class="fa fa-eye mr-2"></i> Ver</a>
-                                        <a class="dropdown-item" href="{{ route('client.edit', $client) }}"><i class="fa fa-pen mr-2"></i> Editar</a>
-                                        <a class="dropdown-item" href="#" onclick="event.preventDefault(); confirmDestroy({{ $client->id }})"><i class="fa fa-trash mr-2"></i> Eliminar</a>
-                                    </div>
-                                </div>
-                            </div>
+                                                                <div class="d-flex justify-content-end">
+                                                                    <div class="dropdown dropdown-inline" data-toggle="tooltip"  data-placement="left">
+                                                                        <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                            <i class="ki ki-bold-more-hor"></i>
+                                                                        </a>
+                                                                        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                                                                            <a class="dropdown-item" href="{{ route('client.show', $client) }}"><i class="fa fa-eye mr-2"></i> Ver</a>
+                                                                            <a class="dropdown-item" href="{{ route('client.edit', $client) }}"><i class="fa fa-pen mr-2"></i> Editar</a>
+                                                                            <a class="dropdown-item" href="#" onclick="event.preventDefault(); confirmDestroy({{ $client->id }})"><i class="fa fa-trash mr-2"></i> Eliminar</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="card-body">

@@ -77,10 +77,10 @@
                     <span class="menu-text">Informes</span>
                 </a>
             </li>
-            <li class="menu-item">
-                <a href="index.html" class="menu-link">
+            <li class="menu-item {{ active('setting.welcome.index') }}">
+                <a href="{{ route('setting.welcome.index') }}" class="menu-link">
                     <i class="menu-icon text-dark fa fa-cog"></i>
-                    <span class="menu-text">Cconfiguraciones</span>
+                    <span class="menu-text">Configuraciones</span>
                 </a>
             </li>
             

@@ -313,6 +313,59 @@
                                                     </div>
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <td class="pl-0 py-8">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="symbol symbol-50 flex-shrink-0 mr-4">
+                                                            <div class="symbol-label" style="background-image: url('{{ asset('assets') }}/media/stock-600x400/img-26.jpg')"></div>
+                                                        </div>
+                                                        <div>
+                                                            <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">Nicole torres</a>
+                                                            <span class="text-muted font-weight-bold d-block">Persona</span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg">31 de julio 2021</span>
+                                                </td>
+                                                <td>
+                                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg badge badge-secondary">Borrador</span>
+                                                </td>
+                                                <td>
+                                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg">$40.00</span>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex justify-content-end">
+                                                        <div class="dropdown dropdown-inline" data-toggle="tooltip" title="" data-placement="left"  style="position: initial!important;">
+                                                            <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <i class="ki ki-bold-more-hor"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-md dropdown-menu-right" style="position: inherit;">
+                                                                <!--begin::Navigation-->
+                                                                <ul class="navi navi-hover py-5">
+                                                                    <li class="navi-item">
+                                                                        <a href="#" class="navi-link">
+                                                                            <span class="navi-icon">
+                                                                                <i class="fa fa-pen"></i>
+                                                                            </span>
+                                                                            <span class="navi-text">Editar</span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="navi-item">
+                                                                        <a href="#" class="navi-link">
+                                                                            <span class="navi-icon">
+                                                                                <i class="fa fa-eye"></i>
+                                                                            </span>
+                                                                            <span class="navi-text">Ver</span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                                <!--end::Navigation-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>

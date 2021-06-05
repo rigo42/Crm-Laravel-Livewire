@@ -29,4 +29,9 @@
     border-radius: .475rem!important;
 }
 
+.table > tbody > tr {
+    border-bottom-width: 1px;
+    border-bottom-style: dashed;
+    border-bottom-color: #eff2f5;
+}
 
