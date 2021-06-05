@@ -58,6 +58,10 @@ return [
 
     'logo' => env('APP_LOGO', null),
 
+    'logo_ico' => env('APP_LOGO_ICO', null),
+
+    
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

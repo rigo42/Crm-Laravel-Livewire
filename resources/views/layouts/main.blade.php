@@ -20,7 +20,7 @@
 		<link href="{{ asset('assets') }}/css/custom.css" rel="stylesheet" type="text/css" />
 
 		<!--end::Layout Themes-->
-		<link rel="shortcut icon" href="{{ asset('assets') }}/media/logos/favicon.ico" />
+		<link rel="shortcut icon" href="{{ config('app.logo_ico') }}" />
 
 		@yield('head')
 
