@@ -2,8 +2,11 @@
 
 namespace App\Http\Livewire\Client\General;
 
+use App\Mail\ClientNew;
 use App\Models\Client;
 use App\Models\User;
+use Exception;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Intervention\Image\Facades\Image;
@@ -52,9 +55,16 @@ class Form extends Component
         $this->validate();
         $this->client->save();
         $this->saveImage();
-        session()->flash('alert','Cliente agregado con exito');
-        session()->flash('alert-type', 'success');
-        return redirect()->route('client.index');
+        try{
+            session()->flash('alert','Cliente agregado y correo de bienvenida enviado con exito');
+            session()->flash('alert-type', 'success');
+            Mail::to($this->client->email)->send(new ClientNew($this->client));
+        }catch(Exception $e){
+            session()->flash('alert','Ocurrio un problema al enviar el correo de bienvenida');
+            session()->flash('alert-type', 'warning');
+        }
+        
+        return redirect()->route('client.show', $this->client);
     }
 
     public function update(){
@@ -63,7 +73,7 @@ class Form extends Component
         $this->saveImage();
         session()->flash('alert','Cliente actualizado con exito');
         session()->flash('alert-type', 'success');
-        return redirect()->route('client.index');
+        return redirect()->route('client.show', $this->client);
     }
 
     public function saveImage(){
