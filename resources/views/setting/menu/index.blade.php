@@ -12,7 +12,7 @@
                 <a class="nav-link" href="#"> <i class="fa fa-cog text-dark mr-2"></i> Roles</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"> <i class="fa fa-cog text-dark mr-2"></i> Permisos</a>
+                <a class="nav-link {{ active('setting.permission.*') }}" href="{{ route('setting.permission.index') }}"> <i class="fa fa-cog text-dark mr-2"></i> Permisos</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#"> <i class="fa fa-university text-dark mr-2"></i> Información de empresa</a>

@@ -21,7 +21,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="col-md-4 my-2 my-md-0">
+                                <div class="col-md-6 my-2 my-md-0">
                                     <div class="d-flex align-items-center">
                                         <label class="mr-3 mb-0 d-none d-md-block">Mostrar:</label>
                                         <select class="form-control" wire:model="perPage">
@@ -179,7 +179,7 @@
                     <a href="{{ route('client.create') }}" class="btn btn-primary">Agregar cliente</a>
                 </div>
                 <div class="text-center px-4 ">
-                    <img class="img-fluid col-6" alt="" src="https://preview.keenthemes.com/metronic8/demo1/assets/media/illustrations/work.png">
+                    <img class="img-fluid col-6" alt="" src="{{ asset('assets/media/ilustrations/work.png') }}">
                 </div>
             </div>
         </div>
@@ -201,9 +201,6 @@
                     cancelButtonClass: "btn btn-light-primary font-weight-bold",
                     confirmButtonClass: "btn btn-danger",
                     showLoaderOnConfirm: true,
-                    onPreconfim: function() {
-                        swal.showLoading()
-                    }
                 }).then(function(result) {
                     if (result.isConfirmed) {
                         @this.call('destroy', id);

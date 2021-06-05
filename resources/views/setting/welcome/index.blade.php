@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Ajutes | General')
+@section('title', 'Ajutes')
 
 @section('content')
     <!--begin::Bread-->
@@ -26,7 +26,7 @@
                 
                 <div class="row">
 
-                @include('setting.menu.index')
+                    @include('setting.menu.index')
 
                     <div class="col-xl-9">
                         <!--begin::Engage Widget 9-->
