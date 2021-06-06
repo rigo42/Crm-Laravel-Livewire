@@ -6,6 +6,7 @@ use App\Mail\ClientNew;
 use App\Models\Client;
 use App\Models\User;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
@@ -16,22 +17,27 @@ class Form extends Component
 {
 
     use WithFileUploads;
+
+    //User actual
+    public $user;
     
     public $method;
     public $client;
 
     //Tools
     public $imageTmp;
+    public $userId;
 
     public function mount(Client $client, $method){
+        $this->user = User::find(Auth::user()->id);
         $this->client = $client;
         $this->method = $method;
+        $this->userId = $client->user_id;
     }
 
     protected function rules()
     {
         return [
-            'client.user_id' => 'required|exists:users,id',
             'client.name' => 'required',
             'client.email' => 'required|email|unique:clients,email,'.$this->client->id,
             'client.phone' => 'nullable',
@@ -43,6 +49,7 @@ class Form extends Component
             'client.rfc' => 'nullable',
             'client.premium' => 'nullable',
         ];
+
     }
 
     public function render()
@@ -53,6 +60,8 @@ class Form extends Component
 
     public function store(){
         $this->validate();
+        $this->saveUser();
+        $this->saveUserByAdmin();
         $this->client->save();
         $this->saveImage();
         try{
@@ -69,11 +78,27 @@ class Form extends Component
 
     public function update(){
         $this->validate();
+        $this->saveUserByAdmin();
         $this->client->update();
         $this->saveImage();
         session()->flash('alert','Cliente actualizado con exito');
         session()->flash('alert-type', 'success');
         return redirect()->route('client.show', $this->client);
+    }
+
+    public function saveUserByAdmin(){
+        if($this->user->hasRole('Administrador')){
+            $this->validate([
+                'userId' => 'required',
+            ]);
+            $this->client->user_id = $this->userId;
+        }
+    }
+
+    public function saveUser(){
+        if(!$this->user->hasRole('Administrador')){
+            $this->client->user_id = Auth::user()->id;
+        }
     }
 
     public function saveImage(){

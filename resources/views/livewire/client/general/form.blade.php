@@ -218,6 +218,8 @@
                             </div>
                         </div>
 
+                        @role('Administrador')
+
                         <div class="separator separator-dashed my-10"></div>
 
                         <div class="my-5">
@@ -227,8 +229,8 @@
                                 <div class="col-9">
                                     <div wire:ignore>
                                         <select 
-                                            wire:model.defer="client.user_id" 
-                                            class="form-control selectpicker form-control-solid @error('client.user_id') is-invalid @enderror" 
+                                            wire:model="userId" 
+                                            class="form-control selectpicker form-control-solid @error('userId') is-invalid @enderror" 
                                             data-size="7"
                                             data-live-search="true">
                                             <option value="">Ninguno</option>
@@ -238,11 +240,12 @@
                                         </select>
                                     </div>
                                     <span class="form-text text-muted">Este es el usuario responsable del cliente</span>
-                                    @error('client.user_id') <div><span class="text-danger">{{ $message }}</span></div> @enderror
+                                    @error('userId') <div><span class="text-danger">{{ $message }}</span></div> @enderror
                                 </div>
                             </div>
                         </div>
 
+                        @endrole
                     </div>
                     <div class="col-xl-2"></div>
                 </div>

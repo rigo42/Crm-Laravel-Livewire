@@ -117,7 +117,13 @@
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <span class="text-dark-75 font-weight-bolder mr-2">Pertenece a:</span>
-                                    <span class="text-muted font-weight-bold">{{ $client->user->name }}</span>
+                                    <span class="text-muted font-weight-bold">
+                                        @if ($client->user)
+                                            <span class="badge badge-success">{{ $client->user->name }}</span>
+                                        @else 
+                                            <span class="badge badge-secondary">Ninguno usuario</span>
+                                        @endif
+                                    </span>
                                 </div>
                             </div>
                             
