@@ -20,6 +20,7 @@
         "laravel/ui": "^3.3",
         "laraveles/spanish": "^1.5",
         "livewire/livewire": "^2.4",
+        "orangehill/iseed": "^3.0",
         "spatie/laravel-permission": "^4.0"
     },
     "require-dev": {

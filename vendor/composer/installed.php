@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'b679212203b98c1db144bc3eae1aaf768b7d8864',
+    'reference' => 'c9c733f6458e50e55fe8567ce0eaa8ab9690ac38',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -463,7 +463,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'b679212203b98c1db144bc3eae1aaf768b7d8864',
+      'reference' => 'c9c733f6458e50e55fe8567ce0eaa8ab9690ac38',
     ),
     'laravel/tinker' => 
     array (
@@ -601,6 +601,15 @@
       array (
       ),
       'reference' => '06e2ebd25f2869e54a306dda991f7db58066f7f6',
+    ),
+    'orangehill/iseed' => 
+    array (
+      'pretty_version' => 'v3.0.1',
+      'version' => '3.0.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '874f77a20d49aa4c6c5fec2daf0daa070514e013',
     ),
     'phar-io/manifest' => 
     array (

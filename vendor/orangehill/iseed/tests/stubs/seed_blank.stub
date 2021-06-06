@@ -2,14 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 
-class UserSeeder extends Seeder
+class test_class extends Seeder
 {
+
     /**
-     * Run the database seeds.
+     * Auto generated seed file
      *
      * @return void
      */
@@ -17,5 +16,9 @@ class UserSeeder extends Seeder
     {
         
 
+        \DB::table('test_table')->delete();
+        
+        
+        
     }
 }

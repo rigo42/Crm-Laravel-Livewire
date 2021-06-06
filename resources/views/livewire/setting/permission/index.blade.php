@@ -68,7 +68,7 @@
                                     </td>
                                     <td>
                                         @forelse ($permission->roles as $role)
-                                            <span class="font-weight-bolder font-size-lg badge badge-success">Gerente</span>
+                                            <span class="font-weight-bolder font-size-lg badge badge-success">{{$role->name}}</span>
                                         @empty
                                             <span class="font-size-lg badge badge-secondary">Ninguno</span>
                                         @endforelse
