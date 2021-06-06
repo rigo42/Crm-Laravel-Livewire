@@ -65,8 +65,8 @@
 
             <div class="my-5"></div>
 
-            <li class="menu-item">
-                <a href="index.html" class="menu-link">
+            <li class="menu-item {{ active('user.*') }}">
+                <a href="{{ route('user.general.index') }}" class="menu-link">
                     <i class="menu-icon text-dark fa fa-users"></i>
                     <span class="menu-text">Usuarios</span>
                 </a>

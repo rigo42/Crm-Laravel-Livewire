@@ -44,7 +44,7 @@
                                                     >
                                                 </div>
                                                 <div class="d-flex flex-column">
-                                                    <a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-lg">{{ $user->name }}</a>
+                                                    <a href="{{ route('user.general.show', $user) }}" class="text-dark-75 text-hover-primary font-weight-bold font-size-lg">{{ $user->name }}</a>
                                                     <span class="text-muted font-weight-bold font-size-sm">{{ $user->position }}</span>
                                                 </div>
                                             </div>
