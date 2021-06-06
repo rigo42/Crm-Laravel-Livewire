@@ -1,41 +1,95 @@
 <div class="col-xl-3">
-    <div class="card card-custom gutter-b py-5">
-        <ul class="nav flex-column nav-light-success nav-pills container">
-            
-            <li class="nav-item">
-                <a class="nav-link {{ active('setting.welcome.index') }}" href="{{ route('setting.welcome.index') }}"> <i class="fa fa-user text-dark mr-2"></i> Bienvenido a configuración</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="#"> <i class="fa fa-user text-dark mr-2"></i> Ajustes de cuenta</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ active('setting.role.*') }}" href="{{ route('setting.role.index') }}"> <i class="fa fa-cog text-dark mr-2"></i> Roles</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ active('setting.permission.*') }}" href="{{ route('setting.permission.index') }}"> <i class="fa fa-cog text-dark mr-2"></i> Permisos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="#"> <i class="fa fa-university text-dark mr-2"></i> Información de empresa</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"> <i class="fa fa-cog text-dark mr-2"></i> Preferencias</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"> <i class="fa fa-bell text-dark mr-2"></i> Notificaciones</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa fa-credit-card text-dark mr-2"></i> Modos de pago</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"> <i class="fa fa-sticky-note text-dark mr-2"></i> Categorias de gastos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa fa-mail-bulk text-dark mr-2"></i> Configuración de correo</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"> <i class="fa fa-database text-dark mr-2"></i> Backup</a>
-            </li>
-        </ul>
-    </div>
-    <!--end::Card-->
+    
+    <ul class="navi navi-link-rounded navi-accent navi-hover navi-active nav flex-column mb-8 mb-lg-0" role="tablist">
+
+        <li class="navi-item mb-2">
+            <a class="navi-link {{ active('setting.welcome.index') }}" href="{{ route('setting.welcome.index') }}">
+                <span class="navi-text text-dark-50 font-size-h5 font-weight-bold">
+                    <i class="fab fa-buffer text-dark mr-2"></i> Bienvenido
+                </span>
+            </a>
+        </li>
+
+        <li class="navi-item mb-2">
+            <a class="navi-link" href="#">
+                <span class="navi-text text-dark-50 font-size-h5 font-weight-bold">
+                    <i class="fa fa-user text-dark mr-2"></i> Ajustes de cuenta
+                </span>
+            </a>
+        </li>
+
+        <li class="navi-item mb-2">
+            <a class="navi-link {{ active('setting.role.*') }}" href="{{ route('setting.role.index') }}">
+                <span class="navi-text text-dark-50 font-size-h5 font-weight-bold">
+                    <i class="fa fa-cog text-dark mr-2"></i> Roles
+                </span>
+            </a>
+        </li>
+
+        <li class="navi-item mb-2">
+            <a class="navi-link {{ active('setting.permission.*') }}"  href="{{ route('setting.permission.index') }}">
+                <span class="navi-text text-dark-50 font-size-h5 font-weight-bold">
+                    <i class="fa fa-cog text-dark mr-2"></i> Permisos
+                </span>
+            </a>
+        </li>
+
+        <li class="navi-item mb-2">
+            <a class="navi-link" href="#">
+                <span class="navi-text text-dark-50 font-size-h5 font-weight-bold">
+                    <i class="fa fa-university text-dark mr-2"></i> Información de empresa
+                </span>
+            </a>
+        </li>
+
+        <li class="navi-item mb-2">
+            <a class="navi-link" href="#">
+                <span class="navi-text text-dark-50 font-size-h5 font-weight-bold">
+                    <i class="fa fa-cog text-dark mr-2"></i> Preferencias
+                </span>
+            </a>
+        </li>
+
+        <li class="navi-item mb-2">
+            <a class="navi-link" href="#">
+                <span class="navi-text text-dark-50 font-size-h5 font-weight-bold">
+                    <i class="fa fa-bell text-dark mr-2"></i> Notificaciones
+                </span>
+            </a>
+        </li>
+
+        <li class="navi-item mb-2">
+            <a class="navi-link" href="#">
+                <span class="navi-text text-dark-50 font-size-h5 font-weight-bold">
+                    <i class="fa fa-credit-card text-dark mr-2"></i> Modos de pago
+                </span>
+            </a>
+        </li>
+
+        <li class="navi-item mb-2">
+            <a class="navi-link" href="#">
+                <span class="navi-text text-dark-50 font-size-h5 font-weight-bold">
+                    <i class="fa fa-sticky-note text-dark mr-2"></i> Categorias de gastos
+                </span>
+            </a>
+        </li>
+
+        <li class="navi-item mb-2">
+            <a class="navi-link" href="#">
+                <span class="navi-text text-dark-50 font-size-h5 font-weight-bold">
+                    <i class="fa fa-mail-bulk text-dark mr-2"></i> Configuración de correo
+                </span>
+            </a>
+        </li>
+
+        <li class="navi-item mb-2">
+            <a class="navi-link" href="#">
+                <span class="navi-text text-dark-50 font-size-h5 font-weight-bold">
+                    <i class="fa fa-database text-dark mr-2"></i> Backup
+                </span>
+            </a>
+        </li>
+        
+    </ul>
+   
 </div>
