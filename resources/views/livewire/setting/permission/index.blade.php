@@ -6,7 +6,7 @@
             <div class="card-header border-0 py-5">
                 <h3 class="card-title align-items-start flex-column">
                     <span class="card-label font-weight-bolder text-dark">Permisos</span>
-                    <span class="text-muted mt-3 font-weight-bold font-size-sm">(15) Permisos(s)</span>
+                    <span class="text-muted mt-3 font-weight-bold font-size-sm">({{ $permissions->total() }}) Permisos(s)</span>
                 </h3>
                 <div class="card-toolbar">
                     <a href="#" wire:click.prevent="$emit('createFormPermission')" class="btn btn-primary btn-shadow font-weight-bold mr-2 "><i class="fa fa-plus"></i> Nuevo</a>
@@ -88,11 +88,17 @@
                                                                 @endif
                                                                 >
                                                         </div>
+                                                        @if ($loop->index == (8))
+                                                            <div class="symbol symbol-30 symbol-circle symbol-light">
+                                                                <span class="symbol-label font-weight-bold">{{ $role->users->count() - ($loop->index + 1) }}+</span>
+                                                            </div>
+                                                            @break
+                                                        @endif
                                                     @endforeach
                                                 </div>
                                             </div>
                                         @else 
-                                            <span class="font-size-lg badge badge-secondary">Ninguno</span>
+                                            <span class="font-size-lg m-1 badge badge-secondary">Ninguno usuario</span>
                                         @endif
                                     </td>
                                     <td>
@@ -130,12 +136,12 @@
                             @empty 
                                 <!--begin::Col-->
                                 <div class="col-12">
-                                <div class="alert alert-custom alert-notice alert-light-dark fade show mb-5" role="alert">
-                                    <div class="alert-icon">
-                                        <i class="flaticon-questions-circular-button"></i>
+                                    <div class="alert alert-custom alert-notice alert-light-dark fade show mb-5" role="alert">
+                                        <div class="alert-icon">
+                                            <i class="flaticon-questions-circular-button"></i>
+                                        </div>
+                                        <div class="alert-text">Sin resultados "{{ $search }}"</div>
                                     </div>
-                                    <div class="alert-text">Sin resultados "{{ $search }}"</div>
-                                </div>
                                 </div>
                            @endforelse
                         </tbody>

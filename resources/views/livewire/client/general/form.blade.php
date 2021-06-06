@@ -150,7 +150,6 @@
                                     @error('client.company') <div><span class="text-danger">{{ $message }}</span></div> @enderror
                                 </div>
                             </div>
-                            
                         </div>
                         
                         <div class="separator separator-dashed my-10"></div>

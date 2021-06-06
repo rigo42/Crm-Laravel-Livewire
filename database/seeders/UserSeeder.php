@@ -99,6 +99,7 @@ class UserSeeder extends Seeder
             'updated_at' => NULL,
         ]);
 
+      
         $rigoberto->assignRole('Administrador');
         $oscar->assignRole('Relaciones publicas');
         $andrea->assignRole('Relaciones publicas');
@@ -106,6 +107,6 @@ class UserSeeder extends Seeder
         $brendaAdmin->assignRole('Administrador');
         $alex->assignRole('Relaciones publicas');
         $yessi->assignRole('Cobranza');
-
+      
     }
 }

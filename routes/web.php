@@ -3,6 +3,7 @@
 use App\Http\Controllers\Client\General\ClientController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Setting\PermissionController;
+use App\Http\Controllers\Setting\RoleController;
 use App\Http\Controllers\Setting\WelcomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,8 @@ Route::prefix('ajustes')->group(function () {
     Route::get('/', [WelcomeController::class, 'index'])->name('setting.welcome.index');
     //Permission
     Route::resource('permisos', PermissionController::class)->parameters(['permisos' => 'permission'])->names('setting.permission');
+    //Role
+    Route::resource('roles', RoleController::class)->parameters(['roles' => 'role'])->names('setting.role');
 });
 
 //Clients
