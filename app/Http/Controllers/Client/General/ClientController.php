@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['permission:clientes']);
+    }
+
     public function index(){
         return view('client.general.index');
     }

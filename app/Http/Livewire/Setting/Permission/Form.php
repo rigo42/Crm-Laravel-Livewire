@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Setting\Permission;
 
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class Form extends Component
 {
@@ -41,6 +42,7 @@ class Form extends Component
     public function store(){
         $this->validate();
         $this->permission->save();
+        $this->addInAdmin();
         $this->emit('renderPermissions');
         $this->emit('closeFormPermission');
         $this->alert('success', 'Permiso agregado con exito');
@@ -59,6 +61,11 @@ class Form extends Component
         $this->emit('closeFormPermission');
         $this->alert('success', 'Permiso modificado con exito');
         $this->permission = new Permission();
+    }
+
+    public function addInAdmin(){
+        $admin = Role::where('name', 'Administrador')->first();
+        $admin->givePermissionTo($this->permission->name);
     }
 
 
