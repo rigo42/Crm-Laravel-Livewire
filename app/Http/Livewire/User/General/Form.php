@@ -22,7 +22,7 @@ class Form extends Component
     public $user;
 
     //foreign
-    public $rolesArray = [];
+    public $rolesArray = []; 
 
     //Tools
     public $imageTmp;
@@ -62,20 +62,16 @@ class Form extends Component
         $this->saveImage();
         $this->saveRoles();
         try{
-            session()->flash('alert','Usuairo agregado y correo de bienvenida enviado con exito');
-            session()->flash('alert-type', 'success');
             Mail::to($this->user->email)->send(new UserNew($this->user, $password));
-            return redirect()->route('user.general.show', $this->user);
+            session()->flash('alert','Usuario agregado y correo de bienvenida enviado con exito');
+            session()->flash('alert-type', 'success');
+            
         }catch(Exception $e){
-            $this->alert('success', 'Usuario creado con exito');
-            $this->alert('error', 
-                'Ocurrio un error al enviar el correo de bienvenida: '.$e->getMessage(), 
-                [
-                    'showConfirmButton' => true,
-                    'confirmButtonText' => 'Entiendo',
-                    'timer' => null,
-                ]);
+            session()->flash('alert', 'Ocurrio un error al enviar el correo de bienvenida: '.$e->getMessage());
+            session()->flash('alert-type', 'success');
         }
+
+        return redirect()->route('user.general.show', $this->user);
         
         
     }

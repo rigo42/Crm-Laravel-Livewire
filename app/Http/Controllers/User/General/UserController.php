@@ -31,4 +31,12 @@ class UserController extends Controller
     public function edit(User $user){
         return view('user.general.edit', compact('user'));
     }
+
+    public function password(User $user){
+        return view('user.general.password', compact('user'));
+    }
+
+    public function permission(User $user){
+        return view('user.general.permission', compact('user'));
+    }
 }

@@ -161,6 +161,8 @@
                                         <span class="text-danger">{{ $message }}</span>
                                     </div>
                                 @enderror
+                            @else 
+                                <span class="badge badge-secondary">No existe ningun rol</span>
                             @endif
                         </div>
 

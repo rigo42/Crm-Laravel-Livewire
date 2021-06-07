@@ -30,9 +30,11 @@ Route::prefix('ajustes')->group(function () {
 
 //User
 Route::resource('usuarios', UserController::class)->parameters(['usuarios' => 'user'])->names('user.general');
-Route::prefix('usuarios/{user}/')->group(function () {
+Route::prefix('usuarios/{user}')->group(function () {
     //Password
-    Route::get('password', [UserController::class, 'pasword'])->name('user.password.index');
+    Route::get('password', [UserController::class, 'password'])->name('user.general.password');
+    //Permission
+    Route::get('permisos', [UserController::class, 'permission'])->name('user.general.permission');
 });
 
 //Clients

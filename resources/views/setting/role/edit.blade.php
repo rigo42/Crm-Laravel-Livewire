@@ -60,6 +60,8 @@
                                     </label>
                                     @endforeach
                                 </div>
+                                @else 
+                                    <span class="badge badge-secondary">No existe ningun permiso</span>
                                 @endif
                             </div>
                         </div>
