@@ -30,6 +30,10 @@ Route::prefix('ajustes')->group(function () {
 
 //User
 Route::resource('usuarios', UserController::class)->parameters(['usuarios' => 'user'])->names('user.general');
+Route::prefix('usuarios/{user}/')->group(function () {
+    //Password
+    Route::get('password', [UserController::class, 'pasword'])->name('user.password.index');
+});
 
 //Clients
 Route::resource('clientes', ClientController::class)->parameters(['clientes' => 'client'])->names('client');

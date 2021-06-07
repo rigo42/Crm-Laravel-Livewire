@@ -94,6 +94,14 @@
                                                     <!--begin::Navigation-->
                                                     <ul class="navi navi-hover py-5">
                                                         <li class="navi-item">
+                                                            <a href="{{ route('user.general.show', $user) }}" class="navi-link">
+                                                                <span class="navi-icon">
+                                                                    <i class="fa fa-eye"></i>
+                                                                </span>
+                                                                <span class="navi-text">Ver</span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="navi-item">
                                                             <a href="{{ route('user.general.edit', $user) }}" class="navi-link">
                                                                 <span class="navi-icon">
                                                                     <i class="fa fa-pen"></i>

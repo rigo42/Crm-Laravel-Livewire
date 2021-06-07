@@ -73,7 +73,7 @@
             <!--begin::Nav-->
             <div class="navi navi-spacer-x-0 p-0">
                 <!--begin::Item-->
-                <a href="custom/apps/user/profile-1/personal-information.html" class="navi-item">
+                <a href="{{ route('user.general.show', auth()->user()) }}" class="navi-item">
                     <div class="navi-link">
                         <div class="symbol symbol-40 bg-light mr-3">
                             <div class="symbol-label">
@@ -91,7 +91,7 @@
                             </div>
                         </div>
                         <div class="navi-text">
-                            <div class="font-weight-bold">My Profile</div>
+                            <div class="font-weight-bold">Mi perfil</div>
                             <div class="text-muted">Account settings and more
                             <span class="label label-light-danger label-inline font-weight-bold">update</span></div>
                         </div>

@@ -11,7 +11,7 @@
                     <a class="text-dark" href="{{ route('client.index') }}"><h5 class="text-dark font-weight-bold my-2 mr-5">Clientes</h5></a>
                     <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                         <li class="breadcrumb-item active">
-                            <a href="#" class="text-muted">{{ $client->name }}</a>
+                            <a href="#" class="text-muted">@yield('title')</a>
                         </li>
                     </ul>
                 </div>

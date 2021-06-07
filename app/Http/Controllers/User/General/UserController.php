@@ -12,6 +12,7 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware(['permission:usuarios'])->only('index', 'create');
+        $this->middleware(['user'])->except('index', 'create');
     }
 
     public function index(){
@@ -24,21 +25,10 @@ class UserController extends Controller
     }
 
     public function show(User $user){
-        $this->validateUserPermission($user);
         return view('user.general.show', compact('user'));
     }
 
     public function edit(User $user){
-        $this->validateUserPermission($user);
         return view('user.general.edit', compact('user'));
-    }
-
-    public function validateUserPermission($user){
-        $userActual = User::find(Auth::user()->id);
-        if($user->id != $userActual->id){
-            if(!$userActual->hasAnyPermission(['usuarios'])){
-                return abort(403);
-            }
-        }
     }
 }
