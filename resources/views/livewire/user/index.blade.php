@@ -54,8 +54,7 @@
                     <table class="table table-head-custom table-head-bg table-borderless table-vertical-center">
                         <thead>
                             <tr class="text-uppercase">
-                                <th>Nombre</th>
-                                <th>Puesto</th>
+                                <th>Usuario</th>
                                 <th>Roles</th>
                                 <th>Permisos directos</th>
                                 <th>Acciones</th>
@@ -65,10 +64,22 @@
                             @forelse ($users as $user)
                                 <tr>
                                     <td>
-                                        <span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{ $user->name }}</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{ $user->position }}</span>
+                                        <div class="d-flex align-items-center">
+                                            <div class="symbol symbol-circle symbol-50 mr-3">
+                                                <img 
+                                                    alt="{{ $user->name }}" 
+                                                    @if ($user->image)
+                                                        src="{{ Storage::url($user->image->url) }}" 
+                                                    @else
+                                                        src="{{ asset('assets/media/users/blank.png') }}" 
+                                                    @endif
+                                                    >
+                                            </div>
+                                            <div class="d-flex flex-column">
+                                                <a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-lg">{{ $user->name }}</a>
+                                                <span class="text-muted font-weight-bold font-size-sm">{{ $user->position }}</span>
+                                            </div>
+                                        </div>
                                     </td>
                                     <td>
                                         @forelse ($user->roles as $role)

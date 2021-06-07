@@ -11,6 +11,12 @@
                     <span class="menu-text">Dashboard</span>
                 </a>
             </li>
+            <li class="menu-item {{ active('user.show') }}" >
+                <a href="{{ route('user.show', auth()->user()) }}" class="menu-link">
+                    <i class="menu-icon text-dark fa fa-user"></i>
+                    <span class="menu-text">Perfil</span>
+                </a>
+            </li>
 
             <div class="my-5"></div>
 
