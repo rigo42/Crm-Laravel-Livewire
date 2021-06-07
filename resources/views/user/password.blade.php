@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Permisos - '.$user->name)
+@section('title', 'Cambiar contraseña - '.$user->name)
 
 @section('content')
 <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
@@ -24,7 +24,7 @@
                 @include('user.menu.index')
 
                 <div class="flex-row-fluid ml-lg-8">
-                    @livewire('user.general.permission', ['user' => $user, 'method' => 'update'])
+                    @livewire('user.password', ['user' => $user, 'method' => 'update'])
                 </div>
 
             </div>

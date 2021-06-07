@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\User\General;
+namespace App\Http\Livewire\User;
 
 use App\Models\User;
 use Exception;
@@ -36,7 +36,7 @@ class Index extends Component
 
         $users = $users->paginate($this->perPage);
 
-        return view('livewire.user.general.index', compact('count', 'users'));
+        return view('livewire.user.index', compact('count', 'users'));
     }
 
     public function destroy($id)

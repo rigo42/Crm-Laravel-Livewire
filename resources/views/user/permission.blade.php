@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', $user->name)
+@section('title', 'Permisos - '.$user->name)
 
 @section('content')
 <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
@@ -24,10 +24,9 @@
                 @include('user.menu.index')
 
                 <div class="flex-row-fluid ml-lg-8">
-
-                    @livewire('user.general.form', ['user' => $user, 'method' => 'update'])                    
-
+                    @livewire('user.permission', ['user' => $user, 'method' => 'update'])
                 </div>
+
             </div>
         </div>
     </div>

@@ -21,7 +21,7 @@
             <!--begin::Nav-->
             <div class="navi navi-bold navi-hover navi-active navi-link-rounded">
                 <div class="navi-item mb-2">
-                    <a href="{{ route('user.general.show', $user) }}" class="navi-link py-4 {{ active('user.general.show') }}">
+                    <a href="{{ route('user.show', $user) }}" class="navi-link py-4 {{ active('user.show') }}">
                         <span class="navi-icon mr-2">
                             <span class="svg-icon">
                                 <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
@@ -39,7 +39,7 @@
                     </a>
                 </div>
                 <div class="navi-item mb-2">
-                    <a href="{{ route('user.general.edit', $user) }}" class="navi-link py-4 {{ active('user.general.edit') }}">
+                    <a href="{{ route('user.edit', $user) }}" class="navi-link py-4 {{ active('user.edit') }}">
                         <span class="navi-icon mr-2">
                             <span class="svg-icon">
                                 <!--begin::Svg Icon | path:assets/media/svg/icons/General/User.svg-->
@@ -57,7 +57,7 @@
                     </a>
                 </div>
                 <div class="navi-item mb-2">
-                    <a href="{{ route('user.general.password', $user) }}" class="navi-link py-4 {{ active('user.general.password') }}">
+                    <a href="{{ route('user.password', $user) }}" class="navi-link py-4 {{ active('user.password') }}">
                         <span class="navi-icon mr-2">
                             <span class="svg-icon"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Lock-overturning.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -71,7 +71,7 @@
                     </a>
                 </div>
                 <div class="navi-item mb-2">
-                    <a href="{{ route('user.general.permission', $user) }}" class="navi-link py-4 {{ active('user.general.permission') }}">
+                    <a href="{{ route('user.permission', $user) }}" class="navi-link py-4 {{ active('user.permission') }}">
                         <span class="navi-icon mr-2">
                             <span class="svg-icon "><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Settings4.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">

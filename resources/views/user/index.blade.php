@@ -17,7 +17,7 @@
         <div class="d-flex flex-column-fluid">
             <div class="container-fluid">
                 <div class="row">
-                    @livewire('user.general.index')
+                    @livewire('user.index')
                 </div>
             </div>
         </div>

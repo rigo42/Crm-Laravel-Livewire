@@ -73,7 +73,7 @@
             <!--begin::Nav-->
             <div class="navi navi-spacer-x-0 p-0">
                 <!--begin::Item-->
-                <a href="{{ route('user.general.show', auth()->user()) }}" class="navi-item">
+                <a href="{{ route('user.show', auth()->user()) }}" class="navi-item">
                     <div class="navi-link">
                         <div class="symbol symbol-40 bg-light mr-3">
                             <div class="symbol-label">

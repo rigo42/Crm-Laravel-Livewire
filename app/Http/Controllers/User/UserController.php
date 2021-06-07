@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User\General;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -16,27 +16,27 @@ class UserController extends Controller
     }
 
     public function index(){
-        return view('user.general.index');
+        return view('user.index');
     }
 
     public function create(){
         $user = new User();
-        return view('user.general.create', compact('user'));
+        return view('user.create', compact('user'));
     }
 
     public function show(User $user){
-        return view('user.general.show', compact('user'));
+        return view('user.show', compact('user'));
     }
 
     public function edit(User $user){
-        return view('user.general.edit', compact('user'));
+        return view('user.edit', compact('user'));
     }
 
     public function password(User $user){
-        return view('user.general.password', compact('user'));
+        return view('user.password', compact('user'));
     }
 
     public function permission(User $user){
-        return view('user.general.permission', compact('user'));
+        return view('user.permission', compact('user'));
     }
 }

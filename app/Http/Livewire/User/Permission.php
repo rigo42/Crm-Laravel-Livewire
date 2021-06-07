@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\User\General;
+namespace App\Http\Livewire\User;
 
 use App\Models\User;
 use Livewire\Component;
@@ -26,7 +26,7 @@ class Permission extends Component
     public function render()
     {
         $permissions = PermissionSpatie::orderBy('id', 'desc')->cursor();
-        return view('livewire.user.general.permission', compact('permissions'));
+        return view('livewire.user.permission', compact('permissions'));
     }
 
     public function update()
@@ -34,6 +34,6 @@ class Permission extends Component
         $this->user->syncPermissions($this->permissionsArray);
         session()->flash('alert','Permisos actualizados con éxito.');
         session()->flash('alert-type','success');
-        return redirect()->route('user.general.show', $this->user);
+        return redirect()->route('user.show', $this->user);
     }
 }

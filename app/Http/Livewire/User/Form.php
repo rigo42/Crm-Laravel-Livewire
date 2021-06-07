@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\User\General;
+namespace App\Http\Livewire\User;
 
 use App\Mail\UserNew;
 use App\Models\User;
@@ -48,7 +48,7 @@ class Form extends Component
     public function render()
     {
         $roles = Role::orderBy('name')->cursor();
-        return view('livewire.user.general.form', compact('roles'));
+        return view('livewire.user.form', compact('roles'));
     }    
 
     public function store(){
@@ -71,7 +71,7 @@ class Form extends Component
             session()->flash('alert-type', 'success');
         }
 
-        return redirect()->route('user.general.show', $this->user);
+        return redirect()->route('user.show', $this->user);
         
         
     }
@@ -83,7 +83,7 @@ class Form extends Component
         $this->saveRoles();
         session()->flash('alert','Actualización con exito');
         session()->flash('alert-type', 'success');
-        return redirect()->route('user.general.show', $this->user);
+        return redirect()->route('user.show', $this->user);
     }
 
     public function saveImage(){

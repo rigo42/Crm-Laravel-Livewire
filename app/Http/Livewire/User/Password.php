@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\User\General;
+namespace App\Http\Livewire\User;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -31,7 +31,7 @@ class Password extends Component
 
     public function render()
     {
-        return view('livewire.user.general.password');
+        return view('livewire.user.password');
     }    
 
     public function update(){
@@ -41,7 +41,7 @@ class Password extends Component
         
         session()->flash('alert','Contraseña modificada con exito');
         session()->flash('alert-type', 'success');
-        return redirect()->route('user.general.show', $this->user);
+        return redirect()->route('user.show', $this->user);
     }
 
 }

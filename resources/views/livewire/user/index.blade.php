@@ -9,7 +9,7 @@
                     <span class="text-muted mt-3 font-weight-bold font-size-sm">({{ $users->total() }}) usuario(s)</span>
                 </h3>
                 <div class="card-toolbar">
-                    <a href="{{ route('user.general.create') }}" class="btn btn-primary btn-shadow font-weight-bold mr-2 "><i class="fa fa-plus"></i> Nuevo</a>
+                    <a href="{{ route('user.create') }}" class="btn btn-primary btn-shadow font-weight-bold mr-2 "><i class="fa fa-plus"></i> Nuevo</a>
                 </div>
             </div>
             <!--end::Header-->
@@ -94,7 +94,7 @@
                                                     <!--begin::Navigation-->
                                                     <ul class="navi navi-hover py-5">
                                                         <li class="navi-item">
-                                                            <a href="{{ route('user.general.show', $user) }}" class="navi-link">
+                                                            <a href="{{ route('user.show', $user) }}" class="navi-link">
                                                                 <span class="navi-icon">
                                                                     <i class="fa fa-eye"></i>
                                                                 </span>
@@ -102,7 +102,7 @@
                                                             </a>
                                                         </li>
                                                         <li class="navi-item">
-                                                            <a href="{{ route('user.general.edit', $user) }}" class="navi-link">
+                                                            <a href="{{ route('user.edit', $user) }}" class="navi-link">
                                                                 <span class="navi-icon">
                                                                     <i class="fa fa-pen"></i>
                                                                 </span>
@@ -152,7 +152,7 @@
                     <h2 class="fs-2x fw-bolder mb-10">Hola!</h2>
                     <p class="text-gray-400 fs-4 fw-bold mb-10">Al parecer no tienes ningun usuario.
                     <br> Ponga en marcha su CRM añadiendo su primer usuario</p>
-                    <a href="{{ route('user.general.create') }}" class="btn btn-primary">Agregar usuario</a>
+                    <a href="{{ route('user.create') }}" class="btn btn-primary">Agregar usuario</a>
                 </div>
                 <div class="text-center px-4 ">
                     <img class="img-fluid col-6" alt="" src="{{ asset('assets/media/ilustrations/work.png') }}">
