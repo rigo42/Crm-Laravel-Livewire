@@ -1,4 +1,8 @@
-<div class="container">
+<div class="container" x-data="app()">
+
+    @section('head')
+        <link rel="stylesheet" href="{{ asset('assets/plugins/custom/bfi/bfi.css') }}">
+    @endsection
     
     <!--begin::Card-->
     <div class="card card-custom card-sticky" id="kt_page_sticky_card" >
@@ -181,6 +185,57 @@
                                     @error('prospect.status') <div><span class="text-danger">{{ $message }}</span></div> @enderror
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label class="col-3">Cotización</label>
+                                <div class="col-9">
+                                    
+                                    <div class="d-flex jutify-content-start mb-3" >
+                                        @if ($quotationTmp || $prospect->quotation)
+                                            <img 
+                                                width="65" 
+                                                src="{{ asset('assets') }}/media/svg/files/pdf.svg" alt=""
+                                                >
+                                            <span 
+                                                x-on:click="removeFile('removeQuotation', 'quotationTmp')"
+                                                class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow image-remove" 
+                                                style="position: inherit;"
+                                                title="Remover cotización">
+                                                <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                                <span 
+                                                    wire:loading.class="spinner spinner-primary spinner-sm"
+                                                    wire:target="removeQuotation"
+                                                    style="position: absolute; left: 81px;">
+                                                </span>
+                                            </span>
+                                        @endif
+                                    </div>
+                                   
+                                    <div
+                                        x-data="{ isUploading: false, progress: 0 }"
+                                        x-on:livewire-upload-start="isUploading = true"
+                                        x-on:livewire-upload-finish="isUploading = false"
+                                        x-on:livewire-upload-error="isUploading = false"
+                                        x-on:livewire-upload-progress="progress = $event.detail.progress"
+                                        >
+                                        <div wire:ignore wire:key="quotationfile">
+                                            <input 
+                                                wire:model.defer="quotationTmp" 
+                                                class="bfi form-control form-control-solid @error('quotationTmp') is-invalid @enderror" 
+                                                type="file" 
+                                                accept=".pdf"
+                                                id="quotationTmp"
+                                            />
+                                        </div>
+                                        <!-- Progress Bar -->
+                                        <div x-show="isUploading">
+                                            <progress max="100" x-bind:value="progress"></progress>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    @error('quotationTmp') <div><span class="text-danger">{{ $message }}</span></div> @enderror
+                                </div>
+                            </div>
                         </div>
 
                         @role('Administrador')
@@ -220,5 +275,19 @@
         </div>
     </div>
     <!--end::Card-->
+
+    @section('footer')
+        <script src="{{ asset('assets/plugins/custom/bfi/bfi.js') }}"></script>
+        <script>
+            function app() {
+                return {
+                    removeFile(functionRemove, fileId) { 
+                        @this.call(functionRemove);
+                        bfi_clear('#'+fileId);
+                    },
+                }
+            }
+        </script>
+    @endsection
         
 </div>

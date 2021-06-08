@@ -143,5 +143,18 @@ class Form extends Component
         $this->reset('imageTmp');
         $this->alert('success', 'Imagen eliminada con exito');
     }
+
+    public function removeQuotation(){
+        if($this->prospect->quotation){
+            if(Storage::exists($this->prospect->quotation)){
+                Storage::delete($this->prospect->quotation);
+            }
+            
+            $this->prospect->quotation = null;
+            $this->prospect->update();
+        }
+        $this->reset('quotationTmp');
+        $this->alert('success', 'Cotización eliminada con exito');
+    }
    
 }

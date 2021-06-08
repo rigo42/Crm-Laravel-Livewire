@@ -39,6 +39,8 @@ Route::prefix('usuarios/{user}')->group(function () {
 });
 
 //Clients
+
+Route::get('prospectos/{prospect}/become-to-client', [ProspectController::class, 'becomeToClient'])->name('prospect.become-to-client');
 Route::resource('prospectos', ProspectController::class)->parameters(['prospectos' => 'prospect'])->names('prospect');
 
 //Clients

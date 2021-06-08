@@ -46,6 +46,7 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                                             <a class="dropdown-item" href="{{ route('prospect.edit', $prospect) }}"><i class="fa fa-pen mr-2"></i> Editar</a>
+                                            <a class="dropdown-item" href="{{ route('prospect.become-to-client', $prospect) }}"><i class="fa fa-user mr-2"></i> Convertir a cliente</a>
                                         </div>
                                     </div>
                                 </div>
@@ -111,7 +112,7 @@
                         <div class="card bgi-no-repeat card-stretch gutter-b" style="background-position: right top; background-size: 30% auto; background-image: url({{ asset('assets') }}/media/svg/shapes/abstract-4.svg)">
                             <!--begin::Body-->
                             <div class="card-body">
-                                <a href="#" class="card-title font-weight-bold text-muted text-hover-primary font-size-h5">Pertenece a</a>
+                                <a href="{{ route('user.show', $prospect->user) }}" class="card-title font-weight-bold text-muted text-hover-primary font-size-h5">Pertenece a</a>
                                 <div class="">
                                     <p class="text-dark-75 font-weight-bolder font-size-h5 m-0">
                                         @if ($prospect->user)
@@ -138,7 +139,12 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <span class="d-block text-muted pt-2 font-size-sm">Datos de empresa y dirección</span>
+                                @if ($prospect->quotation)
+                                    <embed width="100%" height="600px" src="{{ Storage::url($prospect->quotation) }}" type="">
+                                @else
+                                    <span class="d-block badge badge-secondary text-muted pt-2 font-size-sm">Datos de empresa y dirección</span>
+                                @endif
+                               
                             </div>
                         </div>
                         <!--end::Card-->

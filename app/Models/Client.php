@@ -9,7 +9,7 @@ class Client extends Model
 {
     use HasFactory;
 
-    protected $guareded = [];
+    protected $guarded = [];
 
     public function image()
     {

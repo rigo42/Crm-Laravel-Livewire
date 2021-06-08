@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Prospect;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Client;
 use App\Models\Prospect;
 
 class ProspectController extends Controller
@@ -28,5 +29,16 @@ class ProspectController extends Controller
 
     public function edit(Prospect $prospect){
         return view('prospect.edit', compact('prospect'));
+    }
+
+    public function becomeToClient(Prospect $prospect){
+        $client = new Client();
+        $client->user_id = $prospect->user_id;
+        $client->user_id = $prospect->user_id;
+        $client->user_id = $prospect->user_id;
+        $client->user_id = $prospect->user_id;
+        $client->user_id = $prospect->user_id;
+        
+        
     }
 }
