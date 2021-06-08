@@ -34,8 +34,8 @@
                                             class="image-input-wrapper"
                                             @if ($imageTmp)
                                                 style="background-image: url('{{ $imageTmp->temporaryUrl() }}')"
-                                            @elseif($client->image)
-                                                style="background-image: url('{{ Storage::url($client->image->url) }}')"
+                                            @elseif($prospect->image)
+                                                style="background-image: url('{{ Storage::url($prospect->image->url) }}')"
                                             @else    
                                                 style="background-image: url('{{ asset('assets/media/users/blank.png') }}')"
                                             @endif
@@ -58,7 +58,7 @@
                                                 <progress max="100" x-bind:value="progress"></progress>
                                             </div>
                                         </div>
-                                        @if ($imageTmp || $client->image)
+                                        @if ($imageTmp || $prospect->image)
                                         <span 
                                             wire:click="removeImage()"
                                             wire:loading.class="spinner spinner-primary spinner-sm" wire:target="removeImage"
@@ -85,17 +85,35 @@
                                             </span>
                                         </div>
                                         <input 
-                                            wire:model.defer="client.name" 
+                                            wire:model.defer="prospect.name" 
                                             type="text" 
                                             required
-                                            class="form-control form-control-solid @error('client.name') is-invalid @enderror"  
+                                            class="form-control form-control-solid @error('prospect.name') is-invalid @enderror"  
                                             placeholder="Nombre del cliente" />
                                     </div>
-                                    @error('client.name') <span class="text-danger">{{ $message }}</span> @enderror
+                                    @error('prospect.name') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-3">Correo <span class="text-danger">*</span></label>
+                                <label class="col-3">Interes <span class="text-danger">*</span></label>
+                                <div class="col-9">
+                                    <input 
+                                        wire:model.defer="prospect.interest" 
+                                        class="form-control form-control-solid @error('prospect.interest') is-invalid @enderror" 
+                                        type="text" 
+                                        placeholder="Ej: Gestión de Redes Sociales" />
+                                    @error('prospect.interest') <div><span class="text-danger">{{ $message }}</span></div> @enderror
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="separator separator-dashed my-10"></div>
+
+                        <div class="my-5">
+                            <h3 class="text-dark font-weight-bold mb-10">Información extra</h3>
+                            
+                            <div class="form-group row">
+                                <label class="col-3">Correo</label>
                                 <div class="col-9">
                                     <div class="input-group input-group-solid">
                                         <div class="input-group-prepend">
@@ -104,13 +122,12 @@
                                             </span>
                                         </div>
                                         <input 
-                                            wire:model.defer="client.email" 
+                                            wire:model.defer="prospect.email" 
                                             type="email" 
-                                            required
-                                            class="form-control form-control-solid @error('client.email') is-invalid @enderror" 
+                                            class="form-control form-control-solid @error('prospect.email') is-invalid @enderror" 
                                             placeholder="Correo electronico" />
                                     </div>
-                                    @error('client.email') <span class="text-danger">{{ $message }}</span> @enderror
+                                    @error('prospect.email') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -123,100 +140,45 @@
                                             </span>
                                         </div>
                                         <input 
-                                            wire:model.defer="client.phone" 
-                                            type="text" class="form-control form-control-solid @error('client.phone') is-invalid @enderror" 
+                                            wire:model.defer="prospect.phone" 
+                                            type="text" class="form-control form-control-solid @error('prospect.phone') is-invalid @enderror" 
                                             placeholder="Teléfono o celular" />
                                     </div>
-                                    @error('client.phone') <span class="text-danger">{{ $message }}</span> @enderror
+                                    @error('prospect.phone') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-3">Origen</label>
                                 <div class="col-9">
                                     <input 
-                                        wire:model.defer="client.origin" 
-                                        class="form-control form-control-solid @error('client.origin') is-invalid @enderror" 
+                                        wire:model.defer="prospect.origin" 
+                                        class="form-control form-control-solid @error('prospect.origin') is-invalid @enderror" 
                                         type="text" 
                                         placeholder="Ej: Contactado por facebook"/>
-                                    @error('client.origin') <div><span class="text-danger">{{ $message }}</span></div> @enderror
+                                    @error('prospect.origin') <div><span class="text-danger">{{ $message }}</span></div> @enderror
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-3">Empresa</label>
                                 <div class="col-9">
                                     <input 
-                                        wire:model.defer="client.company" 
-                                        class="form-control form-control-solid @error('client.company') is-invalid @enderror" 
+                                        wire:model.defer="prospect.company" 
+                                        class="form-control form-control-solid @error('prospect.company') is-invalid @enderror" 
                                         type="text" 
                                         placeholder="Nombre de la empresa"/>
                                     <span class="form-text text-muted">En caso de que el cliente sea una empresa</span>
-                                    @error('client.company') <div><span class="text-danger">{{ $message }}</span></div> @enderror
+                                    @error('prospect.company') <div><span class="text-danger">{{ $message }}</span></div> @enderror
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="separator separator-dashed my-10"></div>
-
-                        <div class="my-5">
-                            <h3 class="text-dark font-weight-bold mb-10">Información extra</h3>
-                            
                             <div class="form-group row">
-                                <label class="col-3">Dirección</label>
+                                <label class="col-3">Status</label>
                                 <div class="col-9">
                                     <input 
-                                        wire:model.defer="client.address" 
-                                        class="form-control form-control-solid @error('client.address') is-invalid @enderror" 
+                                        wire:model.defer="prospect.status" 
+                                        class="form-control form-control-solid @error('prospect.status') is-invalid @enderror" 
                                         type="text" 
-                                        placeholder="Dirección fisica" />
-                                    @error('client.address') <div><span class="text-danger">{{ $message }}</span></div> @enderror
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-3">Razón social</label>
-                                <div class="col-9">
-                                    <input 
-                                        wire:model.defer="client.social_reason" 
-                                        class="form-control form-control-solid @error('client.social_reason') is-invalid @enderror" 
-                                        type="text" 
-                                        placeholder="Razón social" />
-                                    @error('client.social_reason') <div><span class="text-danger">{{ $message }}</span></div> @enderror
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-3">Dirección fiscal</label>
-                                <div class="col-9">
-                                    <input 
-                                        wire:model.defer="client.fiscal_address" 
-                                        class="form-control form-control-solid @error('client.fiscal_address') is-invalid @enderror" 
-                                        type="text" 
-                                        placeholder="Dirección fiscal" />
-                                    @error('client.fiscal_address') <div><span class="text-danger">{{ $message }}</span></div> @enderror
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-3">RFC</label>
-                                <div class="col-9">
-                                    <input 
-                                        wire:model.defer="client.rfc" 
-                                        class="form-control form-control-solid @error('client.rfc') is-invalid @enderror" 
-                                        type="text" 
-                                        placeholder="RFC" />
-                                    @error('client.rfc') <div><span class="text-danger">{{ $message }}</span></div> @enderror
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-3 col-form-label">¿Premium?</label>
-                                <div class="col-3">
-                                    <span class="switch switch-outline switch-icon switch-primary">
-                                        <label>
-                                            <input 
-                                                wire:model.defer="client.premium"
-                                                class="@error('client.premium') is-invalid @enderror"
-                                                type="checkbox" />
-                                            <span></span>
-                                        </label>
-                                    </span>
-                                    @error('client.premium') <div><span class="text-danger">{{ $message }}</span></div> @enderror
+                                        placeholder="Ej: Cotización enviada" />
+                                    @error('prospect.status') <div><span class="text-danger">{{ $message }}</span></div> @enderror
                                 </div>
                             </div>
                         </div>

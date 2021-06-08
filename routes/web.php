@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Client\General\ClientController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Prospect\ProspectController;
 use App\Http\Controllers\Setting\PermissionController;
 use App\Http\Controllers\Setting\RoleController;
 use App\Http\Controllers\Setting\WelcomeController;
@@ -36,6 +37,9 @@ Route::prefix('usuarios/{user}')->group(function () {
     //Permission
     Route::get('permisos', [UserController::class, 'permission'])->name('user.permission');
 });
+
+//Clients
+Route::resource('prospectos', ProspectController::class)->parameters(['prospectos' => 'prospect'])->names('prospect');
 
 //Clients
 Route::resource('clientes', ClientController::class)->parameters(['clientes' => 'client'])->names('client');

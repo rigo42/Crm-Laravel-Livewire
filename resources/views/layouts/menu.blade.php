@@ -24,6 +24,12 @@
                 <h4 class="menu-text">CRM</h4>
                 <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
             </li>
+            <li class="menu-item {{ active('prospect.*') }}" >
+                <a href="{{ route('prospect.index') }}" class="menu-link">
+                    <i class="menu-icon text-dark fa fa-users"></i>
+                    <span class="menu-text">Prospectos</span>
+                </a>
+            </li>
             <li class="menu-item {{ active('client.*') }}" >
                 <a href="{{ route('client.index') }}" class="menu-link">
                     <i class="menu-icon text-dark fa fa-users"></i>
