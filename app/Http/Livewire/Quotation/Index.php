@@ -32,7 +32,12 @@ class Index extends Component
         $quotations = Quotation::orderBy('id', 'desc');
 
         if($this->search){
-            $quotations = $quotations->where('name', 'LIKE', "%{$this->search}%");
+            $quotations = $quotations->where('concept', 'LIKE', "%{$this->search}%")
+                                        ->orWhereHas('client', function($query){
+                                            $query->where('name', 'LIKE', "%{$this->search}%");
+                                        })->orWhereHas('user', function($query){
+                                            $query->where('name', 'LIKE', "%{$this->search}%");
+                                        });
         }
 
         $quotations = $quotations->paginate($this->perPage);

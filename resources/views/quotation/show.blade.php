@@ -115,7 +115,7 @@
                         <div class="card bgi-no-repeat card-stretch gutter-b" style="background-position: right top; background-size: 30% auto; background-image: url({{ asset('assets') }}/media/svg/shapes/abstract-4.svg)">
                             <!--begin::Body-->
                             <div class="card-body">
-                                <a href="{{ route('user.show', $quotation->client->user) }}" class="card-title font-weight-bold text-muted text-hover-primary font-size-h5">Pertenece a</a>
+                                <a href="{{ route('user.show', $quotation->client->user) }}" class="card-title font-weight-bold text-muted text-hover-primary font-size-h5">Cliente pertenece al usuario</a>
                                 <div class="">
                                     <p class="text-dark-75 font-weight-bolder font-size-h5 m-0">
                                         @if ($quotation->client->user)

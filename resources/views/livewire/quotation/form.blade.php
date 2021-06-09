@@ -58,11 +58,6 @@
                                 <label class="col-3">Concepto <span class="text-danger">*</span></label>
                                 <div class="col-9">
                                     <div class="input-group input-group-solid">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="la la-user"></i>
-                                            </span>
-                                        </div>
                                         <input 
                                             wire:model.defer="quotation.concept" 
                                             type="text" 

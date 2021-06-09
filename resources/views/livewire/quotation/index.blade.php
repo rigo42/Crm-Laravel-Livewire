@@ -54,6 +54,7 @@
                                 <th>Cliente</th>
                                 <th>Concepto</th>
                                 <th>Cotización</th>
+                                <th>Adjunta por</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -73,7 +74,7 @@
                                                     >
                                             </div>
                                             <div class="d-flex flex-column">
-                                                <a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-lg">{{ $quotation->client->name }}</a>
+                                                <a href="{{ route('client.show', $quotation->client) }}" class="text-dark-75 text-hover-primary font-weight-bold font-size-lg">{{ $quotation->client->name }}</a>
                                                 <span class="text-muted font-weight-bold font-size-sm">{{ $quotation->client->company }}</span>
                                             </div>
                                         </div>
@@ -88,26 +89,26 @@
                                     </td>
                                     <td>
                                         @if ($quotation->user)
-                                            
-                                        @else
-                                            
-                                        @endif
                                         <div class="d-flex align-items-center">
                                             <div class="symbol symbol-circle symbol-50 mr-3">
                                                 <img 
-                                                    alt="{{ $quotation->client->name }}" 
-                                                    @if ($quotation->client->image)
-                                                        src="{{ Storage::url($quotation->client->image->url) }}" 
+                                                    alt="{{ $quotation->user->name }}" 
+                                                    @if ($quotation->user->image)
+                                                        src="{{ Storage::url($quotation->user->image->url) }}" 
                                                     @else
                                                         src="{{ asset('assets/media/users/blank.png') }}" 
                                                     @endif
                                                     >
                                             </div>
                                             <div class="d-flex flex-column">
-                                                <a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-lg">{{ $quotation->client->name }}</a>
-                                                <span class="text-muted font-weight-bold font-size-sm">{{ $quotation->client->company }}</span>
+                                                <a class="text-dark-75 text-hover-primary font-weight-bold font-size-lg">{{ $quotation->user->name }}</a>
+                                                <span class="text-muted font-weight-bold font-size-sm">{{ $quotation->user->position }}</span>
                                             </div>
                                         </div>
+                                        @else
+                                            <span class="badge badge-secondary">Ningun usuario</span>
+                                        @endif
+                                        
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-end">
@@ -201,7 +202,6 @@
                     reverseButtons: true,
                     cancelButtonClass: "btn btn-light-primary font-weight-bold",
                     confirmButtonClass: "btn btn-danger",
-                    showLoaderOnConfirm: true,
                 }).then(function(result) {
                     if (result.isConfirmed) {
                         @this.call('destroy', id);

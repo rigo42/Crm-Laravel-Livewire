@@ -7,7 +7,7 @@
                 <span class="card-label font-weight-bolder text-dark">Cotizacion(es) <span class="text-muted font-weight-bold font-size-sm">({{ $count }})</span> </span> 
             </h3>
             <div class="card-toolbar">
-                <a href="#" class="btn btn-primary btn-shadow font-weight-bold mr-2 "><i class="fa fa-plus"></i> Nuevo</a>
+                <a href="{{ route('quotation.create', ['client' => $client]) }}" class="btn btn-primary btn-shadow font-weight-bold mr-2 "><i class="fa fa-plus"></i> Nuevo</a>
             </div>
         </div>
 
@@ -64,9 +64,9 @@
                                         <i class="ki ki-bold-more-hor"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                                        <a class="dropdown-item" href="{{ route('client.show', $client) }}"><i class="fa fa-eye mr-2"></i> Ver</a>
-                                        <a class="dropdown-item" href="{{ route('client.edit', $client) }}"><i class="fa fa-pen mr-2"></i> Editar</a>
-                                        <a class="dropdown-item" href="#" onclick="event.preventDefault(); confirmDestroy({{ $client->id }})"><i class="fa fa-trash mr-2"></i> Eliminar</a>
+                                        <a class="dropdown-item" href="{{ route('quotation.show', $quotation) }}"><i class="fa fa-eye mr-2"></i> Ver</a>
+                                        <a class="dropdown-item" href="{{ route('quotation.edit', $quotation) }}"><i class="fa fa-pen mr-2"></i> Editar</a>
+                                        <a class="dropdown-item" href="#" onclick="event.preventDefault(); confirmDestroy({{ $quotation->id }})"><i class="fa fa-trash mr-2"></i> Eliminar</a>
                                     </div>
                                 </div>
                             </div>
@@ -88,4 +88,28 @@
         @endforeach
         
     </div>
+
+    @section('footer')
+        @parent
+        <script>
+            function confirmDestroy(id){
+                swal.fire({
+                    title: "¿Estas seguro?",
+                    text: "No podrá recuperar esta cotización.",
+                    icon: "warning",
+                    buttonsStyling: false,
+                    showCancelButton: true,
+                    confirmButtonText: "<i class='fa fa-trash'></i> Si, eliminar",
+                    cancelButtonText: "<i class='fas fa-arrow-circle-left'></i> No, cancelar",
+                    reverseButtons: true,
+                    cancelButtonClass: "btn btn-light-primary font-weight-bold",
+                    confirmButtonClass: "btn btn-danger",
+                }).then(function(result) {
+                    if (result.isConfirmed) {
+                        @this.call('destroy', id);
+                    }
+                });
+            }
+        </Script>
+    @endsection
 </div>
