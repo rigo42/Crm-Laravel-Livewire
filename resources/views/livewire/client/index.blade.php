@@ -69,6 +69,7 @@
                                         <a class="dropdown-item" href="{{ route('client.show', $client) }}"><i class="fa fa-eye mr-2"></i> Ver</a>
                                         <a class="dropdown-item" href="{{ route('client.edit', $client) }}"><i class="fa fa-pen mr-2"></i> Editar</a>
                                         <a class="dropdown-item" href="#" onclick="event.preventDefault(); confirmDestroy({{ $client->id }})"><i class="fa fa-trash mr-2"></i> Eliminar</a>
+                                        <a class="dropdown-item" href="{{ route('quotation.create', ['client' => $client]) }}"><i class="fa fa-sticky-note mr-2"></i> Adjuntar cotización</a>
                                     </div>
                                 </div>
                             </div>

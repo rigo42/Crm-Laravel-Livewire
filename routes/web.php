@@ -3,6 +3,7 @@
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Prospect\ProspectController;
+use App\Http\Controllers\Quotation\QuotationController;
 use App\Http\Controllers\Setting\PermissionController;
 use App\Http\Controllers\Setting\RoleController;
 use App\Http\Controllers\Setting\WelcomeController;
@@ -45,5 +46,8 @@ Route::resource('prospectos', ProspectController::class)->parameters(['prospecto
 
 //Clients
 Route::resource('clientes', ClientController::class)->parameters(['clientes' => 'client'])->names('client');
+
+//Quotation
+Route::resource('cotizaciones', QuotationController::class)->parameters(['cotizaciones' => 'quotation'])->names('quotation');
 
 

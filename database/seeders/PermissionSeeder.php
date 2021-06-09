@@ -29,5 +29,6 @@ class PermissionSeeder extends Seeder
 
         //news 20/mayo/2021
         Permission::create(['name' => 'ajustes']);
+        Permission::create(['name' => 'cotizaciones']);
     }
 }

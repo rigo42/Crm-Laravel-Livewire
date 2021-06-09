@@ -15,6 +15,7 @@ class CreateQuotationsTable extends Migration
     {
         Schema::create('quotations', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignId('client_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('url');
             $table->string('concept')->nullable();

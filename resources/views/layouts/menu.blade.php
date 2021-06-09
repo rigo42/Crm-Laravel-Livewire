@@ -50,10 +50,10 @@
                 <h4 class="menu-text">Facturas y pagos</h4>
                 <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
             </li>
-            <li class="menu-item">
-                <a href="index.html" class="menu-link">
+            <li class="menu-item {{ active('quotation.*') }}">
+                <a href="{{ route('quotation.index') }}" class="menu-link">
                     <i class="menu-icon text-dark fa fa-sticky-note"></i>
-                    <span class="menu-text">Presupuesto</span>
+                    <span class="menu-text">Cotizaciones</span>
                 </a>
             </li>
             <li class="menu-item">
