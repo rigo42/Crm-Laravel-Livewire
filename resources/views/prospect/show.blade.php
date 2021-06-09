@@ -46,7 +46,7 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                                             <a class="dropdown-item" href="{{ route('prospect.edit', $prospect) }}"><i class="fa fa-pen mr-2"></i> Editar</a>
-                                            <a class="dropdown-item" href="{{ route('prospect.become-to-client', $prospect) }}"><i class="fa fa-user mr-2"></i> Convertir a cliente</a>
+                                            @livewire('prospect.become-to-client', ['prospect' => $prospect], key($prospect->id))
                                         </div>
                                     </div>
                                 </div>
@@ -66,7 +66,6 @@
                                             ></div>
                                     </div>
                                     <div class="text-muted mb-2">{{ $prospect->company }}</div>
-                                    <div class="text-muted mb-2"><a href="mailto:{{ $prospect->email }}">{{ $prospect->email }}</a></div>
                                 </div>
                                 <div class="form-group row my-2">
                                     <label class="col-4 col-form-label">Interes:</label>
@@ -142,7 +141,7 @@
                                 @if ($prospect->quotation)
                                     <embed width="100%" height="600px" src="{{ Storage::url($prospect->quotation) }}" type="">
                                 @else
-                                    <span class="d-block badge badge-secondary text-muted pt-2 font-size-sm">Datos de empresa y dirección</span>
+                                    <span class="d-block badge badge-secondary text-muted pt-2 font-size-sm">Ninguno</span>
                                 @endif
                                
                             </div>

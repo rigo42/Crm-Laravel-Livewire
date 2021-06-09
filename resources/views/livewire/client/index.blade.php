@@ -206,7 +206,6 @@
                     reverseButtons: true,
                     cancelButtonClass: "btn btn-light-primary font-weight-bold",
                     confirmButtonClass: "btn btn-danger",
-                    showLoaderOnConfirm: true,
                 }).then(function(result) {
                     if (result.isConfirmed) {
                         @this.call('destroy', id);

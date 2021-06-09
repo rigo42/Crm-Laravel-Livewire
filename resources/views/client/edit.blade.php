@@ -22,7 +22,7 @@
 
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="d-flex flex-column-fluid">
-            @livewire('client.general.form', ['client' => $client, 'method' => 'update'])
+            @livewire('client.form', ['client' => $client, 'method' => 'update'])
         </div>
     </div>
 @endsection

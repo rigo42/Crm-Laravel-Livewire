@@ -332,6 +332,24 @@
                                                 <span class="nav-text">Facturas</span>
                                             </a>
                                         </li>
+                                        <li class="nav-item mr-3">
+                                            <a class="nav-link" data-toggle="tab" href="#kt_apps_contacts_view_tab_6">
+                                                <span class="nav-icon mr-2">
+                                                    <span class="svg-icon mr-3">
+                                                        <!--begin::Svg Icon | path:{{ asset('assets') }}/media/svg/icons/Home/Globe.svg-->
+                                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                <rect x="0" y="0" width="24" height="24" />
+                                                                <path d="M13,18.9450712 L13,20 L14,20 C15.1045695,20 16,20.8954305 16,22 L8,22 C8,20.8954305 8.8954305,20 10,20 L11,20 L11,18.9448245 C9.02872877,18.7261967 7.20827378,17.866394 5.79372555,16.5182701 L4.73856106,17.6741866 C4.36621808,18.0820826 3.73370941,18.110904 3.32581341,17.7385611 C2.9179174,17.3662181 2.88909597,16.7337094 3.26143894,16.3258134 L5.04940685,14.367122 C5.46150313,13.9156769 6.17860937,13.9363085 6.56406875,14.4106998 C7.88623094,16.037907 9.86320756,17 12,17 C15.8659932,17 19,13.8659932 19,10 C19,7.73468744 17.9175842,5.65198725 16.1214335,4.34123851 C15.6753081,4.01567657 15.5775721,3.39010038 15.903134,2.94397499 C16.228696,2.49784959 16.8542722,2.4001136 17.3003976,2.72567554 C19.6071362,4.40902808 21,7.08906798 21,10 C21,14.6325537 17.4999505,18.4476269 13,18.9450712 Z" fill="#000000" fill-rule="nonzero" />
+                                                                <circle fill="#000000" opacity="0.3" cx="12" cy="10" r="6" />
+                                                            </g>
+                                                        </svg>
+                                                        <!--end::Svg Icon-->
+                                                    </span>
+                                                </span>
+                                                <span class="nav-text">Cotizaciones</span>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -784,6 +802,52 @@
                                                     <!--end:: Card-->
                                                 </div>
                                                 <!--end::Col-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end::Tab Content-->
+                                    <!--begin::Tab Content-->
+                                    <div class="tab-pane" id="kt_apps_contacts_view_tab_6" role="tabpanel">
+                                        <div class="container">
+                                            <div class="row">
+                                                @foreach ($client->quotations as $quotation)
+                                                    <!--begin::Col-->
+                                                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                                                        <!--begin::Card-->
+                                                        <div class="card card-custom gutter-b card-stretch">
+                                                            <div class="card-header border-0">
+                                                                <h3 class="card-title"></h3>
+                                                                <div class="card-toolbar">
+                                                                    <!--start::Toolbar-->
+                                                                    <div class="d-flex justify-content-end">
+                                                                        <div class="dropdown dropdown-inline" data-toggle="tooltip"  data-placement="left">
+                                                                            <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                                <i class="ki ki-bold-more-hor"></i>
+                                                                            </a>
+                                                                            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                                                                                <a class="dropdown-item" href="{{ route('client.show', $client) }}"><i class="fa fa-eye mr-2"></i> Ver</a>
+                                                                                <a class="dropdown-item" href="{{ route('client.edit', $client) }}"><i class="fa fa-pen mr-2"></i> Editar</a>
+                                                                                <a class="dropdown-item" href="#" onclick="event.preventDefault(); confirmDestroy({{ $client->id }})"><i class="fa fa-trash mr-2"></i> Eliminar</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="d-flex flex-column align-items-center">
+                                                                    <!--begin: Icon-->
+                                                                    <img alt="" class="max-h-65px" src="{{ asset('assets/media/svg/files/pdf.svg') }}">
+                                                                    <!--end: Icon-->
+                                                                    <!--begin: Tite-->
+                                                                    <a href="#" class="text-dark-75 font-weight-bold mt-15 font-size-lg">{{ $quotation->concept }}</a>
+                                                                    <!--end: Tite-->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--end:: Card-->
+                                                    </div>
+                                                @endforeach
+                                                
                                             </div>
                                         </div>
                                     </div>

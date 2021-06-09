@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Client\General\ClientController;
+use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Prospect\ProspectController;
 use App\Http\Controllers\Setting\PermissionController;

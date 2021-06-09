@@ -61,7 +61,7 @@ class Form extends Component
         $this->saveQuotation();
         $this->prospect->save();
         $this->saveImage();
-        session()->flash('alert','Prospecto agregado y correo de bienvenida enviado con exito');
+        session()->flash('alert','Prospecto agregado');
         session()->flash('alert-type', 'success');
         
         return redirect()->route('prospect.show', $this->prospect);

@@ -56,7 +56,7 @@ class Index extends Component
     public function destroy($id)
     {
         try{
-            $prospect = User::findOrFail($id);
+            $prospect = Prospect::findOrFail($id);
             if($prospect->image && Storage::exists($prospect->image->url)){
                 Storage::delete($prospect->image->url);
             }

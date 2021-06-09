@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Client\General;
+namespace App\Http\Livewire\Client;
 
 use App\Mail\ClientNew;
 use App\Models\Client;
@@ -55,7 +55,7 @@ class Form extends Component
     public function render()
     {
         $users = User::orderBy('name')->cursor();
-        return view('livewire.client.general.form', compact('users'));
+        return view('livewire.client.form', compact('users'));
     }
 
     public function store(){
@@ -69,7 +69,7 @@ class Form extends Component
             session()->flash('alert-type', 'success');
             Mail::to($this->client->email)->send(new ClientNew($this->client));
         }catch(Exception $e){
-            session()->flash('alert','Ocurrio un problema al enviar el correo de bienvenida');
+            session()->flash('alert', 'Ocurrio un problema al enviar el correo de bienvenida: '.$e->getMessage());
             session()->flash('alert-type', 'warning');
         }
         

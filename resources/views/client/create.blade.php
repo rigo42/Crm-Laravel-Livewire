@@ -21,7 +21,7 @@
 
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="d-flex flex-column-fluid">
-            @livewire('client.general.form', ['method' => 'store'])
+            @livewire('client.form', ['method' => 'store'])
         </div>
     </div>
 @endsection

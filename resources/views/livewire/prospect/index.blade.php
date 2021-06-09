@@ -1,5 +1,4 @@
-<div class="container">
-
+<div class="container" >
     @if ($count)
             
         <!--Filters-->
@@ -46,6 +45,8 @@
                 <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3">
                     <!--begin::Card-->
                     <div class="card card-custom gutter-b card-stretch">
+
+                        
                         
                         <!--begin::Body-->
                         <div class="card-body pt-4">
@@ -60,12 +61,14 @@
                                         <a class="dropdown-item" href="{{ route('prospect.show', $prospect) }}"><i class="fa fa-eye mr-2"></i> Ver</a>
                                         <a class="dropdown-item" href="{{ route('prospect.edit', $prospect) }}"><i class="fa fa-pen mr-2"></i> Editar</a>
                                         <a class="dropdown-item" href="#" onclick="event.preventDefault(); confirmDestroy({{ $prospect->id }})"><i class="fa fa-trash mr-2"></i> Eliminar</a>
+                                        @livewire('prospect.become-to-client', ['prospect' => $prospect], key($prospect->id))
                                     </div>
                                 </div>
                             </div>
                             
                             <!--begin::User-->
                             <div class="d-flex align-items-end mb-7">
+                                
                                 <!--begin::Pic-->
                                 <div class="d-flex align-items-center">
                                     <!--begin::Pic-->
@@ -182,7 +185,6 @@
                     reverseButtons: true,
                     cancelButtonClass: "btn btn-light-primary font-weight-bold",
                     confirmButtonClass: "btn btn-danger",
-                    showLoaderOnConfirm: true,
                 }).then(function(result) {
                     if (result.isConfirmed) {
                         @this.call('destroy', id);

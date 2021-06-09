@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Client\General;
+namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Client;
@@ -15,19 +15,19 @@ class ClientController extends Controller
     }
 
     public function index(){
-        return view('client.general.index');
+        return view('client.index');
     }
 
     public function create(){
         $client = new Client();
-        return view('client.general.create', compact('client'));
+        return view('client.create', compact('client'));
     }
 
     public function show(Client $client){
-        return view('client.general.show', compact('client'));
+        return view('client.show', compact('client'));
     }
 
     public function edit(Client $client){
-        return view('client.general.edit', compact('client'));
+        return view('client.edit', compact('client'));
     }
 }

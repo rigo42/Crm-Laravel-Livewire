@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Client\General;
+namespace App\Http\Livewire\Client;
 
 use App\Models\Client;
 use App\Models\User;
@@ -50,7 +50,7 @@ class Index extends Component
 
         $count = $count->count();
         $clients = $clients->paginate($this->perPage);
-        return view('livewire.client.general.index', compact('count', 'clients'));
+        return view('livewire.client.index', compact('count', 'clients'));
     }
 
     public function destroy($id)

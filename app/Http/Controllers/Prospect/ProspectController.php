@@ -31,14 +31,4 @@ class ProspectController extends Controller
         return view('prospect.edit', compact('prospect'));
     }
 
-    public function becomeToClient(Prospect $prospect){
-        $client = new Client();
-        $client->user_id = $prospect->user_id;
-        $client->user_id = $prospect->user_id;
-        $client->user_id = $prospect->user_id;
-        $client->user_id = $prospect->user_id;
-        $client->user_id = $prospect->user_id;
-        
-        
-    }
 }

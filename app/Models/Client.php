@@ -11,6 +11,11 @@ class Client extends Model
 
     protected $guarded = [];
 
+    public function quotations()
+    {
+        return $this->hasMany(Quotation::class);
+    }
+
     public function image()
     {
         return $this->morphOne(Image::class, 'imageable');
