@@ -111,19 +111,22 @@
                         <div class="card bgi-no-repeat card-stretch gutter-b" style="background-position: right top; background-size: 30% auto; background-image: url({{ asset('assets') }}/media/svg/shapes/abstract-4.svg)">
                             <!--begin::Body-->
                             <div class="card-body">
-                                <a href="{{ route('user.show', $prospect->user) }}" class="card-title font-weight-bold text-muted text-hover-primary font-size-h5">Pertenece a</a>
-                                <div class="">
-                                    <p class="text-dark-75 font-weight-bolder font-size-h5 m-0">
-                                        @if ($prospect->user)
-                                            <span class="badge badge-info">{{ $prospect->user->name }}</span>
-                                        @else
-                                            <span class="badge badge-secondary">Ninguno</span>
-                                        @endif
-                                    </p> 
-                                    <br>
-                                    <div class="font-weight-bold text-success mb-5">{{ $prospect->created_at->diffforhumans() }}</div>
-                                </div>
-                                
+                                @if ($prospect->user)
+                                    <a href="{{ route('user.show', $prospect->user) }}" class="card-title font-weight-bold text-muted text-hover-primary font-size-h5">Pertenece a</a>
+                                    <div class="">
+                                        <p class="text-dark-75 font-weight-bolder font-size-h5 m-0">
+                                            @if ($prospect->user)
+                                                <span class="badge badge-info">{{ $prospect->user->name }}</span>
+                                            @else
+                                                <span class="badge badge-secondary">Ninguno</span>
+                                            @endif
+                                        </p> 
+                                        <br>
+                                        <div class="font-weight-bold text-success mb-5">{{ $prospect->created_at->diffforhumans() }}</div>
+                                    </div>
+                                @else
+                                    <span class="badge badge-secondary">Este prospecto no tiene asignado ningun usuario</span>
+                                @endif
                             </div>
                             <!--end::Body-->
                         </div>

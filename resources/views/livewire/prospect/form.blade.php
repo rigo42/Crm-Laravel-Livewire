@@ -249,7 +249,7 @@
                                 <div class="col-9">
                                     <div wire:ignore>
                                         <select 
-                                            wire:model="userId" 
+                                            wire:model.defer="userId" 
                                             class="form-control selectpicker form-control-solid @error('userId') is-invalid @enderror" 
                                             data-size="7"
                                             data-live-search="true">

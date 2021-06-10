@@ -39,4 +39,16 @@ class UserController extends Controller
     public function permission(User $user){
         return view('user.permission', compact('user'));
     }
+
+    public function prospect(User $user){
+        return view('user.prospect', compact('user'));
+    }
+
+    public function client(User $user){
+        return view('user.client', compact('user'));
+    }
+    
+    public function transfer(User $user){
+        return view('user.transfer', compact('user'));
+    }
 }

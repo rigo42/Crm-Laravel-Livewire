@@ -115,7 +115,7 @@
                                 </div>
                                 <div class="d-flex justify-content-between align-items-cente my-1">
                                     <span class="text-dark-75 font-weight-bolder mr-2">Teléfono:</span>
-                                    <a href="tel:+{{ $prospect->phone }}" class="text-muted text-hover-primary">{{ $prospect->phone }}
+                                    <a href="tel:+{{ $prospect->phone }}" class="text-muted text-hover-primary">{{ $prospect->phone }}</a>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <span class="text-dark-75 font-weight-bolder mr-2">Origen:</span>
@@ -180,10 +180,10 @@
                     icon: "warning",
                     buttonsStyling: false,
                     showCancelButton: true,
-                    confirmButtonText: "<i class='fa fa-trash'></i> Si, eliminar",
-                    cancelButtonText: "<i class='fas fa-arrow-circle-left'></i> No, cancelar",
+                    confirmButtonText: "<i class='fa fa-trash'></i> <span class='font-weight-bold'>Si, eliminar</span>",
+                    cancelButtonText: "<i class='fas fa-arrow-circle-left'></i>  <span class='text-dark font-weight-bold'>No, cancelar",
                     reverseButtons: true,
-                    cancelButtonClass: "btn btn-light-primary font-weight-bold",
+                    cancelButtonClass: "btn btn-light-secondary font-weight-bold",
                     confirmButtonClass: "btn btn-danger",
                 }).then(function(result) {
                     if (result.isConfirmed) {

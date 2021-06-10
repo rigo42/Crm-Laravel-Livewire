@@ -41,7 +41,7 @@
                                         </svg>
                                         <!--end::Svg Icon-->
                                     </span>
-                                    <div class="text-dark font-weight-bolder font-size-h2 mt-3">8,600</div>
+                                    <div class="text-dark font-weight-bolder font-size-h2 mt-3">{{ $user->prospects->count() }}</div>
                                     <a href="#" class="text-muted text-hover-primary font-weight-bold font-size-lg mt-1">Prospecto(s)</a>
                                 </div>
                             </div>

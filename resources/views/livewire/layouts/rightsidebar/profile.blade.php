@@ -4,7 +4,12 @@
         <span class="symbol symbol-35 symbol-light-success">
             <span class="symbol-label font-size-h5 font-weight-bold">
                 <img style="width: 40px; object-fit: cover; height: 40px; border-radius: 8px;" 
-                    src="https://scontent.fgdl5-4.fna.fbcdn.net/v/t1.6435-9/118951466_3246824028698411_6934573790732331002_n.jpg?_nc_cat=101&ccb=1-3&_nc_sid=09cbfe&_nc_eui2=AeFRHgEl-xmrDwqfp62lS22KXeK_GUaA3Rdd4r8ZRoDdFxZQ1nftJFf3KqyPgHRRZpb1RkexfXh2-qt_tAHUwGW9&_nc_ohc=mXUzIKpn070AX977BjS&_nc_ht=scontent.fgdl5-4.fna&oh=991d5e3e5273fcee2cbaf2cb30442a94&oe=60DCDE23" alt="">
+                    @if ($user->image)
+                        src="{{  Storage::url($user->image->url)  }}"
+                    @else
+                        src="{{  asset('assets/media/users/blank.png')  }}"
+                    @endif
+                    alt="{{ $user->name }}">
             </span>
         </span>
     </div>

@@ -25,8 +25,8 @@ class Index extends Component
     //Theme
     protected $paginationTheme = 'bootstrap';
 
-    public function mount(){
-        $this->user = User::find(Auth::user()->id);
+    public function mount($user = null){
+        $this->user = $user ? User::find($user->id) : User::find(Auth::user()->id);
     }
 
     public function updatingSearch()
@@ -40,8 +40,8 @@ class Index extends Component
         $clients = Client::orderBy('id', 'desc');
 
         if(!$this->user->hasRole('Administrador')){
-            $count = $count->where('user_id', Auth::user()->id);
-            $clients = $clients->where('user_id', Auth::user()->id);
+            $count = $count->where('user_id', $this->user->id);
+            $clients = $clients->where('user_id', $this->user->id);
         }
 
         if($this->search){

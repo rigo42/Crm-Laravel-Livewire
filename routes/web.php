@@ -37,6 +37,12 @@ Route::prefix('usuarios/{user}')->group(function () {
     Route::get('password', [UserController::class, 'password'])->name('user.password');
     //Permission
     Route::get('permisos', [UserController::class, 'permission'])->name('user.permission');
+    //Prospect
+    Route::get('prospectos', [UserController::class, 'prospect'])->name('user.prospect');
+    //Transfer Prospect
+    Route::get('transferir', [UserController::class, 'transfer'])->name('user.transfer');
+    //Client
+    Route::get('clientes', [UserController::class, 'client'])->name('user.client');
 });
 
 //Clients

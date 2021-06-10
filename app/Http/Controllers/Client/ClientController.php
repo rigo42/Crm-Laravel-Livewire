@@ -12,6 +12,7 @@ class ClientController extends Controller
     public function __construct()
     {
         $this->middleware(['permission:clientes']);
+        $this->middleware(['client'])->except('index', 'create');
     }
 
     public function index(){

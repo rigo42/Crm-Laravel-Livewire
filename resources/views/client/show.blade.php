@@ -216,23 +216,24 @@
                             </div>
                         </div>
                         <div class="card bgi-no-repeat card-stretch gutter-b" style="background-position: right top; background-size: 30% auto; background-image: url({{ asset('assets') }}/media/svg/shapes/abstract-4.svg)">
-                            <!--begin::Body-->
                             <div class="card-body">
-                                <a href="#" class="card-title font-weight-bold text-muted text-hover-primary font-size-h5">Pertenece a</a>
-                                <div class="">
-                                    <p class="text-dark-75 font-weight-bolder font-size-h5 m-0">
-                                        @if ($client->user)
-                                            <span class="badge badge-info">{{ $client->user->name }}</span>
-                                        @else
-                                            <span class="badge badge-secondary">Ninguno</span>
-                                        @endif
-                                    </p> 
-                                    <br>
-                                    <div class="font-weight-bold text-success mb-5">{{ $client->created_at->diffforhumans() }}</div>
-                                </div>
-                                
+                                @if ($client->user)
+                                    <a href="{{ route('user.show', $client->user) }}" class="card-title font-weight-bold text-muted text-hover-primary font-size-h5">Pertenece a</a>
+                                    <div class="">
+                                        <p class="text-dark-75 font-weight-bolder font-size-h5 m-0">
+                                            @if ($client->user)
+                                                <span class="badge badge-info">{{ $client->user->name }}</span>
+                                            @else
+                                                <span class="badge badge-secondary">Ninguno</span>
+                                            @endif
+                                        </p> 
+                                        <br>
+                                        <div class="font-weight-bold text-success mb-5">{{ $client->created_at->diffforhumans() }}</div>
+                                    </div>
+                                @else
+                                    <span class="badge badge-secondary">Este cliente no tiene asignado ningun usuario</span>
+                                @endif
                             </div>
-                            <!--end::Body-->
                         </div>
                     </div>
                     <div class="col-xl-8">

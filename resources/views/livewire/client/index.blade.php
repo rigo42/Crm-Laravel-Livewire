@@ -202,10 +202,10 @@
                     icon: "warning",
                     buttonsStyling: false,
                     showCancelButton: true,
-                    confirmButtonText: "<i class='fa fa-trash'></i> Si, eliminar",
-                    cancelButtonText: "<i class='fas fa-arrow-circle-left'></i> No, cancelar",
+                    confirmButtonText: "<i class='fa fa-trash'></i> <span class='font-weight-bold'>Si, eliminar</span>",
+                    cancelButtonText: "<i class='fas fa-arrow-circle-left'></i>  <span class='text-dark font-weight-bold'>No, cancelar",
                     reverseButtons: true,
-                    cancelButtonClass: "btn btn-light-primary font-weight-bold",
+                    cancelButtonClass: "btn btn-light-secondary font-weight-bold",
                     confirmButtonClass: "btn btn-danger",
                 }).then(function(result) {
                     if (result.isConfirmed) {

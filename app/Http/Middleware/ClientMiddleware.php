@@ -2,12 +2,13 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Client;
 use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class UserMiddleware
+class ClientMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,16 +18,15 @@ class UserMiddleware
      * @return mixed
      */
     public function handle(Request $request, Closure $next)
-    { 
-        $user = User::find($request->user->id);
+    {
+        $client = Client::find($request->client->id);
         $userPresent = User::find(Auth::user()->id);
-        if($user->id === $userPresent->id || $userPresent->hasRole('Administrador')){
+        if($client->user_id === $userPresent->id || $userPresent->hasRole('Administrador')){
             return $next($request);
         }else{
-            session()->flash('alert','No tienes los permisos suficientes');
+            session()->flash('alert','No puede intervenir en un cliente que no te pertenece');
             session()->flash('alert-type', 'warning');
-            return redirect()->route('user.index');
+            return redirect()->route('client.index');
         }
-        
     }
 }
