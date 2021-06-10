@@ -55,6 +55,8 @@
                         <thead>
                             <tr class="text-uppercase">
                                 <th>Usuario</th>
+                                <th>Clientes</th>
+                                <th>Prospectos</th>
                                 <th>Roles</th>
                                 <th>Permisos directos</th>
                                 <th>Acciones</th>
@@ -82,15 +84,29 @@
                                         </div>
                                     </td>
                                     <td>
+                                        @if ($user->clients)
+                                            <span class="font-weight-bolder font-size-lg badge badge-primary">{{$user->clients->count()}}</span>
+                                        @else
+                                            <span class="font-size-lg badge badge-secondary">Ninguno</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($user->prospects)
+                                            <span class="font-weight-bolder font-size-lg badge badge-primary">{{$user->prospects->count()}}</span>
+                                        @else
+                                            <span class="font-size-lg badge badge-secondary">Ninguno</span>
+                                        @endif
+                                    </td>
+                                    <td>
                                         @forelse ($user->roles as $role)
-                                            <span class="font-weight-bolder font-size-lg badge badge-success">{{$role->name}}</span>
+                                            <span class="font-weight-bolder font-size-lg badge badge-primary">{{ $role->name }}</span>
                                         @empty
                                             <span class="font-size-lg badge badge-secondary">Ninguno</span>
                                         @endforelse
                                     </td>
                                     <td>
                                         @forelse ($user->getDirectPermissions() as $permission)
-                                            <span class="font-weight-bolder font-size-lg badge badge-success">{{$permission->name}}</span>
+                                            <span class="font-weight-bolder font-size-lg badge badge-primary">{{$permission->name}}</span>
                                         @empty
                                             <span class="font-size-lg badge badge-secondary">Ninguno</span>
                                         @endforelse
