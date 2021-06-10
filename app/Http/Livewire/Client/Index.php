@@ -15,6 +15,8 @@ class Index extends Component
     use WithPagination;
 
     //User actual
+    public $userPresent;
+    //User passed by parameter
     public $user;
 
     //Tools
@@ -26,7 +28,10 @@ class Index extends Component
     protected $paginationTheme = 'bootstrap';
 
     public function mount($user = null){
-        $this->user = $user ? User::find($user->id) : User::find(Auth::user()->id);
+        $this->userPresent = User::find(Auth::id());
+        if($user){
+            $this->user = User::findOrFail($user->id);
+        }
     }
 
     public function updatingSearch()
@@ -39,9 +44,13 @@ class Index extends Component
         $count = Client::query();
         $clients = Client::orderBy('id', 'desc');
 
-        if(!$this->user->hasRole('Administrador')){
+        if($this->user){
             $count = $count->where('user_id', $this->user->id);
             $clients = $clients->where('user_id', $this->user->id);
+
+        }elseif(!$this->userPresent->hasRole('Administrador')){
+            $count = $count->where('user_id', $this->userPresent->id);
+            $clients = $clients->where('user_id', $this->userPresent->id);
         }
 
         if($this->search){
