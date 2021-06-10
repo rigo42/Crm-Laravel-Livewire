@@ -1,17 +1,17 @@
 <!-- Modal -->
-<div class="modal fade" wire:ignore.self id="transferProspectModal" tabindex="-1" role="dialog" aria-labelledby="transferProspectModalLabel" aria-hidden="true">
+<div class="modal fade" wire:ignore.self id="transferClientModal" tabindex="-1" role="dialog" aria-labelledby="transferClientModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content" >
-            @if ($countProspects)
+            @if ($countClients)
                 <div class="modal-header" style="display: block;">
                     <div class="row align-items-center">
                         <div class="col-md-12 my-2 my-md-0">
                             <div class="input-icon">
                                 <input 
-                                    wire:model="searchProspect"
+                                    wire:model="searchClient"
                                     type="search" 
                                     class="form-control"
-                                    placeholder="Buscar prospecto...">
+                                    placeholder="Buscar cliente...">
                                 <span>
                                     <i class="flaticon2-search-1 text-muted"></i>
                                 </span>
@@ -19,7 +19,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-body" data-height="300" data-scroll="true" wire:ignore.self wire:key="modal-body-prospect">
+                <div class="modal-body" data-height="300" data-scroll="true" wire:ignore.self wire:key="modal-body-client">
                         
                     @include('component.error-list')
 
@@ -45,40 +45,40 @@
 
                     <div class="separator separator-dashed my-10"></div>
 
-                    <h6 class="text-dark font-weight-bold mb-5">Selección de prospectos</h6>
+                    <h6 class="text-dark font-weight-bold mb-5">Selección de clientes</h6>
                     <div class="table-responsive">
                         <table class="table table-head-custom table-head-bg table-borderless table-vertical-center">
                             <thead>
                                 <tr class="text-uppercase">
-                                    <th><input x-on:click="toggleAllCheckboxesProspect()" type="checkbox" class="select-all checkbox" name="select-all" /></th>
-                                    <th>Prospecto</th>
+                                    <th><input x-on:click="toggleAllCheckboxesClient()" type="checkbox" class="select-all checkbox" name="select-all" /></th>
+                                    <th>cliente</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($prospects as $prospect)
+                                @forelse ($clients as $client)
                                     <tr>
                                         <td><input 
-                                                wire:model="prospectArray" 
+                                                wire:model="clientArray" 
                                                 class="checkbox" 
                                                 type="checkbox" 
-                                                name="prospectArray[]"
-                                                value="{{ $prospect->id }}" 
+                                                name="clientArray[]"
+                                                value="{{ $client->id }}" 
                                             /></td>
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <div class="symbol symbol-circle symbol-50 mr-3">
                                                     <img 
-                                                        alt="{{ $prospect->name }}" 
-                                                        @if ($prospect->image)
-                                                            src="{{ Storage::url($prospect->image->url) }}" 
+                                                        alt="{{ $client->name }}" 
+                                                        @if ($client->image)
+                                                            src="{{ Storage::url($client->image->url) }}" 
                                                         @else
                                                             src="{{ asset('assets/media/users/blank.png') }}" 
                                                         @endif
                                                         >
                                                 </div>
                                                 <div class="d-flex flex-column">
-                                                    <a href="{{ route('prospect.show', $prospect) }}" class="text-dark-75 text-hover-primary font-weight-bold font-size-lg">{{ $prospect->name }}</a>
-                                                    <span class="text-muted font-weight-bold font-size-sm">{{ $prospect->interest }}</span>
+                                                    <a href="{{ route('client.show', $client) }}" class="text-dark-75 text-hover-primary font-weight-bold font-size-lg">{{ $client->name }}</a>
+                                                    <span class="text-muted font-weight-bold font-size-sm">{{ $client->interest }}</span>
                                                 </div>
                                             </div>
                                         </td>
@@ -91,14 +91,14 @@
                                             <div class="alert-icon">
                                                 <i class="flaticon-questions-circular-button"></i>
                                             </div>
-                                            <div class="alert-text">Sin resultados "{{ $searchProspect }}"</div>
+                                            <div class="alert-text">Sin resultados "{{ $searchClient }}"</div>
                                         </div>
                                     </div>
                                 @endforelse
                             </tbody>
                         </table>
                     </div>
-                    @error('prospectArray') 
+                    @error('clientArray') 
                         <div>
                             <span class="text-danger">{{ $message }}</span>
                         </div>
@@ -107,12 +107,12 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Regresar</button>
                     <button 
-                        wire:click="trasnferProspect"
+                        wire:click="trasnferClient"
                         wire:loading.class="spinner spinner-white spinner-right" 
-                        wire:target="trasnferProspect" 
+                        wire:target="trasnferClient" 
                         class="btn btn-primary font-weight-bolder mr-2">
                         <i class="fas fa-exchange-alt"></i>
-                        Transferir prospectos
+                        Transferir Clientes
                     </button>
                 </div>
             @else
@@ -120,7 +120,7 @@
                     <div class="card-body">
                         <div class="card-px text-center py-20 my-10">
                             <h2 class="fs-2x fw-bolder mb-10">Hola!</h2>
-                            <p class="text-gray-400 fs-4 fw-bold mb-10">Al parecer no existe ningun prospecto para con este usuario</p>
+                            <p class="text-gray-400 fs-4 fw-bold mb-10">Al parecer no existe ningun cliente para con este usuario</p>
                         </div>
                         <div class="text-center px-4 ">
                             <img class="img-fluid col-6" alt="" src="{{ asset('assets/media/ilustrations/work.png') }}">

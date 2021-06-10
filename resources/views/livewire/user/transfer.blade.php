@@ -14,7 +14,7 @@
                     </svg><!--end::Svg Icon--></span>
                 </div>
                 <p class="text-center font-weight-normal font-size-lg pb-7">Transferir prospectos</p>
-                <a href="#" x-on:click="prospect()" class="btn btn-success btn-shadow-hover font-weight-bolder w-100 py-3">Mostrar prospectos</a>
+                <a href="#" data-toggle="modal" data-target="#transferProspectModal" class="btn btn-success btn-shadow-hover font-weight-bolder w-100 py-3">Mostrar prospectos</a>
             </div>
             <!--end::Body-->
         </div>
@@ -35,7 +35,7 @@
                     </svg><!--end::Svg Icon--></span>
                 </div>
                 <p class="text-center font-weight-normal font-size-lg pb-7">Transferir clientes</p>
-                <a href="#" x-on:click="client()" class="btn btn-success btn-shadow-hover font-weight-bolder w-100 py-3">Mostrar clientes</a>
+                <a href="#" data-toggle="modal" data-target="#transferClientModal" class="btn btn-success btn-shadow-hover font-weight-bolder w-100 py-3">Mostrar clientes</a>
             </div>
             <!--end::Body-->
         </div>
@@ -43,16 +43,14 @@
     </div>
     
     @include('user.partials._transfer-prospect-modal')
+    @include('user.partials._transfer-client-modal')
     
     @section('footer')
         <script>
             function app() {
 
                 return {
-                    prospect() { 
-                        $('#transferProspectModal').modal('show');                 
-                    },
-                    toggleAllCheckboxes() {
+                    toggleAllCheckboxesProspect() {
 
                         KTApp.blockPage({
                             overlayColor: '#828383',
@@ -66,6 +64,28 @@
                             @this.call('addAllProspect');
                         }else{
                             @this.call('removeAllProspect');
+                        }
+
+                        checkboxes = document.querySelectorAll('.checkbox');
+                        [...checkboxes].map((el) => {
+                            el.checked = this.selectall;
+                        })
+                    },
+
+                    toggleAllCheckboxesClient() {
+
+                        KTApp.blockPage({
+                            overlayColor: '#828383',
+                            state: 'primary',
+                            message: 'Seleccionando todos los clientes'
+                        });
+
+                        this.selectall = !this.selectall
+
+                        if(this.selectall){
+                            @this.call('addAllClient');
+                        }else{
+                            @this.call('removeAllClient');
                         }
 
                         checkboxes = document.querySelectorAll('.checkbox');
