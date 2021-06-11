@@ -4,6 +4,7 @@ use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Prospect\ProspectController;
 use App\Http\Controllers\Quotation\QuotationController;
+use App\Http\Controllers\Service\ServiceController;
 use App\Http\Controllers\Setting\CategoryServiceController;
 use App\Http\Controllers\Setting\PermissionController;
 use App\Http\Controllers\Setting\RoleController;
@@ -48,15 +49,17 @@ Route::prefix('usuarios/{user}')->group(function () {
     Route::get('clientes', [UserController::class, 'client'])->name('user.client');
 });
 
-//Clients
-
+//Prospects
 Route::get('prospectos/{prospect}/become-to-client', [ProspectController::class, 'becomeToClient'])->name('prospect.become-to-client');
 Route::resource('prospectos', ProspectController::class)->parameters(['prospectos' => 'prospect'])->names('prospect');
 
 //Clients
 Route::resource('clientes', ClientController::class)->parameters(['clientes' => 'client'])->names('client');
 
-//Quotation
+//Quotations
 Route::resource('cotizaciones', QuotationController::class)->parameters(['cotizaciones' => 'quotation'])->names('quotation');
+
+//Services
+Route::resource('servicios', ServiceController::class)->parameters(['servicios' => 'service'])->names('service');
 
 

@@ -36,8 +36,8 @@
                     <span class="menu-text">Clientes</span>
                 </a>
             </li>
-            <li class="menu-item">
-                <a href="index.html" class="menu-link">
+            <li class="menu-item {{ active('service.*') }}">
+                <a href="{{ route('service.index') }}" class="menu-link">
                     <i class="menu-icon text-dark fa fa-star"></i>
                     <span class="menu-text">Servicios</span>
                 </a>

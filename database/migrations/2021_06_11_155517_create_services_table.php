@@ -17,7 +17,11 @@ class CreateServicesTable extends Migration
             $table->id();
             $table->foreignId('category_service_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignId('client_id')->nullable()->constrained()->onDelete('cascade');
-            
+            $table->string('name');
+            $table->date('start_date');
+            $table->integer('due_day');
+            $table->double('price');
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }
