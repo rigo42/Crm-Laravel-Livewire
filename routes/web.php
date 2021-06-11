@@ -4,6 +4,7 @@ use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Prospect\ProspectController;
 use App\Http\Controllers\Quotation\QuotationController;
+use App\Http\Controllers\Setting\CategoryServiceController;
 use App\Http\Controllers\Setting\PermissionController;
 use App\Http\Controllers\Setting\RoleController;
 use App\Http\Controllers\Setting\WelcomeController;
@@ -28,6 +29,8 @@ Route::prefix('ajustes')->group(function () {
     Route::resource('permisos', PermissionController::class)->parameters(['permisos' => 'permission'])->names('setting.permission');
     //Role
     Route::resource('roles', RoleController::class)->parameters(['roles' => 'role'])->names('setting.role');
+    //Role
+    Route::resource('categoria-servicios', CategoryServiceController::class)->parameters(['categoria-servicios' => 'categoryService'])->names('setting.category-service');
 });
 
 //User

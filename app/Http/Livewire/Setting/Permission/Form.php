@@ -35,8 +35,8 @@ class Form extends Component
     }
 
     public function create(){
-        $this->permission = new Permission();
         $this->method = 'store';
+        $this->permission = new Permission();
     }
 
     public function store(){
