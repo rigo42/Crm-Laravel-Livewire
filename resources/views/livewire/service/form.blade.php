@@ -207,8 +207,7 @@
 
             // Init date
             $('.start_date').datepicker({
-                rtl: KTUtil.isRTL(),
-                dateFormat: 'mm/dd/yyyy',
+                dateFormat: 'yy-mm-dd',
                 todayBtn: "linked",
                 clearBtn: true,
                 todayHighlight: true,

@@ -39,7 +39,7 @@ class Service extends Model
     }
 
     public function longDayService(){
-        return today()->diffInDays($this->start_date).' días';
+        return today()->diffInDays($this->startDateFormat()).' días';
     }
 
 }

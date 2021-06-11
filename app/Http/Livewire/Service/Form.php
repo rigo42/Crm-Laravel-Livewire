@@ -52,7 +52,7 @@ class Form extends Component
 
     public function store(){
         $this->validate();
-        $this->service->start_date = Carbon::createFromFormat( 'd/m/Y', $this->service->start_date);
+        $this->service->start_date = Carbon::createFromFormat( 'Y-m-d', $this->service->start_date);
         $this->service->save();
         session()->flash('alert','Servicio agregado con exito');
         session()->flash('alert-type', 'success');
