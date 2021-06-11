@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'c9c733f6458e50e55fe8567ce0eaa8ab9690ac38',
+    'reference' => 'cb3ecba2c837c70f217f4822ad9127fd26cfc0af',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -447,6 +447,15 @@
         0 => '*',
       ),
     ),
+    'laravel-lang/lang' => 
+    array (
+      'pretty_version' => '7.0.9',
+      'version' => '7.0.9.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '679a65755db37b35acd36a5e0ca51e055815a00a',
+    ),
     'laravel/framework' => 
     array (
       'pretty_version' => 'v8.44.0',
@@ -463,7 +472,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'c9c733f6458e50e55fe8567ce0eaa8ab9690ac38',
+      'reference' => 'cb3ecba2c837c70f217f4822ad9127fd26cfc0af',
     ),
     'laravel/tinker' => 
     array (
@@ -482,15 +491,6 @@
       array (
       ),
       'reference' => '07d725813350c695c779382cbd6dac0ab8665537',
-    ),
-    'laraveles/spanish' => 
-    array (
-      'pretty_version' => '1.5.0',
-      'version' => '1.5.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '2224e3db7ec399952523b0769a7677de0b6afd8b',
     ),
     'league/commonmark' => 
     array (

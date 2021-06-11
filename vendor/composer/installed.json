@@ -1358,6 +1358,54 @@
             "install-path": "../jantinnerezo/livewire-alert"
         },
         {
+            "name": "laravel-lang/lang",
+            "version": "7.0.9",
+            "version_normalized": "7.0.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Laravel-Lang/lang.git",
+                "reference": "679a65755db37b35acd36a5e0ca51e055815a00a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/679a65755db37b35acd36a5e0ca51e055815a00a",
+                "reference": "679a65755db37b35acd36a5e0ca51e055815a00a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*"
+            },
+            "suggest": {
+                "andrey-helldar/laravel-lang-publisher": "Easy installation and update of translation files for your project",
+                "arcanedev/laravel-lang": "Translations manager and checker for Laravel 5",
+                "overtrue/laravel-lang": "Command to add languages in your project"
+            },
+            "time": "2020-11-30T20:35:41+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Laravel-Lang Team"
+                }
+            ],
+            "description": "Languages for Laravel",
+            "keywords": [
+                "lang",
+                "languages",
+                "laravel",
+                "lpm"
+            ],
+            "support": {
+                "issues": "https://github.com/Laravel-Lang/lang/issues",
+                "source": "https://github.com/Laravel-Lang/lang/tree/7.0.9"
+            },
+            "install-path": "../laravel-lang/lang"
+        },
+        {
             "name": "laravel/framework",
             "version": "v8.44.0",
             "version_normalized": "8.44.0.0",
@@ -1648,71 +1696,6 @@
                 "ui"
             ],
             "install-path": "../laravel/ui"
-        },
-        {
-            "name": "laraveles/spanish",
-            "version": "1.5.0",
-            "version_normalized": "1.5.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Laraveles/spanish.git",
-                "reference": "2224e3db7ec399952523b0769a7677de0b6afd8b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Laraveles/spanish/zipball/2224e3db7ec399952523b0769a7677de0b6afd8b",
-                "reference": "2224e3db7ec399952523b0769a7677de0b6afd8b",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/console": ">=5.4.0",
-                "illuminate/support": ">=5.4.0",
-                "php": ">=5.6"
-            },
-            "require-dev": {
-                "orchestra/testbench": "^3.4|^4.0",
-                "phpunit/phpunit": "^5.6|^6.3|^7.0|^8.0"
-            },
-            "time": "2020-06-30T06:01:43+00:00",
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Laraveles\\Spanish\\SpanishServiceProvider"
-                    ]
-                }
-            },
-            "installation-source": "dist",
-            "autoload": {
-                "psr-4": {
-                    "Laraveles\\Spanish\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Israel Ortuño",
-                    "email": "ai.ortuno@gmail.com"
-                },
-                {
-                    "name": "Cesar Garcia",
-                    "email": "cesargb@gmail.com",
-                    "homepage": "https://github.com/cesargb",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Conjunto de traducciones en español para Laravel",
-            "homepage": "https://github.com/Laraveles/spanish",
-            "keywords": [
-                "laravel",
-                "laraveles",
-                "spanish",
-                "traduccion"
-            ],
-            "install-path": "../laraveles/spanish"
         },
         {
             "name": "league/commonmark",

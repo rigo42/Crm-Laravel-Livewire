@@ -73,7 +73,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/Mexico_City',
 
     /*
     |--------------------------------------------------------------------------
@@ -173,7 +173,6 @@ return [
          */
         Spatie\Permission\PermissionServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        Laraveles\Spanish\SpanishServiceProvider::class,
         Orangehill\Iseed\IseedServiceProvider::class,
         /*
          * Application Service Providers...

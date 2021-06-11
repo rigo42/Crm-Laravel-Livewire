@@ -1,0 +1,20 @@
+{
+    "name": "laravel-lang/lang",
+    "description": "Languages for Laravel",
+    "keywords": ["laravel", "languages", "lpm", "lang"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Laravel-Lang Team",
+            "url": "https://github.com/Laravel-Lang"
+        }
+    ],
+    "suggest": {
+        "overtrue/laravel-lang": "Command to add languages in your project",
+        "arcanedev/laravel-lang": "Translations manager and checker for Laravel 5",
+        "andrey-helldar/laravel-lang-publisher": "Easy installation and update of translation files for your project"
+    },
+    "require": {
+        "ext-json": "*"
+    }
+}

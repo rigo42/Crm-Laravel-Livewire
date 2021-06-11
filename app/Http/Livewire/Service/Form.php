@@ -6,6 +6,7 @@ use App\Models\CategoryService;
 use App\Models\Client;
 use App\Models\Service;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Queue\Listener;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -51,18 +52,20 @@ class Form extends Component
 
     public function store(){
         $this->validate();
+        $this->service->start_date = Carbon::createFromFormat( 'd/m/Y', $this->service->start_date);
         $this->service->save();
         session()->flash('alert','Servicio agregado con exito');
         session()->flash('alert-type', 'success');
-        return redirect()->route('service.show', $this->service);
+        return redirect()->route('service.index');
     }
 
     public function update(){
         $this->validate();
+        $this->service->start_date = Carbon::parse($this->service->start_date)->format('Y-m-d');
         $this->service->update();
         session()->flash('alert','Servicio actualizado con exito');
         session()->flash('alert-type', 'success');
-        return redirect()->route('service.show', $this->service);
+        return redirect()->route('service.index');
     }
 
 }
