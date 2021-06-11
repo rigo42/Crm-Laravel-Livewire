@@ -1,7 +1,12 @@
 <div class="container">
     
     <!--begin::Card-->
-    <div class="card card-custom card-sticky" id="kt_page_sticky_card" >
+    <div 
+        class="card card-custom card-sticky" 
+        @if (request()->routeIs('client.create') || request()->routeIs('client.edit'))
+            id="kt_page_sticky_card" 
+        @endif
+        >
         <div class="card-header" wire:ignore>
             <div class="card-title">
                 <h3 class="card-label">@yield('title')</h3>

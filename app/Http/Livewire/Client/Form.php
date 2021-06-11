@@ -76,6 +76,17 @@ class Form extends Component
         return redirect()->route('client.show', $this->client);
     }
 
+    public function storeCustom(){
+        $this->validate();
+        $this->saveUser();
+        $this->saveUserByAdmin();
+        $this->client->save();
+        $this->saveImage();
+        Mail::to($this->client->email)->send(new ClientNew($this->client));
+        $this->emit('render');
+        $this->alert('success', 'Cliente agregado con exito');
+    }
+
     public function update(){
         $this->validate();
         $this->saveUserByAdmin();

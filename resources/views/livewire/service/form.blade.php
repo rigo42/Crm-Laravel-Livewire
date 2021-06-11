@@ -1,4 +1,18 @@
 <div class="container">
+
+  <!-- Modal -->
+  <div class="modal fade" id="clientFormModal" tabindex="-1" aria-labelledby="clientFormModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-body">
+            @livewire('client.form', ['method' => 'storeCustom'])
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Regresar</button>
+        </div>
+      </div>
+    </div>
+  </div>
     
     <!--begin::Card-->
     <div class="card card-custom card-sticky" id="kt_page_sticky_card" >
@@ -31,7 +45,7 @@
                             <div class="form-group row">
                                 <label class="col-3">Cliente <span class="text-danger">*</span></label>
                                 <div class="col-9">
-                                    <div wire:ignore wire:key="client_id">
+                                    <div >
                                         <select 
                                             wire:model.defer="service.client_id" 
                                             class="form-control selectpicker form-control-solid @error('service.client_id') is-invalid @enderror" 
@@ -40,12 +54,12 @@
                                             required>
                                             <option value="">Selecciona un cliente</option>
                                             @foreach ($clients as $client)
-                                                <option value="{{ $client->id }}">{{ $client->name }}</option>
+                                                <option data-subtext="{{ $client->company }}" value="{{ $client->id }}">{{ $client->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <span class="form-text text-muted">Elije el cliente correspondiente al servicio</span>
-                                    <a href="{{ route('client.create') }}" class="text-primary" >Crear nuevo cliente</a>
+                                    <a href="#"  data-toggle="modal" data-target="#clientFormModal" class="text-primary" >Crear nuevo cliente</a>
                                     @error('service.client_id') <div><span class="text-danger">{{ $message }}</span></div> @enderror
                                 </div>
                             </div>
@@ -180,6 +194,17 @@
     @section('footer')
         <script src="{{ asset('assets') }}/js/pages/crud/forms/widgets/bootstrap-datepicker.js"></script>
         <script>
+
+            Livewire.on('renderJs', function(){
+                $('.selectpicker').selectpicker({
+                    liveSearch: true
+                });
+            });
+
+            Livewire.on('render', function(){
+                $("#clientFormModal").modal('hiden');
+            });
+
             // Init date
             $('.start_date').datepicker({
                 rtl: KTUtil.isRTL(),

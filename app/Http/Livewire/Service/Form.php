@@ -19,6 +19,8 @@ class Form extends Component
     public $method;
     public $service;
 
+    protected $listeners = ['render'];
+
     public function mount(Service $service, $method){
         $this->service = $service;
         $this->method = $method;
@@ -43,6 +45,7 @@ class Form extends Component
         $users = User::orderBy('name')->cursor();
         $categoryServices = CategoryService::orderBy('id', 'desc')->cursor();
         $clients = Client::orderBy('id', 'desc')->cursor();
+        $this->emit('renderJs');
         return view('livewire.service.form', compact('users', 'categoryServices', 'clients'));
     }
 
