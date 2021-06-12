@@ -91,12 +91,17 @@
                         <!--begin::Content-->
                         <div class="d-flex flex-wrap mt-14">
                             <div class="mr-12 d-flex flex-column mb-7">
-                                <span class="d-block font-weight-bold mb-4">Fecha de inicio</span>
-                                <span class="btn btn-light-primary btn-sm font-weight-bold btn-upper btn-text">{{ $service->startDateFormat() }}</span>
+                                <span class="d-block font-weight-bold mb-4">Inicio</span>
+                                <span class="btn btn-light-success btn-sm font-weight-bold btn-upper btn-text">{{ $service->start() }}</span>
                             </div>
                             <div class="mr-12 d-flex flex-column mb-7">
-                                <span class="d-block font-weight-bold mb-4">Fecha de vencimiento</span>
-                                <span class="btn btn-light-danger btn-sm font-weight-bold btn-upper btn-text">{{ $service->dueDay() }}</span>
+                                @if ($service->type == 'Proyecto')
+                                    <span class="d-block font-weight-bold mb-4">Vencimiento</span>
+                                @else
+                                    <span class="d-block font-weight-bold mb-4">Corte</span>
+                                @endif
+                                
+                                <span class="btn btn-light-danger btn-sm font-weight-bold btn-upper btn-text">{{ $service->due() }}</span>
                             </div>
                             <!--begin::Progress-->
                             <div class="flex-row-fluid mb-7">
@@ -112,7 +117,7 @@
                         </div>
                         <!--end::Content-->
                         <!--begin::Text-->
-                        <p class="mb-7 mt-3">I distinguish three main text objectives.First, your objective could be merely to inform people.A second be to persuade people.</p>
+                        <p class="mb-7 mt-3">{{ $service->note }}</p>
                         
                         
                         <!--end::Text-->

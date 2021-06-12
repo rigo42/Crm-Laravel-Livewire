@@ -83,6 +83,7 @@ class Form extends Component
         $this->client->save();
         $this->saveImage();
         Mail::to($this->client->email)->send(new ClientNew($this->client));
+        $this->client = new Client();
         $this->emit('render');
         $this->alert('success', 'Cliente agregado con exito');
     }

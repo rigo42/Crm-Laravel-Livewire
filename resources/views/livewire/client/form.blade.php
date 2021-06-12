@@ -1,10 +1,10 @@
 <div class="container">
     
-    <!--begin::Card-->
     <div 
-        class="card card-custom card-sticky" 
         @if (request()->routeIs('client.create') || request()->routeIs('client.edit'))
-            id="kt_page_sticky_card" 
+            class="card card-custom card-sticky"  id="kt_page_sticky_card" 
+        @else 
+            class="card card-custom"
         @endif
         >
         <div class="card-header" wire:ignore>

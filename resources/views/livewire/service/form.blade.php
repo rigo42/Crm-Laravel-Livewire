@@ -1,9 +1,15 @@
-<div class="container">
-
+<div class="container" x-data="{ type : '{{ $service->type }}'}">
+  
   <!-- Modal -->
-  <div class="modal fade" id="clientFormModal" tabindex="-1" aria-labelledby="clientFormModalLabel" aria-hidden="true">
+  <div wire:ignore.self class="modal fade" data-backdrop="static" id="clientFormModal" tabindex="-1" aria-labelledby="clientFormModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
       <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="clientFormModalLabel">Nuevo cliente</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
         <div class="modal-body">
             @livewire('client.form', ['method' => 'storeCustom'])
         </div>
@@ -42,6 +48,81 @@
 
                             @include('component.error-list')
 
+                            <div class="form-group row">
+                                <label class="col-3">Tipo de servicio <span x-ref="type"></span> <span class="text-danger">*</span></label>
+                                <div class="col-9">
+                                    <select 
+                                        x-on:change="type = $event.target.value"
+                                        wire:model.defer="service.type" 
+                                        class="form-control @error('service.type') is-invalid @enderror" 
+                                        required>
+                                        <option value="">Selecciona un tipo</option>
+                                        <option value="Proyecto">Proyecto</option>
+                                        <option value="Mensual">Servicio mensual</option>
+                                    </select>
+                                    <span class="form-text text-muted">Elije el tipo de servicio</span>
+                                    @error('service.type') <div><span class="text-danger">{{ $message }}</span></div> @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-3">Fecha de inicio <span class="text-danger">*</span></label>
+                                <div class="col-9">
+                                    <div class="input-group input-group-solid">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="la la-calendar"></i>
+                                            </span>
+                                        </div>
+                                        <input
+                                            wire:model.defer="service.start_date"
+                                            value="{{ $service->start_date }}"
+                                            type="text" 
+                                            class="start_date form-control form-control-solid @error('service.start_date') is-invalid @enderror"  
+                                            placeholder="Seleccione la fecha de inicio"
+                                            />
+                                    </div>
+                                    @error('service.start_date') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row" x-show="type == 'Mensual'">
+                                <label class="col-3">Día de corte <span class="text-danger">*</span></label>
+                                <div class="col-9">
+                                    <div class="input-group input-group-solid">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="la la-calendar-check-o"></i>
+                                            </span>
+                                        </div>
+                                        <input 
+                                            wire:model.defer="service.due_day" 
+                                            type="number" 
+                                            class="start_date form-control form-control-solid @error('service.due_day') is-invalid @enderror" 
+                                            placeholder="Día del mes donde se deberá hacer corte de este servicio: Ej: 25" />
+                                    </div>
+                                    @error('service.due_day') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row" x-show="type == 'Proyecto'">
+                                <label class="col-3">Fecha de finalización <span class="text-danger">*</span></label>
+                                <div class="col-9">
+                                    <div class="input-group input-group-solid">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="la la-calendar"></i>
+                                            </span>
+                                        </div>
+                                        <input
+                                            wire:model.defer="service.due_date"
+                                            value="{{ $service->due_date }}"
+                                            type="text" 
+                                            class="due_date form-control form-control-solid @error('service.due_date') is-invalid @enderror"  
+                                            readonly="readonly" 
+                                            placeholder="Seleccione la fecha de finalizacion del proyecto"
+                                            />
+                                    </div>
+                                    @error('service.due_date') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <label class="col-3">Cliente <span class="text-danger">*</span></label>
                                 <div class="col-9">
@@ -122,45 +203,7 @@
                                     @error('service.price') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label class="col-3">Fecha de inicio {{ $service->start_date }} <span class="text-danger">*</span></label>
-                                <div class="col-9">
-                                    <div class="input-group input-group-solid">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="la la-calendar"></i>
-                                            </span>
-                                        </div>
-                                        <input
-                                            wire:model.defer="service.start_date"
-                                            type="text" 
-                                            class="start_date form-control form-control-solid @error('service.start_date') is-invalid @enderror"  
-                                            readonly="readonly" 
-                                            placeholder="Seleccione la fecha de inicio"
-                                            />
-                                    </div>
-                                    @error('service.start_date') <span class="text-danger">{{ $message }}</span> @enderror
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-3">Día de corte <span class="text-danger">*</span></label>
-                                <div class="col-9">
-                                    <div class="input-group input-group-solid">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="la la-calendar-check-o"></i>
-                                            </span>
-                                        </div>
-                                        <input 
-                                            wire:model.defer="service.due_day" 
-                                            type="number" 
-                                            required
-                                            class="form-control form-control-solid @error('service.due_day') is-invalid @enderror" 
-                                            placeholder="Día del mes donde se deberá hacer corte de este servicio: Ej: 25" />
-                                    </div>
-                                    @error('service.due_day') <span class="text-danger">{{ $message }}</span> @enderror
-                                </div>
-                            </div>
+                            
                             <div class="form-group row">
                                 <label class="col-3">Nota </label>
                                 <div class="col-9">
@@ -188,6 +231,7 @@
             </form>
             <!--end::Form-->
         </div>
+
     </div>
     <!--end::Card-->
 
@@ -202,12 +246,12 @@
             });
 
             Livewire.on('render', function(){
-                $("#clientFormModal").modal('hiden');
+                $("#clientFormModal").modal('hide');
             });
 
             // Init date
             $('.start_date').datepicker({
-                dateFormat: 'yy-mm-dd',
+                format: "yyyy/mm/dd",
                 todayBtn: "linked",
                 clearBtn: true,
                 todayHighlight: true,
@@ -215,6 +259,18 @@
                 language: 'es',
             }).on('changeDate', function(e){
                 @this.set('service.start_date', e.target.value);
+            });
+
+            // Init date
+            $('.due_date').datepicker({
+                format: "yyyy/mm/dd",
+                todayBtn: "linked",
+                clearBtn: true,
+                todayHighlight: true,
+                autoclose: true,
+                language: 'es',
+            }).on('changeDate', function(e){
+                @this.set('service.due_date', e.target.value);
             });
         </script>
     @endsection

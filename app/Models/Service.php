@@ -21,25 +21,30 @@ class Service extends Model
         return $this->belongsTo(CategoryService::class);
     }
 
-    public function startDateFormat(){
+    public function start(){
         return Carbon::parse($this->start_date)->format('d-m-Y');
     }
 
-    public function dueDay(){
-        //Today
-        $nowDate = now();
-        $nowDay = date("d", strtotime($nowDate));
-        //Due day
-        $dueDay = $this->due_day;
-        //Days in this monht
-        $daysInThisMontht = date('t', strtotime($nowDate));
-        //Get sum
-        $sum = ($daysInThisMontht + $dueDay - $nowDay);
-        return Carbon::parse(date('Y-m-j', strtotime('+'.$sum.' day', strtotime($nowDate))))->format('d-m-Y');
+    public function due(){
+        if($this->type == 'Proyecto'){
+            return Carbon::parse($this->due_date)->format('d-m-Y');
+        }else{
+            //Today
+            $nowDate = now();
+            $nowDay = date("d", strtotime($nowDate));
+            //Due day
+            $dueDay = $this->due_day;
+            //Days in this monht
+            $daysInThisMontht = date('t', strtotime($nowDate));
+            //Get sum
+            $sum = ($daysInThisMontht + $dueDay - $nowDay);
+            return Carbon::parse(date('Y-m-j', strtotime('+'.$sum.' day', strtotime($nowDate))))->format('d-m-Y');
+        }
+        
     }
 
     public function longDayService(){
-        return today()->diffInDays($this->startDateFormat()).' días';
+        return today()->diffInDays($this->start_date).' días';
     }
 
 }

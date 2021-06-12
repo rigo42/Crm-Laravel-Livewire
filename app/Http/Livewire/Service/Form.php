@@ -30,12 +30,13 @@ class Form extends Component
     protected function rules()
     {
         return [
-            'service.name' => 'required',
+            'service.type' => 'required',
             'service.category_service_id' => 'required',
             'service.client_id' => 'required',
             'service.name' => 'required',
             'service.start_date' => 'required',
-            'service.due_day' => 'required',
+            'service.due_date' => 'nullable',
+            'service.due_day' => 'nullable',
             'service.price' => 'required',
             'service.note' => 'nullable',
         ];
@@ -52,7 +53,7 @@ class Form extends Component
 
     public function store(){
         $this->validate();
-        $this->service->start_date = Carbon::createFromFormat( 'Y-m-d', $this->service->start_date);
+        $this->save();
         $this->service->save();
         session()->flash('alert','Servicio agregado con exito');
         session()->flash('alert-type', 'success');
@@ -61,11 +62,23 @@ class Form extends Component
 
     public function update(){
         $this->validate();
-        $this->service->start_date = Carbon::parse($this->service->start_date)->format('Y-m-d');
+        $this->save();
         $this->service->update();
         session()->flash('alert','Servicio actualizado con exito');
         session()->flash('alert-type', 'success');
         return redirect()->route('service.index');
+    }
+
+    public function save(){
+        if($this->service->type == 'Proyecto'){
+            $this->validate([
+                'service.due_date' => 'required',
+            ]);
+        }elseif($this->service->type == 'Mensual'){
+            $this->validate([
+                'service.due_day' => 'required',
+            ]);
+        }
     }
 
 }
