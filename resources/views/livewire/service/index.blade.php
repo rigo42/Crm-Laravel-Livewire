@@ -15,7 +15,7 @@
                                             wire:model="search"
                                             type="search" 
                                             class="form-control"
-                                            placeholder="Buscar servicio, servicee...">
+                                            placeholder="Buscar servicio, cliente, categoría...">
                                         <span>
                                             <i class="flaticon2-search-1 text-muted"></i>
                                         </span>
@@ -45,6 +45,12 @@
             <div class="col-xl-6">
                 <!--begin::Card-->
                 <div class="card card-custom gutter-b card-stretch">
+                    <div class="card-header ribbon ribbon-top">
+                        @if ($service->finished)
+                            <div class="ribbon-target bg-danger" style="top: -2px; right: 20px;">Finalizado</div>
+                        @endif
+                        <h3 class="card-title">{{ $service->name }}</h3>
+                    </div>
                     <!--begin::Body-->
                     <div class="card-body">
                         <!--begin::Section-->
@@ -65,7 +71,7 @@
                                 
                                 <!--begin: Title-->
                                 <a href="#" class="card-title text-hover-primary font-weight-bolder font-size-h5 text-dark mb-1">{{ $service->client->name }}</a>
-                                <span class="text-muted font-weight-bold">{{ $service->name }}</span>
+                                
                                 @if ($service->categoryService)
                                     <span class="text-primary font-weight-bold">{{ $service->categoryService->name }}</span>
                                 @else
@@ -103,15 +109,31 @@
                                 
                                 <span class="btn btn-light-danger btn-sm font-weight-bold btn-upper btn-text">{{ $service->due() }}</span>
                             </div>
+                            
                             <!--begin::Progress-->
                             <div class="flex-row-fluid mb-7">
-                                <span class="d-block font-weight-bold mb-4">Progress</span>
-                                <div class="d-flex align-items-center pt-2">
-                                    <div class="progress progress-xs mt-2 mb-2 w-100">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 78%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                @if ($service->type == 'Proyecto')
+                                    <span class="d-block font-weight-bold mb-4">Progreso</span>
+                                    <div class="d-flex align-items-center pt-2">
+                                        <div class="progress progress-xs mt-2 mb-2 w-100">
+                                            @if ($service->progressByProject() >= 60)
+                                                <div class="progress-bar bg-danger" role="progressbar" style="width: {{ $service->progressByProject() }}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                            @elseif($service->progressByProject() >= 30)
+                                                <div class="progress-bar bg-warning" role="progressbar" style="width: {{ $service->progressByProject() }}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                            @else
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: {{ $service->progressByProject() }}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                            @endif
+                                            
+                                        </div>
+                                        <span class="ml-3 font-weight-bolder">{{ $service->progressByProject() }}%</span>
                                     </div>
-                                    <span class="ml-3 font-weight-bolder">78%</span>
-                                </div>
+                                @else
+                                    <span class="d-block font-weight-bold mb-4">Días restantes</span>
+                                    <div class="d-flex align-items-center pt-2">
+                                        <span class="label label-dark label-inline mr-2">{{ $service->progressByMohts() }}</span>
+                                    </div>
+                                @endif
+                                
                             </div>
                             <!--end::Progress-->
                         </div>
@@ -137,50 +159,57 @@
                                 <span class="font-weight-bold">$</span>439,500</span>
                             </div>
                             <!--end::Item-->
-                            <!--begin::Item-->
-                            <div class="d-flex flex-column flex-lg-fill float-left mb-7">
-                                <span class="font-weight-bolder mb-4">Members</span>
-                                <div class="symbol-group symbol-hover">
-                                    <div class="symbol symbol-30 symbol-circle" data-toggle="tooltip" title="Mark Stone">
-                                        <img alt="Pic" src="{{ asset('assets') }}/media/users/300_25.jpg" />
-                                    </div>
-                                    <div class="symbol symbol-30 symbol-circle" data-toggle="tooltip" title="Charlie Stone">
-                                        <img alt="Pic" src="{{ asset('assets') }}/media/users/300_19.jpg" />
-                                    </div>
-                                    <div class="symbol symbol-30 symbol-circle" data-toggle="tooltip" title="Luca Doncic">
-                                        <img alt="Pic" src="{{ asset('assets') }}/media/users/300_22.jpg" />
-                                    </div>
-                                    <div class="symbol symbol-30 symbol-circle" data-toggle="tooltip" title="Nick Mana">
-                                        <img alt="Pic" src="{{ asset('assets') }}/media/users/300_23.jpg" />
-                                    </div>
-                                    <div class="symbol symbol-30 symbol-circle" data-toggle="tooltip" title="Teresa Fox">
-                                        <img alt="Pic" src="{{ asset('assets') }}/media/users/300_18.jpg" />
-                                    </div>
-                                    <div class="symbol symbol-30 symbol-circle symbol-light">
-                                        <span class="symbol-label font-weight-bold">5+</span>
+                            @if ($service->users->count())
+                                <div class="d-flex flex-column flex-lg-fill float-left mb-7">
+                                    <div class="symbol-group symbol-hover">
+                                        @foreach ($service->users as $user)
+                                            <div class="symbol symbol-30 symbol-circle" data-toggle="tooltip" title="" data-original-title="{{ $user->name }}">
+                                                <img 
+                                                    alt="{{ $user->name }}" 
+                                                    @if ($user->image)
+                                                        src="{{ Storage::url($user->image->url) }}" 
+                                                    @else
+                                                        src="{{ asset('assets/media/users/blank.png') }}" 
+                                                    @endif
+                                                    >
+                                            </div>
+                                            @if ($loop->index == (8))
+                                                <div class="symbol symbol-30 symbol-circle symbol-light">
+                                                    <span class="symbol-label font-weight-bold">{{ $role->users->count() - ($loop->index + 1) }}+</span>
+                                                </div>
+                                                @break
+                                            @endif
+                                        @endforeach
                                     </div>
                                 </div>
-                            </div>
-                            <!--end::Item-->
+                            @else 
+                                <p>
+                                    <span class="font-size-lg m-1 badge badge-secondary">Ninguno usuario contribuyendo</span>
+                                </p>
+                            @endif
                         </div>
                         <!--end::Blog-->
+                        @if ($service->has_invoice)
+                        <div class="py-5">
+                            <span class="label label-info label-inline mr-2">Require factura</span>
+                        </div>
+                        @else
+                        <div class="py-5">
+                            <span class="label label-secondary label-inline mr-2">Sin factura</span>
+                        </div>
+                        @endif
+                        
                     </div>
                     <!--end::Body-->
                     <!--begin::Footer-->
                     <div class="card-footer d-flex align-items-center">
                         <div class="d-flex">
-                            <div class="d-flex align-items-center mr-7">
-                                <span class="svg-icon svg-icon-gray-500">
-                                    <i class="fas fa-dollar-sign"></i>
-                                </span>
-                                <a href="#" class="font-weight-bolder text-secondary ml-2">Precio de servicio: $9,000.00</a>
+                            <div class="d-flex align-items-center mr-7 text-success">
+                                <span class="font-weight-bolder">Precio: $4,000</span>
                             </div>
+                           
                         </div>
-                        <div class="d-flex">
-                            <div class="d-flex align-items-center mr-7">
-                                <a href="#" class="font-weight-bolder text-secondary ml-2">Antiguedad: {{ $service->longDayService() }}</a>
-                            </div>
-                        </div>
+                        <a href="{{ route('service.show', $service) }}" class="btn btn-primary btn-sm text-uppercase font-weight-bolder mt-5 mt-sm-0 mr-auto mr-sm-0 ml-sm-auto"> <i class="fa fa-eye"></i> Ver</a>
                     </div>
                     <!--end::Footer-->
                 </div>

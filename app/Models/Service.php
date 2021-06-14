@@ -21,6 +21,14 @@ class Service extends Model
         return $this->belongsTo(CategoryService::class);
     }
 
+    public function users(){
+        return $this->belongsToMany(User::class)->withTimestamps();
+    }
+
+    public function priceToString(){
+        return '$'.number_format($this->price, 2, '.', ',');
+    }
+
     public function start(){
         return Carbon::parse($this->start_date)->format('d-m-Y');
     }
@@ -30,21 +38,35 @@ class Service extends Model
             return Carbon::parse($this->due_date)->format('d-m-Y');
         }else{
             //Today
-            $nowDate = now();
-            $nowDay = date("d", strtotime($nowDate));
+            $nowDay = date("d", strtotime(now()));
             //Due day
             $dueDay = $this->due_day;
             //Days in this monht
-            $daysInThisMontht = date('t', strtotime($nowDate));
+            $daysInThisMontht = date('t', strtotime(now()));
             //Get sum
             $sum = ($daysInThisMontht + $dueDay - $nowDay);
-            return Carbon::parse(date('Y-m-j', strtotime('+'.$sum.' day', strtotime($nowDate))))->format('d-m-Y');
+            $dueDate = strtotime('+'.$sum.' day', strtotime(now()));
+            return Carbon::parse($dueDate)->format('d-m-Y');
         }
-        
     }
 
-    public function longDayService(){
-        return today()->diffInDays($this->start_date).' días';
+    public function progressByProject(){
+        $now = now()->toDateString();
+        $nowDay = date("d", strtotime(now()));
+        $start = $this->start_date;
+        $due = $this->due_date;
+
+        if($now > $due){
+            return 100;
+        }else{
+            $diferenceGeneral = Carbon::parse($due)->diffInDays($start);
+            $progress = floor(($nowDay * 100) / $diferenceGeneral);
+            return $progress;
+        }
+    }
+
+    public function progressByMohts(){
+        return today()->diffInDays($this->due()).' días restantes';
     }
 
 }

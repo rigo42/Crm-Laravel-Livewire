@@ -46,7 +46,13 @@ class Index extends Component
         }
 
         if($this->search){
-            $services = $services->where('name', 'LIKE', "%{$this->search}%");
+            $services = $services->where('name', 'LIKE', "%{$this->search}%")
+                                    ->orWhereHas('client', function($query){
+                                        $query->where('name', 'LIKE', "%{$this->search}%");
+                                    })
+                                    ->orWhereHas('categoryService', function($query){
+                                        $query->where('name', 'LIKE', "%{$this->search}%");
+                                    });
         }
 
         $count = $count->count();

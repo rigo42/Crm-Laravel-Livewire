@@ -78,7 +78,7 @@
                                                 </div>
                                                 <div class="d-flex flex-column">
                                                     <a href="{{ route('client.show', $client) }}" class="text-dark-75 text-hover-primary font-weight-bold font-size-lg">{{ $client->name }}</a>
-                                                    <span class="text-muted font-weight-bold font-size-sm">{{ $client->interest }}</span>
+                                                    <span class="text-muted font-weight-bold font-size-sm">{{ $client->company }}</span>
                                                 </div>
                                             </div>
                                         </td>

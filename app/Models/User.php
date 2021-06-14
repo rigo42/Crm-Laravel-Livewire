@@ -52,4 +52,9 @@ class User extends Authenticatable
 
     public function quotations(){
         return $this->hasMany(Quotation::class);
-    }}
+    }
+
+    public function services(){
+        return $this->belongsToMany(Service::class)->withTimestamps();
+    }
+}
