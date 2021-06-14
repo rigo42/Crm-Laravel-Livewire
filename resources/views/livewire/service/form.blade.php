@@ -349,7 +349,7 @@
                                                     <td>
                                                         <label class="checkbox checkbox-warning">
 															<input 
-                                                                wire:model="userArray" 
+                                                                wire:model.defer="userArray" 
                                                                 class="checkbox" 
                                                                 type="checkbox" 
                                                                 name="userArray[]"

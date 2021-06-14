@@ -42,43 +42,36 @@
         <!--begin::Row-->
         <div class="row">
             @forelse ($services as $service)
-            <div class="col-xl-6">
+
+            <div class="col-xl-4">
                 <!--begin::Card-->
-                <div class="card card-custom gutter-b card-stretch">
-                    <div class="card-header ribbon ribbon-top">
+                <div class="card gutter-b card-stretch">
+                    <div class="card-body ribbon ribbon-top">
                         @if ($service->finished)
                             <div class="ribbon-target bg-danger" style="top: -2px; right: 20px;">Finalizado</div>
                         @endif
-                        <h3 class="card-title">{{ $service->name }}</h3>
-                    </div>
-                    <!--begin::Body-->
-                    <div class="card-body">
-                        <!--begin::Section-->
+                        <!--begin::Info-->
                         <div class="d-flex align-items-center">
                             <!--begin::Pic-->
-                            <div class="flex-shrink-0 mr-4 symbol symbol-65 symbol-circle">
+                            <div class="flex-shrink-0 mr-4 symbol symbol-60 symbol-circle">
                                 <img 
                                     @if ($service->client->image)
                                         src="{{ Storage::url($service->client->image->url) }}" 
                                     @else
                                         src="{{ asset('assets/media/users/blank.png') }}" 
                                     @endif
-                                    alt="image" />
+                                alt="image" />
                             </div>
                             <!--end::Pic-->
-                            <!--begin::Info-->
                             <div class="d-flex flex-column mr-auto">
-                                
                                 <!--begin: Title-->
                                 <a href="#" class="card-title text-hover-primary font-weight-bolder font-size-h5 text-dark mb-1">{{ $service->client->name }}</a>
-                                
                                 @if ($service->categoryService)
                                     <span class="text-primary font-weight-bold">{{ $service->categoryService->name }}</span>
                                 @else
                                     <span class="text-secondary font-weight-bold">Ninguno</span>
                                 @endif
                             </div>
-                            
                             <!--start::Toolbar-->
                             <div class="d-flex justify-content-end">
                                 <div class="dropdown dropdown-inline" data-toggle="tooltip"  data-placement="left">
@@ -93,127 +86,88 @@
                                 </div>
                             </div>
                         </div>
-                        <!--end::Section-->
-                        <!--begin::Content-->
-                        <div class="d-flex flex-wrap mt-14">
-                            <div class="mr-12 d-flex flex-column mb-7">
-                                <span class="d-block font-weight-bold mb-4">Inicio</span>
+                        <!--end::Info-->
+                        <!--begin::Description-->
+                        <div class="mb-10 mt-5 ">{{ $service->note }}</div>
+                        <!--end::Description-->
+                        <!--begin::Data-->
+                        <div class="d-flex mb-5">
+                            <div class="d-flex align-items-center mr-7">
+                                <span class="font-weight-bold mr-4">Inicio</span>
                                 <span class="btn btn-light-success btn-sm font-weight-bold btn-upper btn-text">{{ $service->start() }}</span>
                             </div>
-                            <div class="mr-12 d-flex flex-column mb-7">
-                                @if ($service->type == 'Proyecto')
-                                    <span class="d-block font-weight-bold mb-4">Vencimiento</span>
-                                @else
-                                    <span class="d-block font-weight-bold mb-4">Corte</span>
-                                @endif
-                                
+                            <div class="d-flex align-items-center">
+                                <span class="font-weight-bold mr-4">Vencimiento</span>
                                 <span class="btn btn-light-danger btn-sm font-weight-bold btn-upper btn-text">{{ $service->due() }}</span>
                             </div>
-                            
-                            <!--begin::Progress-->
-                            <div class="flex-row-fluid mb-7">
-                                @if ($service->type == 'Proyecto')
-                                    <span class="d-block font-weight-bold mb-4">Progreso</span>
-                                    <div class="d-flex align-items-center pt-2">
-                                        <div class="progress progress-xs mt-2 mb-2 w-100">
-                                            @if ($service->progressByProject() >= 60)
-                                                <div class="progress-bar bg-danger" role="progressbar" style="width: {{ $service->progressByProject() }}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                            @elseif($service->progressByProject() >= 30)
-                                                <div class="progress-bar bg-warning" role="progressbar" style="width: {{ $service->progressByProject() }}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                            @else
-                                                <div class="progress-bar bg-success" role="progressbar" style="width: {{ $service->progressByProject() }}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                            @endif
-                                            
-                                        </div>
-                                        <span class="ml-3 font-weight-bolder">{{ $service->progressByProject() }}%</span>
+                        </div>
+                        <!--end::Data-->
+                        <!--begin::Progress-->
+                        @if ($service->type == 'Proyecto')
+                            <div class="d-flex mb-5 align-items-center">
+                                <span class="d-block font-weight-bold mr-5">Progreso</span>
+                                <div class="d-flex flex-row-fluid align-items-center">
+                                    <div class="progress progress-xs mt-2 mb-2 w-100">
+                                        @if ($service->progressByProject() >= 60)
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{ $service->progressByProject() }}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                        @elseif($service->progressByProject() >= 30)
+                                            <div class="progress-bar bg-warning" role="progressbar" style="width: {{ $service->progressByProject() }}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                        @else
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: {{ $service->progressByProject() }}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                        @endif
                                     </div>
-                                @else
-                                    <span class="d-block font-weight-bold mb-4">Días restantes</span>
-                                    <div class="d-flex align-items-center pt-2">
-                                        <span class="label label-dark label-inline mr-2">{{ $service->progressByMohts() }}</span>
-                                    </div>
-                                @endif
+                                    <span class="ml-3 font-weight-bolder">{{ $service->progressByProject() }}%</span>
+                                </div>
+                            </div>
+                        @else
+                            <div class="mb-2">
+                                <span class="font-weight-bold">Días restantes</span> <span class="label label-xl label-danger mr-2"> {{ $service->progressByMohts() }}</span>
                                 
                             </div>
-                            <!--end::Progress-->
-                        </div>
-                        <!--end::Content-->
-                        <!--begin::Text-->
-                        <p class="mb-7 mt-3">{{ $service->note }}</p>
-                        
-                        
-                        <!--end::Text-->
-                        <!--begin::Blog-->
-                        <div class="d-flex flex-wrap">
-                            <!--begin: Item-->
-                            <div class="mr-12 d-flex flex-column mb-7 text-success">
-                                <span class="font-weight-bolder mb-4">Pagos</span>
-                                <span class="font-weight-bolder font-size-h5 pt-1">
-                                <span class="font-weight-bold">$</span>249,500</span>
-                            </div>
-                            <!--end::Item-->
-                            <!--begin::Item-->
-                            <div class="mr-12 d-flex flex-column mb-7 text-danger">
-                                <span class="font-weight-bolder mb-4">Gastos</span>
-                                <span class="font-weight-bolder font-size-h5 pt-1">
-                                <span class="font-weight-bold">$</span>439,500</span>
-                            </div>
-                            <!--end::Item-->
-                            @if ($service->users->count())
-                                <div class="d-flex flex-column flex-lg-fill float-left mb-7">
-                                    <div class="symbol-group symbol-hover">
-                                        @foreach ($service->users as $user)
-                                            <div class="symbol symbol-30 symbol-circle" data-toggle="tooltip" title="" data-original-title="{{ $user->name }}">
-                                                <img 
-                                                    alt="{{ $user->name }}" 
-                                                    @if ($user->image)
-                                                        src="{{ Storage::url($user->image->url) }}" 
-                                                    @else
-                                                        src="{{ asset('assets/media/users/blank.png') }}" 
-                                                    @endif
-                                                    >
-                                            </div>
-                                            @if ($loop->index == (8))
-                                                <div class="symbol symbol-30 symbol-circle symbol-light">
-                                                    <span class="symbol-label font-weight-bold">{{ $role->users->count() - ($loop->index + 1) }}+</span>
-                                                </div>
-                                                @break
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                </div>
-                            @else 
-                                <p>
-                                    <span class="font-size-lg m-1 badge badge-secondary">Ninguno usuario contribuyendo</span>
-                                </p>
-                            @endif
-                        </div>
-                        <!--end::Blog-->
-                        @if ($service->has_invoice)
-                        <div class="py-5">
-                            <span class="label label-info label-inline mr-2">Require factura</span>
-                        </div>
-                        @else
-                        <div class="py-5">
-                            <span class="label label-secondary label-inline mr-2">Sin factura</span>
-                        </div>
                         @endif
-                        
+                        <!--ebd::Progress-->
+                        @if ($service->users->count())
+                            <div class="d-flex flex-column flex-lg-fill float-left mb-7">
+                                <div class="symbol-group symbol-hover">
+                                    @foreach ($service->users as $user)
+                                        <div class="symbol symbol-30 symbol-circle" data-toggle="tooltip" title="" data-original-title="{{ $user->name }}">
+                                            <img 
+                                                alt="{{ $user->name }}" 
+                                                @if ($user->image)
+                                                    src="{{ Storage::url($user->image->url) }}" 
+                                                @else
+                                                    src="{{ asset('assets/media/users/blank.png') }}" 
+                                                @endif
+                                                >
+                                        </div>
+                                        @if ($loop->index == (8))
+                                            <div class="symbol symbol-30 symbol-circle symbol-light">
+                                                <span class="symbol-label font-weight-bold">{{ $role->users->count() - ($loop->index + 1) }}+</span>
+                                            </div>
+                                            @break
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
                     </div>
                     <!--end::Body-->
                     <!--begin::Footer-->
                     <div class="card-footer d-flex align-items-center">
                         <div class="d-flex">
-                            <div class="d-flex align-items-center mr-7 text-success">
-                                <span class="font-weight-bolder">Precio: $4,000</span>
+                            <div class="d-flex align-items-center mr-7">
+                                <span class="font-weight-bolder text-success ml-2">{{ $service->priceToString() }}</span>
                             </div>
-                           
+                            @if ($service->has_invoice)
+                            <div class="d-flex align-items-center mr-7">
+                                <a href="#" class="font-weight-bolder text-info ml-2">Se require factura</a>
+                            </div>
+                            @endif
                         </div>
-                        <a href="{{ route('service.show', $service) }}" class="btn btn-primary btn-sm text-uppercase font-weight-bolder mt-5 mt-sm-0 mr-auto mr-sm-0 ml-sm-auto"> <i class="fa fa-eye"></i> Ver</a>
                     </div>
                     <!--end::Footer-->
                 </div>
-                <!--end::Card-->
+                <!--end:: Card-->
             </div>
             @empty 
              <!--begin::Col-->

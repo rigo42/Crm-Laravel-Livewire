@@ -66,7 +66,7 @@ class Service extends Model
     }
 
     public function progressByMohts(){
-        return today()->diffInDays($this->due()).' días restantes';
+        return today()->diffInDays($this->due());
     }
 
 }
