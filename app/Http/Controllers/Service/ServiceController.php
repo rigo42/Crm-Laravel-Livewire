@@ -12,6 +12,7 @@ class ServiceController extends Controller
     public function __construct()
     {
         $this->middleware(['permission:servicios']);
+        $this->middleware(['service'])->except('index', 'create');
     }
 
     public function index(){

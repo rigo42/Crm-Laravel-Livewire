@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Livewire\Service;
+namespace App\Http\Livewire\Invoice;
 
-use App\Models\Service;
+use App\Models\Invoice;
 use App\Models\User;
-use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -15,9 +14,6 @@ class Index extends Component
 {
     use WithPagination;
 
-    //User actual
-    public $userPresent;
-
     //Tools
     public $perPage = 10;
     public $search;
@@ -26,10 +22,6 @@ class Index extends Component
     //Theme
     protected $paginationTheme = 'bootstrap';
 
-    public function mount(){
-        $this->userPresent = User::find(Auth::id());
-    }
-
     public function updatingSearch()
     {
         $this->resetPage();
@@ -37,37 +29,29 @@ class Index extends Component
 
     public function render()
     {
-        $count = Service::query();
-        $services = Service::orderBy('id', 'desc');
-
-        if(!$this->userPresent->hasRole('Administrador')){
-            $count = $count->whereHas('client', function($query){
-                $query->where('user_id', $this->userPresent->id);
-            });
-            $services = $services->whereHas('client', function($query){
-                $query->where('user_id', $this->userPresent->id);
-            });
-        }
+        $count = Invoice::query();
+        $invoices = Invoice::orderBy('id', 'desc');
 
         if($this->search){
-            $services = $services->where('name', 'LIKE', "%{$this->search}%")
+            $invoices = $invoices->where('concept', 'LIKE', "%{$this->search}%")
                                     ->orWhereHas('client', function($query){
-                                        $query->where('name', 'LIKE', "%{$this->search}%");
-                                    })
-                                    ->orWhereHas('categoryService', function($query){
                                         $query->where('name', 'LIKE', "%{$this->search}%");
                                     });
         }
 
         $count = $count->count();
-        $services = $services->paginate($this->perPage);
-        return view('livewire.service.index', compact('count', 'services'));
+        $invoices = $invoices->paginate($this->perPage);
+        return view('livewire.invoice.index', compact('count', 'invoices'));
     }
 
     public function destroy($id)
     {
         try{
-            $service = Service::find($id)->delete();
+            $invoice = Invoice::findOrFail($id);
+            if(Storage::exists($invoice->url)){
+                Storage::delete($invoice->url);
+            }
+            $invoice->delete();
             $this->alert('success', 'Eliminación con exito');
         }catch(Exception $e){
             $this->alert('error', 

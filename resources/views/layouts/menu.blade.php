@@ -56,8 +56,8 @@
                     <span class="menu-text">Cotizaciones</span>
                 </a>
             </li>
-            <li class="menu-item">
-                <a href="index.html" class="menu-link">
+            <li class="menu-item {{ active('invoice.*') }}">
+                <a href="{{ route('invoice.index') }}" class="menu-link">
                     <i class="menu-icon text-dark fas fa-file-pdf"></i>
                     <span class="menu-text">Facturas</span>
                 </a>
@@ -89,7 +89,7 @@
                     <span class="menu-text">Informes</span>
                 </a>
             </li>
-            <li class="menu-item {{ active('setting.welcome.index') }}">
+            <li class="menu-item {{ active('setting.*') }}">
                 <a href="{{ route('setting.welcome.index') }}" class="menu-link">
                     <i class="menu-icon text-dark fa fa-cog"></i>
                     <span class="menu-text">Configuraciones</span>

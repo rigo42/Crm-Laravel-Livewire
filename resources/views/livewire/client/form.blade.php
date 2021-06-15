@@ -235,7 +235,7 @@
                             <div class="form-group row">
                                 <label class="col-3">Usuario</label>
                                 <div class="col-9">
-                                    <div wire:ignore>
+                                    <div wire:ignore wire:key="client_id">
                                         <select 
                                             wire:model="userId" 
                                             class="form-control selectpicker form-control-solid @error('userId') is-invalid @enderror" 

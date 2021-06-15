@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Invoice\InvoiceController;
 use App\Http\Controllers\Prospect\ProspectController;
 use App\Http\Controllers\Quotation\QuotationController;
 use App\Http\Controllers\Service\ServiceController;
@@ -61,5 +62,8 @@ Route::resource('cotizaciones', QuotationController::class)->parameters(['cotiza
 
 //Services
 Route::resource('servicios', ServiceController::class)->parameters(['servicios' => 'service'])->names('service');
+
+//Invoices
+Route::resource('facturas', InvoiceController::class)->parameters(['facturas' => 'invoice'])->names('invoice');
 
 

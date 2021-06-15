@@ -65,7 +65,7 @@
                             <!--end::Pic-->
                             <div class="d-flex flex-column mr-auto">
                                 <!--begin: Title-->
-                                <a href="#" class="card-title text-hover-primary font-weight-bolder font-size-h5 text-dark mb-1">{{ $service->client->name }}</a>
+                                <a href="{{ route('client.show', $service->client) }}" class="card-title text-hover-primary font-weight-bolder font-size-h5 text-dark mb-1">{{ $service->client->name }}</a>
                                 @if ($service->categoryService)
                                     <span class="text-primary font-weight-bold">{{ $service->categoryService->name }}</span>
                                 @else
@@ -158,9 +158,9 @@
                             <div class="d-flex align-items-center mr-7">
                                 <span class="font-weight-bolder text-success ml-2">{{ $service->priceToString() }}</span>
                             </div>
-                            @if ($service->has_invoice)
+                            @if ($service->has_invoice && !$service->invoices->count())
                             <div class="d-flex align-items-center mr-7">
-                                <a href="#" class="font-weight-bolder text-info ml-2">Se require factura</a>
+                                <span class="font-weight-bolder text-info ml-2">Se require factura</span>
                             </div>
                             @endif
                         </div>

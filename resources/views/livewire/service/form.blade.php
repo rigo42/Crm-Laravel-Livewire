@@ -339,7 +339,7 @@
                                     <table class="table table-head-custom table-head-bg table-borderless table-vertical-center">
                                         <thead>
                                             <tr class="text-uppercase">
-                                                <th></th>
+                                                <th class="">Selección</th>
                                                 <th>Usuario</th>
                                             </tr>
                                         </thead>
@@ -347,7 +347,7 @@
                                             @forelse ($users as $user)
                                                 <tr>
                                                     <td>
-                                                        <label class="checkbox checkbox-warning">
+                                                        <label class="checkbox checkbox-lg checkbox-single">
 															<input 
                                                                 wire:model.defer="userArray" 
                                                                 class="checkbox" 

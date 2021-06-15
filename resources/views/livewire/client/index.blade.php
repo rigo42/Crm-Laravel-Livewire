@@ -43,7 +43,7 @@
         <div class="row">
             @forelse ($clients as $client)
                 <!--begin::Col-->
-                <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
                     <!--begin::Card-->
                     <div class="card card-custom gutter-b card-stretch">
 

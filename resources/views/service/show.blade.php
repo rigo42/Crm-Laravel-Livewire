@@ -101,9 +101,15 @@
                                     </div>
                                 </div>
                                 <!--end: Title-->
+                                @if ($service->has_invoice)
+                                <div class="d-block  mr-7">
+                                    <a href="#" class="font-weight-bolder badge badge-info ml-2">Se require factura</a>
+                                </div>
+                                @endif
                                 <!--begin: Content-->
                                 <div class="d-flex align-items-center flex-wrap justify-content-between">
                                     <div class="flex-grow-1 font-weight-bold text-dark-50 py-5 py-lg-2 mr-5">{{ $service->note }}</div>
+                                   
                                     <div class="d-flex flex-wrap align-items-center py-2">
                                         <div class="d-flex align-items-center mr-10">
                                             <div class="mr-6">
@@ -180,6 +186,17 @@
                                         </a>
                                     </li>
                                     <li class="nav-item mr-3">
+                                        <a class="nav-link" data-toggle="tab" href="#kt_apps_contacts_view_tab_4">
+                                            <span class="nav-icon mr-2">
+                                                <span class="svg-icon mr-3">
+                                                <i class="fa fa-sticky-note"></i>
+                                                    <!--end::Svg Icon-->
+                                                </span>
+                                            </span>
+                                            <span class="nav-text">Acuerdo de servicio</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item mr-3">
                                         <a class="nav-link" data-toggle="tab" href="#kt_apps_contacts_view_tab_5">
                                             <span class="nav-icon mr-2">
                                                 <span class="svg-icon mr-3">
@@ -213,50 +230,7 @@
                             <!--begin::Tab Content-->
                             <div class="tab-pane active" id="kt_apps_contacts_view_tab_1" role="tabpanel">
                                 <div class="container">
-                                   
-                                    <!--begin: Items-->
-                                    <div class="d-flex align-items-center flex-wrap mb-10">
-                                        <!--begin: Item-->
-                                        <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
-                                            <span class="mr-4">
-                                                <i class="flaticon-piggy-bank icon-2x text-muted font-weight-bold"></i>
-                                            </span>
-                                            <div class="d-flex flex-column text-dark-75">
-                                                <span class="font-weight-bolder font-size-sm">Pagos</span>
-                                                <span class="font-weight-bolder font-size-h5">
-                                                <span class="text-dark-50 font-weight-bold">$</span>249,500</span>
-                                            </div>
-                                        </div>
-                                        <!--end: Item-->
-                                        <!--begin: Item-->
-                                        <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
-                                            <span class="mr-4">
-                                                <i class="flaticon-confetti icon-2x text-muted font-weight-bold"></i>
-                                            </span>
-                                            <div class="d-flex flex-column text-dark-75">
-                                                <span class="font-weight-bolder font-size-sm">Gastos</span>
-                                                <span class="font-weight-bolder font-size-h5">
-                                                <span class="text-dark-50 font-weight-bold">$</span>164,700</span>
-                                            </div>
-                                        </div>
-                                        <!--end: Item-->
-                                        <!--begin: Item-->
-                                        <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
-                                            <span class="mr-4">
-                                                <i class="flaticon-pie-chart icon-2x text-muted font-weight-bold"></i>
-                                            </span>
-                                            <div class="d-flex flex-column text-dark-75">
-                                                <span class="font-weight-bolder font-size-sm">Neto</span>
-                                                <span class="font-weight-bolder font-size-h5">
-                                                <span class="text-dark-50 font-weight-bold">$</span>782,300</span>
-                                            </div>
-                                        </div>
-                                        <!--end: Item-->
-                                        
-                                    </div>
-
-                                    <div class="separator separator-solid my-7"></div>
-
+                                    
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-xl-4 d-flex flex-column">
@@ -558,8 +532,15 @@
                                     <!--end::Table-->
                                 </div>
                             </div>
-                            <!--end::Tab Content-->
-                            <!--begin::Tab Content-->
+                            <div class="tab-pane" id="kt_apps_contacts_view_tab_4" role="tabpanel">
+                                <div class="container">
+                                    @if ($service->service_agreement)
+                                        <embed src="{{ Storage::url($service->service_agreement) }}" type="" width="100%" height="600px">
+                                    @else
+                                        <span class="badge badge-secondary">Sin acuerdo de servicio</span>
+                                    @endif
+                                </div>
+                            </div>
                             <div class="tab-pane" id="kt_apps_contacts_view_tab_5" role="tabpanel">
                                 <div class="container">
                                     

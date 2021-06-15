@@ -77,7 +77,7 @@ class Form extends Component
         $this->saveUsers();
         session()->flash('alert','Servicio agregado con exito');
         session()->flash('alert-type', 'success');
-        return redirect()->route('service.index');
+        return redirect()->route('service.show', $this->service);
     }
 
     public function update(){
@@ -88,7 +88,7 @@ class Form extends Component
         $this->saveUsers();
         session()->flash('alert','Servicio actualizado con exito');
         session()->flash('alert-type', 'success');
-        return redirect()->route('service.index');
+        return redirect()->route('service.show', $this->service);
     }
 
     public function save(){
