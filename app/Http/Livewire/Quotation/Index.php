@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Quotation;
 
+use App\Models\Client;
 use App\Models\Quotation;
 use Exception;
 use Illuminate\Support\Facades\Storage;
@@ -17,8 +18,16 @@ class Index extends Component
     public $search;
     protected $queryString = ['search' => ['except' => '']];
 
+    public $client;
+
     //Theme
     protected $paginationTheme = 'bootstrap';
+
+    public function mount($client = null){
+        if($client){
+            $this->client = Client::findOrFail($client->id);
+        }
+    }
 
 
     public function updatingSearch()
@@ -30,6 +39,12 @@ class Index extends Component
     {
         $count = Quotation::count();
         $quotations = Quotation::orderBy('id', 'desc');
+
+        if($this->client){
+            $quotations = $quotations->whereHas('client', function($query){
+                $query->where('client_id', $this->client->id);
+            });
+        }
 
         if($this->search){
             $quotations = $quotations->where('concept', 'LIKE', "%{$this->search}%")

@@ -66,8 +66,9 @@
                             <div class="d-flex flex-column mr-auto">
                                 <!--begin: Title-->
                                 <a href="{{ route('client.show', $service->client) }}" class="card-title text-hover-primary font-weight-bolder font-size-h5 text-dark mb-1">{{ $service->client->name }}</a>
+                                <span class="text-primary font-weight-bold">{{ $service->name }}</span>
                                 @if ($service->categoryService)
-                                    <span class="text-primary font-weight-bold">{{ $service->categoryService->name }}</span>
+                                <span class="text-secondary" style="font-size: 10px;">{{ $service->categoryService->name }}</span>
                                 @else
                                     <span class="text-secondary font-weight-bold">Ninguno</span>
                                 @endif

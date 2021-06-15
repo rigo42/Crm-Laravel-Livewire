@@ -6,6 +6,7 @@ use App\Models\CategoryService;
 use App\Models\Client;
 use App\Models\Service;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -29,6 +30,7 @@ class Form extends Component
     protected $listeners = ['render'];
 
     public function mount(Service $service, $method){
+        $this->user = User::find(Auth::user()->id);
         $this->service = $service;
         $this->method = $method;
         foreach($this->service->users as $user){
@@ -57,12 +59,17 @@ class Form extends Component
     {
         $users = User::orderBy('name');
         $categoryServices = CategoryService::orderBy('id', 'desc')->cursor();
-        $clients = Client::orderBy('id', 'desc')->cursor();
+        $clients = Client::orderBy('id', 'desc');
+
+        if(!$this->user->hasRole('Administrador')){
+            $clients = $clients->where('user_id', $this->user->id);
+         }
 
         if($this->searchUser){
             $users = $users->where('name', 'LIKE', "%{$this->searchUser}%");
         }
 
+        $clients = $clients->cursor();
         $users = $users->cursor();
 
         $this->emit('renderJs');

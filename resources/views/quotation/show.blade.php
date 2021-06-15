@@ -34,7 +34,7 @@
                                 
                             
                                 <div class="card-title">
-                                    <h3 class="card-label">{{ $quotation->client->name }}
+                                    <h3 class="card-label"><a href="{{ route('client.show', $quotation->client) }}">{{ $quotation->client->name }}</a>
                                         <span class="d-block text-muted pt-2 font-size-sm">Datos del cliente</span>
                                     </h3>
                                 </div>

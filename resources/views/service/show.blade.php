@@ -101,11 +101,7 @@
                                     </div>
                                 </div>
                                 <!--end: Title-->
-                                @if ($service->has_invoice)
-                                <div class="d-block  mr-7">
-                                    <a href="#" class="font-weight-bolder badge badge-info ml-2">Se require factura</a>
-                                </div>
-                                @endif
+                                
                                 <!--begin: Content-->
                                 <div class="d-flex align-items-center flex-wrap justify-content-between">
                                     <div class="flex-grow-1 font-weight-bold text-dark-50 py-5 py-lg-2 mr-5">{{ $service->note }}</div>
@@ -148,6 +144,18 @@
                             </div>
                             <!--end: Info-->
                         </div>
+
+                        <span class="text-primary font-weight-bold">{{ $service->name }}</span> <br>
+                        @if ($service->categoryService)
+                            <span class="text-secondary" style="font-size: 10px;">{{ $service->categoryService->name }}</span> <br>
+                        @else
+                            <span class="text-secondary font-weight-bold">Ninguno</span> <br>
+                        @endif
+                        @if ($service->has_invoice)
+                            <div class="d-block  mr-7">
+                                <a href="#" class="font-weight-bolder badge badge-info">Se require factura</a>
+                            </div>
+                        @endif
                        
                         <div class="separator separator-solid my-7"></div>
 
@@ -543,7 +551,7 @@
                             </div>
                             <div class="tab-pane" id="kt_apps_contacts_view_tab_5" role="tabpanel">
                                 <div class="container">
-                                    
+                                    @livewire('invoice.index', ['service' => $service], key($service->id))
                                 </div>
                             </div>
                             <!--end::Tab Content-->

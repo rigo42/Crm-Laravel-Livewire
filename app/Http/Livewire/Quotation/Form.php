@@ -48,8 +48,14 @@ class Form extends Component
 
     public function render()
     {
-        $clients = Client::orderBy('id', 'desc')->cursor();
-        $users = User::orderBy('id', 'desc')->cursor();
+        $clients = Client::orderBy('id', 'desc');
+
+        if(!$this->user->hasRole('Administrador')){
+           $clients = $clients->where('user_id', $this->user->id);
+        }
+
+        $clients = $clients->cursor()
+;       $users = User::orderBy('id', 'desc')->cursor();
         return view('livewire.quotation.form', compact('clients', 'users'));
     }
 
