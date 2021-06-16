@@ -5,12 +5,9 @@
             <!--begin::Header-->
             <div class="card-header border-0 py-5">
                 <h3 class="card-title align-items-start flex-column">
-                    <span class="card-label font-weight-bolder text-dark">Categorías de servcios <span class="text-muted mt-3 font-weight-bold font-size-sm">({{ $count }})</span></span>
-                    
+                    <span class="card-label font-weight-bolder text-dark">Categorías de servicios <span class="text-muted mt-3 font-weight-bold font-size-sm">({{ $count }})</span></span>
                 </h3>
-                <div class="card-toolbar">
-                    <a href="#" wire:click.prevent="$emit('createFormCategoryService')" class="btn btn-primary btn-shadow font-weight-bold mr-2 "><i class="fa fa-plus"></i> Nuevo</a>
-                </div>
+                <a href="#" data-toggle="modal" data-target=".create" class="btn btn-primary btn-shadow font-weight-bold mr-2 "><i class="fa fa-plus"></i> Nuevo</a>
             </div>
             <!--end::Header-->
             <!--begin::Body-->
@@ -81,7 +78,7 @@
                                                 <div class="dropdown-menu dropdown-menu-md dropdown-menu-right" style="position: inherit;">
                                                     <!--begin::Navigation-->
                                                     <ul class="navi navi-hover py-5">
-                                                        <li class="navi-item" wire:click.prevent="$emit('editFormCategoryService', {{ $categoryService->id }})">
+                                                        <li class="navi-item" data-toggle="modal" data-target="#edit-{{ $categoryService->id }}">
                                                             <a href="#" class="navi-link">
                                                                 <span class="navi-icon">
                                                                     <i class="fa fa-pen"></i>
@@ -104,6 +101,7 @@
                                         </div>
                                     </td>
                                 </tr>
+                                @include('setting.category-service.edit')
                             @empty 
                                 <!--begin::Col-->
                                 <div class="col-12">
@@ -132,7 +130,7 @@
                     <h2 class="fs-2x fw-bolder mb-10">Hola!</h2>
                     <p class="text-gray-400 fs-4 fw-bold mb-10">Al parecer no tienes ninguna categoría de servicio.
                     <br> Ponga en marcha su CRM añadiendo su primera categoría de servicio</p>
-                    <a wire:click.prevent="$emit('createFormCategoryService')" href="#" class="btn btn-primary">Agregar categoría</a>
+                    <a data-toggle="modal" data-target=".create" href="#" class="btn btn-primary">Agregar categoría de servicio</a>
                 </div>
                 <div class="text-center px-4 ">
                     <img class="img-fluid col-6" alt="" src="{{ asset('assets/media/ilustrations/work.png') }}">
@@ -141,12 +139,14 @@
         </div>
     @endif
 
-    
-
-    @livewire('setting.category-service.form')
+    @include('setting.category-service.create')
 
     @section('footer')
         <script>
+
+            Livewire.on('closeModal', function(){
+                $('.modal').modal('hide');
+            });
 
             function confirmDestroy(id){
                 swal.fire({
@@ -167,16 +167,7 @@
                     }
                 });
             }
-
-            Livewire.on('createFormCategoryService', function(){
-                $('#modalShowFormCategoryService').modal('show');
-            });
-            Livewire.on('editFormCategoryService', categoryServiceId => {
-                $('#modalShowFormCategoryService').modal('show');
-            })
-            Livewire.on('closeFormCategoryService', function(){
-                $('#modalShowFormCategoryService').modal('hide');
-            });
+            
         </script>
     @endsection
 </div>

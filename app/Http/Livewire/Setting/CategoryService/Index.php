@@ -23,9 +23,7 @@ class Index extends Component
     protected $paginationTheme = 'bootstrap';
 
     //Listeners
-    protected $listeners = [
-        'renderCategoryServices' => 'render',
-    ];
+    protected $listeners = ['render'];
 
     public function updatingSearch()
     {
