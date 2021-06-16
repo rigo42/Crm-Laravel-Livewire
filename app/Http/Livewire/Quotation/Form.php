@@ -27,10 +27,13 @@ class Form extends Component
     public $quotationTmp;
     public $userId;
 
+    protected $listeners = ['render'];
+
     protected function rules()
     {
         return [
             'quotation.client_id' => 'required|exists:clients,id',
+            'quotation.total' => 'required',
             'quotation.concept' => 'required',
         ];
     }
@@ -54,15 +57,14 @@ class Form extends Component
            $clients = $clients->where('user_id', $this->user->id);
         }
 
-        $clients = $clients->cursor()
-;       $users = User::orderBy('id', 'desc')->cursor();
-        return view('livewire.quotation.form', compact('clients', 'users'));
+        $clients = $clients->cursor();
+
+        $this->emit('renderJs');
+        return view('livewire.quotation.form', compact('clients'));
     }
 
     public function store(){
         $this->validate();
-        $this->saveUser();
-        $this->saveUserByAdmin();
         $this->validate([
             'quotationTmp' => 'required',
         ]);
@@ -76,7 +78,6 @@ class Form extends Component
 
     public function update(){
         $this->validate();
-        $this->saveUserByAdmin();
         $this->saveQuotation();
         $this->quotation->update();
         session()->flash('alert', 'Cotización actualizada con exito');
@@ -84,20 +85,6 @@ class Form extends Component
         return redirect()->route('quotation.show', $this->quotation);
     }
 
-    public function saveUserByAdmin(){
-        if($this->user->hasRole('Administrador')){
-            $this->validate([
-                'userId' => 'required',
-            ]);
-            $this->quotation->user_id = $this->userId;
-        }
-    }
-
-    public function saveUser(){
-        if(!$this->user->hasRole('Administrador')){
-            $this->quotation->user_id = Auth::user()->id;
-        }
-    }
 
     public function saveQuotation(){
         if($this->quotationTmp){

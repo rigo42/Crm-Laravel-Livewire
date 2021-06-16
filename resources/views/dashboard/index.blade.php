@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="d-flex flex-column">
                                         <span href="#" class="text-dark text-hover-danger font-weight-bold font-size-h4 mb-3">$50,000</span>
-                                        <div class="text-dark-75 font-weight-bold font-size-h5" >Cantidad debida</div>
+                                        <div class="text-dark-75 font-weight-bold font-size-h5" >Cantidad debida {{ gethostbyname(request()->ip) }}</div>
                                     </div>
                                 </div>
                             </div>

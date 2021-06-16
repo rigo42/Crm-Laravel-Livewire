@@ -79,6 +79,7 @@ class Form extends Component
     }
 
     public function clientChange($id){
+        $this->serviceArray = [];
         if($id){
             $this->client = Client::findOrFail($id);
             foreach($this->invoice->services as $service){
@@ -100,16 +101,4 @@ class Form extends Component
         }
     }
 
-    public function removeInvoice(){
-        if($this->invoice->url){
-            if(Storage::exists($this->invoice->url)){
-                Storage::delete($this->invoice->url);
-            }
-            
-            $this->invoice->url = null;
-            $this->invoice->update();
-        }
-        $this->reset('invoiceTmp');
-        $this->alert('success', 'Factura eliminada con exito');
-    }
 }

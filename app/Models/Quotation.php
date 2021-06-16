@@ -21,4 +21,8 @@ class Quotation extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function totalToString(){
+        return '$'.number_format($this->total, 2, '.', ',');
+    }
+
 }

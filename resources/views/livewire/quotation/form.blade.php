@@ -3,6 +3,26 @@
     @section('head')
         <link rel="stylesheet" href="{{ asset('assets/plugins/custom/bfi/bfi.css') }}">
     @endsection
+
+    <!-- Modal -->
+    <div wire:ignore.self class="modal fade" data-backdrop="static" id="clientFormModal" tabindex="-1" aria-labelledby="clientFormModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="clientFormModalLabel">Nuevo cliente</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                @livewire('client.form', ['method' => 'storeCustom'])
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Regresar</button>
+            </div>
+        </div>
+        </div>
+    </div>
     
     <!--begin::Card-->
     <div class="card card-custom card-sticky" id="kt_page_sticky_card" >
@@ -30,12 +50,13 @@
                     <div class="col-xl-8">
                         <div class="my-5">
                             <h3 class="text-dark font-weight-bold mb-10">Información general</h3>
+
                             @include('component.error-list')
 
                             <div class="form-group row">
                                 <label class="col-3">Cliente <span class="text-danger">*</span></label>
                                 <div class="col-9">
-                                    <div wire:ignore wire:key="client_id">
+                                    <div >
                                         <select 
                                             wire:model.defer="quotation.client_id" 
                                             class="form-control selectpicker form-control-solid @error('quotation.client_id') is-invalid @enderror" 
@@ -44,16 +65,33 @@
                                             required>
                                             <option value="">Selecciona un cliente</option>
                                             @foreach ($clients as $client)
-                                                <option value="{{ $client->id }}">{{ $client->name }}</option>
+                                                <option data-subtext="{{ $client->company }}" value="{{ $client->id }}">{{ $client->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <span class="form-text text-muted">Elije el cliente correspondiente a la factura</span>
+                                    <span class="form-text text-muted">Elije el cliente correspondiente al servicio</span>
+                                    <a href="#"  data-toggle="modal" data-target="#clientFormModal" class="text-primary" >Crear nuevo cliente</a>
                                     @error('quotation.client_id') <div><span class="text-danger">{{ $message }}</span></div> @enderror
                                 </div>
                             </div>
-
-                           
+                            <div class="form-group row">
+                                <label class="col-3">Total <span class="text-danger">*</span></label>
+                                <div class="col-9">
+                                    <div class="input-group input-group-solid">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-dollar-sign"></i>
+                                            </span>
+                                        </div>
+                                        <input 
+                                            wire:model.defer="quotation.total" 
+                                            class="form-control form-control-solid @error('quotation.total') is-invalid @enderror" 
+                                            type="number" 
+                                            placeholder="Ej: 8000" />
+                                    </div>
+                                    @error('quotation.total') <div><span class="text-danger">{{ $message }}</span></div> @enderror
+                                </div>
+                            </div>                           
                             <div class="form-group row">
                                 <label class="col-3">Concepto <span class="text-danger">*</span></label>
                                 <div class="col-9">
@@ -68,11 +106,9 @@
                                     @error('quotation.concept') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                             </div>
-
                             <div class="form-group row">
                                 <label class="col-3">Cotización <span class="text-danger">*</span></label>
                                 <div class="col-9">
-                                    
                                     <div class="d-flex jutify-content-start mb-3" >
                                         @if ($quotationTmp || $quotation->url)
                                             <img 
@@ -93,7 +129,6 @@
                                             </span>
                                         @endif
                                     </div>
-                                   
                                     <div
                                         x-data="{ isUploading: false, progress: 0 }"
                                         x-on:livewire-upload-start="isUploading = true"
@@ -116,42 +151,11 @@
                                             <progress max="100" x-bind:value="progress"></progress>
                                         </div>
                                     </div>
-                                    
-                                    
                                     @error('quotationTmp') <div><span class="text-danger">{{ $message }}</span></div> @enderror
                                 </div>
                             </div>
                         </div>
 
-                        @role('Administrador')
-
-                        <div class="separator separator-dashed my-10"></div>
-
-                        <div class="my-5">
-                            <h3 class="text-dark font-weight-bold mb-10">Factura creada por el usuario</h3>
-                            <div class="form-group row">
-                                <label class="col-3">Usuario <span class="text-danger">*</span></label>
-                                <div class="col-9">
-                                    <div wire:ignore>
-                                        <select 
-                                            wire:model.defer="userId" 
-                                            class="form-control selectpicker form-control-solid @error('userId') is-invalid @enderror" 
-                                            data-size="7"
-                                            data-live-search="true"
-                                            required>
-                                            <option value="">Ninguno</option>
-                                            @foreach ($users as $user)
-                                                <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <span class="form-text text-muted">Este es el usuario responsable de la factura</span>
-                                    @error('userId') <div><span class="text-danger">{{ $message }}</span></div> @enderror
-                                </div>
-                            </div>
-                        </div>
-
-                        @endrole
                     </div>
                     <div class="col-xl-2"></div>
                 </div>
@@ -173,6 +177,16 @@
                     },
                 }
             }
+
+            Livewire.on('renderJs', function(){
+                $('.selectpicker').selectpicker({
+                    liveSearch: true
+                });
+            });
+
+            Livewire.on('render', function(){
+                $("#clientFormModal").modal('hide');
+            });
         </script>
     @endsection
         

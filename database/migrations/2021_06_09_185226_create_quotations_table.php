@@ -15,10 +15,10 @@ class CreateQuotationsTable extends Migration
     {
         Schema::create('quotations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignId('client_id')->nullable()->constrained()->onDelete('cascade');
+            $table->double('total');
             $table->string('url');
-            $table->string('concept')->nullable();
+            $table->string('concept');
             $table->timestamps();
         });
     }

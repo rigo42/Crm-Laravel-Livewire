@@ -4,7 +4,9 @@ namespace App\Http\Livewire\Quotation;
 
 use App\Models\Client;
 use App\Models\Quotation;
+use App\Models\User;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -13,17 +15,19 @@ class Index extends Component
 {
     use WithPagination;
 
+    public $client;
+    public $userPresent;
+
     //Tools
     public $perPage = 10;
     public $search;
-    protected $queryString = ['search' => ['except' => '']];
-
-    public $client;
+    protected $queryString = ['search' => ['except' => '']];   
 
     //Theme
     protected $paginationTheme = 'bootstrap';
 
     public function mount($client = null){
+        $this->userPresent = User::find(Auth::user()->id);
         if($client){
             $this->client = Client::findOrFail($client->id);
         }
@@ -40,17 +44,25 @@ class Index extends Component
         $count = Quotation::count();
         $quotations = Quotation::orderBy('id', 'desc');
 
+        if(!$this->userPresent->hasRole('Administrador')){
+            $count = $count->whereHas('client', function($query){
+                $query->where('user_id', $this->userPresent->id);
+            });
+            $quotations = $quotations->where('client', function($query){
+                $query->where('user_id', $this->userPresent->id);
+            });
+        }
+        
         if($this->client){
             $quotations = $quotations->whereHas('client', function($query){
                 $query->where('client_id', $this->client->id);
             });
         }
+        
 
         if($this->search){
             $quotations = $quotations->where('concept', 'LIKE', "%{$this->search}%")
                                         ->orWhereHas('client', function($query){
-                                            $query->where('name', 'LIKE', "%{$this->search}%");
-                                        })->orWhereHas('user', function($query){
                                             $query->where('name', 'LIKE', "%{$this->search}%");
                                         });
         }

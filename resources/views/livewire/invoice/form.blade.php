@@ -1,4 +1,4 @@
-<div class="container" x-data="app()">
+<div class="container">
 
     @section('head')
         <link rel="stylesheet" href="{{ asset('assets/plugins/custom/bfi/bfi.css') }}">
@@ -80,18 +80,6 @@
                                                 width="65" 
                                                 src="{{ asset('assets') }}/media/svg/files/pdf.svg" alt=""
                                                 >
-                                            <span 
-                                                x-on:click="removeFile('removeInvoice', 'invoiceTmp')"
-                                                class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow image-remove" 
-                                                style="position: inherit;"
-                                                title="Remover cotización">
-                                                <i class="ki ki-bold-close icon-xs text-muted"></i>
-                                                <span 
-                                                    wire:loading.class="spinner spinner-primary spinner-sm"
-                                                    wire:target="removeInvoice"
-                                                    style="position: absolute; left: 81px;">
-                                                </span>
-                                            </span>
                                         @endif
                                     </div>
                                    
@@ -187,16 +175,6 @@
 
     @section('footer')
         <script src="{{ asset('assets/plugins/custom/bfi/bfi.js') }}"></script>
-        <script>
-            function app() {
-                return {
-                    removeFile(functionRemove, fileId) { 
-                        @this.call(functionRemove);
-                        bfi_clear('#'+fileId);
-                    },
-                }
-            }
-        </script>
     @endsection
         
 </div>
