@@ -31,10 +31,19 @@ class Form extends Component
     public function store(){
         $this->validate();
         $this->categoryService->save();
-        $this->emit('render');
-        $this->alert('success', 'Categoría agregada con exito');
         $this->categoryService = new CategoryService();
+        $this->alert('success', 'Categoría de servicio agregada con exito');
+        $this->emit('render');
         $this->emit('closeModal');
+    }
+
+    public function storeCustom(){
+        $this->validate();
+        $this->categoryService->save();
+        $this->categoryService = new CategoryService();
+        $this->emit('render');
+        $this->alert('success', 'Categoría de servicio agregada con exito');
+        
     }
 
     public function update(){

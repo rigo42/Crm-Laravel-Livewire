@@ -23,6 +23,26 @@
         </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div wire:ignore.self class="modal fade" data-backdrop="static" id="categoryServiceFormModal" tabindex="-1" aria-labelledby="categoryServiceFormModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="categoryServiceFormModalLabel">Nueva categoría de servicio</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                @livewire('setting.category-service.form', ['method' => 'storeCustom'])
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Regresar</button>
+            </div>
+        </div>
+        </div>
+    </div>
     
     <!--begin::Card-->
     <div class="card card-custom card-sticky" id="kt_page_sticky_card" >
@@ -106,7 +126,7 @@
                                         </select>
                                     </div>
                                     <span class="form-text text-muted">Elije la categoría correspondiente de acuerdo al servicio</span>
-                                    <a href="{{ route('setting.category-service.index') }}" class="text-primary" >Crear nueva categoría</a>
+                                    <a href="#" data-toggle="modal" data-target="#categoryServiceFormModal" class="text-primary" >Crear nueva categoría</a>
                                     @error('service.category_service_id') <div><span class="text-danger">{{ $message }}</span></div> @enderror
                                 </div>
                             </div>
@@ -435,6 +455,7 @@
 
             Livewire.on('render', function(){
                 $("#clientFormModal").modal('hide');
+                $("#categoryServiceFormModal").modal('hide');
             });
 
             // Init date
