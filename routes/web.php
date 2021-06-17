@@ -3,6 +3,7 @@
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Invoice\InvoiceController;
+use App\Http\Controllers\Payment\PaymentController;
 use App\Http\Controllers\Prospect\ProspectController;
 use App\Http\Controllers\Quotation\QuotationController;
 use App\Http\Controllers\Service\ServiceController;
@@ -71,5 +72,8 @@ Route::resource('servicios', ServiceController::class)->parameters(['servicios' 
 
 //Invoices
 Route::resource('facturas', InvoiceController::class)->parameters(['facturas' => 'invoice'])->names('invoice');
+
+//Invoices
+Route::resource('pagos', PaymentController::class)->parameters(['pagos' => 'payment'])->names('payment');
 
 

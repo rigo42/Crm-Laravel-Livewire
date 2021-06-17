@@ -11,7 +11,7 @@ class Payment extends Model
 
     protected $guareded = [];
 
-    public function paymentTypes()
+    public function paymentType()
     {
         return $this->belongsTo(PaymentType::class);
     }
@@ -19,5 +19,22 @@ class Payment extends Model
     public function account()
     {
         return $this->belongsTo(Account::class);
+    }
+
+    public function client(){
+        return $this->belongsTo(Client::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function invoice(){
+        return $this->belongsTo(Invoice::class);
+    }
+
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
     }
 }

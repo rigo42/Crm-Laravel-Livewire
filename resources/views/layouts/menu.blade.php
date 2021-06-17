@@ -62,8 +62,8 @@
                     <span class="menu-text">Facturas</span>
                 </a>
             </li>
-            <li class="menu-item">
-                <a href="index.html" class="menu-link">
+            <li class="menu-item {{ active('payment.*') }}">
+                <a href="{{ route('payment.index') }}" class="menu-link">
                     <i class="menu-icon text-dark fa fa-credit-card"></i>
                     <span class="menu-text">Pagos</span>
                 </a>

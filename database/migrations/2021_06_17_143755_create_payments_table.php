@@ -24,6 +24,7 @@ class CreatePaymentsTable extends Migration
             $table->double('monto');
             $table->text('concept');
             $table->text('note')->nullable();
+            $table->boolean('send_email')->nullable()->default(0);
             $table->timestamps();
         });
     }
