@@ -22,7 +22,7 @@
                     <div class="col-xl-12">
                         <div class="my-5">
                             <div class="form-group row" >
-                                <label class="col-3">Nombre del tipo de pago <span class="text-danger">*</span></label>
+                                <label class="col-3">Nombre de la cuenta <span class="text-danger">*</span></label>
                                 <div class="col-9">
                                     <div class="input-group input-group-solid">
                                         <div class="input-group-prepend">
@@ -31,12 +31,23 @@
                                             </span>
                                         </div>
                                         <input 
-                                            wire:model.defer="paymentType.name" 
+                                            wire:model.defer="account.name" 
                                             type="text" 
-                                            class="form-control form-control-solid @error('paymentType.name') is-invalid @enderror"  
-                                            placeholder="Ej: Tarjeta, Cheque, Efectivo" /> 
+                                            class="form-control form-control-solid @error('account.name') is-invalid @enderror"  
+                                            placeholder="Ej: Tarjeta {{ config('app.name') }}" /> 
                                     </div>
-                                    @error('paymentType.name') <span class="text-danger">{{ $message }}</span> @enderror
+                                    @error('account.name') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row" >
+                                <label class="col-3">Tipo <span class="text-danger">*</span></label>
+                                <div class="col-9">
+                                    <input 
+                                        wire:model.defer="account.type" 
+                                        type="text" 
+                                        class="form-control form-control-solid @error('account.type') is-invalid @enderror"  
+                                        placeholder="Ej: Tarjeta de débito" /> 
+                                    @error('account.type') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                         </div>

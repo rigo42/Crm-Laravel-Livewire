@@ -6,6 +6,7 @@ use App\Http\Controllers\Invoice\InvoiceController;
 use App\Http\Controllers\Prospect\ProspectController;
 use App\Http\Controllers\Quotation\QuotationController;
 use App\Http\Controllers\Service\ServiceController;
+use App\Http\Controllers\Setting\AccountController;
 use App\Http\Controllers\Setting\CategoryServiceController;
 use App\Http\Controllers\Setting\PaymentTypeController;
 use App\Http\Controllers\Setting\PermissionController;
@@ -36,6 +37,8 @@ Route::prefix('ajustes')->group(function () {
     Route::resource('categoria-servicios', CategoryServiceController::class)->parameters(['categoria-servicios' => 'categoryService'])->names('setting.category-service');
     //Payment Type
     Route::resource('tipos-de-pagos', PaymentTypeController::class)->parameters(['tipos-de-pagos' => 'paymentType'])->names('setting.payment-type');
+    //Accounts
+    Route::resource('cuentas', AccountController::class)->parameters(['cuentas' => 'account'])->names('setting.account');
 });
 
 //User
