@@ -1,6 +1,6 @@
 <div>
-    <div class="card card-custom card-sticky" id="kt_page_sticky_card" >
-        <div class="card-header" wire:ignore>
+    <div class="card card-custom">
+        <div class="card-header">
             <div class="card-title">
                
             </div>

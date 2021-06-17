@@ -112,7 +112,7 @@
                             <div class="form-group row">
                                 <label class="col-3">Categoría<span class="text-danger">*</span></label>
                                 <div class="col-9">
-                                    <div wire:ignore wire:key="category_service_id">
+                                    <div>
                                         <select 
                                             wire:model.defer="service.category_service_id" 
                                             class="form-control selectpicker form-control-solid @error('service.category_service_id') is-invalid @enderror" 
