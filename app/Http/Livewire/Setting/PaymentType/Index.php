@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Livewire\Setting\CategoryService;
+namespace App\Http\Livewire\Setting\PaymentType;
 
 use App\Models\CategoryService;
+use App\Models\PaymentType;
 use Exception;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -30,22 +31,22 @@ class Index extends Component
 
     public function render()
     {
-        $count = CategoryService::count();
-        $categoryServices = CategoryService::orderBy('id', 'desc');
+        $count = PaymentType::count();
+        $paymentTypes = PaymentType::orderBy('id', 'desc');
 
         if($this->search){
-            $categoryServices = $categoryServices->where('name', 'LIKE', "%{$this->search}%");
+            $paymentTypes = $paymentTypes->where('name', 'LIKE', "%{$this->search}%");
         }
 
-        $categoryServices = $categoryServices->paginate($this->perPage);
+        $paymentTypes = $paymentTypes->paginate($this->perPage);
 
-        return view('livewire.setting.category-service.index', compact('count', 'categoryServices'));
+        return view('livewire.setting.payment-type.index', compact('count', 'paymentTypes'));
     }
 
     public function destroy($id)
     {
         try{
-            CategoryService::where('id', $id)->delete();
+            PaymentType::where('id', $id)->delete();
             $this->alert('success', 'Eliminación con exito');
         }catch(Exception $e){
             $this->alert('error', 

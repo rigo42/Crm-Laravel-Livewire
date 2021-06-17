@@ -7,6 +7,7 @@ use App\Http\Controllers\Prospect\ProspectController;
 use App\Http\Controllers\Quotation\QuotationController;
 use App\Http\Controllers\Service\ServiceController;
 use App\Http\Controllers\Setting\CategoryServiceController;
+use App\Http\Controllers\Setting\PaymentTypeController;
 use App\Http\Controllers\Setting\PermissionController;
 use App\Http\Controllers\Setting\RoleController;
 use App\Http\Controllers\Setting\WelcomeController;
@@ -31,8 +32,10 @@ Route::prefix('ajustes')->group(function () {
     Route::resource('permisos', PermissionController::class)->parameters(['permisos' => 'permission'])->names('setting.permission');
     //Role
     Route::resource('roles', RoleController::class)->parameters(['roles' => 'role'])->names('setting.role');
-    //Role
+    //Category Service
     Route::resource('categoria-servicios', CategoryServiceController::class)->parameters(['categoria-servicios' => 'categoryService'])->names('setting.category-service');
+    //Payment Type
+    Route::resource('tipos-de-pagos', PaymentTypeController::class)->parameters(['tipos-de-pagos' => 'paymentType'])->names('setting.payment-type');
 });
 
 //User

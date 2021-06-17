@@ -59,7 +59,7 @@
         </li>
 
         <li class="navi-item mb-2">
-            <a class="navi-link" href="#">
+            <a class="navi-link {{ active('setting.payment-type.*') }}" href="{{ route('setting.payment-type.index') }}">
                 <span class="navi-text text-dark-50 font-size-h5 font-weight-bold">
                     <i class="fa fa-credit-card text-dark mr-2"></i> Tipos de pago
                 </span>
