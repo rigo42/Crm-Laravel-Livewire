@@ -19,7 +19,7 @@ class Form extends Component
     use WithFileUploads;
 
     //User actual
-    public $user;
+    public $userPresent;
     
     public $method;
     public $client;
@@ -29,7 +29,7 @@ class Form extends Component
     public $userId;
 
     public function mount(Client $client, $method){
-        $this->user = User::find(Auth::user()->id);
+        $this->userPresent = User::find(Auth::user()->id);
         $this->client = $client;
         $this->method = $method;
         $this->userId = $client->user_id;
@@ -99,7 +99,7 @@ class Form extends Component
     }
 
     public function saveUserByAdmin(){
-        if($this->user->hasRole('Administrador')){
+        if($this->userPresent->hasRole('Administrador')){
             $this->validate([
                 'userId' => 'required',
             ]);
@@ -108,7 +108,7 @@ class Form extends Component
     }
 
     public function saveUser(){
-        if(!$this->user->hasRole('Administrador')){
+        if(!$this->userPresent->hasRole('Administrador')){
             $this->client->user_id = Auth::user()->id;
         }
     }

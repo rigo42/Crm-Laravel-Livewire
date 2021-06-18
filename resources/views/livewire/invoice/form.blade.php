@@ -37,15 +37,16 @@
                                 <div class="col-9">
                                     <div wire:ignore wire:key="client_id">
                                         <select 
-                                            
                                             wire:change="clientChange($event.target.value)"
                                             wire:model="invoice.client_id" 
                                             class="form-control selectpicker form-control-solid @error('invoice.client_id') is-invalid @enderror" 
                                             data-size="7"
-                                            data-live-search="true">
+                                            data-live-search="true"
+                                            data-show-subtext="true"
+                                        >
                                             <option value="">Ninguno</option>
                                             @foreach ($clients as $c)
-                                                <option value="{{ $c->id }}">{{ $c->name }}</option>
+                                                <option data-subtext="{{ $c->company }}" value="{{ $c->id }}">{{ $c->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>

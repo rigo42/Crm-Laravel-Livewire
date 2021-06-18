@@ -62,6 +62,7 @@
                                             class="form-control selectpicker form-control-solid @error('quotation.client_id') is-invalid @enderror" 
                                             data-size="7"
                                             data-live-search="true"
+                                            data-show-subtext="true"
                                             required>
                                             <option value="">Selecciona un cliente</option>
                                             @foreach ($clients as $client)

@@ -78,7 +78,7 @@
                                     <select 
                                         x-on:change="type = $event.target.value"
                                         wire:model.defer="service.type" 
-                                        class="form-control @error('service.type') is-invalid @enderror" 
+                                        class="form-control selectpicker @error('service.type') is-invalid @enderror" 
                                         required>
                                         <option value="">Selecciona un tipo</option>
                                         <option value="Proyecto">Proyecto</option>
@@ -93,10 +93,11 @@
                                 <div class="col-9">
                                     <div >
                                         <select 
-                                            wire:model.defer="service.client_id" 
+                                            wire:model="service.client_id" 
                                             class="form-control selectpicker form-control-solid @error('service.client_id') is-invalid @enderror" 
                                             data-size="7"
                                             data-live-search="true"
+                                            data-show-subtext="true"
                                             required>
                                             <option value="">Selecciona un cliente</option>
                                             @foreach ($clients as $client)
@@ -110,7 +111,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-3">Categoría<span class="text-danger">*</span></label>
+                                <label class="col-3">Categoría <span class="text-danger">*</span></label>
                                 <div class="col-9">
                                     <div>
                                         <select 
@@ -131,8 +132,8 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-3">Fecha de inicio <span class="text-danger">*</span></label>
-                                <div class="col-9" wire:ignore>
+                                <label class="col-3">Fecha de inicio<span class="text-danger">*</span></label>
+                                <div class="col-9" wire:ignore wire:key="start_date">
                                     <div class="input-group input-group-solid">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">
@@ -170,7 +171,7 @@
                             </div>
                             <div class="form-group row" x-show="type == 'Proyecto'">
                                 <label class="col-3">Fecha de finalización <span class="text-danger">*</span></label>
-                                <div class="col-9" wire:ignore>
+                                <div class="col-9" wire:ignore wire:key="due_date">
                                     <div class="input-group input-group-solid">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">
@@ -294,7 +295,6 @@
                                     @error('serviceAgreementTmp') <div><span class="text-danger">{{ $message }}</span></div> @enderror
                                 </div>
                             </div>
-                            
                             <div class="form-group row">
                                 <label class="col-3">Nota </label>
                                 <div class="col-9">

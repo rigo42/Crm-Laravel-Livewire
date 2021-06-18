@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -36,5 +37,13 @@ class Payment extends Model
     public function image()
     {
         return $this->morphOne(Image::class, 'imageable');
+    }
+
+    public function dateToString(){
+        return Carbon::parse($this->date)->format('d-m-Y');
+    }
+
+    public function montoToString(){
+        return '$'.number_format($this->monto, 2, '.', ',');
     }
 }

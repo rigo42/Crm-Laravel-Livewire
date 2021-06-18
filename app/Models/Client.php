@@ -28,4 +28,8 @@ class Client extends Model
     public function services(){
         return $this->hasMany(Service::class);
     }
+
+    public function invoices(){
+        return $this->hasMany(Invoice::class);
+    }
 }

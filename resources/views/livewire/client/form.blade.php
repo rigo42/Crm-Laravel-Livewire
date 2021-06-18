@@ -237,13 +237,15 @@
                                 <div class="col-9">
                                     <div wire:ignore wire:key="client_id">
                                         <select 
-                                            wire:model="userId" 
+                                            wire:model.defer="userId" 
                                             class="form-control selectpicker form-control-solid @error('userId') is-invalid @enderror" 
                                             data-size="7"
-                                            data-live-search="true">
+                                            data-live-search="true"
+                                            data-show-subtext="true"
+                                        >
                                             <option value="">Ninguno</option>
                                             @foreach ($users as $user)
-                                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                <option data-subtext="{{ $user->position }}" value="{{ $user->id }}">{{ $user->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
