@@ -43,7 +43,7 @@
         <div class="row">
             @forelse ($services as $service)
 
-            <div class="col-xl-4">
+            <div class="col-12 col-xl-6">
                 <!--begin::Card-->
                 <div class="card gutter-b card-stretch">
                     <div class="card-body ribbon ribbon-top">
@@ -205,6 +205,7 @@
     @endif
 
     @section('footer')
+    
         <script>
             function confirmDestroy(id){
                 swal.fire({

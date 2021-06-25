@@ -311,7 +311,6 @@
                             <!--begin::Body-->
                             <div class="card-body px-0">
                                 <div class="tab-content ">
-                                    <!--begin::Tab Content-->
                                     <div class="tab-pane active" id="kt_apps_contacts_view_tab_1" role="tabpanel">
                                         <div class="container">
                                             <div id="kt_flotcharts_1" style="height: 300px;"></div>
@@ -392,80 +391,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!--end::Tab Content-->
-                                    <!--begin::Tab Content-->
+
                                     <div class="tab-pane" id="kt_apps_contacts_view_tab_2" role="tabpanel">
-                                        <!--begin::Body-->
-                                        <div class="card-body pt-0 pb-3">
-                                            <div class="my-3">
-                                                <span class="text-muted font-weight-bold font-size-sm">(15) pago(s)</span>
-                                            </div>
-                                            <!--begin::Table-->
-                                            <div class="table-responsive">
-                                                <table class="table table-head-custom table-head-bg table-borderless table-vertical-center">
-                                                    <thead>
-                                                        <tr class="text-uppercase">
-                                                            <th>Monto</th>
-                                                            <th>Fecha de pago</th>
-                                                            <th>Servicio</th>
-                                                            <th>Nota personal</th>
-                                                            <th>Acciones</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">$800</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">31 de julio 2021</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg ">Página web</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Esta es una nota personal</span>
-                                                            </td>
-                                                            <td>
-                                                                <div class="d-flex justify-content-end">
-                                                                    <div class="dropdown dropdown-inline" data-toggle="tooltip" title="" data-placement="left"  style="position: initial!important;">
-                                                                        <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                            <i class="ki ki-bold-more-hor"></i>
-                                                                        </a>
-                                                                        <div class="dropdown-menu dropdown-menu-md dropdown-menu-right" style="position: inherit;">
-                                                                            <!--begin::Navigation-->
-                                                                            <ul class="navi navi-hover py-5">
-                                                                                <li class="navi-item">
-                                                                                    <a href="#" class="navi-link">
-                                                                                        <span class="navi-icon">
-                                                                                            <i class="fa fa-pen"></i>
-                                                                                        </span>
-                                                                                        <span class="navi-text">Editar</span>
-                                                                                    </a>
-                                                                                </li>
-                                                                                <li class="navi-item">
-                                                                                    <a href="#" class="navi-link">
-                                                                                        <span class="navi-icon">
-                                                                                            <i class="fa fa-eye"></i>
-                                                                                        </span>
-                                                                                        <span class="navi-text">Ver</span>
-                                                                                    </a>
-                                                                                </li>
-                                                                            </ul>
-                                                                            <!--end::Navigation-->
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <!--end::Table-->
-                                        </div>
+                                        @livewire('payment.index', ['client' => $client])
                                     </div>
-                                    <!--end::Tab Content-->
-                                    <!--begin::Tab Content-->
+                                    
                                     <div class="tab-pane" id="kt_apps_contacts_view_tab_3" role="tabpanel">
                                         <!--begin::Body-->
                                         <div class="card-body pt-0 pb-3">
@@ -536,79 +466,11 @@
                                             <!--end::Table-->
                                         </div>
                                     </div>
-                                    <!--end::Tab Content-->
-                                    <!--begin::Tab Content-->
+                                    
                                     <div class="tab-pane" id="kt_apps_contacts_view_tab_4" role="tabpanel">
-                                        <!--begin::Body-->
-                                        <div class="card-body pt-0 pb-3">
-                                            <div class="my-3">
-                                                <span class="text-muted font-weight-bold font-size-sm">(15) gasto(s)</span>
-                                            </div>
-                                            <!--begin::Table-->
-                                            <div class="table-responsive">
-                                                <table class="table table-head-custom table-head-bg table-borderless table-vertical-center">
-                                                    <thead>
-                                                        <tr class="text-uppercase">
-                                                            <th>Nombre</th>
-                                                            <th>Fecha de inicio</th>
-                                                            <th>Nota personal</th>
-                                                            <th>Acciones</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">$800</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">31 de julio 2021</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg ">Página web</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Esta es una nota personal</span>
-                                                            </td>
-                                                            <td>
-                                                                <div class="d-flex justify-content-end">
-                                                                    <div class="dropdown dropdown-inline" data-toggle="tooltip" title="" data-placement="left"  style="position: initial!important;">
-                                                                        <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                            <i class="ki ki-bold-more-hor"></i>
-                                                                        </a>
-                                                                        <div class="dropdown-menu dropdown-menu-md dropdown-menu-right" style="position: inherit;">
-                                                                            <!--begin::Navigation-->
-                                                                            <ul class="navi navi-hover py-5">
-                                                                                <li class="navi-item">
-                                                                                    <a href="#" class="navi-link">
-                                                                                        <span class="navi-icon">
-                                                                                            <i class="fa fa-pen"></i>
-                                                                                        </span>
-                                                                                        <span class="navi-text">Editar</span>
-                                                                                    </a>
-                                                                                </li>
-                                                                                <li class="navi-item">
-                                                                                    <a href="#" class="navi-link">
-                                                                                        <span class="navi-icon">
-                                                                                            <i class="fa fa-eye"></i>
-                                                                                        </span>
-                                                                                        <span class="navi-text">Ver</span>
-                                                                                    </a>
-                                                                                </li>
-                                                                            </ul>
-                                                                            <!--end::Navigation-->
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <!--end::Table-->
-                                        </div>
+                                        @livewire('service.index', ['client' => $client])
                                     </div>
-                                    <!--end::Tab Content-->
-                                    <!--begin::Tab Content-->
+                                    
                                     <div class="tab-pane" id="kt_apps_contacts_view_tab_5" role="tabpanel">
                                         <div class="container">
                                             <div class="row">
@@ -616,12 +478,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!--end::Tab Content-->
-                                    <!--begin::Tab Content-->
+                                    
                                     <div class="tab-pane" id="kt_apps_contacts_view_tab_6" role="tabpanel">
                                         @livewire('quotation.index', ['client' => $client], key($client->id))
                                     </div>
-                                    <!--end::Tab Content-->
                                 </div>
                             </div>
                             <!--end::Body-->

@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', $payment->name)
+@section('title', $payment->concept)
 
 @section('content')
     <!--begin::Bread-->

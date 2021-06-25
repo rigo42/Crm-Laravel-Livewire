@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Service;
 
+use App\Models\Client;
 use App\Models\Service;
 use App\Models\User;
 use Carbon\Carbon;
@@ -17,6 +18,8 @@ class Index extends Component
 
     //User actual
     public $userPresent;
+    //Client passed by parameter
+    public $client;
 
     //Tools
     public $perPage = 10;
@@ -26,8 +29,11 @@ class Index extends Component
     //Theme
     protected $paginationTheme = 'bootstrap';
 
-    public function mount(){
+    public function mount($client = null){
         $this->userPresent = User::find(Auth::id());
+        if($client){
+            $this->client = Client::findOrFail($client->id);
+        }
     }
 
     public function updatingSearch()
@@ -40,7 +46,11 @@ class Index extends Component
         $count = Service::query();
         $services = Service::orderBy('id', 'desc');
 
-        if(!$this->userPresent->hasRole('Administrador')){
+        if($this->client){
+            $count = $count->where('client_id', $this->client->id);
+            $services = $services->where('client_id', $this->client->id);
+
+        }elseif(!$this->userPresent->hasRole('Administrador')){
             $count = $count->whereHas('client', function($query){
                 $query->where('user_id', $this->userPresent->id);
             });

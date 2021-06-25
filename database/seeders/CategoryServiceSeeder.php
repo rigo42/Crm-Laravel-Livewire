@@ -42,6 +42,9 @@ class CategoryServiceSeeder extends Seeder
             'name' => 'Aplicaciónes web',
         ]);
         CategoryService::create([
+            'name' => 'Tienda en linea',
+        ]);
+        CategoryService::create([
             'name' => 'Campañas y anuncios en Google Ads',
         ]);
         CategoryService::create([

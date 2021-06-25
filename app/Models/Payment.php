@@ -10,7 +10,7 @@ class Payment extends Model
 {
     use HasFactory;
 
-    protected $guareded = [];
+    protected $guarded = [];
 
     public function paymentType()
     {
@@ -40,7 +40,11 @@ class Payment extends Model
     }
 
     public function dateToString(){
-        return Carbon::parse($this->date)->format('d-m-Y');
+        return Carbon::parse($this->date)->toFormattedDateString();
+    }
+
+    public function createdAtToString(){
+        return Carbon::parse($this->created_at)->toFormattedDateString();
     }
 
     public function montoToString(){

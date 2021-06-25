@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Payment;
 
+use App\Models\Client;
 use App\Models\Payment;
 use App\Models\User;
 use Exception;
@@ -18,6 +19,8 @@ class Index extends Component
     public $userPresent;
     //User passed by parameter
     public $user;
+    //Client passed by parameter
+    public $client;
 
     //Tools
     public $perPage = 10;
@@ -27,11 +30,14 @@ class Index extends Component
     //Theme
     protected $paginationTheme = 'bootstrap';
 
-    public function mount($user = null){
+    public function mount($user = null, $client = null){
         $this->userPresent = User::find(Auth::id());
         if($user){
             $this->user = User::findOrFail($user->id);
+        }else if($client){
+            $this->client = Client::findOrFail($client->id);
         }
+        
     }
 
     public function updatingSearch()
@@ -47,6 +53,10 @@ class Index extends Component
         if($this->user){
             $count = $count->where('user_id', $this->user->id);
             $payments = $payments->where('user_id', $this->user->id);
+
+        }elseif($this->client){
+            $count = $count->where('client_id', $this->client->id);
+            $payments = $payments->where('client_id', $this->client->id);
 
         }elseif(!$this->userPresent->hasRole('Administrador')){
             $count = $count->where('user_id', $this->userPresent->id);

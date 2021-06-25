@@ -81,7 +81,7 @@
                                             </div>
                                             <div class="d-flex flex-column">
                                                 <span class="text-dark-75 text-hover-primary font-weight-bold font-size-lg">{{ $payment->client->name }}</span>
-                                                <span class="text-muted font-weight-bold font-size-sm">{{ $payment->client->position }}</span>
+                                                <span class="text-muted font-weight-bold font-size-sm">{{ $payment->client->company }}</span>
                                             </div>
                                         </div>
                                     </td>
@@ -131,7 +131,7 @@
                                                         @else
                                                             src="{{ asset('assets/media/users/blank.png') }}" 
                                                         @endif
-                                                        >
+                                                    >
                                                 </div>
                                                 <div class="d-flex flex-column">
                                                     <span class="text-dark-75 text-hover-primary font-weight-bold font-size-lg">{{ $payment->user->name }}</span>
@@ -152,6 +152,29 @@
                                                 <div class="dropdown-menu dropdown-menu-md dropdown-menu-right" style="position: inherit;">
                                                     <!--begin::Navigation-->
                                                     <ul class="navi navi-hover py-5">
+                                                        @if ($payment->invoice)
+                                                            <li class="navi-item">
+                                                                <a target="_blank" href="{{ Storage::url($payment->invoice->url) }}" class="navi-link">
+                                                                    <span class="navi-icon">
+                                                                        <i class="fas fa-download"></i>
+                                                                    </span>
+                                                                    <span class="navi-text">Descargar factura</span>
+                                                                </a>
+                                                            </li>                                                            
+                                                        @endif
+                                                        @if ($payment->image)
+                                                            <li class="navi-item">
+                                                                <a target="_blank" href="{{ Storage::url($payment->image->url) }}" class="navi-link">
+                                                                    <span class="navi-icon">
+                                                                        <i class="fas fa-download"></i>
+                                                                    </span>
+                                                                    <span class="navi-text">Descargar comprobante</span>
+                                                                </a>
+                                                            </li>                                                            
+                                                        @endif
+
+                                                        @livewire('payment.send-email', ['payment' => $payment], key($payment->id))
+
                                                         <li class="navi-item">
                                                             <a href="{{ route('payment.show', $payment) }}" class="navi-link">
                                                                 <span class="navi-icon">

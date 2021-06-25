@@ -20,7 +20,7 @@
                         <!--begin::Breadcrumb-->
                         <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                             <li class="breadcrumb-item active">
-                                <a href="#" class="text-muted">General</a>
+                                <a href="#" class="text-muted">General </a>
                             </li>
                         </ul>
                         <!--end::Breadcrumb-->
@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="d-flex flex-column">
                                         <span href="#" class="text-dark text-hover-danger font-weight-bold font-size-h4 mb-3">$50,000</span>
-                                        <div class="text-dark-75 font-weight-bold font-size-h5" >Cantidad debida {{ gethostbyname(request()->ip) }}</div>
+                                        <div class="text-dark-75 font-weight-bold font-size-h5" >Cantidad debida {{ gethostbyaddr( request()->ip() ) }}</div>
                                     </div>
                                 </div>
                             </div>
