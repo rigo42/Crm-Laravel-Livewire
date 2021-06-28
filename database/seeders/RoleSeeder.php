@@ -27,7 +27,7 @@ class RoleSeeder extends Seeder
 
         $cobranza->givePermissionTo(['pagos', 'gastos', 'facturas']);
         $gerenteDeVentas->givePermissionTo(['usuarios', 'pagos', 'gastos', 'facturas', 'reportes']);
-        $relacionesPublicas->givePermissionTo(['servicios', 'categorias de gastos', 'clientes', 'prospectos', 'recordatorios', 'calendario']);
+        $relacionesPublicas->givePermissionTo(['servicios', 'clientes', 'prospectos', 'recordatorios', 'calendario']);
 
     }
 }

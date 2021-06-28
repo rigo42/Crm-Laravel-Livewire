@@ -75,7 +75,7 @@
         </li>
 
         <li class="navi-item mb-2">
-            <a class="navi-link" href="#">
+            <a class="navi-link {{ active('setting.category-expense.*') }}" href="{{ route('setting.category-expense.index') }}">
                 <span class="navi-text text-dark-50 font-size-h5 font-weight-bold">
                     <i class="fas fa-tag text-dark mr-2"></i> Categorias de gastos
                 </span>

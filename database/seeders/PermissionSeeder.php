@@ -17,7 +17,6 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'usuarios']);
         Permission::create(['name' => 'cuentas']);
         Permission::create(['name' => 'servicios']);
-        Permission::create(['name' => 'categorias de gastos']);
         Permission::create(['name' => 'prospectos']);
         Permission::create(['name' => 'clientes']);
         Permission::create(['name' => 'facturas']);
