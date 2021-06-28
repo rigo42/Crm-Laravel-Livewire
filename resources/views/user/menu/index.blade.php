@@ -69,7 +69,8 @@
                         </span>
                         <span class="navi-text font-size-lg">Contraseña</span>
                     </a>
-                </div>                
+                </div>     
+                @if($user->can('prospectos'))
                 <div class="navi-item mb-2">
                     <a href="{{ route('user.prospect', $user) }}" class="navi-link py-4 {{ active('user.prospect') }}">
                         <span class="navi-icon mr-2">
@@ -78,6 +79,8 @@
                         <span class="navi-text font-size-lg">Prospectos</span>
                     </a>
                 </div>
+                @endif          
+                @if($user->can('clientes'))
                 <div class="navi-item mb-2">
                     <a href="{{ route('user.client', $user) }}" class="navi-link py-4 {{ active('user.client') }}">
                         <span class="navi-icon mr-2">
@@ -96,8 +99,10 @@
                         <span class="navi-text font-size-lg">Clientes</span>
                     </a>
                 </div>
+                @endif       
+                @if($user->can('pagos'))
                 <div class="navi-item mb-2">
-                    <a href="#" class="navi-link py-4" data-toggle="tooltip" title="Coming soon..." data-placement="right">
+                    <a href="{{ route('user.payment', $user) }}" class="navi-link py-4 {{ active('user.payment') }}">
                         <span class="navi-icon mr-2">
                             <span class="svg-icon">
                                 <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-top-panel-6.svg-->
@@ -114,6 +119,8 @@
                         <span class="navi-text font-size-lg">Pagos</span>
                     </a>
                 </div>
+                @endif       
+                @if($user->can('gastos'))
                 <div class="navi-item mb-2">
                     <a href="#" class="navi-link py-4" data-toggle="tooltip" title="Coming soon..." data-placement="right">
                         <span class="navi-icon mr-2">
@@ -136,7 +143,8 @@
                         </span>
                     </a>
                 </div>
-                @can('usuarios')
+                @endif 
+                @if($user->can('permisos'))
                 <div class="navi-item mb-2">
                     <a href="{{ route('user.permission', $user) }}" class="navi-link py-4 {{ active('user.permission') }}">
                         <span class="navi-icon mr-2">
@@ -151,6 +159,8 @@
                         <span class="navi-text font-size-lg">Permisos directos</span>
                     </a>
                 </div>
+                @endif
+                @if($user->can('usuarios'))
                 <div class="navi-item mb-2">
                     <a href="{{ route('user.transfer', $user) }}" class="navi-link py-4 {{ active('user.trasnfer') }}">
                         <span class="navi-icon mr-2">
@@ -167,7 +177,7 @@
                         <span class="navi-text font-size-lg">Transferir</span>
                     </a>
                 </div>
-                @endcan
+                @endif
             </div>
             <!--end::Nav-->
         </div>

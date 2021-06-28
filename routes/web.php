@@ -55,6 +55,8 @@ Route::prefix('usuarios/{user}')->group(function () {
     Route::get('transferir', [UserController::class, 'transfer'])->name('user.transfer');
     //Client
     Route::get('clientes', [UserController::class, 'client'])->name('user.client');
+    //Payments
+    Route::get('pagos', [UserController::class, 'payment'])->name('user.payment');
 });
 
 //Prospects
@@ -73,7 +75,7 @@ Route::resource('servicios', ServiceController::class)->parameters(['servicios' 
 //Invoices
 Route::resource('facturas', InvoiceController::class)->parameters(['facturas' => 'invoice'])->names('invoice');
 
-//Invoices
+//Payment
 Route::resource('pagos', PaymentController::class)->parameters(['pagos' => 'payment'])->names('payment');
 
 

@@ -47,6 +47,10 @@ class UserController extends Controller
     public function client(User $user){
         return view('user.client', compact('user'));
     }
+
+    public function payment(User $user){
+        return view('user.payment', compact('user'));
+    }
     
     public function transfer(User $user){
         return view('user.transfer', compact('user'));

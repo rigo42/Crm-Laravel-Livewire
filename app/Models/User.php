@@ -57,4 +57,8 @@ class User extends Authenticatable
     public function services(){
         return $this->belongsToMany(Service::class)->withTimestamps();
     }
+
+    public function payments(){
+        return $this->hasMany(Payment::class);
+    }
 }

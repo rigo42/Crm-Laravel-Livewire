@@ -56,9 +56,6 @@
                                 <th>Factura</th>
                                 <th>Fecha</th>
                                 <th>Monto</th>
-                                <th>Concepto</th>
-                                <th>Nota</th>
-                                <th>Comprobante de pago</th>
                                 <th>Correo enviado</th>
                                 <th>Usuario que realizó el pago</th>
                                 <th>Acciones</th>
@@ -98,21 +95,6 @@
                                     </td>
                                     <td>{{ $payment->dateToString() }}</td>
                                     <td>{{ $payment->montoToString() }}</td>
-                                    <td>{{ $payment->concept }}</td>
-                                    <td>
-                                        @if ($payment->note)
-                                            {{ $payment->note }}
-                                        @else
-                                            <span class="badge badge-secondary">Ninguna</span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if (Storage::exists($payment->image->url))
-                                            <img width="80" src="{{ Storage::url($payment->image->url) }}" alt="{{ $payment->name }}" />
-                                        @else   
-                                            <span class="badge badge-secondary">Ninguno</span>
-                                        @endif
-                                    </td>
                                     <td>
                                         @if ($payment->send_email)
                                             <span class="badge badge-success">Correo enviado</span>
