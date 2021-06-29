@@ -51,8 +51,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            <!--end::Header-->
+                        
                             <!--begin::Body-->
                             <div class="card-body py-4">
                                 <div class="text-center mb-10">
@@ -133,6 +132,36 @@
                         </div>
                     </div>
                     <div class="col-xl-8">
+                        <div class="card card-custom gutter-b">
+                            <!--begin::Header-->
+                            <div class="card-header h-auto py-4">
+                                <div class="card-title">
+                                    <h3 class="card-label">Servicios asociados a esta factura</h3>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group m-0">
+                                    <div class="row">
+                                        @forelse ($invoice->services as $service)
+                                        <div class="col-lg-6">
+                                            <label class="option">
+                                                <span class="option-label">
+                                                    <span class="option-head">
+                                                        <span class="option-title">{{ $service->name }}</span>
+                                                        <span class="option-focus">{{ $service->priceToString() }}</span>
+                                                    </span>
+                                                    <span class="option-body">{{ $service->note }}</span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        @empty
+                                            <span class="badge badge-secondary">No se encontró ningun servicio ligado a esta factura</span>
+                                        @endforelse
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
                         <!--begin::Card-->
                         <div class="card card-custom gutter-b">
                             <!--begin::Header-->

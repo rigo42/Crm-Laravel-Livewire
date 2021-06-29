@@ -61,19 +61,28 @@
                             <!--end::Header-->
                             <!--begin::Body-->
                             <div class="card-body py-4">
-                                <div class="text-center mb-10">
-                                    <div class="symbol symbol-60 symbol-circle symbol-xl-90">
-                                        <div class="symbol-label" 
-                                            @if ($expense->client->image)
-                                                style="background-image:url({{ Storage::url($expense->client->image->url) }}" 
-                                            @else
-                                                style="background-image:url({{ asset('assets/media/users/blank.png') }}" 
-                                            @endif
-                                            >
+                                @if ($expense->client)
+                                    <div class="text-center mb-10">
+                                        <div class="symbol symbol-60 symbol-circle symbol-xl-90">
+                                            <div class="symbol-label" 
+                                                @if ($expense->client->image)
+                                                    style="background-image:url({{ Storage::url($expense->client->image->url) }}" 
+                                                @else
+                                                    style="background-image:url({{ asset('assets/media/users/blank.png') }}" 
+                                                @endif
+                                                >
+                                            </div>
                                         </div>
+                                        <div class="text-muted mb-2">{{ $expense->dateToString() }}</div>
                                     </div>
-                                    <div class="text-muted mb-2">{{ $expense->dateToString() }}</div>
+                                @else 
+                                <div class="form-group row my-2">
+                                    <label class="col-4 col-form-label">Cliente:</label>
+                                    <div class="col-8">
+                                        <span class="form-control-plaintext font-weight-bolder">Ninguno</span>
+                                    </div>
                                 </div>
+                                @endif
                                 <div class="form-group row my-2">
                                     <label class="col-4 col-form-label">Cuenta:</label>
                                     <div class="col-8">
@@ -147,7 +156,7 @@
                             <div class="card-body">
                                 <div class="form-group m-0">
                                     <div class="row">
-                                        @forelse ($expense->client->services as $service)
+                                        @forelse ($expense->services as $service)
                                         <div class="col-lg-6">
                                             <label class="option">
                                                 <span class="option-label">

@@ -59,8 +59,10 @@ Route::prefix('usuarios/{user}')->group(function () {
     Route::get('transferir', [UserController::class, 'transfer'])->name('user.transfer');
     //Client
     Route::get('clientes', [UserController::class, 'client'])->name('user.client');
-    //Payments
+    //Payment
     Route::get('pagos', [UserController::class, 'payment'])->name('user.payment');
+    //Expense
+    Route::get('gastos', [UserController::class, 'expense'])->name('user.expense');
 });
 
 //Prospects

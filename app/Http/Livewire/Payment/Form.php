@@ -82,6 +82,7 @@ class Form extends Component
     public function update(){
         $this->validate();
         $this->saveUserByAdmin();
+        $this->validateForeignKey();
         $this->payment->update();
         $this->saveImage();
         $this->saveServices();
@@ -159,5 +160,11 @@ class Form extends Component
         }
         $this->reset('imageTmp');
         $this->alert('success', 'Commprobante eliminada con exito');
+    }
+
+    public function validateForeignKey(){
+        if($this->payment->invoice_id == ''){
+            $this->payment->invoice_id = NULL;
+        }
     }
 }

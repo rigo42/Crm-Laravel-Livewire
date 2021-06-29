@@ -153,7 +153,7 @@
                             <div class="card-body">
                                 <div class="form-group m-0">
                                     <div class="row">
-                                        @forelse ($payment->client->services as $service)
+                                        @forelse ($payment->services as $service)
                                         <div class="col-lg-6">
                                             <label class="option">
                                                 <span class="option-label">

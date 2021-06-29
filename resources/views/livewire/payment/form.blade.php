@@ -176,7 +176,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-6">
-                                    <label class="col-form-label">Cuenta <span class="text-danger">*</span></label>
+                                    <label class="col-form-label">Cuenta<span class="text-danger">*</span></label>
                                     <div wire:ignore wire:key="account">
                                         <select 
                                             wire:model.defer="payment.account_id" 
@@ -255,13 +255,14 @@
                             </div>
                         </div>
 
-                        <div class="separator separator-dashed my-10"></div>
+                        
 
                         <div
                             wire:loading
                             wire:target="clientChange"      
                             class="spinner"></div>
                         @if ($client->services->count())
+                            <div class="separator separator-dashed my-10"></div>
                             <div class="my-5">
                                 <h3 class="text-dark font-weight-bold mb-10">Seleccionar servicios correspondientes al pago</h3>
                                 <div class="form-group m-0">
@@ -306,7 +307,7 @@
                         <div class="my-5">
                             <h3 class="text-dark font-weight-bold mb-10">Pertenece al usuario</h3>
                             <div class="form-group row">
-                                <label class="col-3">Usuario</label>
+                                <label class="col-3">Usuario {{ $userId }}</label>
                                 <div class="col-9">
                                     <div wire:ignore wire:key="user">
                                         <select 

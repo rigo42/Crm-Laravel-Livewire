@@ -51,6 +51,10 @@ class UserController extends Controller
     public function payment(User $user){
         return view('user.payment', compact('user'));
     }
+
+    public function expense(User $user){
+        return view('user.expense', compact('user'));
+    }
     
     public function transfer(User $user){
         return view('user.transfer', compact('user'));

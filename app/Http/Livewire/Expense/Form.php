@@ -49,8 +49,14 @@ class Form extends Component
     public function mount(Expense $expense, $method){
         $this->userPresent = User::find(Auth::user()->id);
         $this->expense = $expense;
-        $this->client = $expense->client ? Client::findOrFail($expense->client_id) : new Client();
         $this->method = $method;
+
+        if($expense->client_id){
+            $this->client = Client::findOrFail($expense->client_id);
+        }else{
+            $this->client = new Client();
+        }
+        
         $this->userId = $expense->user_id;        
 
         foreach($this->expense->services as $service){
@@ -72,7 +78,6 @@ class Form extends Component
         $this->validate();
         $this->saveUser();
         $this->saveUserByAdmin();
-        dd($this->expense);
         $this->expense->save();
         $this->saveImage();
         $this->saveServices();
@@ -82,6 +87,7 @@ class Form extends Component
     public function update(){
         $this->validate();
         $this->saveUserByAdmin();
+        $this->validateForeignKey();
         $this->expense->update();
         $this->saveImage();
         $this->saveServices();
@@ -159,5 +165,11 @@ class Form extends Component
         }
         $this->reset('imageTmp');
         $this->alert('success', 'Commprobante eliminado con exito');
+    }
+
+    public function validateForeignKey(){
+        if($this->expense->client_id == ''){
+            $this->expense->client_id = NULL;
+        }
     }
 }

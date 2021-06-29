@@ -62,24 +62,31 @@
                         <tbody>
                             @forelse ($expenses as $expense)
                                 <tr>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <div class="symbol symbol-circle symbol-50 mr-3">
-                                                <img 
-                                                    alt="{{ $expense->client->name }}" 
-                                                    @if ($expense->client->image)
-                                                        src="{{ Storage::url($expense->client->image->url) }}" 
-                                                    @else
-                                                        src="{{ asset('assets/media/users/blank.png') }}" 
-                                                    @endif
-                                                    >
+                                    @if ($expense->client)
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="symbol symbol-circle symbol-50 mr-3">
+                                                    <img 
+                                                        alt="{{ $expense->client->name }}" 
+                                                        @if ($expense->client->image)
+                                                            src="{{ Storage::url($expense->client->image->url) }}" 
+                                                        @else
+                                                            src="{{ asset('assets/media/users/blank.png') }}" 
+                                                        @endif
+                                                        >
+                                                </div>
+                                                <div class="d-flex flex-column">
+                                                    <span class="text-dark-75 text-hover-primary font-weight-bold font-size-lg">{{ $expense->client->name }}</span>
+                                                    <span class="text-muted font-weight-bold font-size-sm">{{ $expense->client->company }}</span>
+                                                </div>
                                             </div>
-                                            <div class="d-flex flex-column">
-                                                <span class="text-dark-75 text-hover-primary font-weight-bold font-size-lg">{{ $expense->client->name }}</span>
-                                                <span class="text-muted font-weight-bold font-size-sm">{{ $expense->client->company }}</span>
-                                            </div>
-                                        </div>
-                                    </td>
+                                        </td>
+                                    @else
+                                        <td> 
+                                            <span class="badge badge-secondary"> Ningun cliente</span>
+                                        </td>   
+                                    @endif
+                                    
                                     <td>
                                         @if ($expense->categoryExpense)
                                             {{$expense->categoryExpense->name}}
