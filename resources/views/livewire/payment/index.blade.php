@@ -72,7 +72,7 @@
                                                     @if ($payment->client->image)
                                                         src="{{ Storage::url($payment->client->image->url) }}" 
                                                     @else
-                                                        src="{{ asset('assets/media/payments/blank.png') }}" 
+                                                        src="{{ asset('assets/media/users/blank.png') }}" 
                                                     @endif
                                                     >
                                             </div>

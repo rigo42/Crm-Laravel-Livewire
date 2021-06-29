@@ -21,6 +21,10 @@ class Expense extends Model
         return $this->belongsTo(Client::class);
     }
 
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+    
     public function invoice(){
         return $this->belongsTo(Invoice::class);
     }

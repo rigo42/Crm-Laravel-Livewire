@@ -5,17 +5,17 @@
     @endsection
 
     <!-- Modal -->
-    <div wire:ignore.self class="modal fade" data-backdrop="static" id="paymentTypeFormModal" tabindex="-1" aria-labelledby="paymentTypeFormModalLabel" aria-hidden="true">
+    <div wire:ignore.self class="modal fade" data-backdrop="static" id="categoryExpenseFormModal" tabindex="-1" aria-labelledby="categoryExpenseFormModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="paymentTypeFormModalLabel">Nuevo tipo de pago</h5>
+            <h5 class="modal-title" id="categoryExpenseFormModalLabel">Nueva catagoría de gasto</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
             </div>
             <div class="modal-body">
-                @livewire('setting.payment-type.form', ['method' => 'storeCustom'])
+                @livewire('setting.category-expense.form', ['method' => 'storeCustom'])
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Regresar</button>
@@ -52,14 +52,14 @@
                             @include('component.error-list')
 
                             <div class="form-group row">
-                                <label class="col-xl-3 col-lg-3 col-form-label">Comprobante de pago </label>
+                                <label class="col-xl-3 col-lg-3 col-form-label">Comprobante de gasto </label>
                                 <div class="image-input image-input-outline" >
                                     <div 
                                         class="image-input-wrapper"
                                         @if ($imageTmp)
                                             style="background-image: url('{{ $imageTmp->temporaryUrl() }}')"
-                                        @elseif($payment->image)
-                                            style="background-image: url('{{ Storage::url($payment->image->url) }}')"
+                                        @elseif($expense->image)
+                                            style="background-image: url('{{ Storage::url($expense->image->url) }}')"
                                         @else    
                                             style="background-image: url('{{ asset('assets/media/payment/blank.png') }}')"
                                         @endif
@@ -82,7 +82,7 @@
                                             <progress max="100" x-bind:value="progress"></progress>
                                         </div>
                                     </div>
-                                    @if ($imageTmp || $payment->image)
+                                    @if ($imageTmp || $expense->image)
                                     <span 
                                         wire:click="removeImage()"
                                         wire:loading.class="spinner spinner-primary spinner-sm" wire:target="removeImage"
@@ -100,7 +100,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-6" wire:ignore wire:key="date">
-                                    <label class="col-form-label">Fecha de pago <span class="text-danger">*</span></label>
+                                    <label class="col-form-label">Fecha de gasto <span class="text-danger">*</span></label>
                                     <div class="input-group input-group-solid">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">
@@ -108,56 +108,56 @@
                                             </span>
                                         </div>
                                         <input
-                                            wire:model.defer="payment.date"
-                                            value="{{ $payment->start_date }}"
+                                            wire:model.defer="expense.date"
+                                            value="{{ $expense->start_date }}"
                                             type="text" 
-                                            class="date form-control form-control-solid @error('payment.date') is-invalid @enderror"  
-                                            placeholder="Seleccione la fecha de pago"
+                                            class="date form-control form-control-solid @error('expense.date') is-invalid @enderror"  
+                                            placeholder="Seleccione la fecha de gasto"
                                             />
                                     </div>
-                                    @error('payment.date') <span class="text-danger">{{ $message }}</span> @enderror
+                                    @error('expense.date') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="col-lg-6">
                                     <label class="col-form-label">Concepto <span class="text-danger">*</span></label>
                                     <div class="input-group input-group-solid" >
                                         <input 
-                                            wire:model.defer="payment.concept" 
+                                            wire:model.defer="expense.concept" 
                                             type="text" 
                                             required
-                                            class="form-control form-control-solid @error('payment.concept') is-invalid @enderror" 
-                                            placeholder="Ej: Número de pago" />
+                                            class="form-control form-control-solid @error('expense.concept') is-invalid @enderror" 
+                                            placeholder="Ej: Identificador de gasto" />
                                     </div>
-                                    @error('payment.concept') <span class="text-danger">{{ $message }}</span> @enderror
+                                    @error('expense.concept') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-6">
-                                    <label class="col-form-label">Cliente <span class="text-danger">*</span></label>
+                                    <label class="col-form-label">Cliente </label>
                                     <div wire:ignore wire:key="client" >
                                         <select 
                                             wire:change="clientChange($event.target.value)"
-                                            wire:model.defer="payment.client_id" 
-                                            class="form-control selectpicker form-control-solid @error('payment.client_id') is-invalid @enderror" 
+                                            wire:model.defer="expense.client_id" 
+                                            class="form-control selectpicker form-control-solid @error('expense.client_id') is-invalid @enderror" 
                                             data-size="7"
                                             data-live-search="true"
                                             data-show-subtext="true"
-                                            required>
-                                            <option value="">Selecciona un cliente</option>
+                                            >
+                                            <option value="">Ninguno</option>
                                             @foreach ($clients as $c)
                                                 <option data-subtext="{{ $c->company }}" value="{{ $c->id }}">{{ $c->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <span class="form-text text-muted">Elije el cliente correspondiente al pago</span>
-                                    @error('payment.client_id') <div><span class="text-danger">{{ $message }}</span></div> @enderror
+                                    <span class="form-text text-muted">Elije el cliente correspondiente al gasto</span>
+                                    @error('expense.client_id') <div><span class="text-danger">{{ $message }}</span></div> @enderror
                                 </div>
                                 <div class="col-lg-6">
                                     <label class="col-form-label">Factura</label>
                                     <span wire:loading.class="spinner spinner-primary spinner-left" wire:target="clientChange"></span>
                                     <div>
                                         <select 
-                                            wire:model="payment.invoice_id" 
-                                            class="form-control selectpicker form-control-solid @error('payment.invoice_id') is-invalid @enderror" 
+                                            wire:model="expense.invoice_id" 
+                                            class="form-control selectpicker form-control-solid @error('expense.invoice_id') is-invalid @enderror" 
                                             data-size="7"
                                             data-live-search="true"
                                             data-show-subtext="true"
@@ -168,8 +168,8 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <span class="form-text text-muted">En caso de que el pago tenga relación con la factura favor de seleccionar</span>
-                                    @error('payment.invoice_id') <div><span class="text-danger">{{ $message }}</span></div> @enderror
+                                    <span class="form-text text-muted">En caso de que el gasto tenga relación con la factura favor de seleccionar</span>
+                                    @error('expense.invoice_id') <div><span class="text-danger">{{ $message }}</span></div> @enderror
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -177,8 +177,8 @@
                                     <label class="col-form-label">Cuenta <span class="text-danger">*</span></label>
                                     <div wire:ignore wire:key="account">
                                         <select 
-                                            wire:model.defer="payment.account_id" 
-                                            class="form-control selectpicker form-control-solid @error('payment.account_id') is-invalid @enderror" 
+                                            wire:model.defer="expense.account_id" 
+                                            class="form-control selectpicker form-control-solid @error('expense.account_id') is-invalid @enderror" 
                                             data-size="7"
                                             data-live-search="true"
                                             required>
@@ -188,27 +188,27 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <span class="form-text text-muted">Elije la cuenta que se recibio el pago</span>
-                                    @error('payment.account_id') <div><span class="text-danger">{{ $message }}</span></div> @enderror
+                                    <span class="form-text text-muted">Elije la cuenta que será afectada al gasto</span>
+                                    @error('expense.account_id') <div><span class="text-danger">{{ $message }}</span></div> @enderror
                                 </div>
                                 <div class="col-lg-6">
-                                    <label class="col-form-label">Tipo de pago </label>
+                                    <label class="col-form-label">Categoría de gasto <span class="text-danger">*</span></label>
                                     <div>
                                         <select 
-                                            wire:model.defer="payment.payment_type_id" 
-                                            class="form-control selectpicker form-control-solid @error('payment.payment_type_id') is-invalid @enderror" 
+                                            wire:model.defer="expense.category_expense_id" 
+                                            class="form-control selectpicker form-control-solid @error('expense.category_expense_id') is-invalid @enderror" 
                                             data-size="7"
                                             data-live-search="true"
                                             required>
-                                            <option value="">Selecciona un tipo de pago</option>
-                                            @foreach ($paymentTypes as $paymentType)
-                                                <option value="{{ $paymentType->id }}">{{ $paymentType->name }}</option>
+                                            <option value="">Selecciona un tipo de categoría</option>
+                                            @foreach ($categoryExpenses as $categoryExpense)
+                                                <option value="{{ $categoryExpense->id }}">{{ $categoryExpense->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <span class="form-text text-muted">Elije el tipo de pago que se realizó</span>
-                                    <a href="#"  data-toggle="modal" data-target="#paymentTypeFormModal" class="text-primary" >Crear nuevo tipo de pago</a>
-                                    @error('payment.payment_type_id') <div><span class="text-danger">{{ $message }}</span></div> @enderror
+                                    <span class="form-text text-muted">Elije el tipo de categoría</span>
+                                    <a href="#"  data-toggle="modal" data-target="#categoryExpenseFormModal" class="text-primary" >Crear categoría de gasto</a>
+                                    @error('expense.category_expense_id') <div><span class="text-danger">{{ $message }}</span></div> @enderror
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -221,13 +221,13 @@
                                             </span>
                                         </div>
                                         <input 
-                                            wire:model.defer="payment.monto" 
+                                            wire:model.defer="expense.monto" 
                                             type="number" 
                                             required
-                                            class="form-control form-control-solid @error('payment.monto') is-invalid @enderror" 
+                                            class="form-control form-control-solid @error('expense.monto') is-invalid @enderror" 
                                             placeholder="Ej: 8000" />
                                     </div>
-                                    @error('payment.monto') <span class="text-danger">{{ $message }}</span> @enderror
+                                    @error('expense.monto') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -240,15 +240,15 @@
                                             </span>
                                         </div>
                                         <textarea 
-                                            wire:model.defer="payment.note"
+                                            wire:model.defer="expense.note"
                                             name="" 
                                             id="" 
                                             cols="30" 
                                             rows="10"
-                                            class="form-control form-control-solid @error('payment.note') is-invalid @enderror" 
+                                            class="form-control form-control-solid @error('expense.note') is-invalid @enderror" 
                                         ></textarea>
                                     </div>
-                                    @error('payment.note') <span class="text-danger">{{ $message }}</span> @enderror
+                                    @error('expense.note') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                         </div>
@@ -278,7 +278,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <span class="form-text text-muted">Este es el usuario responsable del pago</span>
+                                    <span class="form-text text-muted">Este es el usuario responsable del gasto</span>
                                     @error('userId') <div><span class="text-danger">{{ $message }}</span></div> @enderror
                                 </div>
                             </div>
@@ -310,7 +310,7 @@
             }
 
             Livewire.on('renderJs', function(){
-                $('#paymentTypeFormModal').modal('hide');
+                $('#categoryExpenseFormModal').modal('hide');
                 $('.selectpicker').selectpicker({
                     liveSearch: true,
                     showSubtext: true
@@ -327,7 +327,7 @@
                 language: 'es',
                 orientation: "bottom left",
             }).on('changeDate', function(e){
-                @this.set('payment.date', e.target.value);
+                @this.set('expense.date', e.target.value);
             });
 
         </script>

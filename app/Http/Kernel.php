@@ -69,5 +69,6 @@ class Kernel extends HttpKernel
         'client' => \App\Http\Middleware\ClientMiddleware::class,
         'service' => \App\Http\Middleware\ServiceMiddleware::class,
         'payment' => \App\Http\Middleware\PaymentMiddleware::class,
+        'expense' => \App\Http\Middleware\ExpenseMiddleware::class,
     ];
 }

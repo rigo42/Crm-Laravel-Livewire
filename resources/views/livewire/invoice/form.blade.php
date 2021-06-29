@@ -158,7 +158,7 @@
                                         </label>
                                     </div>
                                     @empty
-                                        <span class="badge badge-secondary">No se encontró ningun servicio ligado a este usuario</span>
+                                        <span class="badge badge-secondary">No se encontró ningun servicio ligado a este cliente</span>
                                     @endforelse
                                 </div>
                             </div>

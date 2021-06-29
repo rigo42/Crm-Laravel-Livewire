@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Expense\ExpenseController;
 use App\Http\Controllers\Invoice\InvoiceController;
 use App\Http\Controllers\Payment\PaymentController;
 use App\Http\Controllers\Prospect\ProspectController;
@@ -80,5 +81,8 @@ Route::resource('facturas', InvoiceController::class)->parameters(['facturas' =>
 
 //Payment
 Route::resource('pagos', PaymentController::class)->parameters(['pagos' => 'payment'])->names('payment');
+
+//Expenses
+Route::resource('gastos', ExpenseController::class)->parameters(['gastos' => 'expense'])->names('expense');
 
 
