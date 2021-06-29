@@ -24,7 +24,10 @@
             <!--begin::Container-->
             <div class="container">
                 <!--begin::Card-->
-                <div class="card card-custom gutter-b">
+                <div class="card card-custom gutter-b  ribbon ribbon-top">
+                    @if ($service->finished)
+                        <div class="ribbon-target bg-danger" style="top: -2px; right: 20px;">Finalizado</div>
+                    @endif
                     <div class="card-body">
                         <div class="d-flex">
                             <!--begin: Pic-->
@@ -110,7 +113,7 @@
                                         <div class="d-flex align-items-center mr-10">
                                             <div class="mr-6">
                                                 <div class="font-weight-bold mb-2">Inicio</div>
-                                                <span class="btn btn-sm btn-text btn-light-primary text-uppercase font-weight-bold">{{ $service->start() }}</span>
+                                                <span class="btn btn-sm btn-text btn-light-success text-uppercase font-weight-bold">{{ $service->start() }}</span>
                                             </div>
                                             <div class="">
                                                 <div class="font-weight-bold mb-2">Vencimiento</div>
@@ -132,8 +135,10 @@
                                                 <span class="font-weight-bolder text-dark">{{ $service->progressByProject() }}%</span>
                                             @else     
                                             <div class="mr-6">
-                                                <div class="font-weight-bold mb-2">Días restantes</div>
+                                                <div class="font-weight-bold mb-2">Días restantes para el corte</div>
                                                 <span class="btn btn-sm btn-text btn-light-dark text-uppercase font-weight-bold">{{ $service->progressByMohts() }}</span>
+                                                <div class="font-weight-bold mb-2">Día de corte</div>
+                                                <span class="btn btn-sm btn-text btn-light-dark text-uppercase font-weight-bold">{{ $service->due_day }}</span>
                                             </div>
                                             @endif
 

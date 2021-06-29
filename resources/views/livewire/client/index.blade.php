@@ -94,7 +94,7 @@
                                     <!--end::Pic-->
                                     <!--begin::Title-->
                                     <div class="d-flex flex-column">
-                                        <a href="#" class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">{{ $client->name }}</a>
+                                        <a href="{{ route('client.show', $client) }}" class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">{{ $client->name }}</a>
                                         <span class="text-muted font-weight-bold">{{ $client->company }}</span>
                                     </div>
                                     <!--end::Title-->

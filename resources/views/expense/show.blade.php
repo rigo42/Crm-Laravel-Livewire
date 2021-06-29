@@ -73,7 +73,7 @@
                                                 >
                                             </div>
                                         </div>
-                                        <div class="text-muted mb-2">{{ $expense->dateToString() }}</div>
+                                        <div class="text-muted mb-2">{{ $expense->client->name }} @if ($expense->client->company) ({{ $expense->client->company }}) @endif</div>
                                     </div>
                                 @else 
                                 <div class="form-group row my-2">

@@ -63,16 +63,18 @@ class Service extends Model
     }
 
     public function progressByProject(){
-        $now = now()->toDateString();
-        $nowDay = date("d", strtotime(now()));
+        $now = date('Y-m-d');
         $start = $this->start_date;
         $due = $this->due_date;
 
-        if($now > $due){
+        if(strtotime($now) > strtotime($due)){
             return 100;
+        }elseif(strtotime($now) < strtotime($start)){
+            return 0;
         }else{
-            $diferenceGeneral = Carbon::parse($due)->diffInDays($start);
-            $progress = floor(($nowDay * 100) / $diferenceGeneral);
+            $diferenceGeneral = Carbon::parse($start)->diffInDays($due);
+            $diferenceDue = $diferenceGeneral - Carbon::parse($now)->diffInDays($due);
+            $progress = floor((100 * $diferenceDue) / $diferenceGeneral);
             return $progress;
         }
     }

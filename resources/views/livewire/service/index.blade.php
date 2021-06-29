@@ -49,7 +49,7 @@
                     <div class="card-body ribbon ribbon-top">
                         @if ($service->finished)
                             <div class="ribbon-target bg-danger" style="top: -2px; right: 20px;">Finalizado</div>
-                        @endif
+                        @endif 
                         <!--begin::Info-->
                         <div class="d-flex align-items-center">
                             <!--begin::Pic-->
@@ -66,9 +66,11 @@
                             <div class="d-flex flex-column mr-auto">
                                 <!--begin: Title-->
                                 <a href="{{ route('client.show', $service->client) }}" class="card-title text-hover-primary font-weight-bolder font-size-h5 text-dark mb-1">{{ $service->client->name }}</a>
-                                <span class="text-primary font-weight-bold">{{ $service->name }}</span>
+                                
+                                <span class="text-primary font-weight-bold">{{ $service->name }}  ({{ $service->priceToString() }}) </span>
+                                
                                 @if ($service->categoryService)
-                                <span class="text-secondary" style="font-size: 10px;">{{ $service->categoryService->name }}</span>
+                                    <span class="text-secondary" style="font-size: 10px;">{{ $service->categoryService->name }}</span>
                                 @else
                                     <span class="text-secondary font-weight-bold">Ninguno</span>
                                 @endif
@@ -106,7 +108,7 @@
                         <!--begin::Progress-->
                         @if ($service->type == 'Proyecto')
                             <div class="d-flex mb-5 align-items-center">
-                                <span class="d-block font-weight-bold mr-5">Progreso</span>
+                                <span class="d-block font-weight-bold mr-5">Progreso {{  $service->progressByProject() }}</span>
                                 <div class="d-flex flex-row-fluid align-items-center">
                                     <div class="progress progress-xs mt-2 mb-2 w-100">
                                         @if ($service->progressByProject() >= 60)
@@ -122,8 +124,8 @@
                             </div>
                         @else
                             <div class="mb-2">
-                                <span class="font-weight-bold">Días restantes</span> <span class="label label-xl label-danger mr-2"> {{ $service->progressByMohts() }}</span>
-                                
+                                <span class="font-weight-bold">Días restantes para el corte</span> <span class="label label-xl label-secondary mr-2"> {{ $service->progressByMohts() }}</span> <br>
+                                <span class="font-weight-bold">Día de corte</span> <span class="label label-xl label-secondary mr-2"> {{ $service->due_day }}</span>
                             </div>
                         @endif
                         <!--ebd::Progress-->
@@ -156,15 +158,37 @@
                     <!--begin::Footer-->
                     <div class="card-footer d-flex align-items-center">
                         <div class="d-flex">
-                            <div class="d-flex align-items-center mr-7">
-                                <span class="font-weight-bolder text-success ml-2">{{ $service->priceToString() }}</span>
-                            </div>
+                            {{-- <div class="d-flex align-items-center mr-7">
+                                <span class="font-weight-bolder text-success ml-2"></span>
+                            </div> --}}
                             @if ($service->has_invoice && !$service->invoices->count())
                             <div class="d-flex align-items-center mr-7">
-                                <span class="font-weight-bolder text-info ml-2">Se require factura</span>
+                                <span class="badge badge-info ml-2">Se require factura</span>
                             </div>
                             @endif
                         </div>
+                        @if ($service->client->user)
+                            <div class="d-flex align-items-center mt-5 mt-sm-0  mr-sm-0 ml-sm-auto"">
+                                <div class="symbol symbol-circle symbol-50 mr-3">
+                                    <img 
+                                        alt="{{ $service->client->user->name }}" 
+                                        @if ($service->client->user->image)
+                                            src="{{ Storage::url($service->client->user->image->url) }}" 
+                                        @else
+                                            src="{{ asset('assets/media/users/blank.png') }}" 
+                                        @endif
+                                        >
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <span class="text-dark-75 text-hover-primary font-weight-bold font-size-lg">{{ $service->client->user->name }}</span>
+                                    <span class="text-muted font-weight-bold font-size-sm">{{ $service->client->user->position }}</span>
+                                </div>
+                            </div>
+                        @else    
+                            <span class="badge badge-secondary">Usuario asignado eliminado</span>
+                        @endif
+                        
+                        {{-- <button type="button" class="btn btn-primary btn-sm text-uppercase font-weight-bolder mt-5 mt-sm-0  mr-sm-0 ml-sm-auto">details</button> --}}
                     </div>
                     <!--end::Footer-->
                 </div>
