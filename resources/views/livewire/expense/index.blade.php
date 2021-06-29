@@ -53,7 +53,6 @@
                                 <th>Cliente</th>
                                 <th>Categoría</th>
                                 <th>Cuenta</th>
-                                <th>Factura</th>
                                 <th>Fecha</th>
                                 <th>Monto</th>
                                 <th>Usuario que realizó el gasto</th>
@@ -88,16 +87,7 @@
                                             <span class="badge badge-secondary">Sin categoría</span>
                                         @endif
                                     </td>
-                                    <td>{{ $expense->account->name }}</td>
-                                    <td>
-                                        @if ($expense->invoice)
-                                            <a href="{{ route('invoice.show', $expense->invoice) }}">
-                                                <img alt="{{ $expense->invoice->concept }}" class="max-h-65px" src="{{ asset('assets/media/svg/files/pdf.svg') }}">
-                                            </a>
-                                        @else
-                                            <span class="badge badge-secondary">Ninguna</span>
-                                        @endif
-                                    </td>
+                                    <td>{{ $expense->account->name }}</td>                                   
                                     <td>{{ $expense->dateToString() }}</td>
                                     <td>{{ $expense->montoToString() }}</td>
                                     <td>

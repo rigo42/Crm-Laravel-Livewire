@@ -39,6 +39,10 @@ class Payment extends Model
         return $this->morphOne(Image::class, 'imageable');
     }
 
+    public function services(){
+        return $this->belongsToMany(Service::class)->withTimestamps();
+    }
+
     public function dateToString(){
         return Carbon::parse($this->date)->toFormattedDateString();
     }

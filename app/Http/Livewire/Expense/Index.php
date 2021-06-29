@@ -64,7 +64,15 @@ class Index extends Component
         }
 
         if($this->search){
-            $expenses = $expenses->where('name', 'LIKE', "%{$this->search}%");
+            $expenses = $expenses->whereHas('user', function($query){
+                                        $query->where('name', 'LIKE', "%{$this->search}%");
+                                    })
+                                    ->orWhereHas('client', function($query){
+                                        $query->where('name', 'LIKE', "%{$this->search}%");
+                                    })
+                                    ->orWhereHas('client', function($query){
+                                        $query->where('company', 'LIKE', "%{$this->search}%");
+                                    });
         }
 
         $count = $count->count();

@@ -112,7 +112,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-3">Concepto </label>
+                                <label class="col-3">Concepto <span class="text-danger">*</span></label>
                                 <div class="col-9">
                                     <input 
                                         wire:model.defer="invoice.concept" 
@@ -129,41 +129,47 @@
 
                         <div class="separator separator-dashed my-10"></div>
 
-                        <div class="my-5">
-                            <h3 class="text-dark font-weight-bold mb-10">Seleccionar servicios correspondientes a la factura</h3>
-                            <div class="form-group m-0">
-                                <div class="spinner" wire:loading wire:target="clientChange"></div>
-                                <div class="row" wire:loading.remove wire:target="clientChange">
-                                    @forelse ($client->services as $service)
-                                    <div class="col-lg-6">
-                                        <label class="option">
-                                            <span class="option-control">
-                                                <span class="checkbox">
-                                                    <input 
-                                                        wire:model.defer="serviceArray"
-                                                        type="checkbox" 
-                                                        name="serviceArray[]" 
-                                                        value="{{ $service->id }}" 
-                                                    />
-                                                    <span></span>
+                        <div
+                            wire:loading
+                            wire:target="clientChange"   
+                            class="spinner"></div>
+                        @if ($client->services->count())
+                            <div class="my-5">
+                                <h3 class="text-dark font-weight-bold mb-10">Seleccionar servicios correspondientes a la factura</h3>
+                                <div class="form-group m-0">
+                                    <div class="row" wire:loading.remove wire:target="clientChange">
+                                        @forelse ($client->services as $service)
+                                        <div class="col-lg-6">
+                                            <label class="option">
+                                                <span class="option-control">
+                                                    <span class="checkbox">
+                                                        <input 
+                                                            wire:model.defer="serviceArray"
+                                                            type="checkbox" 
+                                                            name="serviceArray[]" 
+                                                            value="{{ $service->id }}" 
+                                                        />
+                                                        <span></span>
+                                                    </span>
                                                 </span>
-                                            </span>
-                                            <span class="option-label">
-                                                <span class="option-head">
-                                                    <span class="option-title">{{ $service->name }}</span>
-                                                    <span class="option-focus">{{ $service->priceToString() }}</span>
+                                                <span class="option-label">
+                                                    <span class="option-head">
+                                                        <span class="option-title">{{ $service->name }}</span>
+                                                        <span class="option-focus">{{ $service->priceToString() }}</span>
+                                                    </span>
+                                                    <span class="option-body">{{ $service->note }}</span>
                                                 </span>
-                                                <span class="option-body">{{ $service->note }}</span>
-                                            </span>
-                                        </label>
+                                            </label>
+                                        </div>
+                                        @empty
+                                            <span class="badge badge-secondary">No se encontró ningun servicio ligado a este cliente</span>
+                                        @endforelse
                                     </div>
-                                    @empty
-                                        <span class="badge badge-secondary">No se encontró ningun servicio ligado a este cliente</span>
-                                    @endforelse
                                 </div>
+                                
                             </div>
-                            
-                        </div>
+                        @endif
+                        
                     </div>
                     <div class="col-xl-2"></div>
                 </div>

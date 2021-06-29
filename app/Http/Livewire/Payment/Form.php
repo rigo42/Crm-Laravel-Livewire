@@ -28,16 +28,9 @@ class Form extends Component
     public $method;
     public $imageTmp;
     public $userId;
+    public $serviceArray = [];
 
     protected $listeners = ['render'];
-
-    public function mount(Payment $payment, $method){
-        $this->userPresent = User::find(Auth::user()->id);
-        $this->payment = $payment;
-        $this->client = $payment->client ? Client::findOrFail($payment->client_id) : new Client();
-        $this->method = $method;
-        $this->userId = $payment->user_id;        
-    }
 
     protected function rules()
     {
@@ -52,6 +45,18 @@ class Form extends Component
             'payment.note' => 'nullable',
         ];
 
+    }
+
+    public function mount(Payment $payment, $method){
+        $this->userPresent = User::find(Auth::user()->id);
+        $this->payment = $payment;
+        $this->client = $payment->client ? Client::findOrFail($payment->client_id) : new Client();
+        $this->method = $method;
+        $this->userId = $payment->user_id;       
+        
+        foreach($this->payment->services as $service){
+            array_push($this->serviceArray, "".$service->id."");
+        }
     }
 
     public function render()
@@ -70,6 +75,7 @@ class Form extends Component
         $this->saveUserByAdmin();
         $this->payment->save();
         $this->saveImage();
+        $this->saveServices();
         return redirect()->route('payment.show', $this->payment);
     }
 
@@ -78,17 +84,26 @@ class Form extends Component
         $this->saveUserByAdmin();
         $this->payment->update();
         $this->saveImage();
+        $this->saveServices();
         session()->flash('alert','paymente actualizado con exito');
         session()->flash('alert-type', 'success');
         return redirect()->route('payment.show', $this->payment);
     }
 
     public function clientChange($id){
+        $this->serviceArray = [];
         if($id){
             $this->client = Client::findOrFail($id);
+            foreach($this->payment->services as $service){
+                array_push($this->serviceArray, "".$service->id."");
+            }
         }else{
             $this->client = new Client();
         }
+    }
+
+    public function saveServices(){
+        $this->payment->services()->sync($this->serviceArray);
     }
 
     public function saveUserByAdmin(){

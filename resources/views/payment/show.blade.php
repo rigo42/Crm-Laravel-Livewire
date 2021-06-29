@@ -143,7 +143,36 @@
                         </div>
                     </div>
                     <div class="col-xl-8">
-                        <!--begin::Card-->
+                        <div class="card card-custom gutter-b">
+                            <!--begin::Header-->
+                            <div class="card-header h-auto py-4">
+                                <div class="card-title">
+                                    <h3 class="card-label">Servicios asociados a este pago</h3>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group m-0">
+                                    <div class="row">
+                                        @forelse ($payment->client->services as $service)
+                                        <div class="col-lg-6">
+                                            <label class="option">
+                                                <span class="option-label">
+                                                    <span class="option-head">
+                                                        <span class="option-title">{{ $service->name }}</span>
+                                                        <span class="option-focus">{{ $service->priceToString() }}</span>
+                                                    </span>
+                                                    <span class="option-body">{{ $service->note }}</span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        @empty
+                                            <span class="badge badge-secondary">No se encontró ningun servicio ligado a este pago</span>
+                                        @endforelse
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
                         <div class="card card-custom gutter-b">
                             <!--begin::Header-->
                             <div class="card-header h-auto py-4">
@@ -160,8 +189,6 @@
                                
                             </div>
                         </div>
-                        <!--end::Card-->
-                         <!--begin::Card-->
                          <div class="card card-custom gutter-b">
                             <!--begin::Header-->
                             <div class="card-header h-auto py-4">
@@ -178,7 +205,6 @@
                                
                             </div>
                         </div>
-                        <!--end::Card-->
                     </div>
                 </div>
                 <!--end::Row-->

@@ -99,22 +99,25 @@
                                 @enderror
                             </div>
                             <div class="form-group row">
-                                <div class="col-lg-6" wire:ignore wire:key="date">
-                                    <label class="col-form-label">Fecha de gasto <span class="text-danger">*</span></label>
-                                    <div class="input-group input-group-solid">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="la la-calendar"></i>
-                                            </span>
+                                <div class="col-lg-6">
+                                    <div wire:ignore wire:key="date">
+                                        <label class="col-form-label">Fecha de gasto <span class="text-danger">*</span></label>
+                                        <div class="input-group input-group-solid">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="la la-calendar"></i>
+                                                </span>
+                                            </div>
+                                            <input
+                                                wire:model.defer="expense.date"
+                                                value="{{ $expense->start_date }}"
+                                                type="text" 
+                                                class="date form-control form-control-solid @error('expense.date') is-invalid @enderror"  
+                                                placeholder="Seleccione la fecha de gasto"
+                                                />
                                         </div>
-                                        <input
-                                            wire:model.defer="expense.date"
-                                            value="{{ $expense->start_date }}"
-                                            type="text" 
-                                            class="date form-control form-control-solid @error('expense.date') is-invalid @enderror"  
-                                            placeholder="Seleccione la fecha de gasto"
-                                            />
                                     </div>
+                                    
                                     @error('expense.date') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="col-lg-6">
@@ -152,28 +155,6 @@
                                     @error('expense.client_id') <div><span class="text-danger">{{ $message }}</span></div> @enderror
                                 </div>
                                 <div class="col-lg-6">
-                                    <label class="col-form-label">Factura</label>
-                                    <span wire:loading.class="spinner spinner-primary spinner-left" wire:target="clientChange"></span>
-                                    <div>
-                                        <select 
-                                            wire:model="expense.invoice_id" 
-                                            class="form-control selectpicker form-control-solid @error('expense.invoice_id') is-invalid @enderror" 
-                                            data-size="7"
-                                            data-live-search="true"
-                                            data-show-subtext="true"
-                                        >
-                                            <option value="">Ninguna</option>
-                                            @foreach ($client->invoices as $invoice)
-                                                <option data-subtext="{{ $invoice->totalToString() }}" value="{{ $invoice->id }}">{{ $invoice->concept }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <span class="form-text text-muted">En caso de que el gasto tenga relación con la factura favor de seleccionar</span>
-                                    @error('expense.invoice_id') <div><span class="text-danger">{{ $message }}</span></div> @enderror
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-lg-6">
                                     <label class="col-form-label">Cuenta <span class="text-danger">*</span></label>
                                     <div wire:ignore wire:key="account">
                                         <select 
@@ -191,6 +172,8 @@
                                     <span class="form-text text-muted">Elije la cuenta que será afectada al gasto</span>
                                     @error('expense.account_id') <div><span class="text-danger">{{ $message }}</span></div> @enderror
                                 </div>
+                            </div>
+                            <div class="form-group row">
                                 <div class="col-lg-6">
                                     <label class="col-form-label">Categoría de gasto <span class="text-danger">*</span></label>
                                     <div>
@@ -210,8 +193,6 @@
                                     <a href="#"  data-toggle="modal" data-target="#categoryExpenseFormModal" class="text-primary" >Crear categoría de gasto</a>
                                     @error('expense.category_expense_id') <div><span class="text-danger">{{ $message }}</span></div> @enderror
                                 </div>
-                            </div>
-                            <div class="form-group row">
                                 <div class="col-lg-6">
                                     <label class="col-form-label">Monto <span class="text-danger">*</span></label>
                                     <div class="input-group input-group-solid">
@@ -252,8 +233,50 @@
                                 </div>
                             </div>
                         </div>
+
                         
-                        
+
+                        <div
+                            wire:loading
+                            wire:target="clientChange"   
+                            class="spinner spinner-success"></div>
+                        @if ($client->services->count())
+                            <div class="separator separator-dashed my-10"></div>
+                            <div class="my-5">
+                                <h3 class="text-dark font-weight-bold mb-10">Seleccionar servicios correspondientes al gasto</h3>
+                                <div class="form-group m-0">
+                                    <div class="row" wire:loading.remove wire:target="clientChange">
+                                        @forelse ($client->services as $service)
+                                        <div class="col-lg-6">
+                                            <label class="option">
+                                                <span class="option-control">
+                                                    <span class="checkbox">
+                                                        <input 
+                                                            wire:model.defer="serviceArray"
+                                                            type="checkbox" 
+                                                            name="serviceArray[]" 
+                                                            value="{{ $service->id }}" 
+                                                        />
+                                                        <span></span>
+                                                    </span>
+                                                </span>
+                                                <span class="option-label">
+                                                    <span class="option-head">
+                                                        <span class="option-title">{{ $service->name }}</span>
+                                                        <span class="option-focus">{{ $service->priceToString() }}</span>
+                                                    </span>
+                                                    <span class="option-body">{{ $service->note }}</span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        @empty
+                                            <span class="badge badge-secondary">No se encontró ningun servicio ligado a este cliente</span>
+                                        @endforelse
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        @endif
 
                         @role('Administrador')
 

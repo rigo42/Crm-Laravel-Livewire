@@ -137,25 +137,36 @@
                         </div>
                     </div>
                     <div class="col-xl-8">
-                        <!--begin::Card-->
                         <div class="card card-custom gutter-b">
                             <!--begin::Header-->
                             <div class="card-header h-auto py-4">
                                 <div class="card-title">
-                                    <h3 class="card-label">Factura asociada</h3>
+                                    <h3 class="card-label">Servicios asociados a este gasto</h3>
                                 </div>
                             </div>
                             <div class="card-body">
-                                @if ($expense->invoice)
-                                    <embed width="100%" height="600px" src="{{ Storage::url($expense->invoice->url) }}" type="">
-                                @else
-                                    <span class="d-block badge badge-secondary text-muted pt-2 font-size-sm">Ninguna</span>
-                                @endif
+                                <div class="form-group m-0">
+                                    <div class="row">
+                                        @forelse ($expense->client->services as $service)
+                                        <div class="col-lg-6">
+                                            <label class="option">
+                                                <span class="option-label">
+                                                    <span class="option-head">
+                                                        <span class="option-title">{{ $service->name }}</span>
+                                                        <span class="option-focus">{{ $service->priceToString() }}</span>
+                                                    </span>
+                                                    <span class="option-body">{{ $service->note }}</span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        @empty
+                                            <span class="badge badge-secondary">No se encontró ningun servicio ligado a este pago</span>
+                                        @endforelse
+                                    </div>
+                                </div>
                                
                             </div>
                         </div>
-                        <!--end::Card-->
-                         <!--begin::Card-->
                          <div class="card card-custom gutter-b">
                             <!--begin::Header-->
                             <div class="card-header h-auto py-4">

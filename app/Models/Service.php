@@ -29,6 +29,14 @@ class Service extends Model
         return $this->belongsToMany(Invoice::class)->withTimestamps();
     }
 
+    public function payments(){
+        return $this->belongsToMany(Payment::class)->withTimestamps();
+    }
+
+    public function expenses(){
+        return $this->belongsToMany(Expense::class)->withTimestamps();
+    }
+
     public function priceToString(){
         return '$'.number_format($this->price, 2, '.', ',');
     }

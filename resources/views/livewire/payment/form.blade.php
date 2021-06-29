@@ -99,21 +99,23 @@
                                 @enderror
                             </div>
                             <div class="form-group row">
-                                <div class="col-lg-6" wire:ignore wire:key="date">
-                                    <label class="col-form-label">Fecha de pago <span class="text-danger">*</span></label>
-                                    <div class="input-group input-group-solid">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="la la-calendar"></i>
-                                            </span>
+                                <div class="col-lg-6">
+                                    <div  wire:ignore wire:key="date">
+                                        <label class="col-form-label">Fecha de pago <span class="text-danger">*</span></label>
+                                        <div class="input-group input-group-solid">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="la la-calendar"></i>
+                                                </span>
+                                            </div>
+                                            <input
+                                                wire:model.defer="payment.date"
+                                                value="{{ $payment->date }}"
+                                                type="text" 
+                                                class="date form-control form-control-solid @error('payment.date') is-invalid @enderror"  
+                                                placeholder="Seleccione la fecha de pago"
+                                                />
                                         </div>
-                                        <input
-                                            wire:model.defer="payment.date"
-                                            value="{{ $payment->start_date }}"
-                                            type="text" 
-                                            class="date form-control form-control-solid @error('payment.date') is-invalid @enderror"  
-                                            placeholder="Seleccione la fecha de pago"
-                                            />
                                     </div>
                                     @error('payment.date') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
@@ -252,7 +254,49 @@
                                 </div>
                             </div>
                         </div>
-                        
+
+                        <div class="separator separator-dashed my-10"></div>
+
+                        <div
+                            wire:loading
+                            wire:target="clientChange"      
+                            class="spinner"></div>
+                        @if ($client->services->count())
+                            <div class="my-5">
+                                <h3 class="text-dark font-weight-bold mb-10">Seleccionar servicios correspondientes al pago</h3>
+                                <div class="form-group m-0">
+                                    <div class="row" wire:loading.remove wire:target="clientChange">
+                                        @forelse ($client->services as $service)
+                                        <div class="col-lg-6">
+                                            <label class="option">
+                                                <span class="option-control">
+                                                    <span class="checkbox">
+                                                        <input 
+                                                            wire:model.defer="serviceArray"
+                                                            type="checkbox" 
+                                                            name="serviceArray[]" 
+                                                            value="{{ $service->id }}" 
+                                                        />
+                                                        <span></span>
+                                                    </span>
+                                                </span>
+                                                <span class="option-label">
+                                                    <span class="option-head">
+                                                        <span class="option-title">{{ $service->name }}</span>
+                                                        <span class="option-focus">{{ $service->priceToString() }}</span>
+                                                    </span>
+                                                    <span class="option-body">{{ $service->note }}</span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        @empty
+                                            <span class="badge badge-secondary">No se encontró ningun servicio ligado a este cliente</span>
+                                        @endforelse
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        @endif
                         
 
                         @role('Administrador')
