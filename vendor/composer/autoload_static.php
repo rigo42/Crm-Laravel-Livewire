@@ -571,7 +571,7 @@ class ComposerStaticInita3e789a14c26dc226e183697307902ee
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Livewire\\Client\\Form' => __DIR__ . '/../..' . '/app/Http/Livewire/Client/Form.php',
         'App\\Http\\Livewire\\Client\\Index' => __DIR__ . '/../..' . '/app/Http/Livewire/Client/Index.php',
-        'App\\Http\\Livewire\\Client\\Quotation' => __DIR__ . '/../..' . '/app/Http/Livewire/Client/Quotation.php',
+        'App\\Http\\Livewire\\Client\\Statistic' => __DIR__ . '/../..' . '/app/Http/Livewire/Client/Statistic.php',
         'App\\Http\\Livewire\\Expense\\Form' => __DIR__ . '/../..' . '/app/Http/Livewire/Expense/Form.php',
         'App\\Http\\Livewire\\Expense\\Index' => __DIR__ . '/../..' . '/app/Http/Livewire/Expense/Index.php',
         'App\\Http\\Livewire\\Invoice\\Form' => __DIR__ . '/../..' . '/app/Http/Livewire/Invoice/Form.php',

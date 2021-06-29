@@ -34,7 +34,7 @@ return array(
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Livewire\\Client\\Form' => $baseDir . '/app/Http/Livewire/Client/Form.php',
     'App\\Http\\Livewire\\Client\\Index' => $baseDir . '/app/Http/Livewire/Client/Index.php',
-    'App\\Http\\Livewire\\Client\\Quotation' => $baseDir . '/app/Http/Livewire/Client/Quotation.php',
+    'App\\Http\\Livewire\\Client\\Statistic' => $baseDir . '/app/Http/Livewire/Client/Statistic.php',
     'App\\Http\\Livewire\\Expense\\Form' => $baseDir . '/app/Http/Livewire/Expense/Form.php',
     'App\\Http\\Livewire\\Expense\\Index' => $baseDir . '/app/Http/Livewire/Expense/Index.php',
     'App\\Http\\Livewire\\Invoice\\Form' => $baseDir . '/app/Http/Livewire/Invoice/Form.php',
