@@ -338,7 +338,7 @@
                             <div class="my-5">
                                 <div class="separator separator-dashed my-10"></div>
 
-                                <h3 class="text-dark font-weight-bold mb-5">Contribuidores del servicio</h3>
+                                <h3 class="text-dark font-weight-bold mb-5">Colaboradores del servicio</h3>
 
                                 <div class="row align-items-center">
                                     <div class="col-md-12 my-2 my-md-0">

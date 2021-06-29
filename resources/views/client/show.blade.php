@@ -97,9 +97,18 @@
                                                     <i class="ki ki-bold-more-hor"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                                                    <a class="dropdown-item" href="{{ route('client.show', $client) }}"><i class="fas fa-file-pdf mr-2"></i> Adjuntar factura</a>
-                                                    <a class="dropdown-item" href="{{ route('client.show', $client) }}"><i class="fa fa-credit-card mr-2"></i> Generar un pago</a>
-                                                    <a class="dropdown-item" href="{{ route('client.show', $client) }}"><i class="fa fa-calculator mr-2"></i> Generar un gasto</a>
+                                                    @can('cotizaciones')
+                                                        <a class="dropdown-item" href="{{ route('quotation.create', ['client' => $client]) }}"><i class="fa fa-sticky-note mr-2"></i> Adjuntar cotización</a>
+                                                    @endcan
+                                                    @can('facturas')
+                                                        <a class="dropdown-item" href="{{ route('invoice.create', ['client' => $client]) }}"><i class="fas fa-file-pdf mr-2"></i> Adjuntar factura</a>
+                                                    @endcan
+                                                    @can('pagos')
+                                                        <a class="dropdown-item" href="{{ route('payment.create', ['client' => $client->id]) }}"><i class="fa fa-credit-card mr-2"></i> Generar un pago</a>
+                                                    @endcan
+                                                    @can('gastos')
+                                                        <a class="dropdown-item" href="{{ route('expense.create', ['client' => $client->id]) }}"><i class="fa fa-calculator mr-2"></i> Generar un gasto</a>
+                                                    @endcan
                                                     <a class="dropdown-item" href="{{ route('client.edit', $client) }}"><i class="fa fa-pen mr-2"></i> Editar</a>
                                                     <a class="dropdown-item" href="#" onclick="event.preventDefault(); confirmDestroy({{ $client->id }})"><i class="fa fa-trash mr-2"></i> Eliminar</a>
                                                 </div>
@@ -113,14 +122,14 @@
                                 <!-- Info payments -->
                                 <div class="d-flex align-items-center justify-content-start flex-wrap mb-4">
                                     <!--begin: Item-->
-                                    <div class="mr-1 col-lg-2 col-auto text-dark border border-dashed rounded mb-4">
+                                    <div class="mr-1 col-lg-3 col-auto text-dark border border-dashed rounded mb-4">
                                         <span class="mr-4">
                                             <i class="flaticon-price-tag icon-2x font-weight-bold text-dark"></i>
                                         </span>
                                         <div class="d-flex flex-column">
-                                            <span class="font-weight-bolder font-size-sm">Ingresos</span>
+                                            <span class="font-weight-bolder font-size-sm">Ingresos por facturas</span>
                                             <span class="font-weight-bolder font-size-h5">
-                                            <span class="font-weight-bold">$</span>164,700</span>
+                                            <span class="font-weight-bold">{{ $client->incomeByInvoiceTotal() }}</span>
                                         </div>
                                     </div>
                                     <!--end: Item-->
@@ -132,7 +141,7 @@
                                         <div class="d-flex flex-column">
                                             <span class="font-weight-bolder font-size-sm ">Pagos</span>
                                             <span class="font-weight-bolder font-size-h5">
-                                            <span class="font-weight-bold ">$</span>249,500</span>
+                                            <span class="font-weight-bold ">{{ $client->paymentTotal() }}</span>
                                         </div>
                                     </div>
                                     <!--end: Item-->
@@ -144,7 +153,7 @@
                                         <div class="d-flex flex-column">
                                             <span class="font-weight-bolder font-size-sm">Gastos</span>
                                             <span class="font-weight-bolder font-size-h5">
-                                            <span class="font-weight-bold">$</span>164,700</span>
+                                            <span class="font-weight-bold">{{ $client->expenseTotal() }}</span>
                                         </div>
                                     </div>
                                     <!--end: Item-->
@@ -312,84 +321,45 @@
                             <div class="card-body px-0">
                                 <div class="tab-content ">
                                     <div class="tab-pane active" id="kt_apps_contacts_view_tab_1" role="tabpanel">
-                                        <div class="container">
-                                            <div id="kt_flotcharts_1" style="height: 300px;"></div>
-                                            <div class="card-body pt-5">
-                                                <!--begin::Item-->
-                                                <div class="d-flex align-items-center flex-wrap mb-10">
-                                                    <!--begin::Symbol-->
-                                                    <div class="symbol symbol-50 symbol-light mr-5">
-                                                        <span class="symbol-label">
-                                                            <i class="fas fa-dollar-sign text-dark fa-2x"></i>
-                                                        </span>
-                                                    </div>
-                                                    <!--end::Symbol-->
-                                                    <!--begin::Text-->
-                                                    <div class="d-flex flex-column flex-grow-1 mr-2">
-                                                        <a href="#" class="font-weight-bold text-dark-75 text-hover-primary font-size-lg mb-1">Ventas</a>
-                                                        <span class="text-muted font-weight-bold">Total de venta</span>
-                                                    </div>
-                                                    <!--end::Text-->
-                                                    <span class="label label-xl label-light label-inline my-lg-0 my-2 text-dark-50 font-weight-bolder">82$</span>
+                                        <!--begin::Charts Widget 4-->
+										<div class="card card-custom card-stretch gutter-b">
+											<!--begin::Header-->
+											<div class="card-header h-auto border-0">
+												<div class="card-title py-5">
+													<h3 class="card-label">
+														<span class="d-block text-dark font-weight-bolder">{{ $client->name }}</span>
+													</h3>
+												</div>
+												<div class="card-toolbar">
+													<ul class="nav nav-pills nav-pills-sm nav-dark-75" role="tablist">
+														<li class="nav-item">
+															<a class="nav-link py-2 px-4" data-toggle="tab" href="#kt_charts_widget_2_chart_tab_1">
+																<span class="nav-text font-size-sm">Month</span>
+															</a>
+														</li>
+														<li class="nav-item">
+															<a class="nav-link py-2 px-4" data-toggle="tab" href="#kt_charts_widget_2_chart_tab_2">
+																<span class="nav-text font-size-sm">Week</span>
+															</a>
+														</li>
+														<li class="nav-item">
+															<a class="nav-link py-2 px-4 active" data-toggle="tab" href="#kt_charts_widget_2_chart_tab_3">
+																<span class="nav-text font-size-sm">Day</span>
+															</a>
+														</li>
+													</ul>
+												</div>
+											</div>
+											<!--end::Header-->
+											<!--begin::Body-->
+											<div class="card-body">
+												<div class="container">
+                                                    <div id="chart"></div>
                                                 </div>
-                                                <!--end::Item-->
-                                                <!--begin::Item-->
-                                                <div class="d-flex align-items-center flex-wrap mb-10">
-                                                    <!--begin::Symbol-->
-                                                    <div class="symbol symbol-50 symbol-light mr-5">
-                                                        <span class="symbol-label">
-                                                            <i class="fas fa-dollar-sign text-success fa-2x"></i>
-                                                        </span>
-                                                    </div>
-                                                    <!--end::Symbol-->
-                                                    <!--begin::Text-->
-                                                    <div class="d-flex flex-column flex-grow-1 mr-2">
-                                                        <a href="#" class="font-weight-bold text-success font-size-lg mb-1">Ingresos</a>
-                                                        <span class="text-muted font-weight-bold">Total de ingresos</span>
-                                                    </div>
-                                                    <!--end::Text-->
-                                                    <span class="label label-xl label-light label-inline my-lg-0 my-2 text-success font-weight-bolder">+280$</span>
-                                                </div>
-                                                <!--end::Item-->
-                                                <!--begin::Item-->
-                                                <div class="d-flex align-items-center flex-wrap mb-10">
-                                                    <!--begin::Symbol-->
-                                                    <div class="symbol symbol-50 symbol-light mr-5">
-                                                        <span class="symbol-label">
-                                                            <i class="fas fa-dollar-sign text-danger fa-2x"></i>
-                                                        </span>
-                                                    </div>
-                                                    <!--end::Symbol-->
-                                                    <!--begin::Text-->
-                                                    <div class="d-flex flex-column flex-grow-1 mr-2">
-                                                        <a href="#" class="font-weight-bold text-danger font-size-lg mb-1">Gastos</a>
-                                                        <span class="text-muted font-weight-bold">Total de gastos</span>
-                                                    </div>
-                                                    <!--end::Text-->
-                                                    <span class="label label-xl label-light label-inline my-lg-0 my-2 text-danger font-weight-bolder">-4500$</span>
-                                                </div>
-                                                <!--end::Item-->
-                                                <hr class="spacer">
-                                                <!--begin::Item-->
-                                                <div class="d-flex align-items-center flex-wrap mb-10">
-                                                    <!--begin::Symbol-->
-                                                    <div class="symbol symbol-50 symbol-light mr-5">
-                                                        <span class="symbol-label">
-                                                            <i class="fas fa-dollar-sign text-primary fa-2x"></i>
-                                                        </span>
-                                                    </div>
-                                                    <!--end::Symbol-->
-                                                    <!--begin::Text-->
-                                                    <div class="d-flex flex-column flex-grow-1 mr-2">
-                                                        <a href="#" class="font-weight-bold text-primary font-size-lg mb-1">Ingresos netos</a>
-                                                        <span class="text-muted font-weight-bold">Total real de ingresos</span>
-                                                    </div>
-                                                    <!--end::Text-->
-                                                    <span class="label label-xl label-light label-inline my-lg-0 my-2 text-primary font-weight-bolder">+4500$</span>
-                                                </div>
-                                                <!--end::Item-->
-                                            </div>
-                                        </div>
+											</div>
+											<!--end::Body-->
+										</div>
+										<!--end::Charts Widget 4-->
                                     </div>
 
                                     <div class="tab-pane" id="kt_apps_contacts_view_tab_2" role="tabpanel">
@@ -397,74 +367,7 @@
                                     </div>
                                     
                                     <div class="tab-pane" id="kt_apps_contacts_view_tab_3" role="tabpanel">
-                                        <!--begin::Body-->
-                                        <div class="card-body pt-0 pb-3">
-                                            <div class="my-3">
-                                                <span class="text-muted font-weight-bold font-size-sm">(15) gasto(s)</span>
-                                            </div>
-                                            <!--begin::Table-->
-                                            <div class="table-responsive">
-                                                <table class="table table-head-custom table-head-bg table-borderless table-vertical-center">
-                                                    <thead>
-                                                        <tr class="text-uppercase">
-                                                            <th>Monto</th>
-                                                            <th>Fecha de gasto</th>
-                                                            <th>Categoría</th>
-                                                            <th>Nota personal</th>
-                                                            <th>Acciones</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">$800</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">31 de julio 2021</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg ">Página web</span>
-                                                            </td>
-                                                            <td>
-                                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Esta es una nota personal</span>
-                                                            </td>
-                                                            <td>
-                                                                <div class="d-flex justify-content-end">
-                                                                    <div class="dropdown dropdown-inline" data-toggle="tooltip" title="" data-placement="left"  style="position: initial!important;">
-                                                                        <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                            <i class="ki ki-bold-more-hor"></i>
-                                                                        </a>
-                                                                        <div class="dropdown-menu dropdown-menu-md dropdown-menu-right" style="position: inherit;">
-                                                                            <!--begin::Navigation-->
-                                                                            <ul class="navi navi-hover py-5">
-                                                                                <li class="navi-item">
-                                                                                    <a href="#" class="navi-link">
-                                                                                        <span class="navi-icon">
-                                                                                            <i class="fa fa-pen"></i>
-                                                                                        </span>
-                                                                                        <span class="navi-text">Editar</span>
-                                                                                    </a>
-                                                                                </li>
-                                                                                <li class="navi-item">
-                                                                                    <a href="#" class="navi-link">
-                                                                                        <span class="navi-icon">
-                                                                                            <i class="fa fa-eye"></i>
-                                                                                        </span>
-                                                                                        <span class="navi-text">Ver</span>
-                                                                                    </a>
-                                                                                </li>
-                                                                            </ul>
-                                                                            <!--end::Navigation-->
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <!--end::Table-->
-                                        </div>
+                                        @livewire('expense.index', ['client' => $client])
                                     </div>
                                     
                                     <div class="tab-pane" id="kt_apps_contacts_view_tab_4" role="tabpanel">
@@ -496,8 +399,247 @@
     </div>
 @endsection
 
-@section('footer')
-    <!--begin::Page Scripts(used by this page)-->
-    <script src="{{ asset('assets') }}/plugins/custom/flot/flot.bundle.js"></script>
-    <script src="{{ asset('assets') }}/js/pages/features/charts/flotcharts.js"></script>
-@endsection
+@push('footer')
+<script>
+    var options = {
+          series: [{
+          name: 'north',
+          data: [{
+              x: 1996,
+              y: 322
+            },
+            {
+              x: 1997,
+              y: 324
+            },
+            {
+              x: 1998,
+              y: 329
+            },
+            {
+              x: 1999,
+              y: 342
+            },
+            {
+              x: 2000,
+              y: 348
+            },
+            {
+              x: 2001,
+              y: 334
+            },
+            {
+              x: 2002,
+              y: 325
+            },
+            {
+              x: 2003,
+              y: 316
+            },
+            {
+              x: 2004,
+              y: 318
+            },
+            {
+              x: 2005,
+              y: 330
+            },
+            {
+              x: 2006,
+              y: 355
+            },
+            {
+              x: 2007,
+              y: 366
+            },
+            {
+              x: 2008,
+              y: 337
+            },
+            {
+              x: 2009,
+              y: 352
+            },
+            {
+              x: 2010,
+              y: 377
+            },
+            {
+              x: 2011,
+              y: 383
+            },
+            {
+              x: 2012,
+              y: 344
+            },
+            {
+              x: 2013,
+              y: 366
+            },
+            {
+              x: 2014,
+              y: 389
+            },
+            {
+              x: 2015,
+              y: 334
+            }
+          ]
+        }, {
+          name: 'south',
+          data: [
+            {
+              x: 1996,
+              y: 162
+            },
+            {
+              x: 1997,
+              y: 90
+            },
+            {
+              x: 1998,
+              y: 50
+            },
+            {
+              x: 1999,
+              y: 77
+            },
+            {
+              x: 2000,
+              y: 35
+            },
+            {
+              x: 2001,
+              y: -45
+            },
+            {
+              x: 2002,
+              y: -88
+            },
+            {
+              x: 2003,
+              y: -120
+            },
+            {
+              x: 2004,
+              y: -156
+            },
+            {
+              x: 2005,
+              y: -123
+            },
+            {
+              x: 2006,
+              y: -88
+            },
+            {
+              x: 2007,
+              y: -66
+            },
+            {
+              x: 2008,
+              y: -45
+            },
+            {
+              x: 2009,
+              y: -29
+            },
+            {
+              x: 2010,
+              y: -45
+            },
+            {
+              x: 2011,
+              y: -88
+            },
+            {
+              x: 2012,
+              y: -132
+            },
+            {
+              x: 2013,
+              y: -146
+            },
+            {
+              x: 2014,
+              y: -169
+            },
+            {
+              x: 2015,
+              y: -184
+            }
+          ]
+        }],
+          chart: {
+          type: 'area',
+          height: 350
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          curve: 'straight'
+        },
+        
+        title: {
+          text: 'Area with Negative Values',
+          align: 'left',
+          style: {
+            fontSize: '14px'
+          }
+        },
+        xaxis: {
+          type: 'datetime',
+          axisBorder: {
+            show: false
+          },
+          axisTicks: {
+            show: false
+          }
+        },
+        yaxis: {
+          tickAmount: 4,
+          floating: false,
+        
+          labels: {
+            style: {
+              colors: '#8e8da4',
+            },
+            offsetY: -7,
+            offsetX: 0,
+          },
+          axisBorder: {
+            show: false,
+          },
+          axisTicks: {
+            show: false
+          }
+        },
+        fill: {
+          opacity: 0.5
+        },
+        tooltip: {
+          x: {
+            format: "yyyy",
+          },
+          fixed: {
+            enabled: false,
+            position: 'topRight'
+          }
+        },
+        grid: {
+          yaxis: {
+            lines: {
+              offsetX: -30
+            }
+          },
+          padding: {
+            left: 20
+          }
+        }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+</script>
+@endpush

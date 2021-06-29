@@ -30,6 +30,8 @@ class Index extends Component
     //Theme
     protected $paginationTheme = 'bootstrap';
 
+    protected $listeners = ['renderPayments' => 'render'];
+
     public function mount($user = null, $client = null){
         $this->userPresent = User::find(Auth::id());
         if($user){

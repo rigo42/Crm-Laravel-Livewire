@@ -166,7 +166,7 @@
                                                                 <span class="navi-text">Editar</span>
                                                             </a>
                                                         </li>
-                                                        <li class="navi-item" onclick="event.preventDefault(); confirmDestroy({{ $expense->id }})">
+                                                        <li class="navi-item" onclick="event.preventDefault(); confirmDestroyExpense({{ $expense->id }})">
                                                             <a href="#" class="navi-link">
                                                                 <span class="navi-icon">
                                                                     <i class="fa fa-trash"></i>
@@ -218,10 +218,10 @@
         </div>
     @endif
 
-    @section('footer')
+    @push('footer')
         <script>
 
-            function confirmDestroy(id){
+            function confirmDestroyExpense(id){
                 swal.fire({
                     title: "¿Estas seguro?",
                     text: "No podrá recuperar este gasto",
@@ -242,5 +242,5 @@
             }
 
         </script>
-    @endsection
+    @endpush
 </div>

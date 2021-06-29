@@ -84,78 +84,104 @@
                                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                                         <a class="dropdown-item" href="{{ route('service.show', $service) }}"><i class="fa fa-eye mr-2"></i> Ver</a>
                                         <a class="dropdown-item" href="{{ route('service.edit', $service) }}"><i class="fa fa-pen mr-2"></i> Editar</a>
-                                        <a class="dropdown-item" href="#" onclick="event.preventDefault(); confirmDestroy({{ $service->id }})"><i class="fa fa-trash mr-2"></i> Eliminar</a>
+                                        <a class="dropdown-item" href="#" onclick="event.preventDefault(); confirmDestroyService({{ $service->id }})"><i class="fa fa-trash mr-2"></i> Eliminar</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!--end::Info-->
-                        <!--begin::Description-->
-                        <div class="mb-10 mt-5 ">{{ $service->note }}</div>
-                        <!--end::Description-->
-                        <!--begin::Data-->
-                        <div class="d-flex mb-5">
-                            <div class="d-flex align-items-center mr-7">
-                                <span class="font-weight-bold mr-4">Inicio</span>
+                        <div class="d-flex flex-wrap mt-14">
+                            <div class="mr-12 d-flex flex-column mb-7">
+                                <span class="d-block font-weight-bold mb-4">Inicio</span>
                                 <span class="btn btn-light-success btn-sm font-weight-bold btn-upper btn-text">{{ $service->start() }}</span>
                             </div>
-                            <div class="d-flex align-items-center">
-                                <span class="font-weight-bold mr-4">Vencimiento</span>
+                            <div class="mr-12 d-flex flex-column mb-7">
+                                <span class="d-block font-weight-bold mb-4">Vencimiento</span>
                                 <span class="btn btn-light-danger btn-sm font-weight-bold btn-upper btn-text">{{ $service->due() }}</span>
                             </div>
-                        </div>
-                        <!--end::Data-->
-                        <!--begin::Progress-->
-                        @if ($service->type == 'Proyecto')
-                            <div class="d-flex mb-5 align-items-center">
-                                <span class="d-block font-weight-bold mr-5">Progreso {{  $service->progressByProject() }}</span>
-                                <div class="d-flex flex-row-fluid align-items-center">
+                            @if ($service->type == 'Proyecto')
+                            <!--begin::Progress-->
+                            <div class="flex-row-fluid mb-7">
+                                <span class="d-block font-weight-bold mb-4">Progreso</span>
+                                <div class="d-flex align-items-center pt-2">
                                     <div class="progress progress-xs mt-2 mb-2 w-100">
                                         @if ($service->progressByProject() >= 60)
-                                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{ $service->progressByProject() }}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar bg-warning" role="progressbar" style="width: {{ $service->progressByProject() }}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                         @elseif($service->progressByProject() >= 30)
                                             <div class="progress-bar bg-warning" role="progressbar" style="width: {{ $service->progressByProject() }}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                         @else
                                             <div class="progress-bar bg-success" role="progressbar" style="width: {{ $service->progressByProject() }}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                         @endif
                                     </div>
-                                    <span class="ml-3 font-weight-bolder">{{ $service->progressByProject() }}%</span>
+                                    <span class="ml-3 font-weight-bolder">78%</span>
                                 </div>
                             </div>
-                        @else
-                            <div class="mb-2">
-                                <span class="font-weight-bold">Días restantes para el corte</span> <span class="label label-xl label-secondary mr-2"> {{ $service->progressByMohts() }}</span> <br>
-                                <span class="font-weight-bold">Día de corte</span> <span class="label label-xl label-secondary mr-2"> {{ $service->due_day }}</span>
+                            <!--end::Progress-->
+                            @else
+                                <div class="mb-2">
+                                    <span class="font-weight-bold">Días restantes para el corte</span> <span class="label label-xl label-secondary mr-2"> {{ $service->progressByMohts() }}</span> <br>
+                                    <span class="font-weight-bold">Día de corte</span> <span class="label label-xl label-secondary mr-2"> {{ $service->due_day }}</span>
+                                </div>
+                            @endif
+                        </div>
+
+                        <!--begin::Description-->
+                        <div class="mb-10 mt-5 ">{{ $service->note }}</div>
+                        <!--end::Description-->
+
+                        <!--end::Body-->
+                        <div class="d-flex flex-wrap">
+                            <!--begin: Item-->
+                            <div class="mr-12 d-flex flex-column mb-7">
+                                <span class="font-weight-bolder mb-4">Pagos</span>
+                                <span class="font-weight-bolder font-size-h5 pt-1">
+                                <span class="font-weight-bold text-dark-50">$</span>249,500</span>
                             </div>
-                        @endif
-                        <!--ebd::Progress-->
-                        @if ($service->users->count())
-                            <div class="d-flex flex-column flex-lg-fill float-left mb-7">
-                                <div class="symbol-group symbol-hover">
-                                    @foreach ($service->users as $user)
-                                        <div class="symbol symbol-30 symbol-circle" data-toggle="tooltip" title="" data-original-title="{{ $user->name }}">
-                                            <img 
-                                                alt="{{ $user->name }}" 
-                                                @if ($user->image)
-                                                    src="{{ Storage::url($user->image->url) }}" 
-                                                @else
-                                                    src="{{ asset('assets/media/users/blank.png') }}" 
+                            <!--end::Item-->
+                            <!--begin::Item-->
+                            <div class="mr-12 d-flex flex-column mb-7">
+                                <span class="font-weight-bolder mb-4">Gastos</span>
+                                <span class="font-weight-bolder font-size-h5 pt-1">
+                                <span class="font-weight-bold text-dark-50">$</span>439,500</span>
+                            </div>
+                            <!--end::Item-->
+                            <div class="mr-12 d-flex flex-column mb-7">
+                                <span class="font-weight-bolder mb-4">Colaboradores</span>
+                                <!--begin::Item-->
+                                @if ($service->users->count())
+                                <!--begin::Item-->
+                                    <div class="d-flex flex-column flex-lg-fill float-left mb-7">
+                                        <div class="symbol-group symbol-hover">
+                                            @foreach ($service->users as $user)
+                                                <div class="symbol symbol-30 symbol-circle" data-toggle="tooltip" title="" data-original-title="{{ $user->name }}">
+                                                    <img 
+                                                        alt="{{ $user->name }}" 
+                                                        @if ($user->image)
+                                                            src="{{ Storage::url($user->image->url) }}" 
+                                                        @else
+                                                            src="{{ asset('assets/media/users/blank.png') }}" 
+                                                        @endif
+                                                        >
+                                                </div>
+                                                @if ($loop->index == (8))
+                                                    <div class="symbol symbol-30 symbol-circle symbol-light">
+                                                        <span class="symbol-label font-weight-bold">{{ $service->users->count() - ($loop->index + 1) }}+</span>
+                                                    </div>
+                                                    @break
                                                 @endif
-                                                >
+                                            @endforeach
                                         </div>
-                                        @if ($loop->index == (8))
-                                            <div class="symbol symbol-30 symbol-circle symbol-light">
-                                                <span class="symbol-label font-weight-bold">{{ $role->users->count() - ($loop->index + 1) }}+</span>
-                                            </div>
-                                            @break
-                                        @endif
-                                    @endforeach
-                                </div>
+                                    </div>                                        
+                                @else 
+                                    <span class="font-size-lg m-1 badge badge-secondary">Ninguno usuario</span>
+                                @endif
                             </div>
-                        @endif
+                            <!--end::Item-->
+                        </div>
+                        <!--begin::Footer-->
+                        
                     </div>
-                    <!--end::Body-->
-                    <!--begin::Footer-->
+
                     <div class="card-footer d-flex align-items-center">
                         <div class="d-flex">
                             {{-- <div class="d-flex align-items-center mr-7">
@@ -188,7 +214,6 @@
                             <span class="badge badge-secondary">Usuario asignado eliminado</span>
                         @endif
                         
-                        {{-- <button type="button" class="btn btn-primary btn-sm text-uppercase font-weight-bolder mt-5 mt-sm-0  mr-sm-0 ml-sm-auto">details</button> --}}
                     </div>
                     <!--end::Footer-->
                 </div>
@@ -228,10 +253,10 @@
         
     @endif
 
-    @section('footer')
+    @push('footer')
     
         <script>
-            function confirmDestroy(id){
+            function confirmDestroyService(id){
                 swal.fire({
                     title: "¿Estas seguro?",
                     text: "No podrá recuperar este servicio y todas las facturas relacionadas, pagos y gastos.",
@@ -250,5 +275,5 @@
                 });
             }
         </Script>
-    @endsection
+    @endpush
 </div>

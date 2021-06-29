@@ -30,6 +30,7 @@ class SendEmail extends Component
                 'send_email' => true,
             ]);
             $this->alert('success', 'Correo enviado con exito');
+            $this->emit('renderPayments');
         }catch(Exception $e){
             $e->getMessage();
             $this->alert('error', 

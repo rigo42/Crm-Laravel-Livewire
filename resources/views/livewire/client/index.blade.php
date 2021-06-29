@@ -66,10 +66,21 @@
                                         <i class="ki ki-bold-more-hor"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                                        @can('cotizaciones')
+                                            <a class="dropdown-item" href="{{ route('quotation.create', ['client' => $client]) }}"><i class="fa fa-sticky-note mr-2"></i> Adjuntar cotización</a>
+                                        @endcan
+                                        @can('facturas')
+                                            <a class="dropdown-item" href="{{ route('invoice.create', ['client' => $client]) }}"><i class="fas fa-file-pdf mr-2"></i> Adjuntar factura</a>
+                                        @endcan
+                                        @can('pagos')
+                                            <a class="dropdown-item" href="{{ route('payment.create', ['client' => $client->id]) }}"><i class="fa fa-credit-card mr-2"></i> Generar un pago</a>
+                                        @endcan
+                                        @can('gastos')
+                                            <a class="dropdown-item" href="{{ route('expense.create', ['client' => $client->id]) }}"><i class="fa fa-calculator mr-2"></i> Generar un gasto</a>
+                                        @endcan
                                         <a class="dropdown-item" href="{{ route('client.show', $client) }}"><i class="fa fa-eye mr-2"></i> Ver</a>
                                         <a class="dropdown-item" href="{{ route('client.edit', $client) }}"><i class="fa fa-pen mr-2"></i> Editar</a>
                                         <a class="dropdown-item" href="#" onclick="event.preventDefault(); confirmDestroy({{ $client->id }})"><i class="fa fa-trash mr-2"></i> Eliminar</a>
-                                        <a class="dropdown-item" href="{{ route('quotation.create', ['client' => $client]) }}"><i class="fa fa-sticky-note mr-2"></i> Adjuntar cotización</a>
                                     </div>
                                 </div>
                             </div>
@@ -137,7 +148,7 @@
                                     <div class="d-flex flex-column ">
                                         <span class="font-weight-bolder font-size-sm ">Pagos</span>
                                         <span class="font-weight-bolder font-size-h5">
-                                        <span class="font-weight-bold ">$</span>249,500</span>
+                                        <span class="font-weight-bold ">{{ $client->paymentTotal() }}</span>
                                     </div>
                                 </div>
                                 <!--end: Item-->
@@ -149,7 +160,7 @@
                                     <div class="d-flex flex-column">
                                         <span class="font-weight-bolder font-size-sm">Gastos</span>
                                         <span class="font-weight-bolder font-size-h5">
-                                        <span class="font-weight-bold">$</span>164,700</span>
+                                        <span class="font-weight-bold">{{ $client->expenseTotal() }}</span>
                                     </div>
                                 </div>
                                 <!--end: Item-->

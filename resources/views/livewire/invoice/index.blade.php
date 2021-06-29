@@ -57,7 +57,7 @@
                                         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                                             <a class="dropdown-item" href="{{ route('invoice.show', $invoice) }}"><i class="fa fa-eye mr-2"></i> Ver</a>
                                             <a class="dropdown-item" href="{{ route('invoice.edit', $invoice) }}"><i class="fa fa-pen mr-2"></i> Editar</a>
-                                            <a class="dropdown-item" href="#" onclick="event.preventDefault(); confirmDestroy({{ $invoice->id }})"><i class="fa fa-trash mr-2"></i> Eliminar</a>
+                                            <a class="dropdown-item" href="#" onclick="event.preventDefault(); confirmDestroyInvoice({{ $invoice->id }})"><i class="fa fa-trash mr-2"></i> Eliminar</a>
                                         </div>
                                     </div>
                                 </div>
@@ -123,9 +123,9 @@
         
     @endif
 
-    @section('footer')
+    @push('footer')
         <script>
-            function confirmDestroy(id){
+            function confirmDestroyInvoice(id){
                 swal.fire({
                     title: "¿Estas seguro?",
                     text: "No podrás recuperar esta factura",
@@ -143,6 +143,6 @@
                     }
                 });
             }
-        </Script>
-    @endsection
+        </script>
+    @endpush
 </div>

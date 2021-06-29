@@ -156,7 +156,7 @@
                         @else
                             <span class="text-secondary font-weight-bold">Ninguno</span> <br>
                         @endif
-                        @if ($service->has_invoice)
+                        @if ($service->has_invoice && !$service->invoices->count())
                             <div class="d-block  mr-7">
                                 <a href="#" class="font-weight-bolder badge badge-info">Se require factura</a>
                             </div>
@@ -226,7 +226,7 @@
                                                     <i class="fa fa-users"></i>
                                                 </span>
                                             </span>
-                                            <span class="nav-text">Usuarios</span>
+                                            <span class="nav-text">Colaboradores</span>
                                         </a>
                                     </li>
                                 </ul>

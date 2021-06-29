@@ -50,9 +50,14 @@ class Form extends Component
     public function mount(Payment $payment, $method){
         $this->userPresent = User::find(Auth::user()->id);
         $this->payment = $payment;
-        $this->client = $payment->client ? Client::findOrFail($payment->client_id) : new Client();
         $this->method = $method;
-        $this->userId = $payment->user_id;       
+        $this->userId = $payment->user_id;    
+        $this->client = $payment->client ? Client::findOrFail($payment->client_id) : new Client();
+        
+        if(request()->client){
+            $this->client = Client::findOrFail(request()->client);
+            $this->payment->client_id = request()->client;
+        }
         
         foreach($this->payment->services as $service){
             array_push($this->serviceArray, "".$service->id."");

@@ -50,14 +50,13 @@ class Form extends Component
         $this->userPresent = User::find(Auth::user()->id);
         $this->expense = $expense;
         $this->method = $method;
+        $this->userId = $expense->user_id; 
+        $this->client = $expense->client ? Client::findOrFail($expense->client_id) : new Client();
 
-        if($expense->client_id){
-            $this->client = Client::findOrFail($expense->client_id);
-        }else{
-            $this->client = new Client();
+        if(request()->client){
+            $this->client = Client::findOrFail(request()->client);
+            $this->expense->client_id = request()->client;
         }
-        
-        $this->userId = $expense->user_id;        
 
         foreach($this->expense->services as $service){
             array_push($this->serviceArray, "".$service->id."");

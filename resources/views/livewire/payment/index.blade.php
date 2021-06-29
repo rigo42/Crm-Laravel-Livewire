@@ -173,7 +173,7 @@
                                                                 <span class="navi-text">Editar</span>
                                                             </a>
                                                         </li>
-                                                        <li class="navi-item" onclick="event.preventDefault(); confirmDestroy({{ $payment->id }})">
+                                                        <li class="navi-item" onclick="event.preventDefault(); confirmDestroyPayment({{ $payment->id }})">
                                                             <a href="#" class="navi-link">
                                                                 <span class="navi-icon">
                                                                     <i class="fa fa-trash"></i>
@@ -228,7 +228,7 @@
     @section('footer')
         <script>
 
-            function confirmDestroy(id){
+            function confirmDestroyPayment(id){
                 swal.fire({
                     title: "¿Estas seguro?",
                     text: "No podrá recuperar este pago",

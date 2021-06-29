@@ -57,7 +57,7 @@
                                         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                                             <a class="dropdown-item" href="{{ route('quotation.show', $quotation) }}"><i class="fa fa-eye mr-2"></i> Ver</a>
                                             <a class="dropdown-item" href="{{ route('quotation.edit', $quotation) }}"><i class="fa fa-pen mr-2"></i> Editar</a>
-                                            <a class="dropdown-item" href="#" onclick="event.preventDefault(); confirmDestroy({{ $quotation->id }})"><i class="fa fa-trash mr-2"></i> Eliminar</a>
+                                            <a class="dropdown-item" href="#" onclick="event.preventDefault(); confirmDestroyQuotation({{ $quotation->id }})"><i class="fa fa-trash mr-2"></i> Eliminar</a>
                                         </div>
                                     </div>
                                 </div>
@@ -123,9 +123,9 @@
         
     @endif
 
-    @section('footer')
+    @push('footer')
         <script>
-            function confirmDestroy(id){
+            function confirmDestroyQuotation(id){
                 swal.fire({
                     title: "¿Estas seguro?",
                     text: "No podrás recuperar esta cotización",
@@ -143,6 +143,6 @@
                     }
                 });
             }
-        </Script>
-    @endsection
+        </script>
+    @endpush
 </div>

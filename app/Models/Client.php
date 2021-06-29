@@ -32,4 +32,27 @@ class Client extends Model
     public function invoices(){
         return $this->hasMany(Invoice::class);
     }
+
+    public function payments(){
+        return $this->hasMany(Payment::class);
+    }
+
+    public function expenses(){
+        return $this->hasMany(Expense::class);
+    }
+
+    public function incomeByInvoiceTotal(){
+        $invoiceTotal = $this->invoices()->sum('total');
+        return '$'.number_format($invoiceTotal, 2, '.', ',');
+    }
+
+    public function paymentTotal(){
+        $payments = $this->payments()->sum('monto');
+        return '$'.number_format($payments, 2, '.', ',');
+    }
+    
+    public function expenseTotal(){
+        $expenses = $this->expenses()->sum('monto');
+        return '$'.number_format($expenses, 2, '.', ',');
+    }
 }
