@@ -22,6 +22,7 @@
         "laravel/ui": "^3.3",
         "livewire/livewire": "^2.4",
         "orangehill/iseed": "^3.0",
+        "spatie/laravel-backup": "^6.16",
         "spatie/laravel-permission": "^4.0"
     },
     "require-dev": {

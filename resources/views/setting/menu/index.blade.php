@@ -99,9 +99,9 @@
         </li>
 
         <li class="navi-item mb-2">
-            <a class="navi-link" href="#">
+            <a class="navi-link {{ active('setting.backup.*') }}" href="{{ route('setting.backup.index') }}">
                 <span class="navi-text text-dark-50 font-size-h5 font-weight-bold">
-                    <i class="fa fa-database text-dark mr-2"></i> Backup
+                    <i class="fa fa-database text-dark mr-2"></i> Copias de seguridad
                 </span>
             </a>
         </li>

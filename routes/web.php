@@ -9,6 +9,7 @@ use App\Http\Controllers\Prospect\ProspectController;
 use App\Http\Controllers\Quotation\QuotationController;
 use App\Http\Controllers\Service\ServiceController;
 use App\Http\Controllers\Setting\AccountController;
+use App\Http\Controllers\Setting\BackupController;
 use App\Http\Controllers\Setting\CategoryExpenseController;
 use App\Http\Controllers\Setting\CategoryServiceController;
 use App\Http\Controllers\Setting\PaymentTypeController;
@@ -44,6 +45,8 @@ Route::prefix('ajustes')->group(function () {
     Route::resource('tipos-de-pagos', PaymentTypeController::class)->parameters(['tipos-de-pagos' => 'paymentType'])->names('setting.payment-type');
     //Accounts
     Route::resource('cuentas', AccountController::class)->parameters(['cuentas' => 'account'])->names('setting.account');
+    //Backup
+    Route::resource('copias-de-seguridad', BackupController::class)->parameters(['copia-de-seguridad' => 'backup'])->names('setting.backup');
 });
 
 //User
