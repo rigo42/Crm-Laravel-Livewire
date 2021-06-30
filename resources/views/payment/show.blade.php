@@ -72,7 +72,7 @@
                                             @endif
                                             ></div>
                                     </div>
-                                    <div class="text-muted mb-2">{{ $payment->dateToString() }}</div>
+                                    <div class="text-muted mb-2">{{ $payment->client->name }} {{ $payment->client->company ? '('.$payment->client->company.')' : '' }}</div>
                                 </div>
                                 <div class="form-group row my-2">
                                     <label class="col-4 col-form-label">Tipo de pago:</label>

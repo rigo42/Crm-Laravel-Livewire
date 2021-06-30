@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Payment;
 
 use App\Models\Client;
 use App\Models\Payment;
+use App\Models\Service;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -21,6 +22,8 @@ class Index extends Component
     public $user;
     //Client passed by parameter
     public $client;
+    //Service passed by parameter
+    public $service;
 
     //Tools
     public $perPage = 10;
@@ -32,12 +35,15 @@ class Index extends Component
 
     protected $listeners = ['renderPayments' => 'render'];
 
-    public function mount($user = null, $client = null){
+    public function mount($user = null, $client = null, $service = null){
         $this->userPresent = User::find(Auth::id());
         if($user){
             $this->user = User::findOrFail($user->id);
         }else if($client){
             $this->client = Client::findOrFail($client->id);
+        }
+        else if($service){
+            $this->service = Service::findOrFail($service->id);
         }
         
     }
@@ -59,6 +65,14 @@ class Index extends Component
         }elseif($this->client){
             $count = $count->where('client_id', $this->client->id);
             $payments = $payments->where('client_id', $this->client->id);
+
+        }elseif($this->service){
+            $count = $count->whereHas('services', function($query){
+                $query->has('payments')->where('service_id', $this->service->id);
+            });
+            $payments = $payments->whereHas('services', function($query){
+                $query->has('payments')->where('service_id', $this->service->id);
+            });
 
         }elseif(!$this->userPresent->hasRole('Administrador')){
             $count = $count->where('user_id', $this->userPresent->id);

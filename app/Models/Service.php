@@ -37,6 +37,21 @@ class Service extends Model
         return $this->belongsToMany(Expense::class)->withTimestamps();
     }
 
+    public function incomeByInvoiceTotal(){
+        $invoiceTotal = $this->invoices()->sum('total');
+        return '$'.number_format($invoiceTotal, 2, '.', ',');
+    }
+
+    public function paymentTotal(){
+        $payments = $this->payments()->sum('monto');
+        return '$'.number_format($payments, 2, '.', ',');
+    }
+    
+    public function expenseTotal(){
+        $expenses = $this->expenses()->sum('monto');
+        return '$'.number_format($expenses, 2, '.', ',');
+    }
+
     public function priceToString(){
         return '$'.number_format($this->price, 2, '.', ',');
     }

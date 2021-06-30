@@ -29,10 +29,12 @@
                         <div class="ribbon-target bg-danger" style="top: -2px; right: 20px;">Finalizado</div>
                     @endif
                     <div class="card-body">
-                        <div class="d-flex">
-                            <!--begin: Pic-->
-                            <div class="flex-shrink-0 mr-7 mt-lg-0 mt-3">
-                                <div class="symbol symbol-50 symbol-lg-120">
+
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <!--begin: Pic-->
+                                <div class="flex-shrink-0 mr-7 mt-lg-0 mt-3">
+
                                     <img class="img-fluid" alt="{{ $service->client->name }}" 
                                         @if ($service->client->image)
                                             src="{{ Storage::url($service->client->image->url) }}" 
@@ -40,11 +42,24 @@
                                             src="{{ asset('assets/media/users/blank.png') }}" 
                                         @endif
                                     />
+    
+                                    <div class="d-block">
+                                        <span class="text-primary font-weight-bold">{{ $service->name }}</span> <br>
+                                        @if ($service->categoryService)
+                                            <span class="text-secondary" style="font-size: 10px;">{{ $service->categoryService->name }}</span> <br>
+                                        @else
+                                            <span class="text-secondary font-weight-bold">Ninguno</span> <br>
+                                        @endif
+                                        @if ($service->has_invoice && !$service->invoices->count())
+                                            <div class="d-block  mr-7">
+                                                <a href="#" class="font-weight-bolder badge badge-info">Se require factura</a>
+                                            </div>
+                                        @endif
+                                    </div>
+                                    
                                 </div>
                             </div>
-                            <!--end: Pic-->
-                            <!--begin: Info-->
-                            <div class="flex-grow-1">
+                            <div class="col-lg-9">
                                 <!--begin: Title-->
                                 <div class="d-flex align-items-center justify-content-between flex-wrap">
                                     <div class="mr-3">
@@ -90,7 +105,7 @@
                                         <!--end::Contacts-->
                                     </div>
                                     <div class="my-lg-0 my-1">
-                                         <!--start::Toolbar-->
+                                        <!--start::Toolbar-->
                                         <div class="d-flex justify-content-end">
                                             <div class="dropdown dropdown-inline" data-toggle="tooltip"  data-placement="left">
                                                 <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -104,11 +119,11 @@
                                     </div>
                                 </div>
                                 <!--end: Title-->
-                                
+    
                                 <!--begin: Content-->
                                 <div class="d-flex align-items-center flex-wrap justify-content-between">
                                     <div class="flex-grow-1 font-weight-bold text-dark-50 py-5 py-lg-2 mr-5">{{ $service->note }}</div>
-                                   
+                                
                                     <div class="d-flex flex-wrap align-items-center py-2">
                                         <div class="d-flex align-items-center mr-10">
                                             <div class="mr-6">
@@ -141,33 +156,60 @@
                                                 <span class="btn btn-sm btn-text btn-light-dark text-uppercase font-weight-bold">{{ $service->due_day }}</span>
                                             </div>
                                             @endif
-
+    
                                         </div>
                                     </div>
                                 </div>
                                 <!--end: Content-->
+    
+                                <!-- Info payments -->
+                                <div class="d-flex align-items-center justify-content-start flex-wrap my-4">
+                                    <!--begin: Item-->
+                                    <div class="mr-1 col-lg-3 col-auto text-dark border border-dashed rounded mb-4">
+                                        <span class="mr-4">
+                                            <i class="flaticon-price-tag icon-2x font-weight-bold text-dark"></i>
+                                        </span>
+                                        <div class="d-flex flex-column">
+                                            <span class="font-weight-bolder font-size-sm">Ingresos por facturas</span>
+                                            <span class="font-weight-bolder font-size-h5">
+                                            <span class="font-weight-bold">{{ $service->incomeByInvoiceTotal() }}</span>
+                                        </div>
+                                    </div>
+                                    <!--end: Item-->
+                                    <!--begin: Item-->
+                                    <div class="mr-1 col-lg-2 col-auto text-success border border-dashed rounded mb-4">
+                                        <span class="mr-4">
+                                            <i class="flaticon-piggy-bank icon-2x font-weight-bold text-success"></i>
+                                        </span>
+                                        <div class="d-flex flex-column">
+                                            <span class="font-weight-bolder font-size-sm ">Pagos</span>
+                                            <span class="font-weight-bolder font-size-h5">
+                                            <span class="font-weight-bold ">{{ $service->paymentTotal() }}</span>
+                                        </div>
+                                    </div>
+                                    <!--end: Item-->
+                                    <!--begin: Item-->
+                                    <div class="mr-1 col-lg-2 col-auto text-danger border border-dashed rounded mb-4">
+                                        <span class="mr-4">
+                                            <i class="flaticon-confetti icon-2x font-weight-bold text-danger"></i>
+                                        </span>
+                                        <div class="d-flex flex-column">
+                                            <span class="font-weight-bolder font-size-sm">Gastos</span>
+                                            <span class="font-weight-bolder font-size-h5">
+                                            <span class="font-weight-bold">{{ $service->expenseTotal() }}</span>
+                                        </div>
+                                    </div>
+                                    <!--end: Item-->
+                                </div>
                             </div>
-                            <!--end: Info-->
                         </div>
-
-                        <span class="text-primary font-weight-bold">{{ $service->name }}</span> <br>
-                        @if ($service->categoryService)
-                            <span class="text-secondary" style="font-size: 10px;">{{ $service->categoryService->name }}</span> <br>
-                        @else
-                            <span class="text-secondary font-weight-bold">Ninguno</span> <br>
-                        @endif
-                        @if ($service->has_invoice && !$service->invoices->count())
-                            <div class="d-block  mr-7">
-                                <a href="#" class="font-weight-bolder badge badge-info">Se require factura</a>
-                            </div>
-                        @endif
                        
                         <div class="separator separator-solid my-7"></div>
 
                         <div class="d-flex align-items-center justify-content-start flex-wrap mt-5">
                             <div class="card-toolbar">
                                 <ul class="nav nav-tabs nav-tabs-space-lg nav-tabs-line nav-bold nav-tabs-line-3x" role="tablist">
-                                    <li class="nav-item">
+                                    {{-- <li class="nav-item">
                                         <a class="nav-link active" data-toggle="tab" href="#kt_apps_contacts_view_tab_1">
                                             <span class="nav-icon mr-2">
                                                 <span class="svg-icon mr-3">
@@ -176,9 +218,9 @@
                                             </span>
                                             <span class="nav-text">Estadisticas</span>
                                         </a>
-                                    </li>
+                                    </li> --}}
                                     <li class="nav-item mr-3">
-                                        <a class="nav-link" data-toggle="tab" href="#kt_apps_contacts_view_tab_2">
+                                        <a class="nav-link active" data-toggle="tab" href="#kt_apps_contacts_view_tab_2">
                                             <span class="nav-icon mr-2">
                                                 <span class="svg-icon mr-3">
                                                     <i class="fa fa-credit-card"></i>
@@ -240,8 +282,7 @@
                 <div class="card card-custom gutter-b">
                     <div class="card-body px-0">
                         <div class="tab-content ">
-                            <!--begin::Tab Content-->
-                            <div class="tab-pane active" id="kt_apps_contacts_view_tab_1" role="tabpanel">
+                            {{-- <div class="tab-pane active" id="kt_apps_contacts_view_tab_1" role="tabpanel">
                                 <div class="container">
                                     
                                     <div class="card-body">
@@ -400,150 +441,12 @@
                                     </div>
 
                                 </div>
+                            </div> --}}
+                            <div class="tab-pane active" id="kt_apps_contacts_view_tab_2" role="tabpanel">
+                                @livewire('payment.index', ['service' => $service])
                             </div>
-                            <!--end::Tab Content-->
-                            <!--begin::Tab Content-->
-                            <div class="tab-pane" id="kt_apps_contacts_view_tab_2" role="tabpanel">
-                                <!--begin::Body-->
-                                <div class="card-body pt-0 pb-3">
-                                    <div class="my-3">
-                                        <span class="text-muted font-weight-bold font-size-sm">(15) pago(s)</span>
-                                    </div>
-                                    <!--begin::Table-->
-                                    <div class="table-responsive">
-                                        <table class="table table-head-custom table-head-bg table-borderless table-vertical-center">
-                                            <thead>
-                                                <tr class="text-uppercase">
-                                                    <th>Monto</th>
-                                                    <th>Fecha de pago</th>
-                                                    <th>Servicio</th>
-                                                    <th>Nota personal</th>
-                                                    <th>Acciones</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <span class="text-dark-75 font-weight-bolder d-block font-size-lg">$800</span>
-                                                    </td>
-                                                    <td>
-                                                        <span class="text-dark-75 font-weight-bolder d-block font-size-lg">31 de julio 2021</span>
-                                                    </td>
-                                                    <td>
-                                                        <span class="text-dark-75 font-weight-bolder d-block font-size-lg ">Página web</span>
-                                                    </td>
-                                                    <td>
-                                                        <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Esta es una nota personal</span>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex justify-content-end">
-                                                            <div class="dropdown dropdown-inline" data-toggle="tooltip" title="" data-placement="left"  style="position: initial!important;">
-                                                                <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                    <i class="ki ki-bold-more-hor"></i>
-                                                                </a>
-                                                                <div class="dropdown-menu dropdown-menu-md dropdown-menu-right" style="position: inherit;">
-                                                                    <!--begin::Navigation-->
-                                                                    <ul class="navi navi-hover py-5">
-                                                                        <li class="navi-item">
-                                                                            <a href="#" class="navi-link">
-                                                                                <span class="navi-icon">
-                                                                                    <i class="fa fa-pen"></i>
-                                                                                </span>
-                                                                                <span class="navi-text">Editar</span>
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="navi-item">
-                                                                            <a href="#" class="navi-link">
-                                                                                <span class="navi-icon">
-                                                                                    <i class="fa fa-eye"></i>
-                                                                                </span>
-                                                                                <span class="navi-text">Ver</span>
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                    <!--end::Navigation-->
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!--end::Table-->
-                                </div>
-                            </div>
-                            <!--end::Tab Content-->
-                            <!--begin::Tab Content-->
                             <div class="tab-pane" id="kt_apps_contacts_view_tab_3" role="tabpanel">
-                                <!--begin::Body-->
-                                <div class="card-body pt-0 pb-3">
-                                    <div class="my-3">
-                                        <span class="text-muted font-weight-bold font-size-sm">(15) gasto(s)</span>
-                                    </div>
-                                    <!--begin::Table-->
-                                    <div class="table-responsive">
-                                        <table class="table table-head-custom table-head-bg table-borderless table-vertical-center">
-                                            <thead>
-                                                <tr class="text-uppercase">
-                                                    <th>Monto</th>
-                                                    <th>Fecha de gasto</th>
-                                                    <th>Categoría</th>
-                                                    <th>Nota personal</th>
-                                                    <th>Acciones</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <span class="text-dark-75 font-weight-bolder d-block font-size-lg">$800</span>
-                                                    </td>
-                                                    <td>
-                                                        <span class="text-dark-75 font-weight-bolder d-block font-size-lg">31 de julio 2021</span>
-                                                    </td>
-                                                    <td>
-                                                        <span class="text-dark-75 font-weight-bolder d-block font-size-lg ">Página web</span>
-                                                    </td>
-                                                    <td>
-                                                        <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Esta es una nota personal</span>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex justify-content-end">
-                                                            <div class="dropdown dropdown-inline" data-toggle="tooltip" title="" data-placement="left"  style="position: initial!important;">
-                                                                <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                    <i class="ki ki-bold-more-hor"></i>
-                                                                </a>
-                                                                <div class="dropdown-menu dropdown-menu-md dropdown-menu-right" style="position: inherit;">
-                                                                    <!--begin::Navigation-->
-                                                                    <ul class="navi navi-hover py-5">
-                                                                        <li class="navi-item">
-                                                                            <a href="#" class="navi-link">
-                                                                                <span class="navi-icon">
-                                                                                    <i class="fa fa-pen"></i>
-                                                                                </span>
-                                                                                <span class="navi-text">Editar</span>
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="navi-item">
-                                                                            <a href="#" class="navi-link">
-                                                                                <span class="navi-icon">
-                                                                                    <i class="fa fa-eye"></i>
-                                                                                </span>
-                                                                                <span class="navi-text">Ver</span>
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                    <!--end::Navigation-->
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!--end::Table-->
-                                </div>
+                                @livewire('expense.index', ['service' => $service])
                             </div>
                             <div class="tab-pane" id="kt_apps_contacts_view_tab_4" role="tabpanel">
                                 <div class="container">
@@ -559,12 +462,9 @@
                                     @livewire('invoice.index', ['service' => $service], key($service->id))
                                 </div>
                             </div>
-                            <!--end::Tab Content-->
-                            <!--begin::Tab Content-->
                             <div class="tab-pane" id="kt_apps_contacts_view_tab_6" role="tabpanel">
                                 @livewire('service.user', ['service' => $service], key($service->id))
                             </div>
-                            <!--end::Tab Content-->
                         </div>
                     </div>
                 </div>

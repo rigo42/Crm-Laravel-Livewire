@@ -113,7 +113,7 @@
                                             <div class="progress-bar bg-success" role="progressbar" style="width: {{ $service->progressByProject() }}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                         @endif
                                     </div>
-                                    <span class="ml-3 font-weight-bolder">78%</span>
+                                    <span class="ml-3 font-weight-bolder">{{ $service->progressByProject() }}%</span>
                                 </div>
                             </div>
                             <!--end::Progress-->
@@ -132,17 +132,23 @@
                         <!--end::Body-->
                         <div class="d-flex flex-wrap">
                             <!--begin: Item-->
-                            <div class="mr-12 d-flex flex-column mb-7">
-                                <span class="font-weight-bolder mb-4">Pagos</span>
+                            <div class="mr-12 d-flex flex-column mb-7 text-dark">
+                                <span class="font-weight-bolder mb-4">Ingresos por factura</span>
                                 <span class="font-weight-bolder font-size-h5 pt-1">
-                                <span class="font-weight-bold text-dark-50">$</span>249,500</span>
+                                <span class="font-weight-bold">{{ $service->incomeByInvoiceTotal() }}</span>
                             </div>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <div class="mr-12 d-flex flex-column mb-7">
+                            <div class="mr-12 d-flex flex-column mb-7 text-success">
+                                <span class="font-weight-bolder mb-4">Pagos</span>
+                                <span class="font-weight-bolder font-size-h5 pt-1">
+                                <span class="font-weight-bold">{{ $service->paymentTotal() }}</span>
+                            </div>
+                             <!--begin::Item-->
+                             <div class="mr-12 d-flex flex-column mb-7 text-danger">
                                 <span class="font-weight-bolder mb-4">Gastos</span>
                                 <span class="font-weight-bolder font-size-h5 pt-1">
-                                <span class="font-weight-bold text-dark-50">$</span>439,500</span>
+                                <span class="font-weight-bold">{{ $service->expenseTotal() }}</span>
                             </div>
                             <!--end::Item-->
                             <div class="mr-12 d-flex flex-column mb-7">

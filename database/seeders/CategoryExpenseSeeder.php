@@ -23,5 +23,17 @@ class CategoryExpenseSeeder extends Seeder
         CategoryExpense::create([
             'name' => 'Cumpleaños',
         ]);
+        CategoryExpense::create([
+            'name' => 'Hosting y Dominio',
+        ]);
+        CategoryExpense::create([
+            'name' => 'Hosting',
+        ]);
+        CategoryExpense::create([
+            'name' => 'Dominio',
+        ]);
+        CategoryExpense::create([
+            'name' => 'Plantilla web',
+        ]);
     }
 }

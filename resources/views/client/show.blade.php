@@ -253,7 +253,7 @@
                             <div class="card-header card-header-tabs-line">
                                 <div class="card-toolbar">
                                     <ul class="nav nav-tabs nav-tabs-space-lg nav-tabs-line nav-bold nav-tabs-line-3x" role="tablist">
-                                        <li class="nav-item">
+                                        {{-- <li class="nav-item">
                                             <a class="nav-link active" data-toggle="tab" href="#kt_apps_contacts_view_tab_1">
                                                 <span class="nav-icon mr-2">
                                                     <span class="svg-icon mr-3">
@@ -262,9 +262,9 @@
                                                 </span>
                                                 <span class="nav-text">Estadisticas</span>
                                             </a>
-                                        </li>
+                                        </li> --}}
                                         <li class="nav-item mr-3">
-                                            <a class="nav-link" data-toggle="tab" href="#kt_apps_contacts_view_tab_2">
+                                            <a class="nav-link active" data-toggle="tab" href="#kt_apps_contacts_view_tab_2">
                                                 <span class="nav-icon mr-2">
                                                     <span class="svg-icon mr-3">
                                                         <i class="fa fa-credit-card"></i>
@@ -321,50 +321,11 @@
                             <!--begin::Body-->
                             <div class="card-body px-0">
                                 <div class="tab-content ">
-                                    <div class="tab-pane active" id="kt_apps_contacts_view_tab_1" role="tabpanel">
-                                        <!--begin::Charts Widget 4-->
-                                        <div class="card card-custom card-stretch gutter-b">
-                                          <!--begin::Header-->
-                                          <div class="card-header h-auto border-0">
-                                            <div class="card-title py-5">
-                                              <h3 class="card-label">
-                                                <span class="d-block text-dark font-weight-bolder">{{ $client->name }}</span>
-                                              </h3>
-                                            </div>
-                                            <div class="card-toolbar">
-                                              <ul class="nav nav-pills nav-pills-sm nav-dark-75" role="tablist">
-                                                <li class="nav-item">
-                                                  <a class="nav-link py-2 px-4" data-toggle="tab" href="#kt_charts_widget_2_chart_tab_1">
-                                                    <span class="nav-text font-size-sm">Month</span>
-                                                  </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                  <a class="nav-link py-2 px-4" data-toggle="tab" href="#kt_charts_widget_2_chart_tab_2">
-                                                    <span class="nav-text font-size-sm">Week</span>
-                                                  </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                  <a class="nav-link py-2 px-4 active" data-toggle="tab" href="#kt_charts_widget_2_chart_tab_3">
-                                                    <span class="nav-text font-size-sm">Day</span>
-                                                  </a>
-                                                </li>
-                                              </ul>
-                                            </div>
-                                          </div>
-                                          <!--end::Header-->
-                                          <!--begin::Body-->
-                                          <div class="card-body">
-                                            <div class="container">
-                                                <div id="chart"></div>
-                                                @livewire('client.statistic')
-                                            </div>
-                                          </div>
-                                          <!--end::Body-->
-                                        </div>
-                                        <!--end::Charts Widget 4-->
-                                    </div>
+                                    {{-- <div class="tab-pane active" id="kt_apps_contacts_view_tab_1" role="tabpanel">
 
-                                    <div class="tab-pane" id="kt_apps_contacts_view_tab_2" role="tabpanel">
+                                    </div> --}}
+
+                                    <div class="tab-pane active" id="kt_apps_contacts_view_tab_2" role="tabpanel">
                                         @livewire('payment.index', ['client' => $client])
                                     </div>
                                     
@@ -377,11 +338,7 @@
                                     </div>
                                     
                                     <div class="tab-pane" id="kt_apps_contacts_view_tab_5" role="tabpanel">
-                                        <div class="container">
-                                            <div class="row">
-                                                @livewire('invoice.index', ['client' => $client], key($client->id))
-                                            </div>
-                                        </div>
+                                        @livewire('invoice.index', ['client' => $client], key($client->id))
                                     </div>
                                     
                                     <div class="tab-pane" id="kt_apps_contacts_view_tab_6" role="tabpanel">
@@ -400,248 +357,3 @@
         </div>
     </div>
 @endsection
-
-@push('footer')
-<script>
-  var options = {
-          series: [{
-          name: 'north',
-          data: [{
-              x: 1996,
-              y: 322
-            },
-            {
-              x: 1997,
-              y: 324
-            },
-            {
-              x: 1998,
-              y: 329
-            },
-            {
-              x: 1999,
-              y: 342
-            },
-            {
-              x: 2000,
-              y: 348
-            },
-            {
-              x: 2001,
-              y: 334
-            },
-            {
-              x: 2002,
-              y: 325
-            },
-            {
-              x: 2003,
-              y: 316
-            },
-            {
-              x: 2004,
-              y: 318
-            },
-            {
-              x: 2005,
-              y: 330
-            },
-            {
-              x: 2006,
-              y: 355
-            },
-            {
-              x: 2007,
-              y: 366
-            },
-            {
-              x: 2008,
-              y: 337
-            },
-            {
-              x: 2009,
-              y: 352
-            },
-            {
-              x: 2010,
-              y: 377
-            },
-            {
-              x: 2011,
-              y: 383
-            },
-            {
-              x: 2012,
-              y: 344
-            },
-            {
-              x: 2013,
-              y: 366
-            },
-            {
-              x: 2014,
-              y: 389
-            },
-            {
-              x: 2015,
-              y: 334
-            }
-          ]
-        }, {
-          name: 'south',
-          data: [
-            {
-              x: 1996,
-              y: 162
-            },
-            {
-              x: 1997,
-              y: 90
-            },
-            {
-              x: 1998,
-              y: 50
-            },
-            {
-              x: 1999,
-              y: 77
-            },
-            {
-              x: 2000,
-              y: 35
-            },
-            {
-              x: 2001,
-              y: -45
-            },
-            {
-              x: 2002,
-              y: -88
-            },
-            {
-              x: 2003,
-              y: -120
-            },
-            {
-              x: 2004,
-              y: -156
-            },
-            {
-              x: 2005,
-              y: -123
-            },
-            {
-              x: 2006,
-              y: -88
-            },
-            {
-              x: 2007,
-              y: -66
-            },
-            {
-              x: 2008,
-              y: -45
-            },
-            {
-              x: 2009,
-              y: -29
-            },
-            {
-              x: 2010,
-              y: -45
-            },
-            {
-              x: 2011,
-              y: -88
-            },
-            {
-              x: 2012,
-              y: -132
-            },
-            {
-              x: 2013,
-              y: -146
-            },
-            {
-              x: 2014,
-              y: -169
-            },
-            {
-              x: 2015,
-              y: -184
-            }
-          ]
-        }],
-          chart: {
-          type: 'area',
-          height: 350
-        },
-        dataLabels: {
-          enabled: false
-        },
-        stroke: {
-          curve: 'straight'
-        },
-        
-        title: {
-          text: 'Area with Negative Values',
-          align: 'left',
-          style: {
-            fontSize: '14px'
-          }
-        },
-        xaxis: {
-          type: 'datetime',
-          axisBorder: {
-            show: false
-          },
-          axisTicks: {
-            show: false
-          }
-        },
-        yaxis: {
-          tickAmount: 4,
-          floating: false,
-        
-          labels: {
-            style: {
-              colors: '#8e8da4',
-            },
-            offsetY: -7,
-            offsetX: 0,
-          },
-          axisBorder: {
-            show: false,
-          },
-          axisTicks: {
-            show: false
-          }
-        },
-        fill: {
-          opacity: 0.5
-        },
-        tooltip: {
-          x: {
-            format: "yyyy",
-          },
-          fixed: {
-            enabled: false,
-            position: 'topRight'
-          }
-        },
-        grid: {
-          yaxis: {
-            lines: {
-              offsetX: -30
-            }
-          },
-          padding: {
-            left: 20
-          }
-        }
-    };
-
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
-        chart.render();
-</script>
-@endpush

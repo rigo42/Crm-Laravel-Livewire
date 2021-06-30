@@ -31,9 +31,9 @@ class ComposerStaticInita3e789a14c26dc226e183697307902ee
         'c7a3c339e7e14b60e06a2d7fcce9476b' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Events/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        '40275907c8566c390185147049ef6e5d' => __DIR__ . '/..' . '/livewire/livewire/src/helpers.php',
         '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         '9cdd7b9056abc3081735233ba9dd9c7f' => __DIR__ . '/..' . '/facade/flare-client-php/src/helpers.php',
-        '40275907c8566c390185147049ef6e5d' => __DIR__ . '/..' . '/livewire/livewire/src/helpers.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
@@ -183,6 +183,7 @@ class ComposerStaticInita3e789a14c26dc226e183697307902ee
         'A' => 
         array (
             'Asm89\\Stack\\' => 12,
+            'Asantibanez\\LivewireCharts\\' => 27,
             'App\\' => 4,
         ),
     );
@@ -519,6 +520,10 @@ class ComposerStaticInita3e789a14c26dc226e183697307902ee
         array (
             0 => __DIR__ . '/..' . '/asm89/stack-cors/src',
         ),
+        'Asantibanez\\LivewireCharts\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/asantibanez/livewire-charts/src',
+        ),
         'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
@@ -640,6 +645,27 @@ class ComposerStaticInita3e789a14c26dc226e183697307902ee
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'Asantibanez\\LivewireCharts\\Charts\\LivewireAreaChart' => __DIR__ . '/..' . '/asantibanez/livewire-charts/src/Charts/LivewireAreaChart.php',
+        'Asantibanez\\LivewireCharts\\Charts\\LivewireColumnChart' => __DIR__ . '/..' . '/asantibanez/livewire-charts/src/Charts/LivewireColumnChart.php',
+        'Asantibanez\\LivewireCharts\\Charts\\LivewireLineChart' => __DIR__ . '/..' . '/asantibanez/livewire-charts/src/Charts/LivewireLineChart.php',
+        'Asantibanez\\LivewireCharts\\Charts\\LivewirePieChart' => __DIR__ . '/..' . '/asantibanez/livewire-charts/src/Charts/LivewirePieChart.php',
+        'Asantibanez\\LivewireCharts\\Facades\\LivewireCharts' => __DIR__ . '/..' . '/asantibanez/livewire-charts/src/Facades/LivewireCharts.php',
+        'Asantibanez\\LivewireCharts\\LivewireCharts' => __DIR__ . '/..' . '/asantibanez/livewire-charts/src/LivewireCharts.php',
+        'Asantibanez\\LivewireCharts\\LivewireChartsServiceProvider' => __DIR__ . '/..' . '/asantibanez/livewire-charts/src/LivewireChartsServiceProvider.php',
+        'Asantibanez\\LivewireCharts\\Models\\AreaChartModel' => __DIR__ . '/..' . '/asantibanez/livewire-charts/src/Models/AreaChartModel.php',
+        'Asantibanez\\LivewireCharts\\Models\\BaseChartModel' => __DIR__ . '/..' . '/asantibanez/livewire-charts/src/Models/BaseChartModel.php',
+        'Asantibanez\\LivewireCharts\\Models\\ColumnChartModel' => __DIR__ . '/..' . '/asantibanez/livewire-charts/src/Models/ColumnChartModel.php',
+        'Asantibanez\\LivewireCharts\\Models\\HasAnimation' => __DIR__ . '/..' . '/asantibanez/livewire-charts/src/Models/HasAnimation.php',
+        'Asantibanez\\LivewireCharts\\Models\\HasAxis' => __DIR__ . '/..' . '/asantibanez/livewire-charts/src/Models/HasAxis.php',
+        'Asantibanez\\LivewireCharts\\Models\\HasColors' => __DIR__ . '/..' . '/asantibanez/livewire-charts/src/Models/HasColors.php',
+        'Asantibanez\\LivewireCharts\\Models\\HasDataLabels' => __DIR__ . '/..' . '/asantibanez/livewire-charts/src/Models/HasDataLabels.php',
+        'Asantibanez\\LivewireCharts\\Models\\HasGrid' => __DIR__ . '/..' . '/asantibanez/livewire-charts/src/Models/HasGrid.php',
+        'Asantibanez\\LivewireCharts\\Models\\HasLegend' => __DIR__ . '/..' . '/asantibanez/livewire-charts/src/Models/HasLegend.php',
+        'Asantibanez\\LivewireCharts\\Models\\HasSparkline' => __DIR__ . '/..' . '/asantibanez/livewire-charts/src/Models/HasSparkline.php',
+        'Asantibanez\\LivewireCharts\\Models\\HasStroke' => __DIR__ . '/..' . '/asantibanez/livewire-charts/src/Models/HasStroke.php',
+        'Asantibanez\\LivewireCharts\\Models\\HasTitle' => __DIR__ . '/..' . '/asantibanez/livewire-charts/src/Models/HasTitle.php',
+        'Asantibanez\\LivewireCharts\\Models\\LineChartModel' => __DIR__ . '/..' . '/asantibanez/livewire-charts/src/Models/LineChartModel.php',
+        'Asantibanez\\LivewireCharts\\Models\\PieChartModel' => __DIR__ . '/..' . '/asantibanez/livewire-charts/src/Models/PieChartModel.php',
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Cors.php',
         'Asm89\\Stack\\CorsService' => __DIR__ . '/..' . '/asm89/stack-cors/src/CorsService.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
