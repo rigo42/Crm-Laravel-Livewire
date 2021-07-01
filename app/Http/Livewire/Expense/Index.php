@@ -87,7 +87,13 @@ class Index extends Component
                                     })
                                     ->orWhereHas('client', function($query){
                                         $query->where('company', 'LIKE', "%{$this->search}%");
-                                    });
+                                    })
+                                    ->orWhereHas('categoryExpense', function($query){
+                                        $query->where('name', 'LIKE', "%{$this->search}%");
+                                    })
+                                    ->orWhere('note', 'LIKE', "%{$this->search}%")
+                                    ->where('concept', 'LIKE', "%{$this->search}%");                              
+                                
         }
 
         $count = $count->count();

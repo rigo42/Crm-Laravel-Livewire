@@ -54,6 +54,8 @@
                                 <th>Nombre</th>
                                 <th>Tipo</th>
                                 <th>Pagos</th>
+                                <th>Gastos</th>
+                                <th>Saldo</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -64,11 +66,19 @@
                                     <td><span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{ $account->type }}</span></td>
                                     <td>
                                         @if ($account->payments)
-                                            <span class="font-weight-bolder font-size-lg badge badge-success">{{ $account->payments->count() }}</span>
+                                            <span class="font-weight-bolder font-size-lg badge badge-success">{{ $account->paymentTotal() }}</span>
                                         @else
                                             <span class="font-size-lg badge badge-secondary">Ninguno</span>
                                         @endif
                                     </td>
+                                    <td>
+                                        @if ($account->expenses)
+                                            <span class="font-weight-bolder font-size-lg badge badge-danger">{{ $account->expenseTotal() }}</span>
+                                        @else
+                                            <span class="font-size-lg badge badge-secondary">Ninguno</span>
+                                        @endif
+                                    </td>
+                                    <td><span class="font-weight-bolder font-size-lg badge badge-success">{{ $account->balance() }}</span></td>
                                     <td>
                                         <div class="d-flex justify-content-end">
                                             <div class="dropdown dropdown-inline" data-toggle="tooltip" title="" data-placement="left"  style="position: initial!important;">
@@ -78,6 +88,22 @@
                                                 <div class="dropdown-menu dropdown-menu-md dropdown-menu-right" style="position: inherit;">
                                                     <!--begin::Navigation-->
                                                     <ul class="navi navi-hover py-5">
+                                                        <li class="navi-item" data-toggle="modal" data-target="#showPaymentHistory-{{ $account->id }}">
+                                                            <a href="#" class="navi-link">
+                                                                <span class="navi-icon">
+                                                                    <i class="fas fa-history"></i>
+                                                                </span>
+                                                                <span class="navi-text">Historial pagos</span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="navi-item" data-toggle="modal" data-target="#showExpenseHistory-{{ $account->id }}">
+                                                            <a href="#" class="navi-link">
+                                                                <span class="navi-icon">
+                                                                    <i class="fas fa-history"></i>
+                                                                </span>
+                                                                <span class="navi-text">Historial gastos</span>
+                                                            </a>
+                                                        </li>
                                                         <li class="navi-item" data-toggle="modal" data-target="#edit-{{ $account->id }}">
                                                             <a href="#" class="navi-link">
                                                                 <span class="navi-icon">
@@ -115,6 +141,11 @@
                            @endforelse
                         </tbody>
                     </table>
+                    {{-- History payment ans expenses --}}
+                    @foreach ($accounts as $account)
+                        @include('setting.account.partials.payment-history')
+                        @include('setting.account.partials.expense-history')
+                    @endforeach
                 </div>
                 <!--end::Table-->
 
