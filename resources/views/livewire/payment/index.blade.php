@@ -225,7 +225,7 @@
         </div>
     @endif
 
-    @section('footer')
+    @push('footer')
         <script>
 
             function confirmDestroyPayment(id){
@@ -249,5 +249,5 @@
             }
 
         </script>
-    @endsection
+    @endpush
 </div>

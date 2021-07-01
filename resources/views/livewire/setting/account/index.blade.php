@@ -112,7 +112,7 @@
                                                                 <span class="navi-text">Editar</span>
                                                             </a>
                                                         </li>
-                                                        <li class="navi-item" onclick="event.preventDefault(); confirmDestroy({{ $account->id }})">
+                                                        <li class="navi-item" onclick="event.preventDefault(); confirmDestroyAccount({{ $account->id }})">
                                                             <a href="#" class="navi-link">
                                                                 <span class="navi-icon">
                                                                     <i class="fa fa-trash"></i>
@@ -172,14 +172,14 @@
 
     @include('setting.account.create')
 
-    @section('footer')
+    @push('footer')
         <script>
 
             Livewire.on('closeModal', function(){
                 $('.modal').modal('hide');
             });
 
-            function confirmDestroy(id){
+            function confirmDestroyAccount(id){
                 swal.fire({
                     title: "¿Estas seguro?",
                     text: "No podrá recuperar esta cuenta y todos los pagos relacionados a esta",
@@ -200,5 +200,5 @@
             }
             
         </script>
-    @endsection
+    @endpush
 </div>

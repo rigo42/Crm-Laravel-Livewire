@@ -10,7 +10,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                @livewire('setting.account.form', ['account' => $account, 'method' => 'update'], key($account->id))
+                @livewire('setting.account.form', ['account' => $account, 'method' => 'update'], key('edit'))
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
