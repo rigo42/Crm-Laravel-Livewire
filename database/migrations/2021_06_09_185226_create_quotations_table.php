@@ -17,8 +17,10 @@ class CreateQuotationsTable extends Migration
             $table->id();
             $table->foreignId('client_id')->nullable()->constrained()->onDelete('cascade');
             $table->double('total');
+            $table->date('start_date');
+            $table->date('due_date');
             $table->string('url');
-            $table->string('concept');
+            $table->text('concept');
             $table->timestamps();
         });
     }

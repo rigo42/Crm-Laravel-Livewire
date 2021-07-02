@@ -21,7 +21,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            <div id="kt_charts_widget_1_chart"></div>
+                            <div id="graphGeneral"></div>
                         </div>
                     </div>
                 </div>
@@ -34,157 +34,124 @@
     
     @push('footer')
         <script>
-            "use strict";
+            var element = document.getElementById("graphGeneral");
 
-            // Class definition
-            // var KTWidgets = function() {
-
-                // Charts widgets
-                // var _initChartsWidget1 = function() {
-                    var element = document.getElementById("kt_charts_widget_1_chart");
-
-                    if (!element) {
-                        return;
+            var options = {
+                series: [{
+                    name: 'Pagos',
+                    data: [
+                        @foreach ($payments as $payment)
+                            {{ $payment }},
+                        @endforeach
+                    ]
+                }, {
+                    name: 'Gastos',
+                    data: [
+                        @foreach ($expenses as $expense)
+                            {{ $expense }},
+                        @endforeach
+                    ]
+                }],
+                chart: {
+                    type: 'bar',
+                    height: 350,
+                    toolbar: {
+                        show: false
                     }
-
-                    var options = {
-                        series: [{
-                            name: 'Pagos',
-                            data: [
-                                @foreach ($payments as $payment)
-                                    {{ $payment }},
-                                @endforeach
-                            ]
-                        }, {
-                            name: 'Gastos',
-                            data: [
-                                @foreach ($expenses as $expense)
-                                    {{ $expense }},
-                                @endforeach
-                            ]
-                        }],
-                        chart: {
-                            type: 'bar',
-                            height: 350,
-                            toolbar: {
-                                show: false
-                            }
-                        },
-                        plotOptions: {
-                            bar: {
-                                horizontal: false,
-                                columnWidth: ['20%'],
-                                endingShape: 'rounded'
-                            },
-                        },
-                        legend: {
-                            show: false
-                        },
-                        dataLabels: {
-                            enabled: false
-                        },
-                        stroke: {
-                            show: true,
-                            width: 2,
-                            colors: ['transparent']
-                        },
-                        xaxis: {
-                            categories: [
-                                @foreach ($months as $month)
-                                    '{{ $month["name"] }}',
-                                @endforeach
-                            ],
-                            axisBorder: {
-                                show: false,
-                            },
-                            axisTicks: {
-                                show: false
-                            },
-                            labels: {
-                                style: {
-                                    colors: KTApp.getSettings()['colors']['gray']['gray-500'],
-                                    fontSize: '12px',
-                                    fontFamily: KTApp.getSettings()['font-family']
-                                }
-                            }
-                        },
-                        yaxis: {
-                            labels: {
-                                style: {
-                                    colors: KTApp.getSettings()['colors']['gray']['gray-500'],
-                                    fontSize: '12px',
-                                    fontFamily: KTApp.getSettings()['font-family']
-                                }
-                            }
-                        },
-                        fill: {
-                            opacity: 1
-                        },
-                        states: {
-                            normal: {
-                                filter: {
-                                    type: 'none',
-                                    value: 0
-                                }
-                            },
-                            hover: {
-                                filter: {
-                                    type: 'none',
-                                    value: 0
-                                }
-                            },
-                            active: {
-                                allowMultipleDataPointsSelection: false,
-                                filter: {
-                                    type: 'none',
-                                    value: 0
-                                }
-                            }
-                        },
-                        tooltip: {
-                            style: {
-                                fontSize: '12px',
-                                fontFamily: KTApp.getSettings()['font-family']
-                            },
-                            // y: {
-                            //     formatter: function(val) {
-                            //         return "$" + val + " thousands"
-                            //     }
-                            // }
-                        },
-                        colors: ['#1BC5BD', '#f64e60'],
-                        grid: {
-                            borderColor: KTApp.getSettings()['colors']['gray']['gray-200'],
-                            strokeDashArray: 4,
-                            yaxis: {
-                                lines: {
-                                    show: true
-                                }
-                            }
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: false,
+                        columnWidth: ['25%'],
+                        endingShape: 'rounded'
+                    },
+                },
+                legend: {
+                    show: false
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                stroke: {
+                    show: true,
+                    width: 2,
+                    colors: ['transparent']
+                },
+                xaxis: {
+                    categories: [
+                        @foreach ($months as $month)
+                            '{{ $month["name"] }}',
+                        @endforeach
+                    ],
+                    axisBorder: {
+                        show: false,
+                    },
+                    axisTicks: {
+                        show: false
+                    },
+                    labels: {
+                        style: {
+                            fontSize: '12px',
+                            fontFamily: 'Arial'
                         }
-                    };
+                    }
+                },
+                yaxis: {
+                    labels: {
+                        style: {
+                            fontSize: '12px',
+                            fontFamily: 'Arial'
+                        }
+                    }
+                },
+                fill: {
+                    opacity: 1
+                },
+                states: {
+                    normal: {
+                        filter: {
+                            type: 'none',
+                            value: 0
+                        }
+                    },
+                    hover: {
+                        filter: {
+                            type: 'none',
+                            value: 0
+                        }
+                    },
+                    active: {
+                        allowMultipleDataPointsSelection: false,
+                        filter: {
+                            type: 'none',
+                            value: 0
+                        }
+                    }
+                },
+                tooltip: {
+                    style: {
+                        fontSize: '12px',
+                        fontFamily: 'Arial'
+                    },
+                    y: {
+                        formatter: function(val) {
+                            return '$' + (val).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+                        }
+                    }
+                },
+                colors: ['#1BC5BD', '#f64e60'],
+                grid: {
+                    strokeDashArray: 4,
+                    yaxis: {
+                        lines: {
+                            show: true
+                        }
+                    }
+                }
+            };
 
-                    var chart = new ApexCharts(element, options);
-                    chart.render();
-                // }
-
-                // // Public methods
-                // return {
-                //     init: function() {
-                //         // Charts Widgets
-                //         _initChartsWidget1();
-                //     }
-                // }
-            // }();
-
-            // Webpack support
-            // if (typeof module !== 'undefined') {
-            //     module.exports = KTWidgets;
-            // }
-
-            // jQuery(document).ready(function() {
-            //     KTWidgets.init();
-            // });
+            var chart = new ApexCharts(element, options);
+            chart.render();
         </script>
     @endpush
 

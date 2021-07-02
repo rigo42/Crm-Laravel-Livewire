@@ -25,6 +25,8 @@ class Form extends Component
         return [
             'invoice.client_id' => 'required|exists:clients,id',
             'invoice.total' => 'required',
+            'invoice.start_date' => 'required',
+            'invoice.due_date' => 'required',
             'invoice.concept' => 'required',
         ];
     }

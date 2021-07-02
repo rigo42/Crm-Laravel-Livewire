@@ -61,4 +61,18 @@ class User extends Authenticatable
     public function payments(){
         return $this->hasMany(Payment::class);
     }
+
+    public function expenses(){
+        return $this->hasMany(Expense::class);
+    }
+
+    public function paymentTotal(){
+        $payments = $this->payments()->sum('monto');
+        return '$'.number_format($payments, 2, '.', ',');
+    }
+    
+    public function expenseTotal(){
+        $expenses = $this->expenses()->sum('monto');
+        return '$'.number_format($expenses, 2, '.', ',');
+    }
 }

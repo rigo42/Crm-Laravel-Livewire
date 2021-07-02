@@ -148,13 +148,6 @@
                                                     @endif
                                                 </div>
                                                 <span class="font-weight-bolder text-dark">{{ $service->progressByProject() }}%</span>
-                                            @else     
-                                            <div class="mr-6">
-                                                <div class="font-weight-bold mb-2">Días restantes para el corte</div>
-                                                <span class="btn btn-sm btn-text btn-light-dark text-uppercase font-weight-bold">{{ $service->progressByMohts() }}</span>
-                                                <div class="font-weight-bold mb-2">Día de corte</div>
-                                                <span class="btn btn-sm btn-text btn-light-dark text-uppercase font-weight-bold">{{ $service->due_day }}</span>
-                                            </div>
                                             @endif
     
                                         </div>

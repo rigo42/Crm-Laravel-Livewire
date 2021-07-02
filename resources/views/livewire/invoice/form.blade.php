@@ -72,6 +72,47 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label class="col-3">Fecha de inicio<span class="text-danger">*</span></label>
+                                <div class="col-9" wire:ignore wire:key="start_date">
+                                    <div class="input-group input-group-solid">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="la la-calendar"></i>
+                                            </span>
+                                        </div>
+                                        <input
+                                            wire:model.defer="invoice.start_date"
+                                            value="{{ $invoice->start_date }}"
+                                            type="text" 
+                                            class="start_date form-control form-control-solid @error('invoice.start_date') is-invalid @enderror"  
+                                            placeholder="Seleccione la fecha de inicio"
+                                            />
+                                    </div>
+                                    @error('invoice.start_date') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-3">Fecha de vencimiento <span class="text-danger">*</span></label>
+                                <div class="col-9" wire:ignore wire:key="due_date">
+                                    <div class="input-group input-group-solid">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="la la-calendar"></i>
+                                            </span>
+                                        </div>
+                                        <input
+                                            wire:model.defer="invoice.due_date"
+                                            value="{{ $invoice->due_date }}"
+                                            type="text" 
+                                            class="due_date form-control form-control-solid @error('invoice.due_date') is-invalid @enderror"  
+                                            readonly="readonly" 
+                                            placeholder="Seleccione la fecha de vencimiento"
+                                            />
+                                    </div>
+                                    @error('invoice.due_date') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label class="col-3">Factura <span class="text-danger">*</span></label>
                                 <div class="col-9">
                                     
@@ -182,6 +223,34 @@
 
     @section('footer')
         <script src="{{ asset('assets/plugins/custom/bfi/bfi.js') }}"></script>
+        <script src="{{ asset('assets') }}/js/pages/crud/forms/widgets/bootstrap-datepicker.js"></script>
+        <script>
+            // Init date
+            $('.start_date').datepicker({
+                format: "yyyy/mm/dd",
+                todayBtn: "linked",
+                clearBtn: true,
+                todayHighlight: true,
+                autoclose: true,
+                language: 'es',
+                orientation: "bottom left",
+            }).on('changeDate', function(e){
+                @this.set('invoice.start_date', e.target.value);
+            });
+
+            // Init date
+            $('.due_date').datepicker({
+                format: "yyyy/mm/dd",
+                todayBtn: "linked",
+                clearBtn: true,
+                todayHighlight: true,
+                autoclose: true,
+                language: 'es',
+                orientation: "bottom left",
+            }).on('changeDate', function(e){
+                @this.set('invoice.due_date', e.target.value);
+            });
+        </script>
     @endsection
         
 </div>

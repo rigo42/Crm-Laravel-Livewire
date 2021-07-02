@@ -93,11 +93,11 @@
                         <div class="d-flex flex-wrap mt-14">
                             <div class="mr-12 d-flex flex-column mb-7">
                                 <span class="d-block font-weight-bold mb-4">Inicio</span>
-                                <span class="btn btn-light-success btn-sm font-weight-bold btn-upper btn-text">{{ $service->start() }}</span>
+                                <span class="btn btn-light-success btn-sm font-weight-bold btn-text">{{ $service->start() }}</span>
                             </div>
                             <div class="mr-12 d-flex flex-column mb-7">
                                 <span class="d-block font-weight-bold mb-4">Vencimiento</span>
-                                <span class="btn btn-light-danger btn-sm font-weight-bold btn-upper btn-text">{{ $service->due() }}</span>
+                                <span class="btn btn-light-danger btn-sm font-weight-bold btn-text">{{ $service->due() }}</span>
                             </div>
                             @if ($service->type == 'Proyecto')
                             <!--begin::Progress-->
@@ -117,11 +117,6 @@
                                 </div>
                             </div>
                             <!--end::Progress-->
-                            @else
-                                <div class="mb-2">
-                                    <span class="font-weight-bold">Días restantes para el corte</span> <span class="label label-xl label-secondary mr-2"> {{ $service->progressByMohts() }}</span> <br>
-                                    <span class="font-weight-bold">Día de corte</span> <span class="label label-xl label-secondary mr-2"> {{ $service->due_day }}</span>
-                                </div>
                             @endif
                         </div>
 

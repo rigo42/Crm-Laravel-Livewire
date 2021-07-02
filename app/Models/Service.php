@@ -64,16 +64,7 @@ class Service extends Model
         if($this->type == 'Proyecto'){
             return Carbon::parse($this->due_date)->format('d-m-Y');
         }else{
-            //Today
-            $nowDay = date("d", strtotime(now()));
-            //Due day
-            $dueDay = $this->due_day;
-            //Days in this monht
-            $daysInThisMontht = date('t', strtotime(now()));
-            //Get sum
-            $sum = ($daysInThisMontht + $dueDay - $nowDay);
-            $dueDate = strtotime('+'.$sum.' day', strtotime(now()));
-            return Carbon::parse($dueDate)->format('d-m-Y');
+            return 'Día '.$this->due_day;
         }
     }
 
@@ -92,10 +83,6 @@ class Service extends Model
             $progress = floor((100 * $diferenceDue) / $diferenceGeneral);
             return $progress;
         }
-    }
-
-    public function progressByMohts(){
-        return today()->diffInDays($this->due());
     }
 
 }

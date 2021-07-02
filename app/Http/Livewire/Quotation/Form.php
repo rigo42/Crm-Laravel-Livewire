@@ -34,6 +34,8 @@ class Form extends Component
         return [
             'quotation.client_id' => 'required|exists:clients,id',
             'quotation.total' => 'required',
+            'quotation.start_date' => 'required',
+            'quotation.due_date' => 'required',
             'quotation.concept' => 'required',
         ];
     }
