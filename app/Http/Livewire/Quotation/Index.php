@@ -41,14 +41,14 @@ class Index extends Component
 
     public function render()
     {
-        $count = Quotation::count();
-        $quotations = Quotation::orderBy('id', 'desc');
+        $count = Quotation::with('client');
+        $quotations = Quotation::with('client')->orderBy('id', 'desc');
 
         if(!$this->userPresent->hasRole('Administrador')){
             $count = $count->whereHas('client', function($query){
                 $query->where('user_id', $this->userPresent->id);
             });
-            $quotations = $quotations->where('client', function($query){
+            $quotations = $quotations->whereHas('client', function($query){
                 $query->where('user_id', $this->userPresent->id);
             });
         }
@@ -67,6 +67,7 @@ class Index extends Component
                                         });
         }
 
+        $count = $count->count();
         $quotations = $quotations->paginate($this->perPage);
 
         return view('livewire.quotation.index', compact('count', 'quotations'));

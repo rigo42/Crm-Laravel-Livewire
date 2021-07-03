@@ -45,8 +45,11 @@
                                             <i class="ki ki-bold-more-hor"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                                            <a class="dropdown-item" href="{{ route('prospect.edit', $prospect) }}"><i class="fa fa-pen mr-2"></i> Editar</a>
+                                            @if ($prospect->quotation_url)
+                                                <a target="_blank" class="dropdown-item" href="{{ Storage::url($prospect->quotation_url) }}"><i class="fas fa-download mr-2"></i> Descargar cotización</a>
+                                            @endif
                                             @livewire('prospect.become-to-client', ['prospect' => $prospect], key($prospect->id))
+                                            <a class="dropdown-item" href="{{ route('prospect.edit', $prospect) }}"><i class="fa fa-pen mr-2"></i> Editar</a>
                                         </div>
                                     </div>
                                 </div>
@@ -141,8 +144,8 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                @if ($prospect->quotation)
-                                    <embed width="100%" height="600px" src="{{ Storage::url($prospect->quotation) }}" type="">
+                                @if ($prospect->quotation_url)
+                                    <embed width="100%" height="600px" src="{{ Storage::url($prospect->quotation_url) }}" type="">
                                 @else
                                     <span class="d-block badge badge-secondary text-muted pt-2 font-size-sm">Ninguno</span>
                                 @endif

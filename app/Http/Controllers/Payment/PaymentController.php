@@ -10,8 +10,8 @@ class PaymentController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['permission:pagos']);
-        $this->middleware(['payment'])->except('index', 'create');
+        // $this->middleware(['permission:pagos']);
+        // $this->middleware(['payment'])->except('index', 'create');
     }
 
     public function index(){

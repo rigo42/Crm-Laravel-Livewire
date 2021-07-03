@@ -20,7 +20,7 @@
                             <div class="menu-submenu menu-submenu-classic menu-submenu-left">
                                 <ul class="menu-subnav">
                                     <li class="menu-item" aria-haspopup="true">
-                                        <a href="index.html" class="menu-link">
+                                        <a href="{{ route('prospect.create') }}" class="menu-link">
                                             <span class="svg-icon menu-icon">
                                                 <i class="fa fa-users"></i>
                                             </span>
@@ -36,7 +36,7 @@
                                         </a>
                                     </li>
                                     <li class="menu-item" aria-haspopup="true">
-                                        <a href="index.html" class="menu-link">
+                                        <a href="{{ route('invoice.create') }}"" class="menu-link">
                                             <span class="svg-icon menu-icon">
                                                 <i class="fas fa-file-pdf"></i>
                                             </span>
@@ -44,7 +44,7 @@
                                         </a>
                                     </li>
                                     <li class="menu-item" aria-haspopup="true">
-                                        <a href="index.html" class="menu-link">
+                                        <a href="{{ route('payment.create') }}"" class="menu-link">
                                             <span class="svg-icon menu-icon">
                                                 <i class="fa fa-credit-card"></i>
                                             </span>
@@ -52,7 +52,7 @@
                                         </a>
                                     </li>                                    
                                     <li class="menu-item" aria-haspopup="true">
-                                        <a href="index.html" class="menu-link">
+                                        <a href="{{ route('expense.create') }}"" class="menu-link">
                                             <span class="svg-icon menu-icon">
                                                 <i class="fa fa-calculator"></i>
                                             </span>

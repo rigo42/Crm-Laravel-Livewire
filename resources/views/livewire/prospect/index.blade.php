@@ -58,10 +58,13 @@
                                         <i class="ki ki-bold-more-hor"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                                        @if ($prospect->quotation_url)
+                                            <a target="_blank" class="dropdown-item" href="{{ Storage::url($prospect->quotation_url) }}"><i class="fas fa-download mr-2"></i> Descargar cotización</a>
+                                        @endif
+                                        @livewire('prospect.become-to-client', ['prospect' => $prospect], key($prospect->id))
                                         <a class="dropdown-item" href="{{ route('prospect.show', $prospect) }}"><i class="fa fa-eye mr-2"></i> Ver</a>
                                         <a class="dropdown-item" href="{{ route('prospect.edit', $prospect) }}"><i class="fa fa-pen mr-2"></i> Editar</a>
-                                        <a class="dropdown-item" href="#" onclick="event.preventDefault(); confirmDestroy({{ $prospect->id }})"><i class="fa fa-trash mr-2"></i> Eliminar</a>
-                                        @livewire('prospect.become-to-client', ['prospect' => $prospect], key($prospect->id))
+                                        <a class="dropdown-item" href="#" onclick="event.preventDefault(); confirmDestroyProspect({{ $prospect->id }})"><i class="fa fa-trash mr-2"></i> Eliminar</a>
                                     </div>
                                 </div>
                             </div>
@@ -173,7 +176,7 @@
 
     @section('footer')
         <script>
-            function confirmDestroy(id){
+            function confirmDestroyProspect(id){
                 swal.fire({
                     title: "¿Estas seguro?",
                     text: "No podrá recuperar este prospecto y sus archivos",

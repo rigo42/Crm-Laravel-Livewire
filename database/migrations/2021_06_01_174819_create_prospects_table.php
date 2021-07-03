@@ -23,7 +23,13 @@ class CreateProspectsTable extends Migration
             $table->string('phone')->nullable();
             $table->string('origin')->nullable();
             $table->string('company')->nullable();
-            $table->text('quotation')->nullable();
+            //Quotation
+            $table->boolean('has_quotation')->nullable()->default(0);
+            $table->double('quotation_total')->nullable();
+            $table->date('quotation_start_date')->nullable();
+            $table->date('quotation_due_date')->nullable();
+            $table->string('quotation_url')->nullable();
+            $table->text('quotation_concept')->nullable();
             $table->timestamps();
         });
     }

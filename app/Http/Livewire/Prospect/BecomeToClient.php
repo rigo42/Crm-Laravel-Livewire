@@ -46,11 +46,18 @@ class BecomeToClient extends Component
                 ]);
             }
 
-            if($prospect->quotation){
-                $url = $this->moveFile($prospect->quotation, 'public/client/quotation/');
+            if($prospect->has_quotation){
+                $url = '';
+                if (Storage::exists($prospect->quotation_url)) {
+                    $url = $this->moveFile($prospect->quotation_url, 'public/client/quotation/');
+                }
+                
                 $client->quotations()->create([
                     'url' => $url,
-                    'concept' => $prospect->interest,
+                    'concept' => $prospect->quotation_concept,
+                    'total' => $prospect->quotation_total,
+                    'start_date' => $prospect->quotation_start_date,
+                    'due_date' => $prospect->quotation_due_date,
                 ]);
             }
 

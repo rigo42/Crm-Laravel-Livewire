@@ -44,6 +44,11 @@ class Form extends Component
             'prospect.origin' => 'nullable',
             'prospect.company' => 'nullable',
             'prospect.status' => 'nullable',
+            'prospect.has_quotation' => 'nullable',
+            'prospect.quotation_total' => 'nullable',
+            'prospect.quotation_concept' => 'nullable',
+            'prospect.quotation_start_date' => 'nullable',
+            'prospect.quotation_due_date' => 'nullable',
         ];
 
     }
@@ -58,7 +63,7 @@ class Form extends Component
         $this->validate();
         $this->saveUser();
         $this->saveUserByAdmin();
-        $this->saveQuotation();
+        $this->hasQuotation();
         $this->prospect->save();
         $this->saveImage();
         session()->flash('alert','Prospecto agregado');
@@ -70,7 +75,7 @@ class Form extends Component
     public function update(){
         $this->validate();
         $this->saveUserByAdmin();
-        $this->saveQuotation();
+        $this->hasQuotation();
         $this->prospect->update();
         $this->saveImage();
         session()->flash('alert','Prospecto actualizado con exito');
@@ -120,14 +125,22 @@ class Form extends Component
         }
     }
 
-    public function saveQuotation(){
-        if($this->quotationTmp){
-            if(Storage::exists($this->prospect->quotation)){
-                Storage::delete($this->prospect->quotation);
+    public function hasQuotation(){
+        if($this->prospect->has_quotation){
+            $this->validate([
+                'prospect.quotation_total' => 'required',
+                'prospect.quotation_start_date' => 'required',
+                'prospect.quotation_due_date' => 'required',
+                'prospect.quotation_concept' => 'required',
+                'quotationTmp' => 'required',
+            ]);
+
+            if(Storage::exists($this->prospect->quotation_url)){
+                Storage::delete($this->prospect->quotation_url);
             }
 
             $path = $this->quotationTmp->store('public/prospect/quotation');
-            $this->prospect->quotation = $path;
+            $this->prospect->quotation_url = $path;
         }
     }
 
@@ -145,12 +158,12 @@ class Form extends Component
     }
 
     public function removeQuotation(){
-        if($this->prospect->quotation){
-            if(Storage::exists($this->prospect->quotation)){
-                Storage::delete($this->prospect->quotation);
+        if($this->prospect->quotation_url){
+            if(Storage::exists($this->prospect->quotation_url)){
+                Storage::delete($this->prospect->quotation_url);
             }
             
-            $this->prospect->quotation = null;
+            $this->prospect->quotation_url = null;
             $this->prospect->update();
         }
         $this->reset('quotationTmp');
