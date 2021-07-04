@@ -119,11 +119,14 @@
                                     </div>
                                 </div>
                                 <!--end: Title-->
+
+                                <div class="flex-grow-1 font-weight-bold text-dark-50 py-5 py-lg-2 mr-5">
+                                    {{ $service->note }}
+                                </div>
     
                                 <!--begin: Content-->
                                 <div class="d-flex align-items-center flex-wrap justify-content-between">
-                                    <div class="flex-grow-1 font-weight-bold text-dark-50 py-5 py-lg-2 mr-5">{{ $service->note }}</div>
-                                
+                                    
                                     <div class="d-flex flex-wrap align-items-center py-2">
                                         <div class="d-flex align-items-center mr-10">
                                             <div class="mr-6">

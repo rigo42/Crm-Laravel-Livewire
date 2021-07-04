@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Payment;
+use App\Models\Service;
 
 class DashboardController extends Controller
 {
@@ -15,6 +16,8 @@ class DashboardController extends Controller
 
     public function index()
     {
-        return view('dashboard.index');
+        $servicesCutThisWeek = Service::weekCutService();
+
+        return view('dashboard.index', compact('servicesCutThisWeek'));
     }
 }

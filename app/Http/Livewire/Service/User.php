@@ -26,14 +26,13 @@ class User extends Component
 
     public function render()
     {
-        $count = ModelsUser::query();
+        $count = $this->service->users()->count();
         $users = $this->service->users()->orderBy('id', 'desc');
 
         if($this->search){
             $users = $users->where('name', 'LIKE', "%{$this->search}%");
         }
 
-        $count = $count->count();
         $users = $users->paginate($this->perPage);
         return view('livewire.service.user', compact('count', 'users'));
     }

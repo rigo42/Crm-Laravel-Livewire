@@ -36,272 +36,104 @@
 
 
                 <div class="row">
-                    <div class="col-lg-6">
-                        <!--begin::Advance Table Widget 3-->
-                        <div class="card card-custom gutter-b">
-                            <!--begin::Header-->
-                            <div class="card-header border-0 py-5">
-                                <h3 class="card-title align-items-start flex-column">
-                                    <span class="card-label font-weight-bolder text-dark">Facturas adeudadas</span>
-                                    <span class="text-muted mt-3 font-weight-bold font-size-sm">(15) Factura(s) adeudadas</span>
-                                </h3>
-                                <div class="card-toolbar">
-                                    <a href="#" class="btn btn-success font-weight-bolder font-size-sm">Ver todo</a>
+                    @can('servicios')
+                        <div class="col-lg-12">
+                            <!--begin::Advance Table Widget 3-->
+                            <div class="card card-custom gutter-b">
+                                <!--begin::Header-->
+                                <div class="card-header border-0 py-5">
+                                    <h3 class="card-title align-items-start flex-column">
+                                        <span class="card-label font-weight-bolder text-dark">Cortes de la semana</span>
+                                        <span class="text-muted mt-3 font-weight-bold font-size-sm">({{ $servicesCutThisWeek->count() }}) Corte(s) {{ \Carbon\Carbon::now()->startOfWeek()->format('d-m-Y') }} - {{ \Carbon\Carbon::now()->endOfWeek()->format('d-m-Y') }}</span>
+                                    </h3>
+                                    <div class="card-toolbar">
+                                        <a href="{{ route('service.index') }}" class="btn btn-success font-weight-bolder font-size-sm">Ver todo</a>
+                                    </div>
                                 </div>
-                            </div>
-                            <!--end::Header-->
-                            <!--begin::Body-->
-                            <div class="card-body pt-0 pb-3">
-                                <!--begin::Table-->
-                                <div class="table-responsive">
-                                    <table class="table table-head-custom table-head-bg table-borderless table-vertical-center">
-                                        <thead>
-                                            <tr class="text-uppercase">
-                                                <th >Cliente</th>
-                                                <th >Vencimiento</th>
-                                                <th >Status</th>
-                                                <th >Cantidad debida</th>
-                                                <th >Acciones</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="pl-0 py-8">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="symbol symbol-50 flex-shrink-0 mr-4">
-                                                            <div class="symbol-label" style="background-image: url('{{ asset('assets') }}/media/stock-600x400/img-26.jpg')"></div>
-                                                        </div>
-                                                        <div>
-                                                            <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">Nicole torres</a>
-                                                            <span class="text-muted font-weight-bold d-block">Persona</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg">31 de julio 2021</span>
-                                                </td>
-                                                <td>
-                                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg badge badge-secondary">Borrador</span>
-                                                </td>
-                                                <td>
-                                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg">$40.00</span>
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex justify-content-end">
-                                                        <div class="dropdown dropdown-inline" data-toggle="tooltip" title="" data-placement="left"  style="position: initial!important;">
-                                                            <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                <i class="ki ki-bold-more-hor"></i>
-                                                            </a>
-                                                            <div class="dropdown-menu dropdown-menu-md dropdown-menu-right" style="position: inherit;">
-                                                                <!--begin::Navigation-->
-                                                                <ul class="navi navi-hover py-5">
-                                                                    <li class="navi-item">
-                                                                        <a href="#" class="navi-link">
-                                                                            <span class="navi-icon">
-                                                                                <i class="fa fa-pen"></i>
-                                                                            </span>
-                                                                            <span class="navi-text">Editar</span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="navi-item">
-                                                                        <a href="#" class="navi-link">
-                                                                            <span class="navi-icon">
-                                                                                <i class="fa fa-eye"></i>
-                                                                            </span>
-                                                                            <span class="navi-text">Ver</span>
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                                <!--end::Navigation-->
+                                <!--end::Header-->
+                                <!--begin::Body-->
+                                <div class="card-body pt-0 pb-3">
+                                    <!--begin::Table-->
+                                    <div class="table-responsive">
+                                        <table class="table table-head-custom table-head-bg table-borderless table-vertical-center">
+                                            <thead>
+                                                <tr class="text-uppercase">
+                                                    <th >Cliente</th>
+                                                    <th >Día de corte</th>
+                                                    <th >Servicio</th>
+                                                    <th >Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($servicesCutThisWeek as $service)
+                                                    <tr>
+                                                        <td class="pl-0 py-8">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="symbol symbol-50 flex-shrink-0 mr-4">
+                                                                    <div 
+                                                                        class="symbol-label" 
+                                                                        @if ($service->client->image)
+                                                                            style="background-image: url('{{ Storage::url($service->client->image->url) }}')"
+                                                                        @else
+                                                                            style="background-image: url('{{ asset('assets/media/users/blank.png') }}')"
+                                                                        @endif
+                                                                    ></div>
+                                                                </div>
+                                                                <div>
+                                                                    <a href="{{ route('client.show', $service->client) }}" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">{{ $service->client->name }}</a>
+                                                                    <span class="text-muted font-weight-bold d-block">{{ $service->client->company }}</span>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="pl-0 py-8">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="symbol symbol-50 flex-shrink-0 mr-4">
-                                                            <div class="symbol-label" style="background-image: url('{{ asset('assets') }}/media/stock-600x400/img-26.jpg')"></div>
-                                                        </div>
-                                                        <div>
-                                                            <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">Nicole torres</a>
-                                                            <span class="text-muted font-weight-bold d-block">Persona</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg">31 de julio 2021</span>
-                                                </td>
-                                                <td>
-                                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg badge badge-secondary">Borrador</span>
-                                                </td>
-                                                <td>
-                                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg">$40.00</span>
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex justify-content-end">
-                                                        <div class="dropdown dropdown-inline" data-toggle="tooltip" title="" data-placement="left"  style="position: initial!important;">
-                                                            <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                <i class="ki ki-bold-more-hor"></i>
-                                                            </a>
-                                                            <div class="dropdown-menu dropdown-menu-md dropdown-menu-right" style="position: inherit;">
-                                                                <!--begin::Navigation-->
-                                                                <ul class="navi navi-hover py-5">
-                                                                    <li class="navi-item">
-                                                                        <a href="#" class="navi-link">
-                                                                            <span class="navi-icon">
-                                                                                <i class="fa fa-pen"></i>
-                                                                            </span>
-                                                                            <span class="navi-text">Editar</span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="navi-item">
-                                                                        <a href="#" class="navi-link">
-                                                                            <span class="navi-icon">
-                                                                                <i class="fa fa-eye"></i>
-                                                                            </span>
-                                                                            <span class="navi-text">Ver</span>
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                                <!--end::Navigation-->
+                                                        </td>
+                                                        <td>
+                                                            <span class="badge badge-danger font-weight-bolder d-block font-size-lg mr-2">{{ $service->due() }}</span>
+                                                        </td>
+                                                        <td>
+                                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{ $service->name  }} ({{ $service->categoryService->name }})</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="d-flex justify-content-end">
+                                                                <div class="dropdown dropdown-inline" data-toggle="tooltip" title="" data-placement="left"  style="position: initial!important;">
+                                                                    <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                        <i class="ki ki-bold-more-hor"></i>
+                                                                    </a>
+                                                                    <div class="dropdown-menu dropdown-menu-md dropdown-menu-right" style="position: inherit;">
+                                                                        <!--begin::Navigation-->
+                                                                        <ul class="navi navi-hover py-5">
+                                                                            <li class="navi-item">
+                                                                                <a href="{{ route('service.edit', $service) }}" class="navi-link">
+                                                                                    <span class="navi-icon">
+                                                                                        <i class="fa fa-pen"></i>
+                                                                                    </span>
+                                                                                    <span class="navi-text">Editar</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li class="navi-item">
+                                                                                <a href="{{ route('service.show', $service) }}" class="navi-link">
+                                                                                    <span class="navi-icon">
+                                                                                        <i class="fa fa-eye"></i>
+                                                                                    </span>
+                                                                                    <span class="navi-text">Ver</span>
+                                                                                </a>
+                                                                            </li>
+                                                                        </ul>
+                                                                        <!--end::Navigation-->
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!--end::Table-->
                                 </div>
-                                <!--end::Table-->
+                                <!--end::Body-->
                             </div>
-                            <!--end::Body-->
                         </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <!--begin::Advance Table Widget 3-->
-                        <div class="card card-custom gutter-b">
-                            <!--begin::Header-->
-                            <div class="card-header border-0 py-5">
-                                <h3 class="card-title align-items-start flex-column">
-                                    <span class="card-label font-weight-bolder text-dark">Presupuestos recientes</span>
-                                    <span class="text-muted mt-3 font-weight-bold font-size-sm">(85) Presupuestos en total</span>
-                                </h3>
-                                <div class="card-toolbar">
-                                    <a href="#" class="btn btn-success font-weight-bolder font-size-sm">Ver todo</a>
-                                </div>
-                            </div>
-                            <!--end::Header-->
-                            <!--begin::Body-->
-                            <div class="card-body pt-0 pb-3">
-                                <!--begin::Table-->
-                                <div class="table-responsive">
-                                    <table class="table table-head-custom table-head-bg table-borderless table-vertical-center">
-                                        <thead>
-                                            <tr class="text-uppercase">
-                                                <th >Cliente</th>
-                                                <th >Fecha</th>
-                                                <th >Status</th>
-                                                <th >Cantidad debida</th>
-                                                <th >Acciones</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="pl-0 py-8">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="symbol symbol-50 flex-shrink-0 mr-4">
-                                                            <div class="symbol-label" style="background-image: url('{{ asset('assets') }}/media/stock-600x400/img-26.jpg')"></div>
-                                                        </div>
-                                                        <div>
-                                                            <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">Nicole torres</a>
-                                                            <span class="text-muted font-weight-bold d-block">Persona</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg">31 de julio 2021</span>
-                                                </td>
-                                                <td>
-                                                    <span class="text-white-75 font-weight-bolder d-block font-size-lg badge badge-primary">Aceptado</span>
-                                                </td>
-                                                <td>
-                                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg">$50.00</span>
-                                                </td>
-                                                <td class="text-right pr-0">
-                                                    <div class="d-flex justify-content-end">
-                                                        <div class="dropdown dropdown-inline" data-toggle="tooltip" title="" data-placement="left" style="position: initial!important;">
-                                                            <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                <i class="ki ki-bold-more-hor"></i>
-                                                            </a>
-                                                            <div class="dropdown-menu dropdown-menu-md dropdown-menu-right" style="position: inherit;">
-                                                                <!--begin::Navigation-->
-                                                                <ul class="navi navi-hover py-5">
-                                                                    <li class="navi-item">
-                                                                        <a href="#" class="navi-link">
-                                                                            <span class="navi-icon">
-                                                                                <i class="fa fa-pen"></i>
-                                                                            </span>
-                                                                            <span class="navi-text">Editar</span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="navi-item">
-                                                                        <a href="#" class="navi-link">
-                                                                            <span class="navi-icon">
-                                                                                <i class="fa fa-eye"></i>
-                                                                            </span>
-                                                                            <span class="navi-text">Ver</span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="navi-item">
-                                                                        <a href="#" class="navi-link">
-                                                                            <span class="navi-icon">
-                                                                                <i class="fas fa-file-pdf"></i>
-                                                                            </span>
-                                                                            <span class="navi-text">Convertir a factura</span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="navi-item">
-                                                                        <a href="#" class="navi-link">
-                                                                            <span class="navi-icon">
-                                                                                <i class="fas fa-check-circle"></i>
-                                                                            </span>
-                                                                            <span class="navi-text">Marcar como aceptado</span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="navi-item">
-                                                                        <a href="#" class="navi-link">
-                                                                            <span class="navi-icon">
-                                                                                <i class="fas fa-times-circle"></i>
-                                                                            </span>
-                                                                            <span class="navi-text">Marcar como rechazado</span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="navi-item">
-                                                                        <a href="#" class="navi-link">
-                                                                            <span class="navi-icon">
-                                                                                <i class="fa fa-trash"></i>
-                                                                            </span>
-                                                                            <span class="navi-text">Eliminar</span>
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                                <!--end::Navigation-->
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!--end::Table-->
-                            </div>
-                            <!--end::Body-->
-                        </div>
-                    </div>
+                    @endcan
+                    
                 </div>
 
             </div>

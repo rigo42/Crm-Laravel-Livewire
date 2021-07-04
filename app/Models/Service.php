@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Auth;
 
 class Service extends Model
 {
@@ -85,4 +86,26 @@ class Service extends Model
         }
     }
 
+    static function weekCutService(){
+        $userPresent = User::find(Auth::id());
+        $firstDayThisWeek = Carbon::now()->startOfWeek();
+        $endDayThisWeek = Carbon::now()->endOfWeek();
+        $services = Service::orderBy('due_day', 'desc')->whereNull('finished');
+
+        if(!$userPresent->hasRole('Administrador')){
+            $services = $services->whereHas('client', function($query) use($userPresent) {
+                $query('user_id', $userPresent->id);
+            });
+        }
+        
+        $daysArray = [];
+        for($i = 1; $i <=7; $i++){
+            $otherDay = Carbon::parse($firstDayThisWeek)->addDays(($i - 1));
+            array_push($daysArray, $otherDay->format('j'));
+        }
+
+        $services = $services->whereIn('due_day', $daysArray);
+
+        return $services = $services->get();
+    }
 }

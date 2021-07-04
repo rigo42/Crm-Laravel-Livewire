@@ -67,7 +67,7 @@
                                 <!--begin: Title-->
                                 <a href="{{ route('client.show', $service->client) }}" class="card-title text-hover-primary font-weight-bolder font-size-h5 text-dark mb-1">{{ $service->client->name }}</a>
                                 
-                                <span class="text-primary font-weight-bold">{{ $service->name }}  ({{ $service->priceToString() }}) </span>
+                                <span class="text-primary font-weight-bold">{{ $service->name }}  ({{ $service->priceToString() }}) ({{ $service->type }})</span>
                                 
                                 @if ($service->categoryService)
                                     <span class="text-secondary" style="font-size: 10px;">{{ $service->categoryService->name }}</span>
