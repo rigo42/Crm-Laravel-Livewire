@@ -182,6 +182,16 @@
                             <!--begin::Body-->
                             <div class="card-body py-4">
                                 <div class="form-group row my-2">
+                                    <label class="col-4 col-form-label">Categoría:</label>
+                                    <div class="col-8">
+                                        @if ($client->categoryClient)
+                                            <span class="badge badge-primary font-weight-bold">{{ $client->categoryClient->name }}</span>
+                                        @else
+                                            <span class="badge badge-secondary font-weight-bold">Ninguno</span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="form-group row my-2">
                                     <label class="col-4 col-form-label">Origen:</label>
                                     <div class="col-8">
                                         <span class="form-control-plaintext font-weight-bolder">{{ $client->origin }}</span>

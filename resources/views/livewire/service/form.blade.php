@@ -430,9 +430,9 @@
     </div>
     <!--end::Card-->
 
-    @section('footer')
+    @push('footer')
         <script src="{{ asset('assets/plugins/custom/bfi/bfi.js') }}"></script>
-        <script src="{{ asset('assets') }}/js/pages/crud/forms/widgets/bootstrap-datepicker.js"></script>
+        {{-- <script src="{{ asset('assets') }}/js/pages/crud/forms/widgets/bootstrap-datepicker.js"></script> --}}
         <script>
 
             function app() {
@@ -449,7 +449,8 @@
 
             Livewire.on('renderJs', function(){
                 $('.selectpicker').selectpicker({
-                    liveSearch: true
+                    liveSearch: true,
+                    showSubtext: true
                 });
             });
 
@@ -484,6 +485,6 @@
                 @this.set('service.due_date', e.target.value);
             });
         </script>
-    @endsection
+    @endpush
         
 </div>

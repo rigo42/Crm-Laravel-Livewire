@@ -10,6 +10,7 @@ use App\Http\Controllers\Quotation\QuotationController;
 use App\Http\Controllers\Service\ServiceController;
 use App\Http\Controllers\Setting\AccountController;
 use App\Http\Controllers\Setting\BackupController;
+use App\Http\Controllers\Setting\CategoryClientController;
 use App\Http\Controllers\Setting\CategoryExpenseController;
 use App\Http\Controllers\Setting\CategoryServiceController;
 use App\Http\Controllers\Setting\PaymentTypeController;
@@ -37,6 +38,8 @@ Route::prefix('ajustes')->group(function () {
     Route::resource('permisos', PermissionController::class)->parameters(['permisos' => 'permission'])->names('setting.permission');
     //Role
     Route::resource('roles', RoleController::class)->parameters(['roles' => 'role'])->names('setting.role');
+    //Category client
+    Route::resource('categoria-clientes', CategoryClientController::class)->parameters(['categoria-clientes' => 'categoryClient'])->names('setting.category-client');
     //Category Service
     Route::resource('categoria-servicios', CategoryServiceController::class)->parameters(['categoria-servicios' => 'categoryService'])->names('setting.category-service');
     //Category expense

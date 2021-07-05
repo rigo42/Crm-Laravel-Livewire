@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Client;
 
 use App\Mail\ClientNew;
+use App\Models\CategoryClient;
 use App\Models\Client;
 use App\Models\User;
 use Exception;
@@ -38,6 +39,7 @@ class Form extends Component
     protected function rules()
     {
         return [
+            'client.category_client_id' => 'nullable|exists:category_clients,id',
             'client.name' => 'required',
             'client.email' => 'required|email|unique:clients,email,'.$this->client->id,
             'client.phone' => 'nullable',
@@ -55,7 +57,9 @@ class Form extends Component
     public function render()
     {
         $users = User::orderBy('name')->cursor();
-        return view('livewire.client.form', compact('users'));
+        $categoryClients = CategoryClient::orderBy('id', 'desc')->cursor();
+        $this->emit('renderJs');
+        return view('livewire.client.form', compact('users', 'categoryClients'));
     }
 
     public function store(){

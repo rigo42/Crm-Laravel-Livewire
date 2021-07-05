@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Ajutes')
+@section('title', 'Ajustes')
 
 @section('content')
     <!--begin::Bread-->

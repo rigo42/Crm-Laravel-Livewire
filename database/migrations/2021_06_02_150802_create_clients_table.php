@@ -16,6 +16,8 @@ class CreateClientsTable extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
+            $table->foreignId('category_client_id')->nullable()->constrained()->onDelete('set null');
+
 
             //General
             $table->string('name');

@@ -11,6 +11,10 @@ class Client extends Model
 
     protected $guarded = [];
 
+    public function categoryClient(){
+        return $this->belongsTo(CategoryClient::class);
+    }
+
     public function quotations()
     {
         return $this->hasMany(Quotation::class);

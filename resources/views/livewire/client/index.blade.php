@@ -116,6 +116,14 @@
                             <!--begin::Info-->
                             <div class="mb-7">
                                 <div class="d-flex justify-content-between align-items-center">
+                                    <span class="text-dark-75 font-weight-bolder mr-2">Tipo:</span>
+                                    @if ($client->categoryClient)
+                                        <span class="badge badge-primary font-weight-bold">{{ $client->categoryClient->name }}</span>
+                                    @else
+                                        <span class="badge badge-secondary font-weight-bold">Ninguno</span>
+                                    @endif
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
                                     <span class="text-dark-75 font-weight-bolder mr-2">Correo:</span>
                                     <a href="mailto:{{ $client->email }}" class="text-muted text-hover-primary">{{ $client->email }}</a>
                                 </div>

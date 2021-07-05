@@ -212,6 +212,28 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label class="col-3">Categoría </label>
+                                <div class="col-9">
+                                    <div >
+                                        <select 
+                                            wire:model="client.category_client_id" 
+                                            class="form-control selectpicker form-control-solid @error('client.category_client_id') is-invalid @enderror" 
+                                            data-size="7"
+                                            data-live-search="true"
+                                            data-show-subtext="true"
+                                        >
+                                            @forelse ($categoryClients as $categoryClient)
+                                                <option data-subtext="{{ $categoryClient->description }}" value="{{ $categoryClient->id }}">{{ $categoryClient->name }}</option>
+                                            @empty 
+                                                <option value="">Ninguna</option>
+                                            @endforelse
+                                        </select>
+                                    </div>
+                                    <span class="form-text text-muted">Elije la categoría correspondiente al cliente</span>
+                                    @error('client.category_client_id') <div><span class="text-danger">{{ $message }}</span></div> @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label class="col-3 col-form-label">¿Premium?</label>
                                 <div class="col-3">
                                     <span class="switch switch-outline switch-icon switch-primary">
@@ -267,5 +289,16 @@
         </div>
     </div>
     <!--end::Card-->
+
+    @push('footer')
+        <script>
+            Livewire.on('renderJs', function(){
+                $('.selectpicker').selectpicker({
+                    liveSearch: true,
+                    showSubtext: true
+                });
+            });
+        </script>
+    @endpush
         
 </div>

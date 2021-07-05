@@ -144,7 +144,6 @@
                     </a>
                 </div>
                 @endif
-                @if($user->can('usuarios'))
                 <div class="navi-item mb-2">
                     <a href="{{ route('user.transfer', $user) }}" class="navi-link py-4 {{ active('user.trasnfer') }}">
                         <span class="navi-icon mr-2">
@@ -161,7 +160,6 @@
                         <span class="navi-text font-size-lg">Transferir</span>
                     </a>
                 </div>
-                @endif
             </div>
             <!--end::Nav-->
         </div>
