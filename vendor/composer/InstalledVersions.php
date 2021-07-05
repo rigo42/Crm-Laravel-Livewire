@@ -30,11 +30,29 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'cb3ecba2c837c70f217f4822ad9127fd26cfc0af',
+    'reference' => 'be1a8605819a492a17b17944ea0216c6631a5694',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
   array (
+    'aprendible/storage-link-route' => 
+    array (
+      'pretty_version' => '1.0.1',
+      'version' => '1.0.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '70ddbb810828c1b8721b741da760c1c8107ff41f',
+    ),
+    'asantibanez/livewire-charts' => 
+    array (
+      'pretty_version' => 'v2.3.0',
+      'version' => '2.3.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '582ad340ddf0d138df67319073886f9314cccd0a',
+    ),
     'asm89/stack-cors' => 
     array (
       'pretty_version' => 'v2.0.3',
@@ -496,7 +514,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'cb3ecba2c837c70f217f4822ad9127fd26cfc0af',
+      'reference' => 'be1a8605819a492a17b17944ea0216c6631a5694',
     ),
     'laravel/tinker' => 
     array (
@@ -1029,6 +1047,24 @@ private static $installed = array (
       ),
       'reference' => 'c6c1022351a901512170118436c764e473f6de8c',
     ),
+    'spatie/db-dumper' => 
+    array (
+      'pretty_version' => '2.21.1',
+      'version' => '2.21.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '05e5955fb882008a8947c5a45146d86cfafa10d1',
+    ),
+    'spatie/laravel-backup' => 
+    array (
+      'pretty_version' => '6.16.0',
+      'version' => '6.16.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '6b2229a07d92c2bb146ad9c5223fc32e9d74830c',
+    ),
     'spatie/laravel-permission' => 
     array (
       'pretty_version' => '4.0.1',
@@ -1037,6 +1073,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '29c05324c170c0be108ccb86dd29f6a719c0a617',
+    ),
+    'spatie/temporary-directory' => 
+    array (
+      'pretty_version' => '1.3.0',
+      'version' => '1.3.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'f517729b3793bca58f847c5fd383ec16f03ffec6',
     ),
     'swiftmailer/swiftmailer' => 
     array (

@@ -1,0 +1,33 @@
+{
+    "name": "aprendible/storage-link-route",
+    "description": "A route to create a symlink from 'public/storage' to 'storage/app/public'",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jorge García",
+            "email": "jorge@aprendible.com"
+        }
+    ],
+    "require": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Aprendible\\StorageLinkRoute\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Aprendible\\StorageLinkRoute\\Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "orchestra/testbench": "^4.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Aprendible\\StorageLinkRoute\\StorageLinkRouteServiceProvider"
+            ]
+        }
+    }
+}

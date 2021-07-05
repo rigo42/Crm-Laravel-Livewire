@@ -5,14 +5,14 @@ Header always set Content-Security-Policy: upgrade-insecure-requests
 # Remove www in URL
 RewriteEngine on
 RewriteCond %{HTTPS} off
-RewriteCond %{HTTP_HOST} (www\.)?admin2.brandbean.mx
+RewriteCond %{HTTP_HOST} (www\.)?crm.brandbean.mx
 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-# DO NOT REMOVE THIS LINE AND THE LINES BELLOW SSL_REDIRECT:admin2.brandbean.mx
+# DO NOT REMOVE THIS LINE AND THE LINES BELLOW SSL_REDIRECT:crm.brandbean.mx
 
 # Redirect with https
 RewriteCond %{HTTPS} on
-RewriteCond %{HTTP_HOST} ^www\.admin2\.brandbean\.mx$ [NC]  
-RewriteRule ^(.*)$ https://admin2.brandbean.mx/$1 [R=301,QSA,L]  
+RewriteCond %{HTTP_HOST} ^www\.crm\.brandbean\.mx$ [NC]  
+RewriteRule ^(.*)$ https://crm.brandbean.mx/$1 [R=301,QSA,L]  
 
 <IfModule mod_rewrite.c>
 RewriteEngine On
