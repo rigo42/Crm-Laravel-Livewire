@@ -17,14 +17,17 @@ class ClientSeeder extends Seeder
         Client::create([
             'name' => 'rigoberto',
             'email' => 'rigoberto.villa42@gmail.com',
+            'user_id' => 6
         ]);
         Client::create([
             'name' => 'Nicole Torres',
             'email' => 'nicole@gmail.com',
+            'user_id' => 6
         ]);
         Client::create([
             'name' => 'Azael iris',
             'email' => 'azael@gmail.com',
+            'user_id' => 6
         ]);
     }
 }
