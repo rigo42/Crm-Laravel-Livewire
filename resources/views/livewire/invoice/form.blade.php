@@ -14,6 +14,7 @@
                 <button 
                     wire:click="{{ $method }}"
                     wire:loading.class="spinner spinner-white spinner-right" 
+                    wire:loading.attr="disabled" 
                     wire:target="{{ $method }}" 
                     class="btn btn-primary font-weight-bolder mr-2">
                     <i class="fa fa-save"></i>

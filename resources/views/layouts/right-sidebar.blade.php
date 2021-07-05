@@ -19,46 +19,76 @@
                             </a>
                             <div class="menu-submenu menu-submenu-classic menu-submenu-left">
                                 <ul class="menu-subnav">
+                                    @can('prospectos')
+                                        <li class="menu-item" aria-haspopup="true">
+                                            <a href="{{ route('prospect.create') }}" class="menu-link">
+                                                <span class="svg-icon menu-icon">
+                                                    <i class="fa fa-users"></i>
+                                                </span>
+                                                <span class="menu-text">Nuevo prospecto</span>
+                                            </a>
+                                        </li>
+                                    @endcan
+                                    @can('clientes')
+                                        <li class="menu-item" aria-haspopup="true">
+                                            <a href="{{ route('client.create') }}" class="menu-link">
+                                                <span class="svg-icon menu-icon">
+                                                    <i class="fa fa-users"></i>
+                                                </span>
+                                                <span class="menu-text">Nuevo cliente</span>
+                                            </a>
+                                        </li>
+                                    @endcan
+                                    @can('servicios')
                                     <li class="menu-item" aria-haspopup="true">
-                                        <a href="{{ route('prospect.create') }}" class="menu-link">
+                                        <a href="{{ route('service.create') }}" class="menu-link">
                                             <span class="svg-icon menu-icon">
-                                                <i class="fa fa-users"></i>
+                                                <i class="fa fa-star"></i>
                                             </span>
-                                            <span class="menu-text">Nuevo prospecto</span>
+                                            <span class="menu-text">Nuevo servicio</span>
                                         </a>
                                     </li>
-                                    <li class="menu-item" aria-haspopup="true">
-                                        <a href="{{ route('client.create') }}" class="menu-link">
-                                            <span class="svg-icon menu-icon">
-                                                <i class="fa fa-users"></i>
-                                            </span>
-                                            <span class="menu-text">Nuevo cliente</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-item" aria-haspopup="true">
-                                        <a href="{{ route('invoice.create') }}"" class="menu-link">
-                                            <span class="svg-icon menu-icon">
-                                                <i class="fas fa-file-pdf"></i>
-                                            </span>
-                                            <span class="menu-text">Nueva factura</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-item" aria-haspopup="true">
-                                        <a href="{{ route('payment.create') }}"" class="menu-link">
-                                            <span class="svg-icon menu-icon">
-                                                <i class="fa fa-credit-card"></i>
-                                            </span>
-                                            <span class="menu-text">Nuevo pago</span>
-                                        </a>
-                                    </li>                                    
-                                    <li class="menu-item" aria-haspopup="true">
-                                        <a href="{{ route('expense.create') }}"" class="menu-link">
-                                            <span class="svg-icon menu-icon">
-                                                <i class="fa fa-calculator"></i>
-                                            </span>
-                                            <span class="menu-text">Nuevo gasto</span>
-                                        </a>
-                                    </li>
+                                    @endcan
+                                    @can('cotizaciones')
+                                        <li class="menu-item" aria-haspopup="true">
+                                            <a href="{{ route('quotation.create') }}" class="menu-link">
+                                                <span class="svg-icon menu-icon">
+                                                    <i class="fa fa-sticky-note"></i>
+                                                </span>
+                                                <span class="menu-text">Nueva cotización</span>
+                                            </a>
+                                        </li>
+                                    @endcan
+                                    @can('facturas')
+                                        <li class="menu-item" aria-haspopup="true">
+                                            <a href="{{ route('invoice.create') }}" class="menu-link">
+                                                <span class="svg-icon menu-icon">
+                                                    <i class="fas fa-file-pdf"></i>
+                                                </span>
+                                                <span class="menu-text">Nueva factura</span>
+                                            </a>
+                                        </li>
+                                    @endcan
+                                    @can('pagos')
+                                        <li class="menu-item" aria-haspopup="true">
+                                            <a href="{{ route('payment.create') }}" class="menu-link">
+                                                <span class="svg-icon menu-icon">
+                                                    <i class="fa fa-credit-card"></i>
+                                                </span>
+                                                <span class="menu-text">Nuevo pago</span>
+                                            </a>
+                                        </li>  
+                                    @endcan    
+                                    @can('gastos')                              
+                                        <li class="menu-item" aria-haspopup="true">
+                                            <a href="{{ route('expense.create') }}" class="menu-link">
+                                                <span class="svg-icon menu-icon">
+                                                    <i class="fa fa-calculator"></i>
+                                                </span>
+                                                <span class="menu-text">Nuevo gasto</span>
+                                            </a>
+                                        </li>
+                                    @endcan 
                                 </ul>
                             </div>
                         </li>
