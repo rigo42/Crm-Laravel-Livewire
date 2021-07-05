@@ -94,7 +94,7 @@ class Service extends Model
 
         if(!$userPresent->hasRole('Administrador')){
             $services = $services->whereHas('client', function($query) use($userPresent) {
-                $query('user_id', $userPresent->id);
+                $query->where('user_id', $userPresent->id);
             });
         }
         

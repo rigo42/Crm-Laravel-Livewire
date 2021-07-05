@@ -121,7 +121,7 @@
                                 </div>
                                 <div class="d-flex justify-content-between align-items-cente my-1">
                                     <span class="text-dark-75 font-weight-bolder mr-2">Teléfono:</span>
-                                    <a href="tel:+{{ $client->phone }}" class="text-muted text-hover-primary">{{ $client->phone }}
+                                    <a href="tel:{{ $client->phone }}" class="text-muted text-hover-primary">{{ $client->phone }}</a>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <span class="text-dark-75 font-weight-bolder mr-2">Origen:</span>
