@@ -37,23 +37,10 @@
         <li class="navi-item mb-2">
             <a class="navi-link" href="#">
                 <span class="navi-text text-dark-50 font-size-h5 font-weight-bold">
-                    <i class="fa fa-university text-dark mr-2"></i> Información de empresa
+                    <i class="fa fa-university text-dark mr-2"></i> Información de la empresa
                 </span>
-            </a>
-        </li>
-
-        <li class="navi-item mb-2">
-            <a class="navi-link" href="#">
-                <span class="navi-text text-dark-50 font-size-h5 font-weight-bold">
-                    <i class="fa fa-cog text-dark mr-2"></i> Preferencias
-                </span>
-            </a>
-        </li>
-
-        <li class="navi-item mb-2">
-            <a class="navi-link" href="#">
-                <span class="navi-text text-dark-50 font-size-h5 font-weight-bold">
-                    <i class="fa fa-bell text-dark mr-2"></i> Notificaciones
+                <span class="menu-label">
+                    <span class="label label-warning label-inline">Proximamente</span>
                 </span>
             </a>
         </li>
@@ -102,6 +89,9 @@
             <a class="navi-link" href="#">
                 <span class="navi-text text-dark-50 font-size-h5 font-weight-bold">
                     <i class="fa fa-mail-bulk text-dark mr-2"></i> Configuración de correo
+                </span>
+                <span class="menu-label">
+                    <span class="label label-warning label-inline">Proximamente</span>
                 </span>
             </a>
         </li>
