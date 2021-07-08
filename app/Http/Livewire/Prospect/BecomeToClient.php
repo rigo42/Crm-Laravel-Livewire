@@ -71,6 +71,7 @@ class BecomeToClient extends Component
                     session()->flash('alert', 'Conversión y correo de bienvenida enviado con exito');
                     session()->flash('alert-type', 'success');
                     Mail::to($client->email)->send(new ClientNew($client));
+
                 }catch(Exception $e){
                     session()->flash('alert', 'Ocurrio un problema al enviar el correo de bienvenida: '.$e->getMessage());
                     session()->flash('alert-type', 'warning');
@@ -86,9 +87,8 @@ class BecomeToClient extends Component
                     'confirmButtonText' => 'Entiendo',
                     'timer' => null,
                 ]);
+                $this->emit('unblockPage');
         }
-
-        $this->emit('unblockPage');
     }
 
     public function moveFile($file, $path){

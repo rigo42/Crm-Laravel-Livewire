@@ -59,6 +59,13 @@
                     </a>
                 </li>
                 @endcan
+                <li class="menu-item">
+                    <a target="_blank" href="https://calendar.google.com/" class="menu-link">
+                        <i class="menu-icon text-dark far fa-calendar-alt"></i>
+                        <span class="menu-text">Calendario</span>
+                    </a>
+                </li>
+                
             
             @endcanany
 
