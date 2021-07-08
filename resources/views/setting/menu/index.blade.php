@@ -11,14 +11,6 @@
         </li>
 
         <li class="navi-item mb-2">
-            <a class="navi-link" href="#">
-                <span class="navi-text text-dark-50 font-size-h5 font-weight-bold">
-                    <i class="fa fa-user text-dark mr-2"></i> Ajustes de cuenta
-                </span>
-            </a>
-        </li>
-
-        <li class="navi-item mb-2">
             <a class="navi-link {{ active('setting.role.*') }}" href="{{ route('setting.role.index') }}">
                 <span class="navi-text text-dark-50 font-size-h5 font-weight-bold">
                     <i class="fa fa-cog text-dark mr-2"></i> Roles

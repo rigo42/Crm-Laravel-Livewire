@@ -62,7 +62,7 @@ class Form extends Component
         $this->saveImage();
         $this->saveRoles();
         try{
-            Mail::to($this->user->email)->send(new UserNew($this->user, $password));
+            // Mail::to($this->user->email)->send(new UserNew($this->user, $password));
             session()->flash('alert','Usuario agregado y correo de bienvenida enviado con exito');
             session()->flash('alert-type', 'success');
             
