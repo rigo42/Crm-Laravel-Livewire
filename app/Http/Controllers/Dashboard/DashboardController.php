@@ -16,6 +16,8 @@ class DashboardController extends Controller
     public function index()
     {
         $servicesCutThisWeek = Service::weekCutService();
-        return view('dashboard.index', compact('servicesCutThisWeek'));
+        $servicesCutThisDay = Service::dayCutService();
+        $servicesCutBack = Service::backCutService();
+        return view('dashboard.index', compact('servicesCutThisWeek', 'servicesCutThisDay', 'servicesCutBack'));
     }
 }
