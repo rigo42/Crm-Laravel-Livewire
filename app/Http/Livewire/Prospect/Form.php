@@ -127,20 +127,32 @@ class Form extends Component
 
     public function hasQuotation(){
         if($this->prospect->has_quotation){
+
             $this->validate([
                 'prospect.quotation_total' => 'required',
                 'prospect.quotation_start_date' => 'required',
                 'prospect.quotation_due_date' => 'required',
-                'prospect.quotation_concept' => 'required',
-                'quotationTmp' => 'required',
+                'prospect.quotation_concept' => 'required'
             ]);
 
-            if(Storage::exists($this->prospect->quotation_url)){
-                Storage::delete($this->prospect->quotation_url);
-            }
+            if($this->prospect->quotation_url){
+                $this->validate([
+                    'quotationTmp' => 'nullable'
+                ]);
 
-            $path = $this->quotationTmp->store('public/prospect/quotation');
-            $this->prospect->quotation_url = $path;
+            }else{
+                $this->validate([
+                    'quotationTmp' => 'required'
+                ]);
+                if(Storage::exists($this->prospect->quotation_url)){
+                    Storage::delete($this->prospect->quotation_url);
+                }
+                if($this->quotationTmp){
+                    $path = $this->quotationTmp->store('public/prospect/quotation');
+                    $this->prospect->quotation_url = $path;
+                }
+            }
+            
         }
     }
 

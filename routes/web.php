@@ -23,9 +23,6 @@ use Illuminate\Support\Facades\Route;
 
 
 
-
-
-
 //Login
 Auth::routes(['register' => false]);
 

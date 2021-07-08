@@ -11,6 +11,13 @@
                 <h3 class="card-label">@yield('title')</h3>
             </div>
             <div class="card-toolbar">
+                <a 
+                    href="https://solucionfactible.com/crm/login.jsp"
+                    target="_blank"
+                    class="btn btn-outline-success mr-5">
+                    <i class="far fa-arrow-alt-circle-right"></i>
+                    Generar factura
+                </a>
                 <button 
                     wire:click="{{ $method }}"
                     wire:loading.class="spinner spinner-white spinner-right" 
