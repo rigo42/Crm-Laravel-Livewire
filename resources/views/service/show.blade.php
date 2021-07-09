@@ -131,11 +131,11 @@
                                         <div class="d-flex align-items-center mr-10">
                                             <div class="mr-6">
                                                 <div class="font-weight-bold mb-2">Inicio</div>
-                                                <span class="btn btn-sm btn-text btn-light-success text-uppercase font-weight-bold">{{ $service->start() }}</span>
+                                                <span class="btn btn-sm btn-text btn-light-success text-uppercase font-weight-bold">{{ $service->startDateToString() }}</span>
                                             </div>
                                             <div class="">
                                                 <div class="font-weight-bold mb-2">Vencimiento</div>
-                                                <span class="btn btn-sm btn-text btn-light-danger text-uppercase font-weight-bold">{{ $service->due() }}</span>
+                                                <span class="btn btn-sm btn-text btn-light-danger text-uppercase font-weight-bold">{{ $service->dueDateToString() }}</span>
                                             </div>
                                         </div>
                                         <div class="flex-grow-1 flex-shrink-0 w-150px w-xl-300px mt-4 mt-sm-0">

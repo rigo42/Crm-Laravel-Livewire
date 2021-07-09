@@ -40,11 +40,11 @@
                     @can('pagos')
                         <div class="col-lg-4 col-xxl-4 order-1 order-xxl-2">
                             <!--begin::List Widget 3-->
-                            <div class="card card-custom card-stretch gutter-b">
+                            <div class="card card-stretch gutter-b">
                                  <!--begin::Header-->
                                  <div class="card-header border-0 py-5">
                                     <h3 class="card-title align-items-start flex-column">
-                                        <span class="card-label font-weight-bolder text-dark">Cortes hoy</span>
+                                        <span class="card-label font-weight-bolder text-dark">Cortes hoy</span> <br>
                                         <span class="text-muted mt-3 font-weight-bold font-size-sm">({{ $servicesCutThisDay->count() }}) Corte(s) {{ \Carbon\Carbon::now()->toFormattedDateString() }} </span>
                                     </h3>
                                 </div>
@@ -52,7 +52,7 @@
                                 <!--end::Header-->
                                 <!--begin::Body-->
                                 <div class="card-body pt-2">
-                                    @foreach ($servicesCutThisDay as $service)
+                                    @foreach ($servicesCutThisDay as $serviceCutThisDay)
                                         <!--begin::Item-->
                                         <div class="d-flex align-items-center mb-10">
                                             <!--begin::Symbol-->
@@ -61,8 +61,8 @@
                                             >
                                                 <img 
                                                     width="40px"
-                                                    @if ($service->client->image)
-                                                        src='{{ Storage::url($service->client->image->url) }}'
+                                                    @if ($serviceCutThisDay->client->image)
+                                                        src='{{ Storage::url($serviceCutThisDay->client->image->url) }}'
                                                     @else
                                                         src='{{ asset('assets/media/users/blank.png') }}'
                                                     @endif
@@ -72,13 +72,13 @@
                                             <!--end::Symbol-->
                                             <!--begin::Text-->
                                             <div class="d-flex flex-column flex-grow-1 font-weight-bold">
-                                                <a href="#" class="text-dark text-hover-primary mb-1 font-size-lg">{{ $service->client->name }}</a> <span class="text-secondary font-size-sm">{{ $service->client->company }}</span> 
-                                                <span class="text-muted">Día {{ $service->due_day }}</span>
-                                                <span class="text-muted">Servicio: {{ $service->categoryService->name }}</span> 
+                                                <a href="#" class="text-dark text-hover-primary mb-1 font-size-lg">{{ $serviceCutThisDay->client->name }}</a> <span class="text-secondary font-size-sm">{{ $serviceCutThisDay->client->company }}</span> 
+                                                <span class="text-muted">{{ \Carbon\Carbon::parse($serviceCutThisDay->payment_date)->toFormattedDateString() }}</span>
+                                                <span class="text-muted">Servicio: {{ $serviceCutThisDay->categoryService->name }}</span> 
                                             </div>
                                             <!--end::Text-->
                                             <!--begin::Dropdown-->
-                                            <div class="dropdown dropdown-inline ml-2" data-toggle="tooltip" title="" data-placement="left" data-original-title="Quick actions">
+                                            <div class="dropdown dropdown-inline ml-2" data-toggle="tooltip" title="" data-placement="left" >
                                                 <a href="#" class="btn btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <i class="ki ki-bold-more-hor"></i>
                                                 </a>
@@ -108,19 +108,19 @@
                         </div>
                         <div class="col-lg-4 col-xxl-4 order-1 order-xxl-2">
                             <!--begin::List Widget 3-->
-                            <div class="card card-custom card-stretch gutter-b">
+                            <div class="card card-stretch gutter-b">
                                  <!--begin::Header-->
                                  <div class="card-header border-0 py-5">
                                     <h3 class="card-title align-items-start flex-column">
-                                        <span class="card-label font-weight-bolder text-dark">Cortes de la semana</span>
-                                        <span class="text-muted mt-3 font-weight-bold font-size-sm">({{ $servicesCutThisWeek->count() }}) Corte(s) {{ \Carbon\Carbon::now()->startOfWeek()->toFormattedDateString() }} - {{ \Carbon\Carbon::parse('friday')->endOfDay()->toFormattedDateString() }}</span>
+                                        <span class="card-label font-weight-bolder text-dark">Cortes de la semana</span> <br>
+                                        <span class="text-muted mt-3 font-weight-bold font-size-sm">({{ $servicesCutThisWeek->count() }}) Corte(s) {{ \Carbon\Carbon::now()->startOfWeek()->toFormattedDateString() }} - {{ \Carbon\Carbon::now()->endOfWeek()->toFormattedDateString() }}</span>
                                     </h3>
                                 </div>
                                 
                                 <!--end::Header-->
                                 <!--begin::Body-->
                                 <div class="card-body pt-2">
-                                    @foreach ($servicesCutThisWeek as $service)
+                                    @foreach ($servicesCutThisWeek as $serviceCutThisWeek)
                                         <!--begin::Item-->
                                         <div class="d-flex align-items-center mb-10">
                                             <!--begin::Symbol-->
@@ -129,8 +129,8 @@
                                             >
                                                 <img 
                                                     width="40px"
-                                                    @if ($service->client->image)
-                                                        src='{{ Storage::url($service->client->image->url) }}'
+                                                    @if ($serviceCutThisWeek->client->image)
+                                                        src='{{ Storage::url($serviceCutThisWeek->client->image->url) }}'
                                                     @else
                                                         src='{{ asset('assets/media/users/blank.png') }}'
                                                     @endif
@@ -140,13 +140,13 @@
                                             <!--end::Symbol-->
                                             <!--begin::Text-->
                                             <div class="d-flex flex-column flex-grow-1 font-weight-bold">
-                                                <a href="#" class="text-dark text-hover-primary mb-1 font-size-lg">{{ $service->client->name }}</a> <span class="text-secondary font-size-sm">{{ $service->client->company }}</span> 
-                                                <span class="text-muted">Día {{ $service->due_day }}</span>
-                                                <span class="text-muted">Servicio: {{ $service->categoryService->name }}</span> 
+                                                <a href="#" class="text-dark text-hover-primary mb-1 font-size-lg">{{ $serviceCutThisWeek->client->name }}</a> <span class="text-secondary font-size-sm">{{ $serviceCutThisWeek->client->company }}</span> 
+                                                <span class="text-muted">{{ \Carbon\Carbon::parse($serviceCutThisWeek->payment_date)->toFormattedDateString() }}</span>
+                                                <span class="text-muted">Servicio: {{ $serviceCutThisWeek->categoryService->name }}</span> 
                                             </div>
                                             <!--end::Text-->
                                             <!--begin::Dropdown-->
-                                            <div class="dropdown dropdown-inline ml-2" data-toggle="tooltip" title="" data-placement="left" data-original-title="Quick actions">
+                                            <div class="dropdown dropdown-inline ml-2" data-toggle="tooltip" title="" data-placement="left" >
                                                 <a href="#" class="btn btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <i class="ki ki-bold-more-hor"></i>
                                                 </a>
@@ -176,18 +176,19 @@
                         </div>
                         <div class="col-lg-4 col-xxl-4 order-1 order-xxl-2">
                             <!--begin::List Widget 3-->
-                            <div class="card card-custom card-stretch gutter-b">
+                            <div class="card card-stretch gutter-b">
                                  <!--begin::Header-->
                                  <div class="card-header border-0 py-5">
                                     <h3 class="card-title align-items-start flex-column">
-                                        <span class="card-label font-weight-bolder text-dark">Cortes atrasados {{ \Carbon\Carbon::now()->startOfWeek()->subDay(1)->format('y-m-d') }}</span>
+                                        <span class="card-label font-weight-bolder text-dark">Cortes atrasados</span> <br>
+                                        <span class="text-muted mt-3 font-weight-bold font-size-sm">({{ $servicesCutBack->count() }}) Corte(s) Antes del {{ \Carbon\Carbon::now()->startOfWeek()->subDay(1)->toFormattedDateString() }}</span>
                                    </h3>
                                 </div>
                                 
                                 <!--end::Header-->
                                 <!--begin::Body-->
                                 <div class="card-body pt-2">
-                                    @foreach ($servicesCutBack as $service)
+                                    @foreach ($servicesCutBack as $serviceCutBack)
                                         <!--begin::Item-->
                                         <div class="d-flex align-items-center mb-10">
                                             <!--begin::Symbol-->
@@ -196,8 +197,8 @@
                                             >
                                                 <img 
                                                     width="40px"
-                                                    @if ($service->client->image)
-                                                        src='{{ Storage::url($service->client->image->url) }}'
+                                                    @if ($serviceCutBack->client->image)
+                                                        src='{{ Storage::url($serviceCutBack->client->image->url) }}'
                                                     @else
                                                         src='{{ asset('assets/media/users/blank.png') }}'
                                                     @endif
@@ -207,13 +208,13 @@
                                             <!--end::Symbol-->
                                             <!--begin::Text-->
                                             <div class="d-flex flex-column flex-grow-1 font-weight-bold">
-                                                <a href="#" class="text-dark text-hover-primary mb-1 font-size-lg">{{ $service->client->name }}</a> <span class="text-secondary font-size-sm">{{ $service->client->company }}</span> 
-                                                <span class="text-muted">Día {{ $service->due_day }}</span>
-                                                <span class="text-muted">Servicio: {{ $service->categoryService->name }}</span> 
+                                                <a href="#" class="text-dark text-hover-primary mb-1 font-size-lg">{{ $serviceCutBack->client->name }}</a> <span class="text-secondary font-size-sm">{{ $serviceCutBack->client->company }}</span> 
+                                                <span class="text-muted">{{ $serviceCutBack->due_day }}</span>
+                                                <span class="text-muted">Servicio: {{ $serviceCutBack->categoryService->name }}</span> 
                                             </div>
                                             <!--end::Text-->
                                             <!--begin::Dropdown-->
-                                            <div class="dropdown dropdown-inline ml-2" data-toggle="tooltip" title="" data-placement="left" data-original-title="Quick actions">
+                                            <div class="dropdown dropdown-inline ml-2" data-toggle="tooltip" title="" data-placement="left" >
                                                 <a href="#" class="btn btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <i class="ki ki-bold-more-hor"></i>
                                                 </a>

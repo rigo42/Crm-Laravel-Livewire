@@ -57,15 +57,58 @@ class Service extends Model
         return '$'.number_format($this->price, 2, '.', ',');
     }
 
-    public function start(){
-        return Carbon::parse($this->start_date)->format('d-m-Y');
+    public function startDateToString(){
+        return Carbon::parse($this->start_date)->toFormattedDateString();
+    }
+
+    public function dueDateToString(){
+        $due = $this->due();
+        return Carbon::parse($due)->toFormattedDateString();
     }
 
     public function due(){
         if($this->type == 'Proyecto'){
-            return Carbon::parse($this->due_date)->format('d-m-Y');
+            return Carbon::parse($this->due_date);
         }else{
-            return 'Día '.$this->due_day;
+            //now date
+            $nowDate = date('Y-m-d');
+            //now day
+            $nowDay = date("d", strtotime($nowDate));
+            //Due day
+            $dueDay = $this->due_day;
+            //Month start service
+            $startDay = Carbon::parse($this->start_date)->format('j');
+            //Month start service
+            $startMonth = Carbon::parse($this->start_date)->format('m');
+            //Year start service
+            $startYear = Carbon::parse($this->start_date)->format('Y');
+            //Days in this month
+            $daysInThisMontht = date('t', strtotime($nowDate));
+
+            if(strtotime($this->start_date) > strtotime(date('Y-m-d'))){
+                //Days in these month
+                $daysInThisMontht = date('t', strtotime($this->start_date));
+                $diff = Carbon::parse(date('Y-m-d'))->diffInDays($this->start_date);
+                $sum = ($daysInThisMontht + ($dueDay - $nowDay) + $diff);            
+
+            }else{
+                if($dueDay == date('j')){
+                    $sum = 0;
+                }
+                elseif($dueDay < date('j')){
+                    //dd($dueDay.' == '.date('j'));
+                    $sum = ($daysInThisMontht + ($dueDay - $nowDay)); 
+                   
+                }
+                elseif($dueDay > date('j')){
+                    $sum = ($dueDay - $nowDay); 
+                }
+            }
+            
+
+            return Carbon::parse(date('Y-m-d', strtotime('+'.$sum.' day', strtotime($nowDate))));
+            
+            
         }
     }
 
@@ -86,90 +129,79 @@ class Service extends Model
         }
     }
 
-    static function weekCutService(){
-        $userPresent = User::find(Auth::id());
-        $firstDayThisWeek = Carbon::now()->startOfWeek();
-        $services = Service::query()
-                            ->orderBy('due_day', 'desc')
-                            ->where('finished', false)
-                            ->whereDoesntHave('payments', function ($query) {
-                                $query->whereMonth('date', date('m'))
-                                        ->whereYear('date', date('Y'));
-                            });
-
-        if(!$userPresent->hasRole('Administrador')){
-            $services = $services->whereHas('client', function($query) use($userPresent) {
-                $query->where('user_id', $userPresent->id);
-            });
-        }
-        
-        $daysArray = [];
-        for($i = 1; $i <=5; $i++){ //5 dias laborales
-            $otherDay = Carbon::parse($firstDayThisWeek)->addDays(($i - 1));
-            array_push($daysArray, $otherDay->format('j'));
-        }
-
-        $services = $services->whereIn('due_day', $daysArray)->cursor();
-
-        return $services;
-    }
-
     static function dayCutService(){
-        $userPresent = User::find(Auth::id());
+        $thisDay = Carbon::now()->format('j');
+
+        $services = Service::query()
+                            ->whereNull('finished')
+                            ->where('due_day', $thisDay)
+                            ->whereMonth('start_date', '<', date('m'))
+                            ->orWhereYear('start_date', '<', date('Y'))
+                            ->whereDoesntHave('payments', function ($query) use($thisDay) {
+                                $query->whereDate('date', date('Y-m-d'));
+                            })->get();
+                            
+        $services->payment_date = date('Y-m-d');
+        return $services;
+    }
+
+    static function weekCutService(){
+        //Obtener rango de esta semana
+        $firstDayThisWeek = Carbon::now()->startOfWeek()->format('Y-m-d');
+        $finishedDayThisWeek = Carbon::now()->endOfWeek()->format('Y-m-d');
+        
+        //Obtener los servicios que no tienen un pago en esta semana
         $services = Service::query()
                             ->orderBy('due_day', 'desc')
-                            ->where('finished', false)
-                            ->whereDoesntHave('payments', function ($query) {
-                                $query->whereMonth('date', date('m'))
-                                        ->whereYear('date', date('Y'));
+                            ->whereNull('finished')
+                            ->whereMonth('start_date', '<', date('m'))
+                            ->orWhereYear('start_date', '<', date('Y'))
+                            ->whereDoesntHave('payments', function ($query) use($firstDayThisWeek, $finishedDayThisWeek) {
+                                $query->whereBetween('date', [$firstDayThisWeek, $finishedDayThisWeek]);
                             });
+        
+        $datesThisWeek = [];
+        for($i = 1; $i <=7; $i++){ //7 dias de la semana
+            //Obtener fechas desde el primer inicio de la semana pasada
+            $otherDay = Carbon::parse($firstDayThisWeek)->addDays(($i - 1)); 
 
-        if(!$userPresent->hasRole('Administrador')){
-            $services = $services->whereHas('client', function($query) use($userPresent) {
-                $query->where('user_id', $userPresent->id);
-            });
+            //Rellenar array que contendrá el día y la fecha de cada día recorrido de la semana pasada
+            array_push($datesThisWeek, array('day' => $otherDay->format('j'), 'date' => $otherDay->format('Y-m-d')));
         }
 
-        $services = $services->where('due_day', date('d'))->cursor();
+        $daysArray = array();
+        foreach($datesThisWeek as $dateThisWeek){
+            array_push($daysArray, $dateThisWeek['day']);
+        }
+            
+        $services = $services->whereIn('due_day', $daysArray)->get();
+
+        $services->map(function($service) use($datesThisWeek) {
+            foreach ($datesThisWeek as $dateThisWeek) {
+                if($dateThisWeek['day'] == $service->due_day){
+                    $service->payment_date = $dateThisWeek['date'];
+                }
+            }            
+        });
 
         return $services;
     }
+
+
 
     static function backCutService(){
-        $userPresent = User::find(Auth::id());
-        $backtDayThisWeek = Carbon::now()->startOfWeek()->subDay(1)->format('y-m-d');
-
-        $dates = collect();
-
-        $services = Service::cursor();
-
-        foreach($services as $service){
-            $hola = $service->whereDoesntHave('payments', function ($query) use($service, $backtDayThisWeek) {
-                $query->whereDate('date', '>=', $service->start_date)->whereDate('date', '>=', $backtDayThisWeek);
-            });
-            foreach ($hola as $h) {
-                dd($h);
-            }
-        }
-
+        $firstBackWeek = Carbon::now()->startOfWeek()->subDay(1)->format('Y-m-d');
         
-
         $services = Service::query()
                             ->orderBy('due_day', 'desc')
-                            ->where('finished', false)
-                            ->whereDoesntHave('payments', function ($query) {
-                                $query->whereMonth('date', date('m'))
-                                        ->whereYear('date', date('Y'));
-                            });
+                            ->whereNull('finished')
+                            ->where('due_day', '<=', Carbon::now()->startOfWeek()->subDay(1)->format('j'))
+                            ->whereMonth('start_date', '<', date('m'))
+                            ->orWhereYear('start_date', '<', date('Y'))
+                            ->whereDoesntHave('payments', function ($query) use($firstBackWeek) {
+                                $query->where('date', '<', $firstBackWeek);
+                            })->get();
 
-        if(!$userPresent->hasRole('Administrador')){
-            $services = $services->whereHas('client', function($query) use($userPresent) {
-                $query->where('user_id', $userPresent->id);
-            });
-        }
-
-       
-        $services = $services->cursor();
 
         return $services;
     }

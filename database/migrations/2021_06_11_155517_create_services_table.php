@@ -21,12 +21,12 @@ class CreateServicesTable extends Migration
             $table->string('name');
             $table->date('start_date');
             $table->date('due_date')->nullable(); //Día de vencimiento  para el tipo "Mensual"
-            $table->integer('due_day')->nullable();;  //Fecha de vencimiento para el tipo "Proyecto"
+            $table->integer('due_day')->nullable();  //Fecha de vencimiento para el tipo "Proyecto"
             $table->double('price');
             $table->text('note')->nullable();
-            $table->boolean('has_invoice')->nullable()->default(0);
+            $table->boolean('has_invoice')->nullable();
             $table->text('service_agreement')->nullable();
-            $table->boolean('finished')->nullable()->default(0);
+            $table->boolean('finished')->nullable();
             $table->timestamps();
         });
     }

@@ -60,14 +60,15 @@
                                     @else
                                         src="{{ asset('assets/media/users/blank.png') }}" 
                                     @endif
-                                alt="image" />
+                                    alt="image" 
+                                />
                             </div>
                             <!--end::Pic-->
                             <div class="d-flex flex-column mr-auto">
                                 <!--begin: Title-->
-                                <a href="{{ route('client.show', $service->client) }}" class="card-title text-hover-primary font-weight-bolder font-size-h5 text-dark mb-1">{{ $service->client->name }}</a>
+                                <a href="{{ route('service.show', $service) }}" class="card-title text-hover-primary font-weight-bolder font-size-h5 text-dark mb-1">{{ $service->name }}  ({{ $service->priceToString() }}) ({{ $service->type }})</a>
                                 
-                                <span class="text-primary font-weight-bold">{{ $service->name }}  ({{ $service->priceToString() }}) ({{ $service->type }})</span>
+                                <span class="text-primary font-weight-bold">{{ $service->client->name }}</span>
                                 
                                 @if ($service->categoryService)
                                     <span class="text-secondary" style="font-size: 10px;">{{ $service->categoryService->name }}</span>
@@ -93,11 +94,11 @@
                         <div class="d-flex flex-wrap mt-14">
                             <div class="mr-12 d-flex flex-column mb-7">
                                 <span class="d-block font-weight-bold mb-4">Inicio</span>
-                                <span class="btn btn-light-success btn-sm font-weight-bold btn-text">{{ $service->start() }}</span>
+                                <span class="btn btn-light-success btn-sm font-weight-bold btn-text">{{ $service->startDateToString() }}</span>
                             </div>
                             <div class="mr-12 d-flex flex-column mb-7">
                                 <span class="d-block font-weight-bold mb-4">Vencimiento</span>
-                                <span class="btn btn-light-danger btn-sm font-weight-bold btn-text">{{ $service->due() }}</span>
+                                <span class="btn btn-light-danger btn-sm font-weight-bold btn-text">{{ $service->dueDateToString() }}</span>
                             </div>
                             @if ($service->type == 'Proyecto')
                             <!--begin::Progress-->
