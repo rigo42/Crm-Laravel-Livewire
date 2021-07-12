@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Invoice;
 
 use App\Models\Client;
 use App\Models\Invoice;
+use App\Models\Service;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -43,6 +44,17 @@ class Form extends Component
         if(request()->client){
             $this->invoice->client_id = request()->client;
             $this->clientChange(request()->client);
+        }
+
+        if(request()->date){
+            $this->invoice->start_date = request()->date;
+        }
+
+        if(request()->service){
+            $service = Service::findOrFail(request()->service);
+            $this->invoice->total = $service->price;
+            $this->invoice->concept = $service->categoryService->name;
+            array_push($this->serviceArray, "".request()->service."");
         }
     }
 

@@ -54,6 +54,7 @@ class Index extends Component
         }
         
         if($this->client){
+            $count = $this->client->quotations();
             $quotations = $quotations->whereHas('client', function($query){
                 $query->where('client_id', $this->client->id);
             });

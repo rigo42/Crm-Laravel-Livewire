@@ -64,11 +64,11 @@ class Form extends Component
             $this->payment->date = request()->date;
         }
 
-        if(request()->service_id){
-            $service = Service::findOrFail(request()->service_id);
+        if(request()->service){
+            $service = Service::findOrFail(request()->service);
             $this->payment->concept = $service->categoryService->name;
             $this->payment->monto = $service->price;
-            array_push($this->serviceArray, "".request()->service_id."");
+            array_push($this->serviceArray, "".request()->service."");
         }
         
         foreach($this->payment->services as $service){

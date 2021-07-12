@@ -51,6 +51,14 @@
                     </a>
                 </li>
                 @endcan
+                @can('proyectos')
+                <li class="menu-item {{ active('project.*') }}">
+                    <a href="{{ route('project.index') }}" class="menu-link">
+                        <i class="menu-icon text-dark fas fa-rocket"></i>
+                        <span class="menu-text">Proyetos</span>
+                    </a>
+                </li>
+                @endcan
                 @can('servicios')
                 <li class="menu-item {{ active('quotation.*') }}">
                     <a href="{{ route('quotation.index') }}" class="menu-link">

@@ -18,6 +18,10 @@ class Form extends Component
     
     //User actual
     public $user;
+    //Client passed by parameter
+    public $client;
+    //Type passed by parameter
+    public $type;
     
     public $method;
     public $service;
@@ -29,10 +33,25 @@ class Form extends Component
 
     protected $listeners = ['render'];
 
-    public function mount(Service $service, $method){
+    public function mount(Service $service, $method, $type = null){
         $this->user = User::find(Auth::user()->id);
         $this->service = $service;
         $this->method = $method;
+
+        if($type){
+            $this->type = $type;
+            $this->service->type = $this->type;
+        }
+
+        if(request()->client){
+            $this->client = Client::findOrFail(request()->client);
+            $this->service->client_id = $this->client->id;
+        }
+
+        if(request()->date){
+            $this->service->start_date = request()->date;
+        }
+
         foreach($this->service->users as $user){
             array_push($this->userArray, "".$user->id."");
         }

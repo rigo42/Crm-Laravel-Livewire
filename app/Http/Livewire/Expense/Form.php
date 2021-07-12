@@ -6,6 +6,7 @@ use App\Models\Account;
 use App\Models\CategoryExpense;
 use App\Models\Client;
 use App\Models\Expense;
+use App\Models\Service;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -56,6 +57,16 @@ class Form extends Component
         if(request()->client){
             $this->client = Client::findOrFail(request()->client);
             $this->expense->client_id = request()->client;
+        }
+
+        if(request()->date){
+            $this->expense->date = request()->date;
+        }
+
+        if(request()->service){
+            $service = Service::findOrFail(request()->service);
+            $this->expense->concept = $service->categoryService->name;
+            array_push($this->serviceArray, "".request()->service."");
         }
 
         foreach($this->expense->services as $service){

@@ -20,6 +20,8 @@ class Index extends Component
     public $userPresent;
     //Client passed by parameter
     public $client;
+    //Type passed by parameter
+    public $type;
 
     //Tools
     public $perPage = 10;
@@ -29,10 +31,13 @@ class Index extends Component
     //Theme
     protected $paginationTheme = 'bootstrap';
 
-    public function mount($client = null){
+    public function mount($client = null, $type = null){
         $this->userPresent = User::find(Auth::id());
         if($client){
             $this->client = Client::findOrFail($client->id);
+        }
+        if($type){
+            $this->type = $type;
         }
     }
 
@@ -59,6 +64,11 @@ class Index extends Component
             });
         }
 
+        if($this->type){
+            $count = $count->where('type', $this->type);
+            $services = $services->where('type', $this->type);
+        }
+
         if($this->search){
             $services = $services->where('name', 'LIKE', "%{$this->search}%")
                                     ->orWhereHas('client', function($query){
@@ -77,7 +87,7 @@ class Index extends Component
     public function destroy($id)
     {
         try{
-            $service = Service::find($id)->delete();
+            Service::find($id)->delete();
             $this->alert('success', 'Eliminación con exito');
         }catch(Exception $e){
             $this->alert('error', 

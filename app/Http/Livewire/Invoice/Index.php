@@ -47,12 +47,14 @@ class Index extends Component
         $invoices = Invoice::orderBy('id', 'desc');
 
         if($this->service){
+            $count = $this->service->invoices();
             $invoices = $invoices->whereHas('services', function($query){
                 $query->where('service_id', $this->service->id);
             });
         }
 
         if($this->client){
+            $count = $this->client->invoices();
             $invoices = $invoices->whereHas('client', function($query){
                 $query->where('client_id', $this->client->id);
             });

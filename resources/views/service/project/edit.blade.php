@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Nueva factura')
+@section('title', $service->name)
 
 @section('content')
     <!--begin::Bread-->
@@ -8,11 +8,12 @@
         <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
             <div class="d-flex align-items-center flex-wrap mr-1">
                 <div class="d-flex align-items-baseline mr-5">
-                    <a class="text-dark" href="{{ route('invoice.index') }}"><h5 class="text-dark font-weight-bold my-2 mr-5">Facturaciones</h5></a>
+                    <a class="text-dark" href="{{ route('project.index') }}"><h5 class="text-dark font-weight-bold my-2 mr-5">Proyectos</h5></a>
                     <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
-                        <li class="breadcrumb-item active">
-                            <a href="#" class="text-muted">@yield('title')</a>
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('project.show', $service) }}" class="text-muted">@yield('title')</a>
                         </li>
+                        <li class="breadcrumb-item active"><a href="#" class="text-muted">Editar</a></li>
                     </ul>
                 </div>
             </div>
@@ -21,7 +22,11 @@
 
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="d-flex flex-column-fluid">
-            @livewire('invoice.form', ['invoice' => $invoice, 'method' => 'store'])
-        </div> 
+            @livewire('service.form', ['service' => $service, 'method' => 'update', 'type' => 'Proyecto'])
+        </div>
     </div>
+@endsection
+
+@section('footer')
+
 @endsection

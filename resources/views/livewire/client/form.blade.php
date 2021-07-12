@@ -222,11 +222,10 @@
                                             data-live-search="true"
                                             data-show-subtext="true"
                                         >
-                                            @forelse ($categoryClients as $categoryClient)
+                                            <option value="">Ninguna</option>
+                                            @foreach ($categoryClients as $categoryClient)
                                                 <option data-subtext="{{ $categoryClient->description }}" value="{{ $categoryClient->id }}">{{ $categoryClient->name }}</option>
-                                            @empty 
-                                                <option value="">Ninguna</option>
-                                            @endforelse
+                                            @endforeach
                                         </select>
                                     </div>
                                     <span class="form-text text-muted">Elije la categoría correspondiente al cliente</span>

@@ -119,7 +119,7 @@
                                 </div>
                                 <!--end::Title-->
 
-                                <!-- Info payments -->
+                                <!-- Info payment -->
                                 <div class="d-flex align-items-center justify-content-start flex-wrap mb-4">
                                     <!--begin: Item-->
                                     <div class="mr-1 col-lg-3 col-auto text-dark border border-dashed rounded mb-4">
@@ -262,18 +262,9 @@
                             <div class="card-header card-header-tabs-line">
                                 <div class="card-toolbar">
                                     <ul class="nav nav-tabs nav-tabs-space-lg nav-tabs-line nav-bold nav-tabs-line-3x" role="tablist">
-                                        {{-- <li class="nav-item">
-                                            <a class="nav-link active" data-toggle="tab" href="#kt_apps_contacts_view_tab_1">
-                                                <span class="nav-icon mr-2">
-                                                    <span class="svg-icon mr-3">
-                                                        <i class="fa fa-chart-bar"></i>
-                                                    </span>
-                                                </span>
-                                                <span class="nav-text">Estadisticas</span>
-                                            </a>
-                                        </li> --}}
+                                       
                                         <li class="nav-item mr-3">
-                                            <a class="nav-link active" data-toggle="tab" href="#kt_apps_contacts_view_tab_2">
+                                            <a class="nav-link active" data-toggle="tab" href="#payment">
                                                 <span class="nav-icon mr-2">
                                                     <span class="svg-icon mr-3">
                                                         <i class="fa fa-credit-card"></i>
@@ -283,7 +274,7 @@
                                             </a>
                                         </li>
                                         <li class="nav-item mr-3">
-                                            <a class="nav-link" data-toggle="tab" href="#kt_apps_contacts_view_tab_3">
+                                            <a class="nav-link" data-toggle="tab" href="#expense">
                                                 <span class="nav-icon mr-2">
                                                     <span class="svg-icon mr-3">
                                                        <i class="fa fa-calculator"></i>
@@ -294,7 +285,7 @@
                                             </a>
                                         </li>
                                         <li class="nav-item mr-3">
-                                            <a class="nav-link" data-toggle="tab" href="#kt_apps_contacts_view_tab_4">
+                                            <a class="nav-link" data-toggle="tab" href="#service">
                                                 <span class="nav-icon mr-2">
                                                     <span class="svg-icon mr-3">
                                                        <i class="fa fa-star"></i>
@@ -304,7 +295,17 @@
                                             </a>
                                         </li>
                                         <li class="nav-item mr-3">
-                                            <a class="nav-link" data-toggle="tab" href="#kt_apps_contacts_view_tab_5">
+                                            <a class="nav-link" data-toggle="tab" href="#project">
+                                                <span class="nav-icon mr-2">
+                                                    <span class="svg-icon mr-3">
+                                                       <i class="fas fa-rocket"></i>
+                                                    </span>
+                                                </span>
+                                                <span class="nav-text">Proyectos</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item mr-3">
+                                            <a class="nav-link" data-toggle="tab" href="#invoice">
                                                 <span class="nav-icon mr-2">
                                                     <span class="svg-icon mr-3">
                                                         <i class="fas fa-file-pdf"></i>
@@ -314,7 +315,7 @@
                                             </a>
                                         </li>
                                         <li class="nav-item mr-3">
-                                            <a class="nav-link" data-toggle="tab" href="#kt_apps_contacts_view_tab_6">
+                                            <a class="nav-link" data-toggle="tab" href="#quotation">
                                                 <span class="nav-icon mr-2">
                                                     <span class="svg-icon mr-3">
                                                         <i class="fa fa-sticky-note"></i>
@@ -330,27 +331,28 @@
                             <!--begin::Body-->
                             <div class="card-body px-0">
                                 <div class="tab-content ">
-                                    {{-- <div class="tab-pane active" id="kt_apps_contacts_view_tab_1" role="tabpanel">
 
-                                    </div> --}}
-
-                                    <div class="tab-pane active" id="kt_apps_contacts_view_tab_2" role="tabpanel">
+                                    <div class="tab-pane active" id="payment" role="tabpanel">
                                         @livewire('payment.index', ['client' => $client])
                                     </div>
                                     
-                                    <div class="tab-pane" id="kt_apps_contacts_view_tab_3" role="tabpanel">
+                                    <div class="tab-pane" id="expense" role="tabpanel">
                                         @livewire('expense.index', ['client' => $client])
                                     </div>
                                     
-                                    <div class="tab-pane" id="kt_apps_contacts_view_tab_4" role="tabpanel">
-                                        @livewire('service.index', ['client' => $client])
+                                    <div class="tab-pane" id="service" role="tabpanel">
+                                        @livewire('service.index', ['client' => $client, 'type' => 'Mensual'], key('service'))
+                                    </div>
+
+                                    <div class="tab-pane" id="project" role="tabpanel">
+                                        @livewire('service.index', ['client' => $client, 'type' => 'Proyecto'], key('project'))
                                     </div>
                                     
-                                    <div class="tab-pane" id="kt_apps_contacts_view_tab_5" role="tabpanel">
+                                    <div class="tab-pane" id="invoice" role="tabpanel">
                                         @livewire('invoice.index', ['client' => $client], key($client->id))
                                     </div>
                                     
-                                    <div class="tab-pane" id="kt_apps_contacts_view_tab_6" role="tabpanel">
+                                    <div class="tab-pane" id="quotation" role="tabpanel">
                                         @livewire('quotation.index', ['client' => $client], key($client->id))
                                     </div>
                                 </div>

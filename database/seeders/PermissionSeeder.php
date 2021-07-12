@@ -22,12 +22,15 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'facturas']);
         Permission::create(['name' => 'pagos']);
         Permission::create(['name' => 'gastos']);
-        Permission::create(['name' => 'recordatorios']);
         Permission::create(['name' => 'reportes']);
         Permission::create(['name' => 'calendario']);
 
         //news 20/mayo/2021
         Permission::create(['name' => 'ajustes']);
         Permission::create(['name' => 'cotizaciones']);
+
+        //News 12/07/2021
+        Permission::create(['name' => 'proyectos']);
+        Permission::create(['name' => 'proveedores']);
     }
 }

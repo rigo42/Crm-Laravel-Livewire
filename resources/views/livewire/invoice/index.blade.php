@@ -2,8 +2,45 @@
     @if ($count)
             
         <!--Filters-->
-        <div class="card mb-7">
-            <div class="card-body">
+        <div class="card card-custom gutter-b">
+            <!--begin::Header-->
+            <div class="card-header border-0 py-5">
+                <h3 class="card-title align-items-start flex-column">
+                    <span class="text-muted mt-3 font-weight-bold font-size-sm">({{ $invoices->total() }}) Facturas(s)</span>
+                </h3>
+                @if (isset($service))
+                    <div class="card-toolbar">
+                        <a 
+                            href="{{ 
+                                route('invoice.create',[
+                                    'client' => $service->client,
+                                    'date' => date('Y-m-d'),
+                                    'service_id' =>$service->id
+                                ]) 
+                            }}" 
+                            class="btn btn-primary btn-shadow font-weight-bold mr-2 "
+                        >
+                            <i class="fa fa-plus"></i> Nueva factura
+                        </a>
+                    </div>
+                @elseif (isset($client))
+                    <div class="card-toolbar">
+                        <a 
+                            href="{{ 
+                                route('invoice.create',[
+                                    'client' => $client,
+                                    'date' => date('Y-m-d'),
+                                ]) 
+                            }}" 
+                            class="btn btn-primary btn-shadow font-weight-bold mr-2 "
+                        >
+                            <i class="fa fa-plus"></i> Nueva factura
+                        </a>
+                    </div>
+                @endif
+            </div>
+            <!--end::Header-->
+            <div class="card-body  pt-0 pb-3">
                 <div class="mb-5 ">
                     <div class="row align-items-center">
                         <div class="col-lg-9 col-xl-8">
@@ -18,7 +55,7 @@
                                         <span>
                                             <i class="flaticon2-search-1 text-muted"></i>
                                         </span>
-                                    </div>
+                                    </div> 
                                 </div>
                                 <div class="col-md-6 my-2 my-md-0">
                                     <div class="d-flex align-items-center">
@@ -113,7 +150,30 @@
                     <h2 class="fs-2x fw-bolder mb-10">Hola!</h2>
                     <p class="text-gray-400 fs-4 fw-bold mb-10">Al parecer no tienes ninguna factura.
                     <br> Ponga en marcha su CRM añadiendo su primera factura</p>
-                    <a href="{{ route('invoice.create') }}" class="btn btn-primary">Agregar factura</a>
+                    @if (isset($service))
+                        <a 
+                            href="{{ 
+                                route('invoice.create',[
+                                    'client' => $service->client,
+                                    'date' => date('Y-m-d'),
+                                    'service_id' =>$service->id
+                                ]) 
+                            }}"  
+                            class="btn btn-primary">Agregar factura
+                        </a>
+                    @elseif(isset($client))
+                        <a 
+                            href="{{ 
+                                route('invoice.create',[
+                                    'client' => $client,
+                                    'date' => date('Y-m-d'),
+                                ]) 
+                            }}"  
+                            class="btn btn-primary">Agregar factura
+                        </a>
+                    @else
+                        <a href="{{ route('invoice.create') }}" class="btn btn-primary">Agregar factura</a>
+                    @endif
                 </div>
                 <div class="text-center px-4 ">
                     <img class="img-fluid col-6" alt="" src="{{ asset('assets/media/ilustrations/work.png') }}">

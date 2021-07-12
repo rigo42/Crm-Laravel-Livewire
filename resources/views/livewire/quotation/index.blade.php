@@ -2,8 +2,30 @@
     @if ($count)
             
         <!--Filters-->
-        <div class="card mb-7">
-            <div class="card-body">
+        <div class="card card-custom gutter-b">
+            <!--begin::Header-->
+            <div class="card-header border-0 py-5">
+                <h3 class="card-title align-items-start flex-column">
+                    <span class="text-muted mt-3 font-weight-bold font-size-sm">({{ $quotations->total() }}) Cotización(es)</span>
+                </h3>
+                @if(isset($client))
+                    <div class="card-toolbar">
+                        <a 
+                            href="{{ 
+                                route('quotation.create',[
+                                    'client' => $client,
+                                    'date' => date('Y-m-d'),
+                                ]) 
+                            }}" 
+                            class="btn btn-primary btn-shadow font-weight-bold mr-2 "
+                        >
+                            <i class="fa fa-plus"></i> Nueva cotización
+                        </a>
+                    </div>
+                @endif
+            </div>
+            <!--end::Header-->
+            <div class="card-body pt-0 pb-3">
                 <div class="mb-5 ">
                     <div class="row align-items-center">
                         <div class="col-lg-9 col-xl-8">
@@ -64,13 +86,23 @@
                             </div>
                         </div>
                         <div class="card-body">
+                           
                             <div class="d-flex flex-column align-items-center">
                                 <!--begin: Icon-->
-                                <img alt="{{ $quotation->concept }}" class="max-h-65px" src="{{ asset('assets') }}/media/svg/files/pdf.svg">
-                                <!--begin: Tite-->
-                                <p class="text-dark-75 font-weight-bold my-4 font-size-lg">{{ $quotation->concept }}</p>
-                                <p>{{ $quotation->totalToString() }}</p>
+                                <a href="{{ route('quotation.show', $quotation) }}">
+                                    <div>
+
+                                        <img alt="{{ $quotation->concept }}" class="max-h-65px" src="{{ asset('assets') }}/media/svg/files/pdf.svg"/>
+                                        <!--begin: Tite-->
+                                        <p class="text-dark-75 font-weight-bold my-4 font-size-lg">{{ $quotation->concept }}</p>
+                                        <p>{{ $quotation->totalToString() }}</p>
+                                        
+                                    </div>  
+                                </a>
+                                
+
                                 <div class="symbol symbol-circle symbol-lg-75">
+                                   
                                     <img 
                                         @if ($quotation->client->image)
                                             src="{{ Storage::url($quotation->client->image->url) }}" 
@@ -80,10 +112,12 @@
                                         
                                         alt="{{ $quotation->client->name }}" 
                                     />
+                                   
                                 </div>
                                 <a class="text-dark-75 font-weight-bold mt-1 font-size-lg">{{ $quotation->client->name }}</a>
                                 <!--end: Tite-->
                             </div>
+                       
                         </div>
                     </div>
                     <!--end:: Card-->
@@ -113,7 +147,20 @@
                     <h2 class="fs-2x fw-bolder mb-10">Hola!</h2>
                     <p class="text-gray-400 fs-4 fw-bold mb-10">Al parecer no tienes ninguna cotización.
                     <br> Ponga en marcha su CRM añadiendo su primera cotización</p>
-                    <a href="{{ route('quotation.create') }}" class="btn btn-primary">Agregar cotización</a>
+                    
+                    @if (isset($client))
+                        <a 
+                            href="{{ 
+                                route('quotation.create',[
+                                    'client' => $client,
+                                    'date' => date('Y-m-d'),
+                                ]) 
+                            }}"  
+                            class="btn btn-primary">Agregar cotización
+                        </a>
+                    @else
+                        <a href="{{ route('quotation.create') }}" class="btn btn-primary">Agregar cotización</a>
+                    @endif
                 </div>
                 <div class="text-center px-4 ">
                     <img class="img-fluid col-6" alt="" src="{{ asset('assets/media/ilustrations/work.png') }}">

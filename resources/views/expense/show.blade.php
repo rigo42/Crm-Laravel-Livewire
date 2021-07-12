@@ -158,15 +158,17 @@
                                     <div class="row">
                                         @forelse ($expense->services as $service)
                                         <div class="col-lg-6">
-                                            <label class="option">
-                                                <span class="option-label">
-                                                    <span class="option-head">
-                                                        <span class="option-title">{{ $service->name }}</span>
-                                                        <span class="option-focus">{{ $service->priceToString() }}</span>
+                                            <a href="{{ route('service.show', $service) }}">
+                                                <label class="option" style="cursor: pointer;">
+                                                    <span class="option-label">
+                                                        <span class="option-head">
+                                                            <span class="option-title">{{ $service->name }}</span>
+                                                            <span class="option-focus">{{ $service->priceToString() }}</span>
+                                                        </span>
+                                                        <span class="option-body">{{ $service->note }}</span>
                                                     </span>
-                                                    <span class="option-body">{{ $service->note }}</span>
-                                                </span>
-                                            </label>
+                                                </label>
+                                            </a>
                                         </div>
                                         @empty
                                             <span class="badge badge-secondary">No se encontró ningun servicio ligado a este pago</span>

@@ -184,6 +184,7 @@
                                             data-live-search="true"
                                             required>
                                             <option value="">Selecciona un tipo de categoría</option>
+                                            <option value="">Ninguna</option>
                                             @foreach ($categoryExpenses as $categoryExpense)
                                                 <option value="{{ $categoryExpense->id }}">{{ $categoryExpense->name }}</option>
                                             @endforeach

@@ -7,6 +7,37 @@
                 <h3 class="card-title align-items-start flex-column">
                     <span class="text-muted mt-3 font-weight-bold font-size-sm">({{ $expenses->total() }}) pago(s)</span>
                 </h3>
+                @if (isset($service))
+                    <div class="card-toolbar">
+                        <a 
+                            href="{{ 
+                                route('expense.create',[
+                                    'client' => $service->client,
+                                    'date' => date('Y-m-d'),
+                                    'service' =>$service
+                                ]) 
+                            }}" 
+                            class="btn btn-primary btn-shadow font-weight-bold mr-2 "
+                        >
+                            <i class="fa fa-plus"></i> Nuevo gasto
+                        </a>
+                    </div>
+                @endif
+                @if (isset($client))
+                    <div class="card-toolbar">
+                        <a 
+                            href="{{ 
+                                route('expense.create',[
+                                    'client' => $client,
+                                    'date' => date('Y-m-d'),
+                                ]) 
+                            }}" 
+                            class="btn btn-primary btn-shadow font-weight-bold mr-2 "
+                        >
+                            <i class="fa fa-plus"></i> Nuevo gasto
+                        </a>
+                    </div>
+                @endif
             </div>
             <!--end::Header-->
             <!--begin::Body-->
@@ -209,7 +240,31 @@
                     <h2 class="fs-2x fw-bolder mb-10">Hola!</h2>
                     <p class="text-gray-400 fs-4 fw-bold mb-10">Al parecer no tienes ningun gasto.
                     <br> Ponga en marcha su CRM añadiendo su primer gasto</p>
-                    <a href="{{ route('expense.create') }}" class="btn btn-primary">Agregar un gasto</a>
+                    @if (isset($service))
+                        <a 
+                            href="{{ 
+                                route('expense.create',[
+                                    'client' => $service->client,
+                                    'date' => date('Y-m-d'),
+                                    'service' =>$service
+                                ]) 
+                            }}"  
+                            class="btn btn-primary">Agregar un gasto
+                        </a>
+                    @elseif (isset($client))
+                        <a 
+                            href="{{ 
+                                route('expense.create',[
+                                    'client' => $client,
+                                    'date' => date('Y-m-d'),
+                                ]) 
+                            }}"  
+                            class="btn btn-primary">Agregar un gasto
+                        </a>
+                    @else
+                        <a href="{{ route('expense.create') }}" class="btn btn-primary">Agregar un gasto</a>
+                    @endif
+                    
                 </div>
                 <div class="text-center px-4 ">
                     <img class="img-fluid col-6" alt="" src="{{ asset('assets/media/ilustrations/work.png') }}">

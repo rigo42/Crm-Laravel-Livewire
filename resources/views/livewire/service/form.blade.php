@@ -73,22 +73,6 @@
                             @include('component.error-list')
 
                             <div class="form-group row">
-                                <label class="col-3">Tipo de servicio <span x-ref="type"></span> <span class="text-danger">*</span></label>
-                                <div class="col-9">
-                                    <select 
-                                        x-on:change="type = $event.target.value"
-                                        wire:model.defer="service.type" 
-                                        class="form-control selectpicker @error('service.type') is-invalid @enderror" 
-                                        required>
-                                        <option value="">Selecciona un tipo</option>
-                                        <option value="Proyecto">Proyecto</option>
-                                        <option value="Mensual">Servicio mensual</option>
-                                    </select>
-                                    <span class="form-text text-muted">Elije el tipo de servicio</span>
-                                    @error('service.type') <div><span class="text-danger">{{ $message }}</span></div> @enderror
-                                </div>
-                            </div>
-                            <div class="form-group row">
                                 <label class="col-3">Cliente <span class="text-danger">*</span></label>
                                 <div class="col-9">
                                     <div >

@@ -49,6 +49,9 @@ class Form extends Component
         if(request()->client){
             $this->quotation->client_id = request()->client;
         }
+        if(request()->date){
+            $this->quotation->start_date = request()->date;
+        }
     }
 
     public function render()

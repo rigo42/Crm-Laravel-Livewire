@@ -7,6 +7,7 @@ use App\Http\Controllers\Invoice\InvoiceController;
 use App\Http\Controllers\Payment\PaymentController;
 use App\Http\Controllers\Prospect\ProspectController;
 use App\Http\Controllers\Quotation\QuotationController;
+use App\Http\Controllers\Service\ProjectController;
 use App\Http\Controllers\Service\ServiceController;
 use App\Http\Controllers\Setting\AccountController;
 use App\Http\Controllers\Setting\BackupController;
@@ -85,6 +86,9 @@ Route::middleware(['auth'])->group(function () {
 
     //Services
     Route::resource('servicios', ServiceController::class)->parameters(['servicios' => 'service'])->names('service');
+
+    //Projects
+    Route::resource('proyectos', ProjectController::class)->parameters(['proyectos' => 'service'])->names('project');
 
     //Invoices
     Route::resource('facturas', InvoiceController::class)->parameters(['facturas' => 'invoice'])->names('invoice');

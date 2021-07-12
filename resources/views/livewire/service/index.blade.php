@@ -3,8 +3,48 @@
     @if ($count)
             
         <!--Filters-->
-        <div class="card mb-7">
-            <div class="card-body">
+        <div class="card card-custom gutter-b">
+
+            <!--begin::Header-->
+            <div class="card-header border-0 py-5">
+                <h3 class="card-title align-items-start flex-column">
+                    <span class="text-muted mt-3 font-weight-bold font-size-sm">({{ $services->total() }}) pago(s)</span>
+                </h3>
+                <div class="card-toolbar">
+                    @if ($type == 'Proyecto')
+                        @if (isset($client))
+                            <a 
+                                href="{{ 
+                                    route('project.create',[
+                                        'client' => $client,
+                                        'date' => date('Y-m-d'),
+                                    ]) 
+                                }}" 
+                                class="btn btn-primary btn-shadow font-weight-bold mr-2 "
+                            >
+                                <i class="fa fa-plus"></i> Nuevo proyecto
+                            </a>
+                        @endif
+                    @else
+                        @if (isset($client))
+                            <a 
+                                href="{{ 
+                                    route('service.create',[
+                                        'client' => $client,
+                                        'date' => date('Y-m-d'),
+                                    ]) 
+                                }}" 
+                                class="btn btn-primary btn-shadow font-weight-bold mr-2 "
+                            >
+                                <i class="fa fa-plus"></i> Nuevo servicio
+                            </a>
+                        @endif
+                    @endif                    
+                </div>
+            </div>
+            <!--end::Header-->
+
+            <div class="card-body pt-0 pb-3">
                 <div class="mb-5 ">
                     <div class="row align-items-center">
                         <div class="col-lg-9 col-xl-8">
@@ -15,7 +55,7 @@
                                             wire:model="search"
                                             type="search" 
                                             class="form-control"
-                                            placeholder="Buscar servicio, cliente, categoría...">
+                                            placeholder="Buscar...">
                                         <span>
                                             <i class="flaticon2-search-1 text-muted"></i>
                                         </span>
@@ -66,7 +106,11 @@
                             <!--end::Pic-->
                             <div class="d-flex flex-column mr-auto">
                                 <!--begin: Title-->
-                                <a href="{{ route('service.show', $service) }}" class="card-title text-hover-primary font-weight-bolder font-size-h5 text-dark mb-1">{{ $service->name }}  ({{ $service->priceToString() }}) ({{ $service->type }})</a>
+                                @if ($service->type == 'Proyecto')
+                                    <a href="{{ route('project.show', $service) }}" class="card-title text-hover-primary font-weight-bolder font-size-h5 text-dark mb-1">{{ $service->categoryService->name }}  ({{ $service->priceToString() }})</a>
+                                @else
+                                    <a href="{{ route('service.show', $service) }}" class="card-title text-hover-primary font-weight-bolder font-size-h5 text-dark mb-1">{{ $service->categoryService->name }}  ({{ $service->priceToString() }})</a>
+                                @endif
                                 
                                 <span class="text-primary font-weight-bold">{{ $service->client->name }}</span>
                                 
@@ -83,8 +127,23 @@
                                         <i class="ki ki-bold-more-hor"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                                        <a class="dropdown-item" href="{{ route('service.show', $service) }}"><i class="fa fa-eye mr-2"></i> Ver</a>
-                                        <a class="dropdown-item" href="{{ route('service.edit', $service) }}"><i class="fa fa-pen mr-2"></i> Editar</a>
+                                        <a  href="{{ route('payment.create',[ 'client' => $service->client, 'date' => date('Y-m-d'), 'service' => $service]) }}" class="dropdown-item mr-2 ">
+                                            <i class="fa fa-credit-card mr-2"></i> Generar pago
+                                        </a>
+                                        <a  href="{{ route('expense.create',[ 'client' => $service->client, 'date' => date('Y-m-d'), 'service' => $service]) }}" class="dropdown-item mr-2 ">
+                                            <i class="fa fa-calculator mr-2"></i> Generar gasto
+                                        </a>
+                                        <a  href="{{ route('invoice.create',[ 'client' => $service->client, 'date' => date('Y-m-d'), 'service' => $service ]) }}" class="dropdown-item mr-2 ">
+                                            <i class="fas fa-file-pdf mr-2"></i> Adjuntar factura
+                                        </a>
+                                        @if ($service->type == 'Proyecto')
+                                            <a class="dropdown-item" href="{{ route('project.show', $service) }}"><i class="fa fa-eye mr-2"></i> Ver</a>
+                                            <a class="dropdown-item" href="{{ route('project.edit', $service) }}"><i class="fa fa-pen mr-2"></i> Editar</a>
+                                        @else
+                                            <a class="dropdown-item" href="{{ route('service.show', $service) }}"><i class="fa fa-eye mr-2"></i> Ver</a>
+                                            <a class="dropdown-item" href="{{ route('service.edit', $service) }}"><i class="fa fa-pen mr-2"></i> Editar</a>
+                                        @endif
+                                        
                                         <a class="dropdown-item" href="#" onclick="event.preventDefault(); confirmDestroyService({{ $service->id }})"><i class="fa fa-trash mr-2"></i> Eliminar</a>
                                     </div>
                                 </div>
@@ -101,23 +160,23 @@
                                 <span class="btn btn-light-danger btn-sm font-weight-bold btn-text">{{ $service->dueDateToString() }}</span>
                             </div>
                             @if ($service->type == 'Proyecto')
-                            <!--begin::Progress-->
-                            <div class="flex-row-fluid mb-7">
-                                <span class="d-block font-weight-bold mb-4">Progreso</span>
-                                <div class="d-flex align-items-center pt-2">
-                                    <div class="progress progress-xs mt-2 mb-2 w-100">
-                                        @if ($service->progressByProject() >= 60)
-                                            <div class="progress-bar bg-warning" role="progressbar" style="width: {{ $service->progressByProject() }}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                        @elseif($service->progressByProject() >= 30)
-                                            <div class="progress-bar bg-warning" role="progressbar" style="width: {{ $service->progressByProject() }}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                        @else
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: {{ $service->progressByProject() }}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                        @endif
+                                <!--begin::Progress-->
+                                <div class="flex-row-fluid mb-7">
+                                    <span class="d-block font-weight-bold mb-4">Progreso</span>
+                                    <div class="d-flex align-items-center pt-2">
+                                        <div class="progress progress-xs mt-2 mb-2 w-100">
+                                            @if ($service->progressByProject() >= 60)
+                                                <div class="progress-bar bg-warning" role="progressbar" style="width: {{ $service->progressByProject() }}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                            @elseif($service->progressByProject() >= 30)
+                                                <div class="progress-bar bg-warning" role="progressbar" style="width: {{ $service->progressByProject() }}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                            @else
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: {{ $service->progressByProject() }}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                            @endif
+                                        </div>
+                                        <span class="ml-3 font-weight-bolder">{{ $service->progressByProject() }}%</span>
                                     </div>
-                                    <span class="ml-3 font-weight-bolder">{{ $service->progressByProject() }}%</span>
                                 </div>
-                            </div>
-                            <!--end::Progress-->
+                                <!--end::Progress-->
                             @endif
                         </div>
 
@@ -239,19 +298,60 @@
 
     @else
 
+    @if ($type == 'Proyecto')
         <div class="card">
             <div class="card-body">
                 <div class="card-px text-center py-20 my-10">
                     <h2 class="fs-2x fw-bolder mb-10">Hola!</h2>
-                    <p class="text-gray-400 fs-4 fw-bold mb-10">Al parecer no tienes ningun servicio.
-                    <br> Ponga en marcha su CRM añadiendo su primer servicio</p>
-                    <a href="{{ route('service.create') }}" class="btn btn-primary">Agregar servicio</a>
+                    <p class="text-gray-400 fs-4 fw-bold mb-10">Al parecer no tienes ningun proyecto.
+                    <br> Ponga en marcha su CRM añadiendo su primer proyecto</p>
+                    @if (isset($client))
+                        <a 
+                            href="{{ 
+                                route('project.create',[
+                                    'client' => $client,
+                                    'date' => date('Y-m-d'),
+                                ]) 
+                            }}"  
+                            class="btn btn-primary">Agregar proyecto
+                        </a>
+                    @else
+                        <a href="{{ route('project.create') }}" class="btn btn-primary">Agregar proyecto</a>
+                    @endif
                 </div>
                 <div class="text-center px-4 ">
                     <img class="img-fluid col-6" alt="" src="{{ asset('assets/media/ilustrations/work.png') }}">
                 </div>
             </div>
         </div>
+    @else
+        <div class="card">
+            <div class="card-body">
+                <div class="card-px text-center py-20 my-10">
+                    <h2 class="fs-2x fw-bolder mb-10">Hola!</h2>
+                    <p class="text-gray-400 fs-4 fw-bold mb-10">Al parecer no tienes ningun servicio.
+                    <br> Ponga en marcha su CRM añadiendo su primer servicio</p>
+                    @if (isset($client))
+                        <a 
+                            href="{{ 
+                                route('service.create',[
+                                    'client' => $client,
+                                    'date' => date('Y-m-d'),
+                                ]) 
+                            }}"  
+                            class="btn btn-primary">Agregar servicio
+                        </a>
+                    @else
+                        <a href="{{ route('service.create') }}" class="btn btn-primary">Agregar servicio</a>
+                    @endif
+                </div>
+                <div class="text-center px-4 ">
+                    <img class="img-fluid col-6" alt="" src="{{ asset('assets/media/ilustrations/work.png') }}">
+                </div>
+            </div>
+        </div>
+    @endif
+        
         
     @endif
 

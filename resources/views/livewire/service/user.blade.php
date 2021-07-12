@@ -4,7 +4,7 @@
 
         <div class="card-header border-0 py-5">
             <h3 class="card-title align-items-start flex-column">
-                <span class="card-label font-weight-bolder text-dark">Usuario(s) <span class="text-muted font-weight-bold font-size-sm">({{ $count }})</span> </span> 
+                <span class="text-muted mt-3 font-weight-bold font-size-sm">Usuario(s) <span class="text-muted font-weight-bold font-size-sm">({{ $count }})</span> </span> 
             </h3>
             <div class="card-toolbar">
                 <a href="{{ route('service.edit', $service) }}#users" class="btn btn-primary btn-shadow font-weight-bold mr-2 "><i class="fa fa-plus"></i> Nuevos colaboradores</a>

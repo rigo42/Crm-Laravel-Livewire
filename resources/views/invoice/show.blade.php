@@ -115,14 +115,6 @@
                             <!--begin::Body-->
                             <div class="card-body">
                                 <div class="">
-                                    <p class="text-dark-75 font-weight-bolder font-size-h5 m-0">
-                                        @if ($invoice->client->user)
-                                            <span class="badge badge-info">{{ $invoice->client->user->name }}</span>
-                                        @else
-                                            <span class="badge badge-secondary">Ningun usuario asignado al cliente {{ $invoice->client->name }}</span>
-                                        @endif
-                                    </p> 
-                                    <br>
                                     <div class="font-weight-bold text-success mb-5">Inicio: {{ $invoice->startDateToString() }}</div>
                                     <div class="font-weight-bold text-danger mb-5">Vencimiento: {{ $invoice->dueDateToString() }}</div>
                                 </div>
@@ -144,15 +136,17 @@
                                     <div class="row">
                                         @forelse ($invoice->services as $service)
                                         <div class="col-lg-6">
-                                            <label class="option">
-                                                <span class="option-label">
-                                                    <span class="option-head">
-                                                        <span class="option-title">{{ $service->name }}</span>
-                                                        <span class="option-focus">{{ $service->priceToString() }}</span>
+                                           <a href="{{ route('service.show', $service) }}">
+                                                <label class="option" style="cursor: pointer;">
+                                                    <span class="option-label">
+                                                        <span class="option-head">
+                                                            <span class="option-title">{{ $service->categoryService->name }}</span>
+                                                            <span class="option-focus">{{ $service->priceToString() }}</span>
+                                                        </span>
+                                                        <span class="option-body">{{ $service->note }}</span>
                                                     </span>
-                                                    <span class="option-body">{{ $service->note }}</span>
-                                                </span>
-                                            </label>
+                                                </label>
+                                           </a>
                                         </div>
                                         @empty
                                             <span class="badge badge-secondary">No se encontró ningun servicio ligado a esta factura</span>
