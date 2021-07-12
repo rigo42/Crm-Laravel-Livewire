@@ -24,7 +24,6 @@ class CreateServicesTable extends Migration
             $table->integer('due_day')->nullable();  //Fecha de vencimiento para el tipo "Proyecto"
             $table->double('price');
             $table->text('note')->nullable();
-            $table->boolean('has_invoice')->nullable();
             $table->text('service_agreement')->nullable();
             $table->boolean('finished')->nullable();
             $table->timestamps();

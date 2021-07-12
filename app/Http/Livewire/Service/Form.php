@@ -69,7 +69,6 @@ class Form extends Component
             'service.due_day' => 'nullable',
             'service.price' => 'required',
             'service.note' => 'nullable',
-            'service.has_invoice' => 'nullable',
             'service.finished' => 'nullable',
         ];
     }

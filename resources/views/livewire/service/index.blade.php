@@ -248,11 +248,6 @@
                             {{-- <div class="d-flex align-items-center mr-7">
                                 <span class="font-weight-bolder text-success ml-2"></span>
                             </div> --}}
-                            @if ($service->has_invoice && !$service->invoices->count())
-                            <div class="d-flex align-items-center mr-7">
-                                <span class="badge badge-info ml-2">Se require factura</span>
-                            </div>
-                            @endif
                         </div>
                         @if ($service->client->user)
                             <div class="d-flex align-items-center mt-5 mt-sm-0  mr-sm-0 ml-sm-auto"">

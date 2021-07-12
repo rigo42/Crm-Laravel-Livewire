@@ -44,6 +44,7 @@ class Form extends Component
             'payment.monto' => 'required|numeric',
             'payment.concept' => 'required',
             'payment.note' => 'nullable',
+            'payment.has_invoice' => 'nullable',
         ];
 
     }

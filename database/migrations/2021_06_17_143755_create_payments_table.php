@@ -25,6 +25,7 @@ class CreatePaymentsTable extends Migration
             $table->text('concept');
             $table->text('note')->nullable();
             $table->boolean('send_email')->nullable()->default(0);
+            $table->boolean('has_invoice')->nullable();
             $table->timestamps();
         });
     }

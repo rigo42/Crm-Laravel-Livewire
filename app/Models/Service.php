@@ -164,14 +164,24 @@ class Service extends Model
         $services = Service::query()
                             ->whereNull('finished')
                             ->where('due_day', $thisDay)
+                            ->whereDoesntHave('payments', function ($query) {
+                                $query->whereDate('date', date('Y-m-d'));
+                            })
                             ->whereMonth('start_date', '<', date('m'))
                             ->orWhereYear('start_date', '<', date('Y'))
-                            ->whereDoesntHave('payments', function ($query) use($thisDay) {
-                                $query->whereDate('date', date('Y-m-d'));
-                            })->get();
-                            
-        $services->payment_date = date('Y-m-d');
-        return $services;
+                            ->get();
+        
+        $servicesArray = array();  
+
+        foreach ($services as $service) {
+            $service->payment_date = date('Y-m-d');
+                    
+            $serviceObjectNew = new Service($service->toArray());
+        
+            array_push($servicesArray, $serviceObjectNew);
+        }
+
+        return $servicesArray;
     }
 
     static function weekCutService(){
@@ -183,11 +193,12 @@ class Service extends Model
         $services = Service::query()
                             ->orderBy('due_day', 'desc')
                             ->whereNull('finished')
-                            ->whereMonth('start_date', '<', date('m'))
-                            ->orWhereYear('start_date', '<', date('Y'))
                             ->whereDoesntHave('payments', function ($query) use($firstDayThisWeek, $finishedDayThisWeek) {
                                 $query->whereBetween('date', [$firstDayThisWeek, $finishedDayThisWeek]);
-                            });
+                            })
+                            ->whereMonth('start_date', '<', date('m'))
+                            ->orWhereYear('start_date', '<', date('Y'))
+                            ;
         
         $datesThisWeek = [];
         for($i = 1; $i <=7; $i++){ //7 dias de la semana
@@ -235,11 +246,12 @@ class Service extends Model
         $services = Service::query()
                             ->orderBy('due_day', 'desc')
                             ->whereNull('finished')
-                            ->whereMonth('start_date', '<', date('m'))
-                            ->orWhereYear('start_date', '<', date('Y'))
                             ->whereDoesntHave('payments', function ($query) use($firstDateService, $finishedBackCutDateService) {
                                 $query->whereBetween('date', [$firstDateService->format('Y-m-d'), $finishedBackCutDateService->format('Y-m-d')]);
-                            });
+                            })
+                            ->whereMonth('start_date', '<', date('m'))
+                            ->orWhereYear('start_date', '<', date('Y'))
+                            ;
         
         $datesCuts = array();
         $daysArray = array();

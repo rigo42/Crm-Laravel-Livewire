@@ -45,7 +45,7 @@
                                  <div class="card-header border-0 py-5">
                                     <h3 class="card-title align-items-start flex-column">
                                         <span class="card-label font-weight-bolder text-dark">Cortes hoy</span> <br>
-                                        <span class="text-muted mt-3 font-weight-bold font-size-sm">({{ $servicesCutThisDay->count() }}) Corte(s) {{ \Carbon\Carbon::now()->toFormattedDateString() }} </span>
+                                        <span class="text-muted mt-3 font-weight-bold font-size-sm">({{ count($servicesCutThisDay) }}) Corte(s) {{ \Carbon\Carbon::now()->toFormattedDateString() }} </span>
                                     </h3>
                                 </div>
                                 
@@ -53,6 +53,7 @@
                                 <!--begin::Body-->
                                 <div class="card-body pt-2">
                                     @foreach ($servicesCutThisDay as $serviceCutThisDay)
+
                                         <!--begin::Item-->
                                         <div class="d-flex align-items-center mb-10">
                                             <!--begin::Symbol-->
@@ -72,7 +73,7 @@
                                             <!--end::Symbol-->
                                             <!--begin::Text-->
                                             <div class="d-flex flex-column flex-grow-1 font-weight-bold">
-                                                <a href="#" class="text-dark text-hover-primary mb-1 font-size-lg">{{ $serviceCutThisDay->client->name }}</a> <span class="text-secondary font-size-sm">{{ $serviceCutThisDay->client->company }}</span> 
+                                                <a href="{{ route('client.show', $serviceCutThisDay->client) }}" class="text-dark text-hover-primary mb-1 font-size-lg">{{ $serviceCutThisDay->client->name }}</a> <span class="text-secondary font-size-sm">{{ $serviceCutThisDay->client->company }}</span> 
                                                 <span class="text-muted">{{ \Carbon\Carbon::parse($serviceCutThisDay->payment_date)->toFormattedDateString() }}</span>
                                                 <span class="text-muted">Servicio: {{ $serviceCutThisDay->categoryService->name }}</span> 
                                             </div>
@@ -86,7 +87,16 @@
                                                     <!--begin::Navigation-->
                                                     <ul class="navi navi-hover">
                                                         <li class="navi-item">
-                                                            <a href="#" class="navi-link">
+                                                            <a 
+                                                                href="{{ 
+                                                                        route('payment.create',[
+                                                                            'client' => $serviceCutThisDay->client,
+                                                                            'date' => $serviceCutThisDay->payment_date,
+                                                                            'service' =>$serviceCutThisDay
+                                                                        ]) 
+                                                                    }}" 
+                                                                class="navi-link"
+                                                            >
                                                                 <span class="navi-text">
                                                                     <i class="fa fa-credit-card mr-2"></i>
                                                                     Registrar pago
@@ -141,7 +151,7 @@
                                             <!--end::Symbol-->
                                             <!--begin::Text-->
                                             <div class="d-flex flex-column flex-grow-1 font-weight-bold">
-                                                <a href="#" class="text-dark text-hover-primary mb-1 font-size-lg">{{ $serviceCutThisWeek->client->name }}</a> <span class="text-secondary font-size-sm">{{ $serviceCutThisWeek->client->company }}</span> 
+                                                <a href="{{ route('client.show', $serviceCutThisWeek->client) }}" class="text-dark text-hover-primary mb-1 font-size-lg">{{ $serviceCutThisWeek->client->name }}</a> <span class="text-secondary font-size-sm">{{ $serviceCutThisWeek->client->company }}</span> 
                                                 <span class="text-muted">{{ \Carbon\Carbon::parse($serviceCutThisWeek->payment_date)->toFormattedDateString() }}</span>
                                                 <span class="text-muted">Servicio: {{ $serviceCutThisWeek->categoryService->name }}</span> 
                                             </div>
@@ -155,7 +165,16 @@
                                                     <!--begin::Navigation-->
                                                     <ul class="navi navi-hover">
                                                         <li class="navi-item">
-                                                            <a href="#" class="navi-link">
+                                                            <a 
+                                                                href="{{ 
+                                                                        route('payment.create',[
+                                                                            'client' => $serviceCutThisWeek->client,
+                                                                            'date' => $serviceCutThisWeek->payment_date,
+                                                                            'service' =>$serviceCutThisWeek
+                                                                        ]) 
+                                                                    }}" 
+                                                                class="navi-link"
+                                                            >
                                                                 <span class="navi-text">
                                                                     <i class="fa fa-credit-card mr-2"></i>
                                                                     Registrar pago
@@ -228,7 +247,7 @@
                                                                         route('payment.create',[
                                                                             'client' => $serviceCutBack->client,
                                                                             'date' => $serviceCutBack->payment_date,
-                                                                            'service_id' =>$serviceCutBack->id
+                                                                            'service' =>$serviceCutBack
                                                                         ]) 
                                                                     }}" 
                                                                 class="navi-link"

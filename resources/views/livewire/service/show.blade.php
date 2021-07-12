@@ -30,11 +30,6 @@
                                     
                                     <span class="text-secondary">{{ $service->client->company }}</span> <br>
                                     
-                                    @if ($service->has_invoice && !$service->invoices->count())
-                                        <div class="d-block  mr-7">
-                                            <a href="#" class="font-weight-bolder badge badge-info">Se require factura</a>
-                                        </div>
-                                    @endif
                                 </div>
                                 
                             </div>

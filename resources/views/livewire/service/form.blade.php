@@ -212,21 +212,7 @@
                                     @error('service.price') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label class="col-3 col-form-label">¿Tendrá factura?</label>
-                                <div class="col-3">
-                                    <span class="switch switch-outline switch-icon switch-primary">
-                                        <label>
-                                            <input 
-                                                wire:model.defer="service.has_invoice"
-                                                class="@error('service.has_invoice') is-invalid @enderror"
-                                                type="checkbox" />
-                                            <span></span>
-                                        </label>
-                                    </span>
-                                    @error('service.has_invoice') <div><span class="text-danger">{{ $message }}</span></div> @enderror
-                                </div>
-                            </div>
+                            
                             <div class="form-group row">
                                 <label class="col-3">Acuerdo de servicio </label>
                                 <div class="col-9">
