@@ -112,14 +112,15 @@
                                  <!--begin::Header-->
                                  <div class="card-header border-0 py-5">
                                     <h3 class="card-title align-items-start flex-column">
-                                        <span class="card-label font-weight-bolder text-dark">Cortes de la semana</span> <br>
-                                        <span class="text-muted mt-3 font-weight-bold font-size-sm">({{ $servicesCutThisWeek->count() }}) Corte(s) {{ \Carbon\Carbon::now()->startOfWeek()->toFormattedDateString() }} - {{ \Carbon\Carbon::now()->endOfWeek()->toFormattedDateString() }}</span>
+                                        <span class="card-label font-weight-bolder text-dark">Cortes de la semana </span> <br>
+                                        <span class="text-muted mt-3 font-weight-bold font-size-sm">({{ count($servicesCutThisWeek) }}) Corte(s) {{ \Carbon\Carbon::now()->startOfWeek()->toFormattedDateString() }} - {{ \Carbon\Carbon::now()->endOfWeek()->toFormattedDateString() }}</span>
                                     </h3>
                                 </div>
                                 
                                 <!--end::Header-->
                                 <!--begin::Body-->
                                 <div class="card-body pt-2">
+                                    
                                     @foreach ($servicesCutThisWeek as $serviceCutThisWeek)
                                         <!--begin::Item-->
                                         <div class="d-flex align-items-center mb-10">

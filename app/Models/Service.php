@@ -199,21 +199,30 @@ class Service extends Model
         }
 
         $daysArray = array();
+        $servicesArray = array();  
+
         foreach($datesThisWeek as $dateThisWeek){
             array_push($daysArray, $dateThisWeek['day']);
         }
             
         $services = $services->whereIn('due_day', $daysArray)->get();
 
-        $services->map(function($service) use($datesThisWeek) {
+        foreach ($services as $service) {
             foreach ($datesThisWeek as $dateThisWeek) {
                 if($dateThisWeek['day'] == $service->due_day){
-                    $service->payment_date = $dateThisWeek['date'];
-                }
-            }            
-        });
 
-        return $services;
+                    $service->payment_date = $dateThisWeek['date'];
+                    
+                    $serviceObjectNew = new Service($service->toArray());
+                
+                    array_push($servicesArray, $serviceObjectNew);
+
+                    
+                }
+            }   
+        }         
+        
+        return $servicesArray;
     }
 
     static function backCutService(){
