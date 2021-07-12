@@ -6,6 +6,7 @@ use App\Models\Account;
 use App\Models\Client;
 use App\Models\Payment;
 use App\Models\PaymentType;
+use App\Models\Service;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -58,6 +59,17 @@ class Form extends Component
             $this->client = Client::findOrFail(request()->client);
             $this->payment->client_id = request()->client;
         }
+
+        if(request()->date){
+            $this->payment->date = request()->date;
+        }
+
+        if(request()->service_id){
+            $service = Service::findOrFail(request()->service_id);
+            $this->payment->concept = $service->categoryService->name;
+            $this->payment->monto = $service->price;
+            array_push($this->serviceArray, "".request()->service_id."");
+        }
         
         foreach($this->payment->services as $service){
             array_push($this->serviceArray, "".$service->id."");
@@ -81,6 +93,8 @@ class Form extends Component
         $this->payment->save();
         $this->saveImage();
         $this->saveServices();
+        session()->flash('alert','Pago registrado con exito');
+        session()->flash('alert-type', 'success');
         return redirect()->route('payment.show', $this->payment);
     }
 
@@ -91,7 +105,7 @@ class Form extends Component
         $this->payment->update();
         $this->saveImage();
         $this->saveServices();
-        session()->flash('alert','paymente actualizado con exito');
+        session()->flash('alert','Pago actualizado con exito');
         session()->flash('alert-type', 'success');
         return redirect()->route('payment.show', $this->payment);
     }

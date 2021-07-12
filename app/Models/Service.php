@@ -77,35 +77,64 @@ class Service extends Model
             //Due day
             $dueDay = $this->due_day;
             //Month start service
-            $startDay = Carbon::parse($this->start_date)->format('j');
-            //Month start service
             $startMonth = Carbon::parse($this->start_date)->format('m');
             //Year start service
             $startYear = Carbon::parse($this->start_date)->format('Y');
+            //Start service
+            $startServiceStr = strtotime($this->start_date);
             //Days in this month
             $daysInThisMontht = date('t', strtotime($nowDate));
 
-            if(strtotime($this->start_date) > strtotime(date('Y-m-d'))){
+            if($startServiceStr >= strtotime(date('Y-m-d'))){
                 //Days in these month
                 $daysInThisMontht = date('t', strtotime($this->start_date));
                 $diff = Carbon::parse(date('Y-m-d'))->diffInDays($this->start_date);
-                $sum = ($daysInThisMontht + ($dueDay - $nowDay) + $diff);            
+                $sum = ($daysInThisMontht + ($dueDay - $nowDay) + $diff); 
 
             }else{
-                if($dueDay == date('j')){
-                    $sum = 0;
+                if($startYear < date('Y')){
+                    if($dueDay == date('j') && $startMonth == date('m')){
+                        $sum = ($dueDay - $nowDay); 
+                    }
+                    elseif($dueDay == date('j') && $startMonth < date('m')){
+                        $sum = ($dueDay - $nowDay);
+    
+                    }
+                    elseif($dueDay < date('j') && $startMonth <= date('m')){
+                        $sum = ($daysInThisMontht + ($dueDay - $nowDay));  
+    
+                    }
+                    elseif($dueDay > date('j') && $startMonth < date('m')){
+                        $sum = ($dueDay - $nowDay);
+                        
+                    }
+                    else{
+                        $sum = ($daysInThisMontht + ($dueDay - $nowDay));
+                    }
+                }else{
+                    if($dueDay == date('j') && $startMonth == date('m')){
+                        $sum = ($daysInThisMontht + ($dueDay - $nowDay)); 
+    
+                    }
+                    elseif($dueDay == date('j') && $startMonth < date('m')){
+                        $sum = ($dueDay - $nowDay);
+    
+                    }
+                    elseif($dueDay < date('j') && $startMonth < date('m')){
+                        $sum = ($daysInThisMontht + ($dueDay - $nowDay));  
+    
+                    }
+                    elseif($dueDay > date('j') && $startMonth < date('m')){
+                        $sum = ($dueDay - $nowDay);
+                    }
+                    else{
+                        $sum = ($daysInThisMontht + ($dueDay - $nowDay));
+                        
+                    }
                 }
-                elseif($dueDay < date('j')){
-                    //dd($dueDay.' == '.date('j'));
-                    $sum = ($daysInThisMontht + ($dueDay - $nowDay)); 
-                   
-                }
-                elseif($dueDay > date('j')){
-                    $sum = ($dueDay - $nowDay); 
-                }
+                
             }
-            
-
+                
             return Carbon::parse(date('Y-m-d', strtotime('+'.$sum.' day', strtotime($nowDate))));
             
             
@@ -187,22 +216,77 @@ class Service extends Model
         return $services;
     }
 
-
-
     static function backCutService(){
-        $firstBackWeek = Carbon::now()->startOfWeek()->subDay(1)->format('Y-m-d');
+        $minStartDate = Service::whereNull('finished')->min('start_date');
+        //Obtener rango de este mes
+        $firstDateService = Carbon::parse($minStartDate);
+        $finishedBackCutDateService = Carbon::now()->startOfWeek()->subDay(1);
         
+        //Obtener los servicios que no tienen un pago desde que iniciaron
         $services = Service::query()
                             ->orderBy('due_day', 'desc')
                             ->whereNull('finished')
-                            ->where('due_day', '<=', Carbon::now()->startOfWeek()->subDay(1)->format('j'))
                             ->whereMonth('start_date', '<', date('m'))
                             ->orWhereYear('start_date', '<', date('Y'))
-                            ->whereDoesntHave('payments', function ($query) use($firstBackWeek) {
-                                $query->where('date', '<', $firstBackWeek);
-                            })->get();
+                            ->whereDoesntHave('payments', function ($query) use($firstDateService, $finishedBackCutDateService) {
+                                $query->whereBetween('date', [$firstDateService->format('Y-m-d'), $finishedBackCutDateService->format('Y-m-d')]);
+                            });
+        
+        $datesCuts = array();
+        $daysArray = array();
 
+        $diff = $firstDateService->diffInDays($finishedBackCutDateService);
 
-        return $services;
+        for($i = 1; $i <= $diff; $i++){ 
+            //Obtener fechas
+            $otherDay = Carbon::parse($firstDateService)->addDays(($i - 1)); 
+
+            //Rellenar array que contendrá el día y la fecha de cada día recorrido de la semana pasada
+            array_push($datesCuts, array(
+                                        'day' => $otherDay->format('j'), 
+                                        'month' => $otherDay->format('m'), 
+                                        'year' => $otherDay->format('Y'), 
+                                        'date' => $otherDay->format('Y-m-d')
+                                    )
+                        );
+            array_push($daysArray, $otherDay->format('j'));
+        }
+
+        $datesCuts = array_reverse($datesCuts);
+        
+        $services = $services->get();
+
+        $servicesArray = array();  
+        
+        foreach ($services as $service) {
+            foreach ($datesCuts as $dateCut) {
+
+                if($dateCut['day'] == $service->due_day){
+                    
+                    $servicesIf = $service->whereDoesntHave('payments', function ($query) use($dateCut) {
+                                            $query->whereMonth('date', $dateCut['month'])
+                                                    ->whereYear('date', $dateCut['year']);
+                                        })->count();
+
+                    if($servicesIf){
+
+                       if((int) $dateCut['month'] > (int) Carbon::parse($service->start_date)->format('m') || (int) $dateCut['year'] > (int) Carbon::parse($service->start_date)->format('Y')){
+                            $service->payment_date = $dateCut['date'];
+                            $serviceObjectNew = new Service($service->toArray());
+    
+                            array_push($servicesArray, $serviceObjectNew);
+                            
+                        }
+                        
+                        
+                        
+                    }
+                    
+                }
+            }   
+
+        }
+
+        return $servicesArray;
     }
 }

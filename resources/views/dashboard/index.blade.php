@@ -88,8 +88,8 @@
                                                         <li class="navi-item">
                                                             <a href="#" class="navi-link">
                                                                 <span class="navi-text">
-                                                                    <i class="fa fa-credit-card"></i>
-                                                                    Generar pago
+                                                                    <i class="fa fa-credit-card mr-2"></i>
+                                                                    Registrar pago
                                                                 </span>
                                                             </a>
                                                         </li>
@@ -156,8 +156,8 @@
                                                         <li class="navi-item">
                                                             <a href="#" class="navi-link">
                                                                 <span class="navi-text">
-                                                                    <i class="fa fa-credit-card"></i>
-                                                                    Generar pago
+                                                                    <i class="fa fa-credit-card mr-2"></i>
+                                                                    Registrar pago
                                                                 </span>
                                                             </a>
                                                         </li>
@@ -181,7 +181,7 @@
                                  <div class="card-header border-0 py-5">
                                     <h3 class="card-title align-items-start flex-column">
                                         <span class="card-label font-weight-bolder text-dark">Cortes atrasados</span> <br>
-                                        <span class="text-muted mt-3 font-weight-bold font-size-sm">({{ $servicesCutBack->count() }}) Corte(s) Antes del {{ \Carbon\Carbon::now()->startOfWeek()->subDay(1)->toFormattedDateString() }}</span>
+                                        <span class="text-muted mt-3 font-weight-bold font-size-sm">({{ count($servicesCutBack) }}) Corte(s) Antes del {{ \Carbon\Carbon::now()->startOfWeek()->subDay(1)->toFormattedDateString() }}</span>
                                    </h3>
                                 </div>
                                 
@@ -208,8 +208,8 @@
                                             <!--end::Symbol-->
                                             <!--begin::Text-->
                                             <div class="d-flex flex-column flex-grow-1 font-weight-bold">
-                                                <a href="#" class="text-dark text-hover-primary mb-1 font-size-lg">{{ $serviceCutBack->client->name }}</a> <span class="text-secondary font-size-sm">{{ $serviceCutBack->client->company }}</span> 
-                                                <span class="text-muted">{{ $serviceCutBack->due_day }}</span>
+                                                <a href="{{ route('client.show', $serviceCutBack->client) }}" class="text-dark text-hover-primary mb-1 font-size-lg">{{ $serviceCutBack->client->name }}</a> <span class="text-secondary font-size-sm">{{ $serviceCutBack->client->company }}</span> 
+                                                <span class="text-muted">{{ \Carbon\Carbon::parse($serviceCutBack->payment_date)->toFormattedDateString() }}</span>
                                                 <span class="text-muted">Servicio: {{ $serviceCutBack->categoryService->name }}</span> 
                                             </div>
                                             <!--end::Text-->
@@ -222,10 +222,19 @@
                                                     <!--begin::Navigation-->
                                                     <ul class="navi navi-hover">
                                                         <li class="navi-item">
-                                                            <a href="#" class="navi-link">
+                                                            <a 
+                                                                href="{{ 
+                                                                        route('payment.create',[
+                                                                            'client' => $serviceCutBack->client,
+                                                                            'date' => $serviceCutBack->payment_date,
+                                                                            'service_id' =>$serviceCutBack->id
+                                                                        ]) 
+                                                                    }}" 
+                                                                class="navi-link"
+                                                            >
                                                                 <span class="navi-text">
-                                                                    <i class="fa fa-credit-card"></i>
-                                                                    Generar pago
+                                                                    <i class="fa fa-credit-card mr-2"></i>
+                                                                    Registrar pago
                                                                 </span>
                                                             </a>
                                                         </li>
