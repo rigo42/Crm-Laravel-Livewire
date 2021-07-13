@@ -5,7 +5,13 @@
     @endsection
     
     <!--begin::Card-->
-    <div class="card card-custom card-sticky" id="kt_page_sticky_card" >
+    <div wire:ignore.self wire:key="body-sticky"
+        @if (request()->routeIs('invoice.create') || request()->routeIs('invoice.edit'))
+            class="card card-custom card-sticky"  id="kt_page_sticky_card" 
+        @else 
+            class="card card-custom" 
+        @endif
+    >
         <div class="card-header" wire:ignore>
             <div class="card-title">
                 <h3 class="card-label">@yield('title')</h3>
@@ -184,7 +190,7 @@
                             class="spinner"></div>
                         @if ($client->services->count())
                             <div class="my-5">
-                                <h3 class="text-dark font-weight-bold mb-10">Seleccionar servicios correspondientes a la factura</h3>
+                                <h3 class="text-dark font-weight-bold mb-10">Seleccionar servicios correspondientes de la factura</h3>
                                 <div class="form-group m-0">
                                     <div class="row" wire:loading.remove wire:target="clientChange">
                                         @forelse ($client->services as $service)

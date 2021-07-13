@@ -18,7 +18,6 @@ class CreateServicesTable extends Migration
             $table->foreignId('category_service_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignId('client_id')->nullable()->constrained()->onDelete('cascade');
             $table->enum('type', ['Proyecto', 'Mensual']);
-            $table->string('name');
             $table->date('start_date');
             $table->date('due_date')->nullable(); //Día de vencimiento  para el tipo "Mensual"
             $table->integer('due_day')->nullable();  //Fecha de vencimiento para el tipo "Proyecto"

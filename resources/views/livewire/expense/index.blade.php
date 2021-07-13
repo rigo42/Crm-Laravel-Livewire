@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container">
     @if ($count)
          <!--begin::Advance Table Widget 3-->
         <div class="card card-custom gutter-b">
@@ -86,7 +86,7 @@
                                 <th>Cuenta</th>
                                 <th>Fecha</th>
                                 <th>Monto</th>
-                                <th>Usuario que realizó el gasto</th>
+                                <th>Usuario que registró el gasto</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -94,7 +94,7 @@
                             @forelse ($expenses as $expense)
                                 <tr>
                                     @if ($expense->client)
-                                        <td>
+                                        <td style=" padding-right: 100px; ">
                                             <div class="d-flex align-items-center">
                                                 <div class="symbol symbol-circle symbol-50 mr-3">
                                                     <img 

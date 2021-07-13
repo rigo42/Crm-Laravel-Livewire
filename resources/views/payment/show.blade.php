@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', $payment->name)
+@section('title', $payment->concept)
 
 @section('content')
     <!--begin::Bread-->
@@ -147,31 +147,33 @@
                             <!--begin::Header-->
                             <div class="card-header h-auto py-4">
                                 <div class="card-title">
-                                    <h3 class="card-label">Servicios asociados a este pago</h3>
+                                    <h3 class="card-label">Servicio asociado a este pago</h3>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="form-group m-0">
                                     <div class="row">
-                                        @forelse ($payment->services as $service)
-                                        
+                                        @if ($payment->service)
                                             <div class="col-lg-6">
-                                                <a href="{{ route('service.show', $service) }}" >
+                                                @can('servicios')
+                                                <a href="{{ route('service.show', $payment->service) }}" >
+                                                @endcan
                                                     <label class="option" style="cursor: pointer;">
                                                         <span class="option-label">
                                                             <span class="option-head">
-                                                                <span class="option-title">{{ $service->categoryService->name }}</span>
-                                                                <span class="option-focus">{{ $service->priceToString() }}</span>
+                                                                <span class="option-title">{{ $payment->service->categoryService->name }}</span>
+                                                                <span class="option-focus">{{ $payment->service->priceToString() }}</span>
                                                             </span>
-                                                            <span class="option-body">{{ $service->note }}</span>
+                                                            <span class="option-body">{{ $payment->service->note }}</span>
                                                         </span>
                                                     </label>
+                                                @can('servicios')
                                                 </a>
+                                                @endcan
                                             </div>
-                                        
-                                        @empty
+                                        @else
                                             <span class="badge badge-secondary">No se encontró ningun servicio ligado a este pago</span>
-                                        @endforelse
+                                        @endif
                                     </div>
                                 </div>
                                
@@ -183,6 +185,19 @@
                                 <div class="card-title">
                                     <h3 class="card-label">Factura asociada</h3>
                                 </div>
+                                <!--start::Toolbar-->
+                                @if ($payment->invoice)
+                                    <div class="d-flex justify-content-end">
+                                        <div class="dropdown dropdown-inline" data-toggle="tooltip"  data-placement="left" style="position: initial!important;">
+                                            <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="ki ki-bold-more-hor"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right" >
+                                                <a class="dropdown-item" target="_blank" href="{{ Storage::url($payment->invoice->url) }}"><i class="fas fa-download mr-2"></i> Descargar factura</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                             <div class="card-body">
                                 @if ($payment->invoice)

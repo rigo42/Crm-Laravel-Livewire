@@ -90,18 +90,21 @@
                                 <!--begin::Pic-->
                                 <div class="d-flex align-items-center">
                                     <!--begin::Pic-->
-                                    <div class="flex-shrink-0 mr-4 mt-lg-0 mt-3">
-                                        <div class="symbol symbol-circle symbol-lg-75">
-                                            <img 
-                                                @if ($client->image)
-                                                    src="{{ Storage::url($client->image->url) }}" 
-                                                @else
-                                                    src="{{ asset('assets/media/users/blank.png') }}" 
-                                                @endif
-                                                
-                                                alt="{{ $client->name }}" />
+                                    <a href="{{ route('client.show', $client) }}">
+                                        <div class="flex-shrink-0 mr-4 mt-lg-0 mt-3">
+                                            <div class="symbol symbol-circle symbol-lg-75">
+                                                <img 
+                                                    @if ($client->image)
+                                                        src="{{ Storage::url($client->image->url) }}" 
+                                                    @else
+                                                        src="{{ asset('assets/media/users/blank.png') }}" 
+                                                    @endif
+                                                    
+                                                    alt="{{ $client->name }}" 
+                                                />
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                     <!--end::Pic-->
                                     <!--begin::Title-->
                                     <div class="d-flex flex-column">

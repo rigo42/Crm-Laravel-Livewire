@@ -127,15 +127,22 @@
                                         <i class="ki ki-bold-more-hor"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                                        @can('pagos')
                                         <a  href="{{ route('payment.create',[ 'client' => $service->client, 'date' => date('Y-m-d'), 'service' => $service]) }}" class="dropdown-item mr-2 ">
                                             <i class="fa fa-credit-card mr-2"></i> Generar pago
                                         </a>
+                                        @endcan
+                                        @can('gastos')
                                         <a  href="{{ route('expense.create',[ 'client' => $service->client, 'date' => date('Y-m-d'), 'service' => $service]) }}" class="dropdown-item mr-2 ">
                                             <i class="fa fa-calculator mr-2"></i> Generar gasto
                                         </a>
+                                        @endcan
+                                        @can('facturas')
                                         <a  href="{{ route('invoice.create',[ 'client' => $service->client, 'date' => date('Y-m-d'), 'service' => $service ]) }}" class="dropdown-item mr-2 ">
                                             <i class="fas fa-file-pdf mr-2"></i> Adjuntar factura
                                         </a>
+                                        @endcan
+                                        
                                         @if ($service->type == 'Proyecto')
                                             <a class="dropdown-item" href="{{ route('project.show', $service) }}"><i class="fa fa-eye mr-2"></i> Ver</a>
                                             <a class="dropdown-item" href="{{ route('project.edit', $service) }}"><i class="fa fa-pen mr-2"></i> Editar</a>
@@ -296,7 +303,7 @@
     @if ($type == 'Proyecto')
         <div class="card">
             <div class="card-body">
-                <div class="card-px text-center py-20 my-10">
+                <div class="card-px text-center py-5">
                     <h2 class="fs-2x fw-bolder mb-10">Hola!</h2>
                     <p class="text-gray-400 fs-4 fw-bold mb-10">Al parecer no tienes ningun proyecto.
                     <br> Ponga en marcha su CRM añadiendo su primer proyecto</p>
@@ -322,7 +329,7 @@
     @else
         <div class="card">
             <div class="card-body">
-                <div class="card-px text-center py-20 my-10">
+                <div class="card-px text-center py-5">
                     <h2 class="fs-2x fw-bolder mb-10">Hola!</h2>
                     <p class="text-gray-400 fs-4 fw-bold mb-10">Al parecer no tienes ningun servicio.
                     <br> Ponga en marcha su CRM añadiendo su primer servicio</p>

@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', $service->name)
+@section('title', $service->categoryService->name)
 
 @section('content')
     <!--begin::Bread-->

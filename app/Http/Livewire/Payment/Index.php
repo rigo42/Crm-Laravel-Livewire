@@ -73,11 +73,11 @@ class Index extends Component
             $payments = $payments->where('client_id', $this->client->id);
 
         }elseif($this->service){
-            $count = $count->whereHas('services', function($query){
-                $query->has('payments')->where('service_id', $this->service->id);
+            $count = $count->whereHas('service', function($query){
+                $query->where('service_id', $this->service->id);
             });
-            $payments = $payments->whereHas('services', function($query){
-                $query->has('payments')->where('service_id', $this->service->id);
+            $payments = $payments->whereHas('service', function($query){
+                $query->where('service_id', $this->service->id);
             });
 
         }elseif($this->account){

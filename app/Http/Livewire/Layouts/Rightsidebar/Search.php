@@ -67,8 +67,10 @@ class Search extends Component
             $serviceCount = Service::query();
             $services = Service::query()
                                 ->orderBy('id', 'desc')
-                                ->where('name', 'LIKE', "%{$this->search}%")
                                 ->orWhereHas('client', function($query){
+                                    $query->where('name', 'LIKE', "%{$this->search}%");
+                                })
+                                ->orWhereHas('categoryService', function($query){
                                     $query->where('name', 'LIKE', "%{$this->search}%");
                                 })
                                 ->take(5);

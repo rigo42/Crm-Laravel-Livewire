@@ -24,12 +24,12 @@ class Form extends Component
     //Object
     public $expense;
     public $client;
+    public $serviceAgreement;
 
     //Tools    
     public $method;
     public $imageTmp;
     public $userId;
-    public $serviceArray = [];
 
     protected $listeners = ['render'];
 
@@ -37,6 +37,7 @@ class Form extends Component
     {
         return [
             'expense.client_id' => 'nullable|exists:clients,id',
+            'expense.service_id' => 'nullable|exists:services,id',
             'expense.category_expense_id' => 'required|exists:category_expenses,id',
             'expense.account_id' => 'required|exists:accounts,id',
             'expense.date' => 'required',
@@ -53,6 +54,7 @@ class Form extends Component
         $this->method = $method;
         $this->userId = $expense->user_id; 
         $this->client = $expense->client ? Client::findOrFail($expense->client_id) : new Client();
+        $this->serviceAgreement = $expense->service;
 
         if(request()->client){
             $this->client = Client::findOrFail(request()->client);
@@ -66,11 +68,8 @@ class Form extends Component
         if(request()->service){
             $service = Service::findOrFail(request()->service);
             $this->expense->concept = $service->categoryService->name;
-            array_push($this->serviceArray, "".request()->service."");
-        }
-
-        foreach($this->expense->services as $service){
-            array_push($this->serviceArray, "".$service->id."");
+            $this->expense->service_id = $service->id;
+            $this->serviceAgreement = $service;
         }
     }
 
@@ -90,7 +89,6 @@ class Form extends Component
         $this->saveUserByAdmin();
         $this->expense->save();
         $this->saveImage();
-        $this->saveServices();
         return redirect()->route('expense.show', $this->expense);
     }
 
@@ -100,26 +98,24 @@ class Form extends Component
         $this->validateForeignKey();
         $this->expense->update();
         $this->saveImage();
-        $this->saveServices();
         session()->flash('alert','Gasto actualizado con exito');
         session()->flash('alert-type', 'success');
         return redirect()->route('expense.show', $this->expense);
     }
 
     public function clientChange($id){
-        $this->serviceArray = [];
         if($id){
             $this->client = Client::findOrFail($id);
-            foreach($this->expense->services as $service){
-                array_push($this->serviceArray, "".$service->id."");
-            }
         }else{
             $this->client = new Client();
+            $this->expense->service_id = NULL;
+            $this->expense->client_id = NULL;
         }
     }
 
-    public function saveServices(){
-        $this->expense->services()->sync($this->serviceArray);
+    public function serviceChange($id){
+        $service = Service::findOrFail($id);
+        $this->serviceAgreement = $service;
     }
 
     public function saveUserByAdmin(){

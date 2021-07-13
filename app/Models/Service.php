@@ -5,8 +5,6 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Facades\Auth;
 
 class Service extends Model
 {
@@ -31,11 +29,11 @@ class Service extends Model
     }
 
     public function payments(){
-        return $this->belongsToMany(Payment::class)->withTimestamps();
+        return $this->hasMany(Payment::class);
     }
 
     public function expenses(){
-        return $this->belongsToMany(Expense::class)->withTimestamps();
+        return $this->hasMany(Expense::class);
     }
 
     public function incomeByInvoiceTotal(){

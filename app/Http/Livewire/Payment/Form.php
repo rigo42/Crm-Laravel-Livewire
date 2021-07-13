@@ -29,7 +29,6 @@ class Form extends Component
     public $method;
     public $imageTmp;
     public $userId;
-    public $serviceArray = [];
 
     protected $listeners = ['render'];
 
@@ -37,6 +36,7 @@ class Form extends Component
     {
         return [
             'payment.client_id' => 'required|exists:clients,id',
+            'payment.service_id' => 'required|exists:services,id',
             'payment.payment_type_id' => 'required|exists:payment_types,id',
             'payment.account_id' => 'required|exists:accounts,id',
             'payment.invoice_id' => 'nullable|exists:invoices,id',
@@ -55,7 +55,7 @@ class Form extends Component
         $this->method = $method;
         $this->userId = $payment->user_id;    
         $this->client = $payment->client ? Client::findOrFail($payment->client_id) : new Client();
-        
+
         if(request()->client){
             $this->client = Client::findOrFail(request()->client);
             $this->payment->client_id = request()->client;
@@ -69,12 +69,9 @@ class Form extends Component
             $service = Service::findOrFail(request()->service);
             $this->payment->concept = $service->categoryService->name;
             $this->payment->monto = $service->price;
-            array_push($this->serviceArray, "".request()->service."");
+            $this->payment->service_id = $service->id;
         }
-        
-        foreach($this->payment->services as $service){
-            array_push($this->serviceArray, "".$service->id."");
-        }
+    
     }
 
     public function render()
@@ -93,7 +90,6 @@ class Form extends Component
         $this->saveUserByAdmin();
         $this->payment->save();
         $this->saveImage();
-        $this->saveServices();
         session()->flash('alert','Pago registrado con exito');
         session()->flash('alert-type', 'success');
         return redirect()->route('payment.show', $this->payment);
@@ -105,26 +101,18 @@ class Form extends Component
         $this->validateForeignKey();
         $this->payment->update();
         $this->saveImage();
-        $this->saveServices();
         session()->flash('alert','Pago actualizado con exito');
         session()->flash('alert-type', 'success');
         return redirect()->route('payment.show', $this->payment);
     }
 
     public function clientChange($id){
-        $this->serviceArray = [];
         if($id){
             $this->client = Client::findOrFail($id);
-            foreach($this->payment->services as $service){
-                array_push($this->serviceArray, "".$service->id."");
-            }
         }else{
             $this->client = new Client();
+            $this->payment->service_id = NULL;
         }
-    }
-
-    public function saveServices(){
-        $this->payment->services()->sync($this->serviceArray);
     }
 
     public function saveUserByAdmin(){

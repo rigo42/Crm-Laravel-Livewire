@@ -17,7 +17,7 @@
             <!--begin::Login Sign in form-->
             <div class="login-signin">
                 <div class="mb-20">
-                    <h3>CRM</h3>
+                    <h3>Iniciar sesión</h3>
                     <div class="text-muted font-weight-bold">Ingresa tu correo y contraseña</div>
                 </div>
                 <form class="form" method="POST" action="{{ route('login') }}">

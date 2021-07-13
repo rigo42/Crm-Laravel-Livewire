@@ -88,7 +88,7 @@
                                 <th>Fecha</th>
                                 <th>Monto</th>
                                 <th>Correo enviado</th>
-                                <th>Usuario que realizó el pago</th>
+                                <th>Usuario que registró el pago</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>

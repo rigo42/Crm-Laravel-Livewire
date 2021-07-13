@@ -146,7 +146,7 @@
 
         <div class="card">
             <div class="card-body">
-                <div class="card-px text-center py-20 my-10">
+                <div class="card-px text-center py-5">
                     <h2 class="fs-2x fw-bolder mb-10">Hola!</h2>
                     <p class="text-gray-400 fs-4 fw-bold mb-10">Al parecer no tienes ninguna factura.
                     <br> Ponga en marcha su CRM añadiendo su primera factura</p>

@@ -29,7 +29,7 @@
         <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="categoryServiceFormModalLabel">Nueva categoría de servicio</h5>
+            <h5 class="modal-title" id="categoryServiceFormModalLabel">Nueva categoría</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -89,7 +89,6 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <span class="form-text text-muted">Elije el cliente correspondiente al servicio</span>
                                     <a href="#"  data-toggle="modal" data-target="#clientFormModal" class="text-primary" >Crear nuevo cliente</a>
                                     @error('service.client_id') <div><span class="text-danger">{{ $message }}</span></div> @enderror
                                 </div>
@@ -110,7 +109,6 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <span class="form-text text-muted">Elije la categoría correspondiente de acuerdo al servicio</span>
                                     <a href="#" data-toggle="modal" data-target="#categoryServiceFormModal" class="text-primary" >Crear nueva categoría</a>
                                     @error('service.category_service_id') <div><span class="text-danger">{{ $message }}</span></div> @enderror
                                 </div>
@@ -175,25 +173,6 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-3">Nombre del servicio <span class="text-danger">*</span></label>
-                                <div class="col-9">
-                                    <div class="input-group input-group-solid">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="la la-star"></i>
-                                            </span>
-                                        </div>
-                                        <input 
-                                            wire:model="service.name" 
-                                            type="text" 
-                                            required
-                                            class="form-control form-control-solid @error('service.name') is-invalid @enderror"  
-                                            placeholder="Ej: Gestión de facebook ads" />
-                                    </div>
-                                    @error('service.name') <span class="text-danger">{{ $message }}</span> @enderror
-                                </div>
-                            </div>
-                            <div class="form-group row">
                                 <label class="col-3">Precio <span class="text-danger">*</span></label>
                                 <div class="col-9">
                                     <div class="input-group input-group-solid">
@@ -214,7 +193,7 @@
                             </div>
                             
                             <div class="form-group row">
-                                <label class="col-3">Acuerdo de servicio </label>
+                                <label class="col-3">Acuerdo de servicio <span class="text-danger">*</span></label>
                                 <div class="col-9">
                                     
                                     <div class="d-flex jutify-content-start mb-3" >
@@ -275,7 +254,7 @@
                                             cols="30" 
                                             rows="10"
                                             class="form-control form-control-solid @error('service.note') is-invalid @enderror" 
-                                            placeholder="Ej: Alguna nota a resaltar para este servicio" 
+                                            placeholder="Ej: Alguna nota a resaltar" 
                                             >
                                         </textarea>
                                     </div>
@@ -308,7 +287,7 @@
                             <div class="my-5" >
                                 <div class="separator separator-dashed my-10"></div>
 
-                                <h3 class="text-dark font-weight-bold mb-5" id="users">Colaboradores del servicio</h3>
+                                <h3 class="text-dark font-weight-bold mb-5" id="users">Colaboradores</h3>
 
                                 <div class="row align-items-center">
                                     <div class="col-md-12 my-2 my-md-0">

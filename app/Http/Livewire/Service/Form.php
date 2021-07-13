@@ -63,7 +63,6 @@ class Form extends Component
             'service.type' => 'required',
             'service.category_service_id' => 'required',
             'service.client_id' => 'required',
-            'service.name' => 'required',
             'service.start_date' => 'required',
             'service.due_date' => 'nullable',
             'service.due_day' => 'nullable',
@@ -136,6 +135,12 @@ class Form extends Component
 
             $path = $this->serviceAgreementTmp->store('public/service');
             $this->service->service_agreement = $path;
+        }else{
+            if(!$this->service->service_agreement){
+                $this->validate([
+                    'serviceAgreementTmp' => 'required',
+                ]);
+            }
         }
     }
 

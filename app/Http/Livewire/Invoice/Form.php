@@ -32,13 +32,19 @@ class Form extends Component
         ];
     }
 
-    public function mount(Invoice $invoice, $method){
+    public function mount(Invoice $invoice, $method, $client = null){
         $this->invoice = $invoice;
         $this->method = $method;
         $this->client = $invoice->client ? Client::findOrFail($invoice->client_id) : new Client();
 
         foreach($this->invoice->services as $service){
             array_push($this->serviceArray, "".$service->id."");
+        }
+
+        if($client){
+            $this->client = Client::findOrFail($client->id);
+            $this->invoice->client_id = $client;
+            $this->clientChange($client->id);
         }
 
         if(request()->client){
@@ -76,6 +82,19 @@ class Form extends Component
         session()->flash('alert-type', 'success');
         
         return redirect()->route('invoice.show', $this->invoice);
+    }
+
+    public function storeCustom(){
+        $this->validate();
+        $this->validate([
+            'invoiceTmp' => 'required',
+        ]);
+        $this->saveInvoice();
+        $this->invoice->save();
+        $this->saveServices();
+        $this->invoice = new Invoice();
+        $this->emit('render');
+        $this->alert('success', 'Factura agregada con exito');
     }
 
     public function update(){

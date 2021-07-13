@@ -49,6 +49,16 @@
                                         </a>
                                     </li>
                                     @endcan
+                                    @can('proyectos')
+                                    <li class="menu-item" aria-haspopup="true">
+                                        <a href="{{ route('project.create') }}" class="menu-link">
+                                            <span class="svg-icon menu-icon">
+                                                <i class="fas fa-rocket"></i>
+                                            </span>
+                                            <span class="menu-text">Nuevo proyecto</span>
+                                        </a>
+                                    </li>
+                                    @endcan
                                     @can('cotizaciones')
                                         <li class="menu-item" aria-haspopup="true">
                                             <a href="{{ route('quotation.create') }}" class="menu-link">

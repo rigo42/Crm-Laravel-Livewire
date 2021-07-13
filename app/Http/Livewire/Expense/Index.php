@@ -66,10 +66,10 @@ class Index extends Component
             $expenses = $expenses->where('client_id', $this->client->id);
 
         }elseif($this->service){
-            $count = $count->whereHas('services', function($query){
+            $count = $count->whereHas('service', function($query){
                 $query->has('payments')->where('service_id', $this->service->id);
             });
-            $payments = $expenses->whereHas('services', function($query){
+            $payments = $expenses->whereHas('service', function($query){
                 $query->has('payments')->where('service_id', $this->service->id);
             });
 
