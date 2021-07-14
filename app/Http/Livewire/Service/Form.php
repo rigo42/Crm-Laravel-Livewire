@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Service;
 
-use App\Models\CategoryService;
+use App\Models\serviceType;
 use App\Models\Client;
 use App\Models\Service;
 use App\Models\User;
@@ -61,7 +61,7 @@ class Form extends Component
     {
         return [
             'service.type' => 'required',
-            'service.category_service_id' => 'required',
+            'service.service_type_id' => 'required',
             'service.client_id' => 'required',
             'service.start_date' => 'required',
             'service.due_date' => 'nullable',
@@ -75,7 +75,7 @@ class Form extends Component
     public function render()
     {
         $users = User::orderBy('name');
-        $categoryServices = CategoryService::orderBy('id', 'desc')->cursor();
+        $serviceTypes = serviceType::orderBy('id', 'desc')->cursor();
         $clients = Client::orderBy('id', 'desc');
 
         if(!$this->user->hasRole('Administrador')){
@@ -90,7 +90,7 @@ class Form extends Component
         $users = $users->cursor();
 
         $this->emit('renderJs');
-        return view('livewire.service.form', compact('users', 'categoryServices', 'clients'));
+        return view('livewire.service.form', compact('users', 'serviceTypes', 'clients'));
     }
 
     public function store(){

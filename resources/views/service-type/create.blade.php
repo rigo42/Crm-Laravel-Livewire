@@ -3,14 +3,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">
-                    Nueva categoría
+                    Nuevo tipo de servicio
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i aria-hidden="true" class="ki ki-close"></i>
                 </button>
             </div>
             <div class="modal-body">
-                @livewire('setting.category-service.form', ['method' => 'store'], key('create'))
+                @livewire('service-type.form', ['method' => 'store'], key('create'))
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>

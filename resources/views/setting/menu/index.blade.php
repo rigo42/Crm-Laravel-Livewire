@@ -70,14 +70,6 @@
         </li>
 
         <li class="navi-item mb-2">
-            <a class="navi-link {{ active('setting.category-service.*') }}"  href="{{ route('setting.category-service.index') }}">
-                <span class="navi-text text-dark-50 font-size-h5 font-weight-bold">
-                    <i class="fas fa-tag text-dark mr-2"></i> Categorias de servicios
-                </span>
-            </a>
-        </li>
-
-        <li class="navi-item mb-2">
             <a class="navi-link" href="#">
                 <span class="navi-text text-dark-50 font-size-h5 font-weight-bold">
                     <i class="fa fa-mail-bulk text-dark mr-2"></i> Configuración de correo

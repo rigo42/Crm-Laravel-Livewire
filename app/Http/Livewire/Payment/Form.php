@@ -54,11 +54,9 @@ class Form extends Component
         $this->userPresent = User::find(Auth::user()->id);
         $this->payment = $payment;
         $this->method = $method;
-        $this->userId = $payment->user_id;    
+        $this->userId = $payment->user_id ? $payment->user_id : $this->userPresent->id;    
         $this->client = $payment->client ? Client::findOrFail($payment->client_id) : new Client();
         $this->serviceAgreement = $payment->service;
-
-        $this->userId = $this->userPresent->id;
 
         if(request()->client){
             $this->client = Client::findOrFail(request()->client);
@@ -71,7 +69,7 @@ class Form extends Component
 
         if(request()->service){
             $service = Service::findOrFail(request()->service);
-            $this->payment->concept = $service->categoryService->name;
+            $this->payment->concept = $service->serviceType->name;
             $this->payment->monto = $service->price;
             $this->payment->service_id = $service->id;
             $this->serviceAgreement = $service;

@@ -16,8 +16,8 @@ class Service extends Model
         return $this->belongsTo(Client::class);
     }
 
-    public function categoryService(){
-        return $this->belongsTo(CategoryService::class);
+    public function serviceType(){
+        return $this->belongsTo(serviceType::class);
     }
 
     public function users(){

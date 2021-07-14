@@ -74,7 +74,7 @@ class Index extends Component
                                     ->orWhereHas('client', function($query){
                                         $query->where('name', 'LIKE', "%{$this->search}%");
                                     })
-                                    ->orWhereHas('categoryService', function($query){
+                                    ->orWhereHas('serviceType', function($query){
                                         $query->where('name', 'LIKE', "%{$this->search}%");
                                     });
         }

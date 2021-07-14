@@ -32,5 +32,6 @@ class PermissionSeeder extends Seeder
         //News 12/07/2021
         Permission::create(['name' => 'proyectos']);
         Permission::create(['name' => 'proveedores']);
+        Permission::create(['name' => 'tipo de servicio']);
     }
 }

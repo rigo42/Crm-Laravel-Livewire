@@ -75,7 +75,7 @@
                                             <div class="d-flex flex-column flex-grow-1 font-weight-bold">
                                                 <a href="{{ route('client.show', $serviceCutThisDay->client) }}" class="text-dark text-hover-primary mb-1 font-size-lg">{{ $serviceCutThisDay->client->name }}</a> <span class="text-secondary font-size-sm">{{ $serviceCutThisDay->client->company }}</span> 
                                                 <span class="text-muted">{{ \Carbon\Carbon::parse($serviceCutThisDay->payment_date)->toFormattedDateString() }}</span>
-                                                <span class="text-muted">Servicio: {{ $serviceCutThisDay->categoryService->name }}</span> 
+                                                <span class="text-muted">Servicio: {{ $serviceCutThisDay->serviceType->name }}</span> 
                                             </div>
                                             <!--end::Text-->
                                             <!--begin::Dropdown-->
@@ -153,7 +153,7 @@
                                             <div class="d-flex flex-column flex-grow-1 font-weight-bold">
                                                 <a href="{{ route('client.show', $serviceCutThisWeek->client) }}" class="text-dark text-hover-primary mb-1 font-size-lg">{{ $serviceCutThisWeek->client->name }}</a> <span class="text-secondary font-size-sm">{{ $serviceCutThisWeek->client->company }}</span> 
                                                 <span class="text-muted">{{ \Carbon\Carbon::parse($serviceCutThisWeek->payment_date)->toFormattedDateString() }}</span>
-                                                <span class="text-muted">Servicio: {{ $serviceCutThisWeek->categoryService->name }}</span> 
+                                                <span class="text-muted">Servicio: {{ $serviceCutThisWeek->serviceType->name }}</span> 
                                             </div>
                                             <!--end::Text-->
                                             <!--begin::Dropdown-->
@@ -230,7 +230,7 @@
                                             <div class="d-flex flex-column flex-grow-1 font-weight-bold">
                                                 <a href="{{ route('client.show', $serviceCutBack->client) }}" class="text-dark text-hover-primary mb-1 font-size-lg">{{ $serviceCutBack->client->name }}</a> <span class="text-secondary font-size-sm">{{ $serviceCutBack->client->company }}</span> 
                                                 <span class="text-muted">{{ \Carbon\Carbon::parse($serviceCutBack->payment_date)->toFormattedDateString() }}</span>
-                                                <span class="text-muted">Servicio: {{ $serviceCutBack->categoryService->name }}</span> 
+                                                <span class="text-muted">Servicio: {{ $serviceCutBack->serviceType->name }}</span> 
                                             </div>
                                             <!--end::Text-->
                                             <!--begin::Dropdown-->

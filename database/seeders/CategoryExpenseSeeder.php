@@ -15,25 +15,28 @@ class CategoryExpenseSeeder extends Seeder
     public function run()
     {
         CategoryExpense::create([
-            'name' => 'Facebook Ads',
+            'name' => 'Ventas',
         ]);
         CategoryExpense::create([
-            'name' => 'Google Ads',
+            'name' => 'Marketing',
         ]);
         CategoryExpense::create([
-            'name' => 'Cumpleaños',
+            'name' => 'Infraestructura y servicios',
         ]);
         CategoryExpense::create([
-            'name' => 'Hosting y Dominio',
+            'name' => 'IT',
         ]);
         CategoryExpense::create([
-            'name' => 'Hosting',
+            'name' => 'Viajes y representación ',
         ]);
         CategoryExpense::create([
-            'name' => 'Dominio',
+            'name' => 'Servicios',
         ]);
         CategoryExpense::create([
-            'name' => 'Plantilla web',
+            'name' => 'Finanzas',
+        ]);
+        CategoryExpense::create([
+            'name' => 'Otros',
         ]);
     }
 }

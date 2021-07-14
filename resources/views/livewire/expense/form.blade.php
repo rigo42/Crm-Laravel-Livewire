@@ -135,24 +135,21 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-6">
-                                    <label class="col-form-label">Cliente </label>
-                                    <div wire:ignore wire:key="client" >
-                                        <select 
-                                            wire:change="clientChange($event.target.value)"
-                                            wire:model.defer="expense.client_id" 
-                                            class="form-control selectpicker form-control-solid @error('expense.client_id') is-invalid @enderror" 
-                                            data-size="7"
-                                            data-live-search="true"
-                                            data-show-subtext="true"
-                                            >
-                                            <option value="">Ninguno</option>
-                                            @foreach ($clients as $c)
-                                                <option data-subtext="{{ $c->company }}" value="{{ $c->id }}">{{ $c->name }}</option>
-                                            @endforeach
-                                        </select>
+                                    <label class="col-form-label">Monto <span class="text-danger">*</span></label>
+                                    <div class="input-group input-group-solid">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-dollar-sign"></i>
+                                            </span>
+                                        </div>
+                                        <input 
+                                            wire:model.defer="expense.monto" 
+                                            type="number" 
+                                            required
+                                            class="form-control form-control-solid @error('expense.monto') is-invalid @enderror" 
+                                            placeholder="Ej: 8000" />
                                     </div>
-                                    <span class="form-text text-muted">Elije el cliente correspondiente al gasto</span>
-                                    @error('expense.client_id') <div><span class="text-danger">{{ $message }}</span></div> @enderror
+                                    @error('expense.monto') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="col-lg-6">
                                     <label class="col-form-label">Cuenta <span class="text-danger">*</span></label>
@@ -169,7 +166,6 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <span class="form-text text-muted">Elije la cuenta que será afectada al gasto</span>
                                     @error('expense.account_id') <div><span class="text-danger">{{ $message }}</span></div> @enderror
                                 </div>
                             </div>
@@ -190,26 +186,27 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <span class="form-text text-muted">Elije el tipo de categoría</span>
                                     <a href="#"  data-toggle="modal" data-target="#categoryExpenseFormModal" class="text-primary" >Crear categoría de gasto</a>
                                     @error('expense.category_expense_id') <div><span class="text-danger">{{ $message }}</span></div> @enderror
                                 </div>
                                 <div class="col-lg-6">
-                                    <label class="col-form-label">Monto <span class="text-danger">*</span></label>
-                                    <div class="input-group input-group-solid">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="fas fa-dollar-sign"></i>
-                                            </span>
-                                        </div>
-                                        <input 
-                                            wire:model.defer="expense.monto" 
-                                            type="number" 
-                                            required
-                                            class="form-control form-control-solid @error('expense.monto') is-invalid @enderror" 
-                                            placeholder="Ej: 8000" />
+                                    <label class="col-form-label">Cliente </label>
+                                    <div wire:ignore wire:key="client" >
+                                        <select 
+                                            wire:change="clientChange($event.target.value)"
+                                            wire:model.defer="expense.client_id" 
+                                            class="form-control selectpicker form-control-solid @error('expense.client_id') is-invalid @enderror" 
+                                            data-size="7"
+                                            data-live-search="true"
+                                            data-show-subtext="true"
+                                            >
+                                            <option value="">Ninguno</option>
+                                            @foreach ($clients as $c)
+                                                <option data-subtext="{{ $c->company }}" value="{{ $c->id }}">{{ $c->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
-                                    @error('expense.monto') <span class="text-danger">{{ $message }}</span> @enderror
+                                    @error('expense.client_id') <div><span class="text-danger">{{ $message }}</span></div> @enderror
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -263,7 +260,7 @@
                                                 </span>
                                                 <span class="option-label">
                                                     <span class="option-head">
-                                                        <span class="option-title">{{ $service->categoryService->name }}</span>
+                                                        <span class="option-title">{{ $service->serviceType->name }}</span>
                                                         <span class="option-focus">{{ $service->priceToString() }}</span>
                                                     </span>
                                                     <span class="option-body">{{ $service->note }}</span>

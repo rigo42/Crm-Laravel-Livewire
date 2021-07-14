@@ -137,7 +137,7 @@
                                         <div class="d-flex align-items-center flex-grow-1 mb-2">
                                             <div class="d-flex flex-column ml-3 mt-2 mb-2">
                                                 <a href="{{ route('service.show', $service) }}" class="font-weight-bold text-dark text-hover-primary">
-                                                    {{ $service->categoryService->name }}
+                                                    {{ $service->serviceType->name }}
                                                 </a>
                                                 <span class="font-size-sm font-weight-bold text-muted">
                                                     {{ $service->client->name }}

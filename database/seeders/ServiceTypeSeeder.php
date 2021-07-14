@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\CategoryService;
+use App\Models\ServiceType;
 use Illuminate\Database\Seeder;
 
-class CategoryServiceSeeder extends Seeder
+class ServiceTypeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,68 +15,68 @@ class CategoryServiceSeeder extends Seeder
     public function run()
     {
         //Marketing digital
-        CategoryService::create([
+        ServiceType::create([
             'name' => 'Gestión de redes sociales',
         ]);
-        CategoryService::create([
+        ServiceType::create([
             'name' => 'Campañas digitales',
         ]);
-        CategoryService::create([
+        ServiceType::create([
             'name' => 'Estrategia de contenidos',
         ]);
-        CategoryService::create([
+        ServiceType::create([
             'name' => 'Re-marketing',
         ]);
-        CategoryService::create([
+        ServiceType::create([
             'name' => 'Mailing',
         ]);
 
         //Desarrollo web
-        CategoryService::create([
+        ServiceType::create([
             'name' => 'One pages',
         ]);
-        CategoryService::create([
+        ServiceType::create([
             'name' => 'Páginas web',
         ]);
-        CategoryService::create([
+        ServiceType::create([
             'name' => 'Aplicaciónes web',
         ]);
-        CategoryService::create([
+        ServiceType::create([
             'name' => 'Tienda en linea',
         ]);
-        CategoryService::create([
+        ServiceType::create([
             'name' => 'Campañas y anuncios en Google Ads',
         ]);
-        CategoryService::create([
+        ServiceType::create([
             'name' => 'Optimizaciones y actualizaciones',
         ]);
-        CategoryService::create([
+        ServiceType::create([
             'name' => 'Software especializado',
         ]);
 
         //Diseño gráfico
-        CategoryService::create([
+        ServiceType::create([
             'name' => 'Identidad corporativa',
         ]);
-        CategoryService::create([
+        ServiceType::create([
             'name' => 'Naming y Slogan',
         ]);
-        CategoryService::create([
+        ServiceType::create([
             'name' => 'Logotipos y otros símbolos',
         ]);
-        CategoryService::create([
+        ServiceType::create([
             'name' => 'Manuales de identidad',
         ]);
-        CategoryService::create([
+        ServiceType::create([
             'name' => 'Registro de marca',
         ]);
-        CategoryService::create([
+        ServiceType::create([
             'name' => 'Brochure: Tarjetas de presentación impresas y digitales, Hojas membretadas, Trípticos, catálogos, Fyers etc.',
         ]);
-        CategoryService::create([
+        ServiceType::create([
             'name' => 'Material pop y promocionales',
         ]);
-        CategoryService::create([
+        ServiceType::create([
             'name' => 'Sesión fotográfica profesional',
         ]);
     }

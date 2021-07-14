@@ -15,7 +15,7 @@ class CreateServicesTable extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_service_id')->nullable()->constrained()->onDelete('set null');
+            $table->foreignId('service_type_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignId('client_id')->nullable()->constrained()->onDelete('cascade');
             $table->enum('type', ['Proyecto', 'Mensual']);
             $table->date('start_date');

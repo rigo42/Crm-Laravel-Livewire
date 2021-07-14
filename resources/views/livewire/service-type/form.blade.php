@@ -8,6 +8,7 @@
                 <button 
                     wire:click="{{ $method }}"
                     wire:loading.class="spinner spinner-white spinner-right" 
+                    wire:loading.attr="disabled" 
                     wire:target="{{ $method }}" 
                     class="btn btn-primary font-weight-bolder mr-2">
                     <i class="fa fa-save"></i>
@@ -22,7 +23,7 @@
                     <div class="col-xl-12">
                         <div class="my-5">
                             <div class="form-group row" >
-                                <label class="col-3">Nombre de la categoría <span class="text-danger">*</span></label>
+                                <label class="col-3">Nombre <span class="text-danger">*</span></label>
                                 <div class="col-9">
                                     <div class="input-group input-group-solid">
                                         <div class="input-group-prepend">
@@ -31,12 +32,25 @@
                                             </span>
                                         </div>
                                         <input 
-                                            wire:model.defer="categoryService.name" 
+                                            wire:model.defer="serviceType.name" 
                                             type="text" 
-                                            class="form-control form-control-solid @error('categoryService.name') is-invalid @enderror"  
-                                            placeholder="Ej: Campaña y anuncios en Google ads" /> 
+                                            class="form-control form-control-solid @error('serviceType.name') is-invalid @enderror"  
+                                            placeholder="Ej: Gestión de redes sociales" /> 
                                     </div>
-                                    @error('categoryService.name') <span class="text-danger">{{ $message }}</span> @enderror
+                                    @error('serviceType.name') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row" >
+                                <label class="col-3">Precio <span class="text-danger">*</span></label>
+                                <div class="col-9">
+                                    <div class="input-group input-group-solid">
+                                        <input 
+                                            wire:model.defer="serviceType.price" 
+                                            type="number" 
+                                            class="form-control form-control-solid @error('serviceType.price') is-invalid @enderror"  
+                                            placeholder="Ej: 8000" /> 
+                                    </div>
+                                    @error('serviceType.price') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                         </div>

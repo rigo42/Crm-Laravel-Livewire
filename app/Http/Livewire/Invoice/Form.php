@@ -52,7 +52,7 @@ class Form extends Component
         if(request()->service){
             $service = Service::findOrFail(request()->service);
             $this->invoice->total = $service->price;
-            $this->invoice->concept = $service->categoryService->name;
+            $this->invoice->concept = $service->serviceType->name;
             array_push($this->serviceArray, "".request()->service."");
         }
 

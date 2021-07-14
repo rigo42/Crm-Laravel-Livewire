@@ -25,17 +25,17 @@
     </div>
 
     <!-- Modal -->
-    <div wire:ignore.self class="modal fade" data-backdrop="static" id="categoryServiceFormModal" tabindex="-1" aria-labelledby="categoryServiceFormModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div wire:ignore.self class="modal fade" data-backdrop="static" id="serviceTypeFormModal" tabindex="-1" aria-labelledby="serviceTypeFormModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="categoryServiceFormModalLabel">Nueva categoría</h5>
+            <h5 class="modal-title" id="serviceTypeFormModalLabel">Nuevo tipo de servicio</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
             </div>
             <div class="modal-body">
-                @livewire('setting.category-service.form', ['method' => 'storeCustom'])
+                @livewire('service-type.form', ['method' => 'storeCustom'])
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Regresar</button>
@@ -94,23 +94,23 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-3">Categoría <span class="text-danger">*</span></label>
+                                <label class="col-3">Tipo de servicio <span class="text-danger">*</span></label>
                                 <div class="col-9">
                                     <div>
                                         <select 
-                                            wire:model.defer="service.category_service_id" 
-                                            class="form-control selectpicker form-control-solid @error('service.category_service_id') is-invalid @enderror" 
+                                            wire:model.defer="service.service_type_id" 
+                                            class="form-control selectpicker form-control-solid @error('service.service_type_id') is-invalid @enderror" 
                                             data-size="7"
                                             data-live-search="true"
                                             required>
-                                            <option value="">Selecciona una categoría</option>
-                                            @foreach ($categoryServices as $categoryService)
-                                                <option value="{{ $categoryService->id }}">{{ $categoryService->name }}</option>
+                                            <option value="">Selecciona un tipo</option>
+                                            @foreach ($serviceTypes as $serviceType)
+                                                <option value="{{ $serviceType->id }}">{{ $serviceType->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <a href="#" data-toggle="modal" data-target="#categoryServiceFormModal" class="text-primary" >Crear nueva categoría</a>
-                                    @error('service.category_service_id') <div><span class="text-danger">{{ $message }}</span></div> @enderror
+                                    <a href="#" data-toggle="modal" data-target="#serviceTypeFormModal" class="text-primary" >Crear nuevo tipo de servicio</a>
+                                    @error('service.service_type_id') <div><span class="text-danger">{{ $message }}</span></div> @enderror
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -405,7 +405,7 @@
 
             Livewire.on('render', function(){
                 $("#clientFormModal").modal('hide');
-                $("#categoryServiceFormModal").modal('hide');
+                $("#serviceTypeFormModal").modal('hide');
             });
 
             // Init date

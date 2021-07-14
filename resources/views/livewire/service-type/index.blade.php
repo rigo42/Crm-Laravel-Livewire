@@ -1,11 +1,11 @@
-<div class="col-xl-9">
+<div class="container">
     @if ($count)
          <!--begin::Advance Table Widget 3-->
         <div class="card card-custom gutter-b">
             <!--begin::Header-->
             <div class="card-header border-0 py-5">
                 <h3 class="card-title align-items-start flex-column">
-                    <span class="card-label font-weight-bolder text-dark">Categorías de servicios <span class="text-muted mt-3 font-weight-bold font-size-sm">({{ $count }})</span></span>
+                    <span class="text-muted mt-3 font-weight-bold font-size-sm">@yield('title')<span class="text-muted mt-3 font-weight-bold font-size-sm"> ({{ $count }})</span></span>
                 </h3>
                 <a href="#" data-toggle="modal" data-target=".create" class="btn btn-primary btn-shadow font-weight-bold mr-2 "><i class="fa fa-plus"></i> Nuevo</a>
             </div>
@@ -52,22 +52,18 @@
                         <thead>
                             <tr class="text-uppercase">
                                 <th>Nombre</th>
-                                <th>Servicios</th>
+                                <th>Precio</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($categoryServices as $categoryService)
+                            @forelse ($serviceTypes as $serviceType)
                                 <tr>
                                     <td>
-                                        <span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{ $categoryService->name }}</span>
+                                        <span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{ $serviceType->name }}</span>
                                     </td>
                                     <td>
-                                        @if ($categoryService->services)
-                                            <span class="font-weight-bolder font-size-lg badge badge-success">{{ $categoryService->services->count() }}</span>
-                                        @else
-                                            <span class="font-size-lg badge badge-secondary">Ninguno</span>
-                                        @endif
+                                        <span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{ $serviceType->priceToString() }}</span>
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-end">
@@ -78,7 +74,7 @@
                                                 <div class="dropdown-menu dropdown-menu-md dropdown-menu-right" style="position: inherit;">
                                                     <!--begin::Navigation-->
                                                     <ul class="navi navi-hover py-5">
-                                                        <li class="navi-item" data-toggle="modal" data-target="#edit-{{ $categoryService->id }}">
+                                                        <li class="navi-item" data-toggle="modal" data-target="#edit-{{ $serviceType->id }}">
                                                             <a href="#" class="navi-link">
                                                                 <span class="navi-icon">
                                                                     <i class="fa fa-pen"></i>
@@ -86,7 +82,7 @@
                                                                 <span class="navi-text">Editar</span>
                                                             </a>
                                                         </li>
-                                                        <li class="navi-item" onclick="event.preventDefault(); confirmDestroy({{ $categoryService->id }})">
+                                                        <li class="navi-item" onclick="event.preventDefault(); confirmDestroy({{ $serviceType->id }})">
                                                             <a href="#" class="navi-link">
                                                                 <span class="navi-icon">
                                                                     <i class="fa fa-trash"></i>
@@ -101,7 +97,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                @include('setting.category-service.edit')
+                                @include('service-type.edit')
                             @empty 
                                 <!--begin::Col-->
                                 <div class="col-12">
@@ -118,7 +114,7 @@
                 </div>
                 <!--end::Table-->
 
-                {{ $categoryServices->links() }}
+                {{ $serviceTypes->links() }}
 
             </div>
             <!--end::Body-->
@@ -128,9 +124,9 @@
             <div class="card-body">
                 <div class="card-px text-center py-5">
                     <h2 class="fs-2x fw-bolder mb-10">Hola!</h2>
-                    <p class="text-gray-400 fs-4 fw-bold mb-10">Al parecer no tienes ninguna categoría de servicio.
-                    <br> Ponga en marcha su CRM añadiendo su primera categoría de servicio</p>
-                    <a data-toggle="modal" data-target=".create" href="#" class="btn btn-primary">Agregar categoría de servicio</a>
+                    <p class="text-gray-400 fs-4 fw-bold mb-10">Al parecer no tienes ningun tipo de servicio.
+                    <br> Ponga en marcha su CRM añadiendo su primer tipo de servicio</p>
+                    <a data-toggle="modal" data-target=".create" href="#" class="btn btn-primary">Agregar tipo de servicio</a>
                 </div>
                 <div class="text-center px-4 ">
                     <img class="img-fluid col-6" alt="" src="{{ asset('assets/media/ilustrations/work.png') }}">
@@ -139,7 +135,7 @@
         </div>
     @endif
 
-    @include('setting.category-service.create')
+    @include('service-type.create')
 
     @section('footer')
         <script>
@@ -151,7 +147,7 @@
             function confirmDestroy(id){
                 swal.fire({
                     title: "¿Estas seguro?",
-                    text: "No podrá recuperar esta categoría de servicio y tus servicios creados con esta categoría se quedarán sin categoría",
+                    text: "No podrá recuperar este tipo de servicio y los servicios creados con este tipo se quedarán sin tipo de servicio",
                     icon: "warning",
                     buttonsStyling: false,
                     showCancelButton: true,

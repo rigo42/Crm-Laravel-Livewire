@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Setting\PaymentType;
 
-use App\Models\CategoryService;
+use App\Models\serviceType;
 use App\Models\PaymentType;
 use Exception;
 use Livewire\Component;

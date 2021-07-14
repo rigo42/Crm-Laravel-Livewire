@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoryServicesTable extends Migration
+class CreateServiceTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateCategoryServicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('category_services', function (Blueprint $table) {
+        Schema::create('service_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->double('price')->default(0);
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateCategoryServicesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category_services');
+        Schema::dropIfExists('service_types');
     }
 }

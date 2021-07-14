@@ -174,7 +174,7 @@
                                                     <label class="option" style="cursor: pointer;">
                                                         <span class="option-label">
                                                             <span class="option-head">
-                                                                <span class="option-title">{{ $payment->service->categoryService->name }}</span>
+                                                                <span class="option-title">{{ $payment->service->serviceType->name }}</span>
                                                                 <span class="option-focus">{{ $payment->service->priceToString() }}</span>
                                                             </span>
                                                             <span class="option-body">{{ $payment->service->note }}</span>

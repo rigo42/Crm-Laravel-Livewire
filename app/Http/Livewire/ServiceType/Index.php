@@ -1,19 +1,18 @@
 <?php
 
-namespace App\Http\Livewire\Setting\CategoryService;
+namespace App\Http\Livewire\ServiceType;
 
-use App\Models\CategoryService;
+use App\Models\ServiceType;
 use Exception;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class Index extends Component
 {
-    
     use WithPagination;
 
     //Tools
-    public $perPage = 10;
+    public $perPage = 20;
     public $search;
     protected $queryString = ['search' => ['except' => '']];
 
@@ -30,22 +29,22 @@ class Index extends Component
 
     public function render()
     {
-        $count = CategoryService::count();
-        $categoryServices = CategoryService::orderBy('id', 'desc');
+        $count = ServiceType::count();
+        $serviceTypes = ServiceType::orderBy('id', 'desc');
 
         if($this->search){
-            $categoryServices = $categoryServices->where('name', 'LIKE', "%{$this->search}%");
+            $serviceTypes = $serviceTypes->where('name', 'LIKE', "%{$this->search}%");
         }
 
-        $categoryServices = $categoryServices->paginate($this->perPage);
+        $serviceTypes = $serviceTypes->paginate($this->perPage);
 
-        return view('livewire.setting.category-service.index', compact('count', 'categoryServices'));
+        return view('livewire.service-type.index', compact('count', 'serviceTypes'));
     }
 
-    public function destroy($id)
+    public function destroy(ServiceType $serviceType)
     {
         try{
-            CategoryService::where('id', $id)->delete();
+            $serviceType->delete();
             $this->alert('success', 'Eliminación con exito');
         }catch(Exception $e){
             $this->alert('error', 

@@ -82,12 +82,14 @@
                         <thead>
                             <tr class="text-uppercase">
                                 <th>Cliente</th>
-                                <th>Tipo de pago</th>
+                                <th>Tipo</th>
                                 <th>Cuenta</th>
                                 <th>Fecha</th>
                                 <th>Monto</th>
-                                <th>Correo enviado</th>
-                                <th>Usuario que registró el pago</th>
+                                <th>Comprobante</th>
+                                <th>status</th>
+                                <th>Correo de confirmación</th>
+                                <th>Usuario que lo registró</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -116,6 +118,32 @@
                                     <td>{{ $payment->account->name }}</td>
                                     <td>{{ $payment->dateToString() }}</td>
                                     <td>{{ $payment->montoToString() }}</td>
+                                    <td>
+                                        @if ($payment->proof)
+                                            <span class="badge badge-success">{{ $payment->proof }}</span>
+                                        @else
+                                            <span class="badge badge-pill badge-light">Ninguno</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($payment->proof == 'Factura')
+                                            @if ($payment->invoice)
+                                                <span class="badge badge-success">Factura adjuntada</span>
+                                            @else 
+                                                <span class="badge badge-info">Falta factura</span>
+                                            @endif
+
+                                        @elseif($payment->proof == 'Voucher') 
+                                            @if ($payment->image)
+                                                <span class="badge badge-success">Voucher adjuntado</span>
+                                            @else 
+                                                <span class="badge badge-info">Falta voucher</span>
+                                            @endif
+
+                                        @else
+                                            <span class="badge badge-secondary">Ninguno</span>
+                                        @endif
+                                    </td>
                                     <td>
                                         @if ($payment->send_email)
                                             <span class="badge badge-success">Correo enviado</span>

@@ -1,8 +1,9 @@
 @extends('layouts.main')
 
-@section('title', 'Ajutes | Categorías de servicio')
+@section('title', 'Tipos de servicio')
 
 @section('content')
+
     <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
         <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
             <div class="d-flex align-items-center flex-wrap mr-1">
@@ -15,12 +16,8 @@
 
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="d-flex flex-column-fluid">
-            <div class="container-fluid">
-                <div class="row">
-                    @include('setting.menu.index')
-                    @livewire('setting.category-service.index')
-                </div>
-            </div>
+            @livewire('service-type.index')
         </div>
     </div>
+
 @endsection

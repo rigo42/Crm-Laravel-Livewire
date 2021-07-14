@@ -107,15 +107,15 @@
                             <div class="d-flex flex-column mr-auto">
                                 <!--begin: Title-->
                                 @if ($service->type == 'Proyecto')
-                                    <a href="{{ route('project.show', $service) }}" class="card-title text-hover-primary font-weight-bolder font-size-h5 text-dark mb-1">{{ $service->categoryService->name }}  ({{ $service->priceToString() }})</a>
+                                    <a href="{{ route('project.show', $service) }}" class="card-title text-hover-primary font-weight-bolder font-size-h5 text-dark mb-1">{{ $service->serviceType->name }}  ({{ $service->priceToString() }})</a>
                                 @else
-                                    <a href="{{ route('service.show', $service) }}" class="card-title text-hover-primary font-weight-bolder font-size-h5 text-dark mb-1">{{ $service->categoryService->name }}  ({{ $service->priceToString() }})</a>
+                                    <a href="{{ route('service.show', $service) }}" class="card-title text-hover-primary font-weight-bolder font-size-h5 text-dark mb-1">{{ $service->serviceType->name }}  ({{ $service->priceToString() }})</a>
                                 @endif
                                 
                                 <span class="text-primary font-weight-bold">{{ $service->client->name }}</span>
                                 
-                                @if ($service->categoryService)
-                                    <span class="text-secondary" style="font-size: 10px;">{{ $service->categoryService->name }}</span>
+                                @if ($service->serviceType)
+                                    <span class="text-secondary" style="font-size: 10px;">{{ $service->serviceType->name }}</span>
                                 @else
                                     <span class="text-secondary font-weight-bold">Ninguno</span>
                                 @endif

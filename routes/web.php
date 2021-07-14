@@ -9,11 +9,11 @@ use App\Http\Controllers\Prospect\ProspectController;
 use App\Http\Controllers\Quotation\QuotationController;
 use App\Http\Controllers\Service\ProjectController;
 use App\Http\Controllers\Service\ServiceController;
+use App\Http\Controllers\ServiceType\ServiceTypeController;
 use App\Http\Controllers\Setting\AccountController;
 use App\Http\Controllers\Setting\BackupController;
 use App\Http\Controllers\Setting\CategoryClientController;
 use App\Http\Controllers\Setting\CategoryExpenseController;
-use App\Http\Controllers\Setting\CategoryServiceController;
 use App\Http\Controllers\Setting\PaymentTypeController;
 use App\Http\Controllers\Setting\PermissionController;
 use App\Http\Controllers\Setting\RoleController;
@@ -43,8 +43,6 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('roles', RoleController::class)->parameters(['roles' => 'role'])->names('setting.role');
         //Category client
         Route::resource('categoria-clientes', CategoryClientController::class)->parameters(['categoria-clientes' => 'categoryClient'])->names('setting.category-client');
-        //Category Service
-        Route::resource('categoria-servicios', CategoryServiceController::class)->parameters(['categoria-servicios' => 'categoryService'])->names('setting.category-service');
         //Category expense
         Route::resource('categoria-gastos', CategoryExpenseController::class)->parameters(['categoria-gastos' => 'categoryExpense'])->names('setting.category-expense');
         //Payment Type
@@ -83,6 +81,9 @@ Route::middleware(['auth'])->group(function () {
 
     //Quotations
     Route::resource('cotizaciones', QuotationController::class)->parameters(['cotizaciones' => 'quotation'])->names('quotation');
+
+    //Services Type
+    Route::resource('tipos-de-servicios', ServiceTypeController::class)->parameters(['tipos-de-servicios' => 'serviceType'])->names('service-type');
 
     //Services
     Route::resource('servicios', ServiceController::class)->parameters(['servicios' => 'service'])->names('service');

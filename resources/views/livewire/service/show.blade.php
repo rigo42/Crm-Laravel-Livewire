@@ -39,7 +39,7 @@
                             <div class="d-flex align-items-center justify-content-between flex-wrap">
                                 <div class="mr-3">
                                     <!--begin::Name-->
-                                    <span class="d-flex align-items-center text-dark font-size-h5 font-weight-bold mr-3">{{ $service->categoryService->name }}  ({{ $service->priceToString() }})</span>
+                                    <span class="d-flex align-items-center text-dark font-size-h5 font-weight-bold mr-3">{{ $service->serviceType->name }}  ({{ $service->priceToString() }})</span>
                                     <!--end::Name-->
                                     <!--begin::Contacts-->
                                     <div class="d-flex flex-wrap my-2">
