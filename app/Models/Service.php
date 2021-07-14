@@ -36,9 +36,11 @@ class Service extends Model
         return $this->hasMany(Expense::class);
     }
 
-    public function incomeByInvoiceTotal(){
-        $invoiceTotal = $this->invoices()->sum('total');
-        return '$'.number_format($invoiceTotal, 2, '.', ',');
+    public function grossIncome(){
+        $sumPayments = $this->payments()->sum('monto');
+        $sumExpenses = $this->expenses()->sum('monto');
+        $grossIncome = $sumPayments - $sumExpenses;
+        return '$'.number_format($grossIncome, 2, '.', ',');
     }
 
     public function paymentTotal(){

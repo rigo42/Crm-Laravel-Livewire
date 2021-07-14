@@ -26,7 +26,8 @@ class CreatePaymentsTable extends Migration
             $table->text('concept');
             $table->text('note')->nullable();
             $table->boolean('send_email')->nullable()->default(0);
-            $table->boolean('has_invoice')->nullable();
+            $table->enum('proof', ['Nota simple', 'Voucher', 'Factura'])->nullable();
+            $table->string('simple_note_url')->nullable();
             $table->timestamps();
         });
     }

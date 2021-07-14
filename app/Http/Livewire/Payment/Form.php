@@ -24,6 +24,7 @@ class Form extends Component
     //Object
     public $payment;
     public $client;
+    public $serviceAgreement;
 
     //Tools    
     public $method;
@@ -44,7 +45,7 @@ class Form extends Component
             'payment.monto' => 'required|numeric',
             'payment.concept' => 'required',
             'payment.note' => 'nullable',
-            'payment.has_invoice' => 'nullable',
+            'payment.proof' => 'nullable',
         ];
 
     }
@@ -55,6 +56,9 @@ class Form extends Component
         $this->method = $method;
         $this->userId = $payment->user_id;    
         $this->client = $payment->client ? Client::findOrFail($payment->client_id) : new Client();
+        $this->serviceAgreement = $payment->service;
+
+        $this->userId = $this->userPresent->id;
 
         if(request()->client){
             $this->client = Client::findOrFail(request()->client);
@@ -70,6 +74,7 @@ class Form extends Component
             $this->payment->concept = $service->categoryService->name;
             $this->payment->monto = $service->price;
             $this->payment->service_id = $service->id;
+            $this->serviceAgreement = $service;
         }
     
     }
@@ -88,6 +93,7 @@ class Form extends Component
         $this->validate();
         $this->saveUser();
         $this->saveUserByAdmin();
+        
         $this->payment->save();
         $this->saveImage();
         session()->flash('alert','Pago registrado con exito');
@@ -98,7 +104,7 @@ class Form extends Component
     public function update(){
         $this->validate();
         $this->saveUserByAdmin();
-        $this->validateForeignKey();
+        $this->validateNull();
         $this->payment->update();
         $this->saveImage();
         session()->flash('alert','Pago actualizado con exito');
@@ -107,19 +113,25 @@ class Form extends Component
     }
 
     public function clientChange($id){
+
         if($id){
             $this->client = Client::findOrFail($id);
         }else{
             $this->client = new Client();
-            $this->payment->service_id = NULL;
+            $this->payment->client_id = NULL;
         }
+
+        $this->payment->service_id = NULL;
+        $this->serviceAgreement = new Service();
+    }
+
+    public function serviceChange($id){
+        $service = Service::findOrFail($id);
+        $this->serviceAgreement = $service;
     }
 
     public function saveUserByAdmin(){
         if($this->userPresent->hasRole('Administrador')){
-            $this->validate([
-                'userId' => 'required',
-            ]);
             $this->payment->user_id = $this->userId;
         }
     }
@@ -170,9 +182,12 @@ class Form extends Component
         $this->alert('success', 'Commprobante eliminada con exito');
     }
 
-    public function validateForeignKey(){
+    public function validateNull(){
         if($this->payment->invoice_id == ''){
             $this->payment->invoice_id = NULL;
+        }
+        if($this->payment->proof == ""){
+            $this->payment->proof = NULL;
         }
     }
 }

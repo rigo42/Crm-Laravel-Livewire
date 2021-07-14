@@ -132,6 +132,32 @@
                                             <span class="font-weight-bold">{{ $client->incomeByInvoiceTotal() }}</span>
                                         </div>
                                     </div>
+                                    <!--begin: Item-->
+                                    <div class="mr-1 col-lg-3 col-auto text-danger border border-dashed rounded mb-4">
+                                        <span class="mr-4">
+                                            <i class="flaticon-price-tag icon-2x font-weight-bold text-danger"></i>
+                                        </span>
+                                        <div class="d-flex flex-column">
+                                            <span class="font-weight-bolder font-size-sm">Pendientes por facturas</span>
+                                            <span class="font-weight-bolder font-size-h5">
+                                            <span class="font-weight-bold">{{ $client->pendingByInvoiceTotal() }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Info payment -->
+                                <div class="d-flex align-items-center justify-content-start flex-wrap mb-4">
+                                    <!--begin: Item-->
+                                    <div class="mr-1 col-lg-3 col-auto text-dark border border-dashed rounded mb-4">
+                                        <span class="mr-4">
+                                            <i class="flaticon-price-tag icon-2x font-weight-bold text-dark"></i>
+                                        </span>
+                                        <div class="d-flex flex-column">
+                                            <span class="font-weight-bolder font-size-sm">Ingreso bruto</span>
+                                            <span class="font-weight-bolder font-size-h5">
+                                            <span class="font-weight-bold">{{ $client->grossIncomeTotal() }}</span>
+                                        </div>
+                                    </div>
                                     <!--end: Item-->
                                     <!--begin: Item-->
                                     <div class="mr-1 col-lg-2 col-auto text-success border border-dashed rounded mb-4">

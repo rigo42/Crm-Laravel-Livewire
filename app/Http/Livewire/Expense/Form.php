@@ -24,7 +24,6 @@ class Form extends Component
     //Object
     public $expense;
     public $client;
-    public $serviceAgreement;
 
     //Tools    
     public $method;
@@ -54,7 +53,6 @@ class Form extends Component
         $this->method = $method;
         $this->userId = $expense->user_id; 
         $this->client = $expense->client ? Client::findOrFail($expense->client_id) : new Client();
-        $this->serviceAgreement = $expense->service;
 
         if(request()->client){
             $this->client = Client::findOrFail(request()->client);
@@ -69,7 +67,6 @@ class Form extends Component
             $service = Service::findOrFail(request()->service);
             $this->expense->concept = $service->categoryService->name;
             $this->expense->service_id = $service->id;
-            $this->serviceAgreement = $service;
         }
     }
 
@@ -95,7 +92,6 @@ class Form extends Component
     public function update(){
         $this->validate();
         $this->saveUserByAdmin();
-        $this->validateForeignKey();
         $this->expense->update();
         $this->saveImage();
         session()->flash('alert','Gasto actualizado con exito');
@@ -110,12 +106,8 @@ class Form extends Component
             $this->client = new Client();
             $this->expense->service_id = NULL;
             $this->expense->client_id = NULL;
+            
         }
-    }
-
-    public function serviceChange($id){
-        $service = Service::findOrFail($id);
-        $this->serviceAgreement = $service;
     }
 
     public function saveUserByAdmin(){
@@ -171,11 +163,5 @@ class Form extends Component
         }
         $this->reset('imageTmp');
         $this->alert('success', 'Commprobante eliminado con exito');
-    }
-
-    public function validateForeignKey(){
-        if($this->expense->client_id == ''){
-            $this->expense->client_id = NULL;
-        }
     }
 }

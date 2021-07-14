@@ -41,14 +41,7 @@ class Form extends Component
             array_push($this->serviceArray, "".$service->id."");
         }
 
-        if($client){
-            $this->client = Client::findOrFail($client->id);
-            $this->invoice->client_id = $client;
-            $this->clientChange($client->id);
-        }
-
         if(request()->client){
-            $this->invoice->client_id = request()->client;
             $this->clientChange(request()->client);
         }
 
@@ -61,6 +54,11 @@ class Form extends Component
             $this->invoice->total = $service->price;
             $this->invoice->concept = $service->categoryService->name;
             array_push($this->serviceArray, "".request()->service."");
+        }
+
+        if($client){
+            // dd($client);
+            $this->clientChange($client->id);
         }
     }
 
@@ -115,6 +113,7 @@ class Form extends Component
         $this->serviceArray = [];
         if($id){
             $this->client = Client::findOrFail($id);
+            $this->invoice->client_id = $this->client->id;
             foreach($this->invoice->services as $service){
                 array_push($this->serviceArray, "".$service->id."");
             }

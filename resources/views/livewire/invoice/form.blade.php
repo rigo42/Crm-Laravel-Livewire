@@ -235,7 +235,7 @@
     </div>
     <!--end::Card-->
 
-    @section('footer')
+    @push('footer')
         <script src="{{ asset('assets/plugins/custom/bfi/bfi.js') }}"></script>
         <script src="{{ asset('assets') }}/js/pages/crud/forms/widgets/bootstrap-datepicker.js"></script>
         <script>
@@ -264,7 +264,8 @@
             }).on('changeDate', function(e){
                 @this.set('invoice.due_date', e.target.value);
             });
+            
         </script>
-    @endsection
+    @endpush
         
 </div>

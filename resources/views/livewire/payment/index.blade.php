@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container">
     @if ($count)
          <!--begin::Advance Table Widget 3-->
         <div class="card card-custom gutter-b">
@@ -84,7 +84,6 @@
                                 <th>Cliente</th>
                                 <th>Tipo de pago</th>
                                 <th>Cuenta</th>
-                                <th>Factura</th>
                                 <th>Fecha</th>
                                 <th>Monto</th>
                                 <th>Correo enviado</th>
@@ -115,15 +114,6 @@
                                     </td>
                                     <td>{{$payment->paymentType->name}}</td>
                                     <td>{{ $payment->account->name }}</td>
-                                    <td>
-                                        @if ($payment->invoice)
-                                            <a href="{{ route('invoice.show', $payment->invoice) }}">
-                                                <img alt="{{ $payment->invoice->concept }}" class="max-h-65px" src="{{ asset('assets/media/svg/files/pdf.svg') }}">
-                                            </a>
-                                        @else
-                                            <span class="badge badge-secondary">Ninguna</span>
-                                        @endif
-                                    </td>
                                     <td>{{ $payment->dateToString() }}</td>
                                     <td>{{ $payment->montoToString() }}</td>
                                     <td>

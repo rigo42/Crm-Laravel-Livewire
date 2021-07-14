@@ -195,9 +195,9 @@
                         <div class="d-flex flex-wrap">
                             <!--begin: Item-->
                             <div class="mr-12 d-flex flex-column mb-7 text-dark">
-                                <span class="font-weight-bolder mb-4">Ingresos por factura</span>
+                                <span class="font-weight-bolder mb-4">Ingreso bruto</span>
                                 <span class="font-weight-bolder font-size-h5 pt-1">
-                                <span class="font-weight-bold">{{ $service->incomeByInvoiceTotal() }}</span>
+                                <span class="font-weight-bold">{{ $service->grossIncome() }}</span>
                             </div>
                             <!--end::Item-->
                             <!--begin::Item-->

@@ -50,6 +50,32 @@ class Client extends Model
         return '$'.number_format($invoiceTotal, 2, '.', ',');
     }
 
+    public function pendingByInvoiceTotal(){
+        $pending = 0;
+        $invoices = $this->invoices()->cursor();
+        foreach ($invoices as $invoice) {
+
+            $invoiceTotal = $invoice->total;
+            $serviceTotal = 0;
+
+            foreach ($invoice->services as $service) {
+                
+                $serviceTotal += $service->price;
+            }
+
+            $pending += ($serviceTotal - $invoiceTotal);
+        }
+
+        return '$'.number_format($pending, 2, '.', ',');
+    }
+
+    public function grossIncomeTotal(){
+        $sumPayments = $this->payments()->sum('monto');
+        $sumExpenses = $this->expenses()->sum('monto');
+        $grossIncome = $sumPayments - $sumExpenses;
+        return '$'.number_format($grossIncome, 2, '.', ',');
+    }
+
     public function paymentTotal(){
         $payments = $this->payments()->sum('monto');
         return '$'.number_format($payments, 2, '.', ',');

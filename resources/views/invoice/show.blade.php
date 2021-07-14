@@ -34,8 +34,8 @@
                                 
                             
                                 <div class="card-title">
-                                    <h3 class="card-label">{{ $invoice->client->name }}
-                                        <span class="d-block text-muted pt-2 font-size-sm">Datos del cliente</span>
+                                    <h3 class="card-label">{{ $invoice->concept }}
+                                        <span class="d-block text-muted pt-2 font-size-sm">Datos de la factura</span>
                                     </h3>
                                 </div>
                                 <!--start::Toolbar-->
@@ -62,52 +62,21 @@
                                             @else
                                                 style="background-image:url({{ asset('assets/media/users/blank.png') }}" 
                                             @endif
-                                            ></div>
+                                        ></div>
                                     </div>
-                                    <div class="text-muted mb-2">{{ $invoice->client->company }}</div>
+                                    <div class="text-muted mb-2">{{ $invoice->client->name }} {{ $invoice->client->company ? '('.$invoice->client->company.')' : '' }}</div>
                                 </div>
                                 <div class="form-group row my-2">
-                                    <label class="col-4 col-form-label">Origen:</label>
+                                    <label class="col-4 col-form-label">Total: {{ $invoice->totalToString() }}</label>
                                     <div class="col-8">
                                         <span class="form-control-plaintext font-weight-bolder">{{ $invoice->client->origin }}</span>
                                     </div>
                                 </div>
-                                <div class="form-group row my-2">
-                                    <label class="col-4 col-form-label">Empresa:</label>
-                                    <div class="col-8">
-                                        <span class="form-control-plaintext font-weight-bolder">{{ $invoice->client->company }}</span>
+                                @if ($invoice->isPendingTotal())
+                                    <div class="form-group row my-2 ">
+                                        <label class="col-4 col-form-label text-danger">Pendiente: {{ $invoice->pendingTotalToString() }}</label>
                                     </div>
-                                </div>
-                                <div class="form-group row my-2">
-                                    <label class="col-4 col-form-label">Dirección:</label>
-                                    <div class="col-8">
-                                        <span class="form-control-plaintext">
-                                            <span class="font-weight-bolder">{{ $invoice->client->address }}</span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="form-group row my-2">
-                                    <label class="col-4 col-form-label">Razón social:</label>
-                                    <div class="col-8">
-                                        <span class="form-control-plaintext font-weight-bolder">{{ $invoice->client->social_reason }}</span>
-                                    </div>
-                                </div>
-                                <div class="form-group row my-2">
-                                    <label class="col-4 col-form-label">Diección fiscal:</label>
-                                    <div class="col-8">
-                                        <span class="form-control-plaintext font-weight-bolder">
-                                            {{ $invoice->client->fiscal_address }}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="form-group row my-2">
-                                    <label class="col-4 col-form-label">RFC:</label>
-                                    <div class="col-8">
-                                        <span class="form-control-plaintext font-weight-bolder">
-                                            {{ $invoice->client->rfc }}
-                                        </span>
-                                    </div>
-                                </div>
+                                @endif
                                 
                             </div>
                         </div>
@@ -161,7 +130,7 @@
                             <!--begin::Header-->
                             <div class="card-header h-auto py-4">
                                 <div class="card-title">
-                                    <h3 class="card-label">{{ $invoice->concept }}</h3>
+                                    <h3 class="card-label">Factura</h3>
                                 </div>
                             </div>
                             <div class="card-body">

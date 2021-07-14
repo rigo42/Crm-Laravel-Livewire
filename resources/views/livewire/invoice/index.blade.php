@@ -107,7 +107,10 @@
                                 <!--begin: Tite-->
                                 <p class="text-dark-75 font-weight-bold my-4 font-size-lg">{{ $invoice->concept }}</p>
                                 <p>{{ $invoice->totalToString() }}</p>
-                                <div class="symbol symbol-circle symbol-lg-75">
+                                @if ($invoice->isPendingTotal())
+                                    <span class="badge badge-danger">Pendiente: {{ $invoice->pendingTotalToString() }}</span>
+                                @endif
+                                <div class="symbol symbol-circle symbol-lg-75 my-4">
                                     <img 
                                         @if ($invoice->client->image)
                                             src="{{ Storage::url($invoice->client->image->url) }}" 

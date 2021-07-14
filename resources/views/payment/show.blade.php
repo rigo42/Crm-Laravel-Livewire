@@ -83,6 +83,19 @@
                                     </div>
                                 </div>
                                 <div class="form-group row my-2">
+                                    <label class="col-4 col-form-label">Comprobante:</label>
+                                    <div class="col-8">
+                                        <span class="form-control-plaintext font-weight-bolder">
+                                            @if ($payment->proof)
+                                                {{ $payment->proof }}
+                                            @else
+                                                <span class="badge badge-pill badge-light">Ninguno</span>
+                                            @endif
+                                            
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group row my-2">
                                     <label class="col-4 col-form-label">Cuenta:</label>
                                     <div class="col-8">
                                         <span class="form-control-plaintext font-weight-bolder">{{ $payment->account->name }}</span>
@@ -112,7 +125,7 @@
                                         @if ($payment->send_email)
                                             <span class="badge badge-success">Correo enviado</span>
                                         @else
-                                            <span class="badge badge-secondary">No enviado</span>
+                                            <span class="badge badge-pill badge-light">No enviado</span>
                                         @endif
                                     </div>
                                 </div>
@@ -179,51 +192,72 @@
                                
                             </div>
                         </div>
-                        <div class="card card-custom gutter-b">
-                            <!--begin::Header-->
-                            <div class="card-header h-auto py-4">
-                                <div class="card-title">
-                                    <h3 class="card-label">Factura asociada</h3>
-                                </div>
-                                <!--start::Toolbar-->
-                                @if ($payment->invoice)
-                                    <div class="d-flex justify-content-end">
-                                        <div class="dropdown dropdown-inline" data-toggle="tooltip"  data-placement="left" style="position: initial!important;">
-                                            <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="ki ki-bold-more-hor"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right" >
-                                                <a class="dropdown-item" target="_blank" href="{{ Storage::url($payment->invoice->url) }}"><i class="fas fa-download mr-2"></i> Descargar factura</a>
+
+                        @if ($payment->proof == 'Factura')
+                            <div class="card card-custom gutter-b">
+                                <!--begin::Header-->
+                                <div class="card-header h-auto py-4">
+                                    <div class="card-title">
+                                        <h3 class="card-label">Factura asociada</h3>
+                                    </div>
+                                    <!--start::Toolbar-->
+                                    @if ($payment->invoice)
+                                        <div class="d-flex justify-content-end">
+                                            <div class="dropdown dropdown-inline" data-toggle="tooltip"  data-placement="left" style="position: initial!important;">
+                                                <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="ki ki-bold-more-hor"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right" >
+                                                    <a class="dropdown-item" target="_blank" href="{{ Storage::url($payment->invoice->url) }}"><i class="fas fa-download mr-2"></i> Descargar factura</a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                @endif
-                            </div>
-                            <div class="card-body">
-                                @if ($payment->invoice)
-                                    <embed width="100%" height="600px" src="{{ Storage::url($payment->invoice->url) }}" type="">
-                                @else
-                                    <span class="d-block badge badge-secondary text-muted pt-2 font-size-sm">Ninguna</span>
-                                @endif
-                               
-                            </div>
-                        </div>
-                         <div class="card card-custom gutter-b">
-                            <!--begin::Header-->
-                            <div class="card-header h-auto py-4">
-                                <div class="card-title">
-                                    <h3 class="card-label">Comprobante de pago</h3>
+                                    @endif
+                                </div>
+                                <div class="card-body">
+                                    @if ($payment->invoice)
+                                        <embed width="100%" height="600px" src="{{ Storage::url($payment->invoice->url) }}" type="">
+                                    @else
+                                        <div class="d-flex justify-content-center">
+                                            <a class="btn btn-lg btn-warning" href="{{ route('payment.edit', $payment) }}#proof">Falta adjuntar factura</a>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
-                            <div class="card-body">
-                                @if ($payment->image)
-                                    <img class="img-fluid" src="{{ Storage::url($payment->image->url) }}" />
-                                @else
-                                    <span class="d-block badge badge-secondary text-muted pt-2 font-size-sm">Ninguno</span>
-                                @endif
-                               
+
+                        @elseif ($payment->proof == 'Voucher')
+                            <div class="card card-custom gutter-b">
+                                <!--begin::Header-->
+                                <div class="card-header h-auto py-4">
+                                    <div class="card-title">
+                                        <h3 class="card-label">Voucher</h3>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    @if ($payment->image)
+                                        <img class="img-fluid" src="{{ Storage::url($payment->image->url) }}" />
+                                    @else
+                                        <div class="d-flex justify-content-center">
+                                            <a class="btn btn-lg btn-warning" href="{{ route('payment.edit', $payment) }}#proof">Falta adjuntar voucher</a>
+                                        </div>
+                                    @endif
+                                
+                                </div>
                             </div>
-                        </div>
+                        @else
+                            <div class="card card-custom gutter-b">
+                                <!--begin::Header-->
+                                <div class="card-header h-auto py-4">
+                                    <div class="card-title">
+                                        <h3 class="card-label">Comprobante</h3>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <span class="d-block badge badge-secondary text-muted pt-2 font-size-sm">Ninguno</span>
+                                </div>
+                            </div>
+                        @endif
+
                     </div>
                 </div>
                 <!--end::Row-->

@@ -31,4 +31,32 @@ class Invoice extends Model
     public function dueDateToString(){
         return Carbon::parse($this->due_date)->format('d-m-Y');
     }
+
+    public function isPendingTotal(){
+        $pending = $this->pendingTotal();
+        if($pending > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function pendingTotalToString(){
+        $pending = $this->pendingTotal();
+        return '$'.number_format($pending, 2, '.', ',');
+    }
+
+    public function pendingTotal(){
+        $invoiceTotal = $this->total;
+        $pending = 0;
+        $serviceTotal = 0;
+        $services = $this->services()->cursor();
+        foreach ($services as $service) {
+            
+            $serviceTotal += $service->price;
+        }
+
+        return $pending += ($serviceTotal - $invoiceTotal);
+
+    }
 }

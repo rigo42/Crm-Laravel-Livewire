@@ -65,17 +65,6 @@
                                                 </g>
                                             </svg><!--end::Svg Icon--></span>{{ $service->client->phone }}
                                         </a>
-                                        <a href="#" class="text-muted text-hover-primary font-weight-bold">
-                                            <span class="svg-icon svg-icon-md svg-icon-gray-500 mr-1">
-                                                <i class="fas fa-tag"></i>
-                                                
-                                            </span>
-                                            @if ($service->categoryService->name)
-                                                {{ $service->categoryService->name }}
-                                            @else
-                                                Ninguna categoría
-                                            @endif
-                                        </a>
                                     </div>
                                     <!--end::Contacts-->
                                 </div>
@@ -163,9 +152,9 @@
                                         <i class="flaticon-price-tag icon-2x font-weight-bold text-dark"></i>
                                     </span>
                                     <div class="d-flex flex-column">
-                                        <span class="font-weight-bolder font-size-sm">Ingresos por facturas</span>
+                                        <span class="font-weight-bolder font-size-sm">Ingreso bruto</span>
                                         <span class="font-weight-bolder font-size-h5">
-                                        <span class="font-weight-bold">{{ $service->incomeByInvoiceTotal() }}</span>
+                                        <span class="font-weight-bold">{{ $service->grossIncome() }}</span>
                                     </div>
                                 </div>
                                 <!--end: Item-->
