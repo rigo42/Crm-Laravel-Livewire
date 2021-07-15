@@ -127,6 +127,10 @@ class Form extends Component
         }
     }
 
+    public function changeServiceType(ServiceType $serviceType){
+        $this->service->price = $serviceType->price;
+    }
+
     public function saveServiceAgreement(){
         if($this->serviceAgreementTmp){
             if(Storage::exists($this->service->service_agreement)){

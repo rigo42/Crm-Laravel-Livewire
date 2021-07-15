@@ -294,7 +294,7 @@
             Livewire.on('renderJs', function(){
                 $('.selectpicker').selectpicker({
                     liveSearch: true,
-                    showSubtext: true
+                    showSubtext: true 
                 });
             });
         </script>

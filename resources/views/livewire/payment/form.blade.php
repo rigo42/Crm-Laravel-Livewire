@@ -152,23 +152,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-lg-6">
-                                            <label class="col-form-label">Monto <span class="text-danger">*</span></label>
-                                            <div class="input-group input-group-solid">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="fas fa-dollar-sign"></i>
-                                                    </span>
-                                                </div>
-                                                <input 
-                                                    wire:model.defer="payment.monto" 
-                                                    type="number" 
-                                                    required
-                                                    class="form-control form-control-solid @error('payment.monto') is-invalid @enderror" 
-                                                    placeholder="Ej: 8000" />
-                                            </div>
-                                            @error('payment.monto') <span class="text-danger">{{ $message }}</span> @enderror
-                                        </div>
+                                        
                                         <div class="col-lg-6">
                                             <label class="col-form-label">Cliente <span class="text-danger">*</span></label>
                                             <div wire:ignore wire:key="client" >
@@ -212,7 +196,61 @@
                                     </div>
 
                                 </div>
-                                                    
+                                           
+                                
+                                @if ($client->services->count()) 
+                                    <div class="separator separator-dashed my-10"></div>
+                                    <div class="my-5">
+                                        <h3 class="text-dark font-weight-bold mb-10">Seleccionar servicio correspondiente al pago</h3>
+                                        <div class="form-group m-0">
+                                            <div class="row" wire:loading.remove wire:target="clientChange">
+                                                @foreach ($client->services as $service)
+                                                <div class="col-lg-6">
+                                                    <label class="option">
+                                                        <span class="option-control">
+                                                            <span class="radio">
+                                                                <input 
+                                                                    wire:click="serviceChange({{ $service->id }})"
+                                                                    wire:model.defer="payment.service_id"
+                                                                    type="radio" 
+                                                                    name="payment.service_id" 
+                                                                    value="{{ $service->id }}"
+                                                                />
+                                                                <span></span>
+                                                            </span>
+                                                        </span>
+                                                        <span class="option-label">
+                                                            <span class="option-head">
+                                                                <span class="option-title">{{ $service->serviceType->name }}</span>
+                                                                <span class="option-focus">{{ $service->priceToString() }}</span>
+                                                            </span>
+                                                            <span class="option-body">{{ $service->note }}</span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label class="col-form-label">Monto <span class="text-danger">*</span></label>
+                                            <div class="input-group input-group-solid">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="fas fa-dollar-sign"></i>
+                                                    </span>
+                                                </div>
+                                                <input 
+                                                    wire:model.defer="payment.monto" 
+                                                    type="number" 
+                                                    required
+                                                    class="form-control form-control-solid @error('payment.monto') is-invalid @enderror" 
+                                                    placeholder="Ej: 8000" />
+                                            </div>
+                                            @error('payment.monto') <span class="text-danger">{{ $message }}</span> @enderror
+                                        </div>
+                                        
+                                    </div>
+                                @endif
 
                                 <div class="separator separator-dashed my-10"></div>
                                 <div 
@@ -322,48 +360,6 @@
 
                                     </div>
                                 </div>
-                                
-                                <div
-                                    wire:loading
-                                    wire:target="clientChange"      
-                                    class="spinner">
-                                </div>
-                                @if ($client->services->count()) 
-                                    <div class="separator separator-dashed my-10"></div>
-                                    <div class="my-5">
-                                        <h3 class="text-dark font-weight-bold mb-10">Seleccionar servicio correspondiente al pago</h3>
-                                        <div class="form-group m-0">
-                                            <div class="row" wire:loading.remove wire:target="clientChange">
-                                                @foreach ($client->services as $service)
-                                                <div class="col-lg-6">
-                                                    <label class="option">
-                                                        <span class="option-control">
-                                                            <span class="radio">
-                                                                <input 
-                                                                    wire:click="serviceChange({{ $service->id }})"
-                                                                    wire:model.defer="payment.service_id"
-                                                                    type="radio" 
-                                                                    name="payment.service_id" 
-                                                                    value="{{ $service->id }}"
-                                                                />
-                                                                <span></span>
-                                                            </span>
-                                                        </span>
-                                                        <span class="option-label">
-                                                            <span class="option-head">
-                                                                <span class="option-title">{{ $service->serviceType->name }}</span>
-                                                                <span class="option-focus">{{ $service->priceToString() }}</span>
-                                                            </span>
-                                                            <span class="option-body">{{ $service->note }}</span>
-                                                        </span>
-                                                    </label>
-                                                </div>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                @endif
                                 
 
                                 @role('Administrador')

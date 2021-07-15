@@ -98,14 +98,17 @@
                                 <div class="col-9">
                                     <div>
                                         <select 
+                                            wire:change="changeServiceType($event.target.value)"
                                             wire:model.defer="service.service_type_id" 
                                             class="form-control selectpicker form-control-solid @error('service.service_type_id') is-invalid @enderror" 
                                             data-size="7"
                                             data-live-search="true"
-                                            required>
+                                            data-show-subtext="true"
+                                            required
+                                        >
                                             <option value="">Selecciona un tipo</option>
                                             @foreach ($serviceTypes as $serviceType)
-                                                <option value="{{ $serviceType->id }}">{{ $serviceType->name }}</option>
+                                                <option data-subtext="{{ $serviceType->priceToString() }}" value="{{ $serviceType->id }}">{{ $serviceType->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>

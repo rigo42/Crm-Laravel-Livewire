@@ -126,6 +126,7 @@ class Form extends Component
     public function serviceChange($id){
         $service = Service::findOrFail($id);
         $this->serviceAgreement = $service;
+        $this->payment->monto = $service->price;
     }
 
     public function saveUserByAdmin(){
