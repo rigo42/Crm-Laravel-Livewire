@@ -30,7 +30,10 @@ class User extends Component
         $users = $this->service->users()->orderBy('id', 'desc');
 
         if($this->search){
-            $users = $users->where('name', 'LIKE', "%{$this->search}%");
+            $users = $users->where('name', 'LIKE', "%{$this->search}%")
+                            ->orWhereHas('roles', function($query){
+                                $query->where('name', 'LIKE', "%{$this->search}%");
+                            });
         }
 
         $users = $users->paginate($this->perPage);

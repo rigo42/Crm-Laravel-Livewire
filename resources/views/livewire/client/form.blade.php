@@ -32,7 +32,77 @@
                     <div class="col-xl-8">
                         <div class="my-5">
                             <h3 class="text-dark font-weight-bold mb-10">Información general</h3>
+
                             @include('component.error-list')
+
+                            <style>
+                               
+                                .valoracion {
+                                    display: flex!important;
+                                    flex-direction: row-reverse!important;
+                                }
+                                .valoracion button {
+                                    background-color: initial!important;
+                                    border: 0!important;
+                                    color: #5f5050!important;
+                                    transition: 1s all!important;
+                                }
+                                .valoracion button:hover {
+                                    cursor: pointer!important;
+                                    color: #ffa400!important;
+                                    transform: rotate(360deg)!important;
+                                }
+                                button:nth-child(1):hover ~ button {
+                                    color: #ffa400!important;
+                                    transform: rotate(360deg)!important;
+                                }
+                                button:nth-child(2):hover ~ button {
+                                    color: #ffa400!important;
+                                    transform: rotate(360deg)!important;
+                                }
+                                button:nth-child(3):hover ~ button {
+                                    color: #ffa400!important;
+                                    transform: rotate(360deg)!important;
+                                }
+                                button:nth-child(4):hover ~ button {
+                                    color: #ffa400!important;
+                                    transform: rotate(360deg)!important;
+                                }
+                                button:nth-child(5):hover ~ button {
+                                    color: #ffa400!important;
+                                    transform: rotate(360deg)!important;
+                                }
+                            </style>
+                            
+                            <div class="valoracion">
+
+                                <!-- Estrella 1 -->
+                                <button>
+                                    <i class="fas fa-star"></i>
+                                </button>
+                        
+                                <!-- Estrella 2 -->
+                                <button>
+                                    <i class="fas fa-star"></i>
+                                </button>
+                        
+                                <!-- Estrella 3 -->
+                                <button>
+                                    <i class="fas fa-star"></i>
+                                </button>
+                        
+                                <!-- Estrella 4 -->
+                                <button>
+                                    <i class="fas fa-star"></i>
+                                </button>
+                        
+                                <!-- Estrella 5 -->
+                                <button>
+                                    <i class="fas fa-star"></i>
+                                </button>
+                        
+                            </div>
+
                             <div class="form-group row">
                                 <label class="col-xl-3 col-lg-3 col-form-label">Imagen </label>
                                 <div class="col-lg-9 col-xl-9">

@@ -41,6 +41,10 @@ class Expense extends Model
     public function service(){
         return $this->belongsTo(Service::class);
     }
+    
+    public function provider(){
+        return $this->belongsTo(Provider::class);
+    }
 
     public function dateToString(){
         return Carbon::parse($this->date)->toFormattedDateString();

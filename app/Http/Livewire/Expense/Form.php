@@ -6,6 +6,7 @@ use App\Models\Account;
 use App\Models\CategoryExpense;
 use App\Models\Client;
 use App\Models\Expense;
+use App\Models\Provider;
 use App\Models\Service;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -39,6 +40,7 @@ class Form extends Component
             'expense.service_id' => 'nullable|exists:services,id',
             'expense.category_expense_id' => 'required|exists:category_expenses,id',
             'expense.account_id' => 'required|exists:accounts,id',
+            'expense.provider_id' => 'nullable|exists:providers,id',
             'expense.date' => 'required',
             'expense.monto' => 'required|numeric',
             'expense.concept' => 'required',
@@ -76,14 +78,16 @@ class Form extends Component
         $clients = Client::orderBy('id', 'desc')->cursor();
         $accounts = Account::orderBy('id', 'desc')->cursor();
         $categoryExpenses = CategoryExpense::orderBy('id', 'desc')->cursor();
+        $providers = Provider::orderBy('id', 'desc')->cursor();
         $this->emit('renderJs');
-        return view('livewire.expense.form', compact('users', 'clients', 'accounts', 'categoryExpenses'));
+        return view('livewire.expense.form', compact('users', 'clients', 'accounts', 'categoryExpenses', 'providers'));
     }
 
     public function store(){
         $this->validate();
         $this->saveUser();
         $this->saveUserByAdmin();
+        $this->validateNull();
         $this->expense->save();
         $this->saveImage();
         return redirect()->route('expense.show', $this->expense);
@@ -92,6 +96,7 @@ class Form extends Component
     public function update(){
         $this->validate();
         $this->saveUserByAdmin();
+        $this->validateNull();
         $this->expense->update();
         $this->saveImage();
         session()->flash('alert','Gasto actualizado con exito');
@@ -103,10 +108,7 @@ class Form extends Component
         if($id){
             $this->client = Client::findOrFail($id);
         }else{
-            $this->client = new Client();
-            $this->expense->service_id = NULL;
-            $this->expense->client_id = NULL;
-            
+            $this->client = new Client();            
         }
     }
 
@@ -163,5 +165,17 @@ class Form extends Component
         }
         $this->reset('imageTmp');
         $this->alert('success', 'Commprobante eliminado con exito');
+    }
+
+    public function validateNull(){
+        if($this->expense->service_id == ''){
+            $this->expense->service_id = NULL;
+        }
+        if($this->expense->client_id == ''){
+            $this->expense->client_id = NULL;
+        }
+        if($this->expense->provider_id == ''){
+            $this->expense->provider_id = NULL;
+        }
     }
 }

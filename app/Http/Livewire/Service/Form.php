@@ -83,7 +83,10 @@ class Form extends Component
          }
 
         if($this->searchUser){
-            $users = $users->where('name', 'LIKE', "%{$this->searchUser}%");
+            $users = $users->where('name', 'LIKE', "%{$this->searchUser}%")
+                            ->orWhereHas('roles', function($query){
+                                $query->where('name', 'LIKE', "%{$this->searchUser}%");
+                            });
         }
 
         $clients = $clients->cursor();

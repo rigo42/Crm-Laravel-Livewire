@@ -75,7 +75,11 @@
                                     </div>
                                     <div class="d-flex flex-column">
                                         <a href="{{ route('user.show', $user) }}" class="text-dark-75 text-hover-primary font-weight-bold font-size-lg">{{ $user->name }}</a>
-                                        <span class="text-muted font-weight-bold font-size-sm">{{ $user->position }}</span>
+                                        <span class="text-muted font-weight-bold font-size-sm">
+                                            @foreach ($user->roles as $role)
+                                                {{ $role->name.', ' }}
+                                            @endforeach
+                                        </span>
                                     </div>
                                 </div>
                             </td>

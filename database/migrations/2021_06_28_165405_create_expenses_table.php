@@ -21,6 +21,7 @@ class CreateExpensesTable extends Migration
             $table->foreignId('category_expense_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignId('account_id')->nullable()->constrained()->onDelete('cascade');
             $table->foreignId('invoice_id')->nullable()->constrained()->onDelete('set null');     
+            $table->foreignId('provider_id')->nullable()->constrained()->onDelete('set null');     
             $table->date('date');       
             $table->double('monto');
             $table->text('concept');

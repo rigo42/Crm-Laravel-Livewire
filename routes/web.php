@@ -6,6 +6,7 @@ use App\Http\Controllers\Expense\ExpenseController;
 use App\Http\Controllers\Invoice\InvoiceController;
 use App\Http\Controllers\Payment\PaymentController;
 use App\Http\Controllers\Prospect\ProspectController;
+use App\Http\Controllers\Provider\ProviderController;
 use App\Http\Controllers\Quotation\QuotationController;
 use App\Http\Controllers\Service\ProjectController;
 use App\Http\Controllers\Service\ServiceController;
@@ -72,32 +73,38 @@ Route::middleware(['auth'])->group(function () {
         Route::get('gastos', [UserController::class, 'expense'])->name('user.expense');
     });
 
-    //Prospects
+    //Prospect
     Route::get('prospectos/{prospect}/become-to-client', [ProspectController::class, 'becomeToClient'])->name('prospect.become-to-client');
     Route::resource('prospectos', ProspectController::class)->parameters(['prospectos' => 'prospect'])->names('prospect');
 
-    //Clients
+    //Client
     Route::resource('clientes', ClientController::class)->parameters(['clientes' => 'client'])->names('client');
 
-    //Quotations
-    Route::resource('cotizaciones', QuotationController::class)->parameters(['cotizaciones' => 'quotation'])->names('quotation');
+    //Provider
+    Route::resource('proveedores', ProviderController::class)->parameters(['proveedores' => 'provider'])->names('provider');
 
     //Services Type
     Route::resource('tipos-de-servicios', ServiceTypeController::class)->parameters(['tipos-de-servicios' => 'serviceType'])->names('service-type');
 
-    //Services
+    //Services Type
+    Route::resource('tipos-de-servicios', ServiceTypeController::class)->parameters(['tipos-de-servicios' => 'serviceType'])->names('service-type');
+
+    //Service
     Route::resource('servicios', ServiceController::class)->parameters(['servicios' => 'service'])->names('service');
 
-    //Projects
+    //Project
     Route::resource('proyectos', ProjectController::class)->parameters(['proyectos' => 'service'])->names('project');
 
-    //Invoices
+    //Quotation
+    Route::resource('cotizaciones', QuotationController::class)->parameters(['cotizaciones' => 'quotation'])->names('quotation');
+
+    //Invoice
     Route::resource('facturas', InvoiceController::class)->parameters(['facturas' => 'invoice'])->names('invoice');
 
     //Payment
     Route::resource('pagos', PaymentController::class)->parameters(['pagos' => 'payment'])->names('payment');
 
-    //Expenses
+    //Expense
     Route::resource('gastos', ExpenseController::class)->parameters(['gastos' => 'expense'])->names('expense');
 
 

@@ -114,6 +114,25 @@
                                     </div>
                                 </div>
                                 <div class="form-group row my-2">
+                                    <label class="col-4 col-form-label">Proveedor:</label>
+                                    <div class="col-8">
+                                        <div class="d-flex align-items-center">
+                                            @if ($expense->provider)
+                                                <div class="symbol symbol-20 mr-3">
+                                                    <img alt="{{ $expense->provider->name }}" 
+                                                        @if ($expense->provider->image)
+                                                            src="{{ Storage::url($expense->provider->image->url) }}" 
+                                                        @else
+                                                            src="{{ asset('assets/media/users/blank.png') }}" 
+                                                        @endif
+                                                    />
+                                                </div>
+                                                <span class="form-control-plaintext font-weight-bolder">{{ $expense->provider->name }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row my-2">
                                     <label class="col-4 col-form-label">Nota:</label>
                                     <div class="col-8">
                                         <span class="form-control-plaintext font-weight-bolder">{{ $expense->note }}</span>

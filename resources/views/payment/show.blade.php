@@ -110,6 +110,7 @@
                                 <div class="form-group row my-2">
                                     <label class="col-4 col-form-label">Concepto:</label>
                                     <div class="col-8">
+                                        <img src="{{ $ }}" alt="">
                                         <span class="form-control-plaintext font-weight-bolder">{{ $payment->concept }}</span>
                                     </div>
                                 </div>

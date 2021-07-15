@@ -4,9 +4,9 @@
         <link rel="stylesheet" href="{{ asset('assets/plugins/custom/bfi/bfi.css') }}">
     @endsection
 
-    <!-- Modal -->
+    <!-- Category expense modal -->
     <div wire:ignore.self class="modal fade" data-backdrop="static" id="categoryExpenseFormModal" tabindex="-1" aria-labelledby="categoryExpenseFormModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
             <h5 class="modal-title" id="categoryExpenseFormModalLabel">Nueva catagoría de gasto</h5>
@@ -16,6 +16,26 @@
             </div>
             <div class="modal-body">
                 @livewire('setting.category-expense.form', ['method' => 'storeCustom'])
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Regresar</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Provider modal -->
+    <div wire:ignore.self class="modal fade" data-backdrop="static" id="providerFormModal" tabindex="-1" aria-labelledby="providerFormModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="providerFormModalLabel">Nueva catagoría de gasto</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                @livewire('provider.form', ['method' => 'storeCustom'])
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Regresar</button>
@@ -180,15 +200,43 @@
                                             data-live-search="true"
                                             required>
                                             <option value="">Selecciona un tipo de categoría</option>
-                                            <option value="">Ninguna</option>
                                             @foreach ($categoryExpenses as $categoryExpense)
                                                 <option value="{{ $categoryExpense->id }}">{{ $categoryExpense->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <a href="#"  data-toggle="modal" data-target="#categoryExpenseFormModal" class="text-primary" >Crear categoría de gasto</a>
+                                    <a href="#" data-toggle="modal" data-target="#categoryExpenseFormModal" class="text-primary" >Crear nueva categoría de gasto</a>
                                     @error('expense.category_expense_id') <div><span class="text-danger">{{ $message }}</span></div> @enderror
                                 </div>
+                                <div class="col-lg-6">
+                                    <label class="col-form-label">Proveedor </label>
+                                    <div>
+                                        <select 
+                                            wire:model.defer="expense.provider_id" 
+                                            class="form-control selectpicker form-control-solid @error('expense.provider_id') is-invalid @enderror" 
+                                            data-size="7"
+                                            data-live-search="true"
+                                        >
+                                            <option value="">Ninguno</option>
+                                            @foreach ($providers as $provider)
+                                                <option 
+                                                    @if ($provider->image)
+                                                        data-content="<img width='20px' src='{{ Storage::url($provider->image->url) }}' /> <span class='ml-3 text-dark'>{{ $provider->name }}</span> " 
+                                                    @else
+                                                        data-content="<img width='20px' src='{{ asset('assets/media/users/blank.png') }}' /> <span class='ml-3 text-dark'>{{ $provider->name }}</span> " 
+                                                    @endif
+                                                    
+                                                    value="{{ $provider->id }}"
+                                                >
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <a href="#" data-toggle="modal" data-target="#providerFormModal" class="text-primary" >Crear nuevo proveedor</a>
+                                    @error('expense.provider_id') <div><span class="text-danger">{{ $message }}</span></div> @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <div class="col-lg-6">
                                     <label class="col-form-label">Cliente </label>
                                     <div wire:ignore wire:key="client" >
@@ -322,7 +370,7 @@
         <script>
 
             Livewire.on('renderJs', function(){
-                $('#categoryExpenseFormModal').modal('hide');
+                $('.modal').modal('hide');
                 $('.selectpicker').selectpicker({
                     liveSearch: true,
                     showSubtext: true

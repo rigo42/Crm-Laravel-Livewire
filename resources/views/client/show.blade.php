@@ -40,11 +40,11 @@
                             <!--begin::Pic-->
                             <div class="col-md-3">
                                 <img class="img-fluid" alt="{{ $client->name }}" 
-                                @if ($client->image)
-                                    src="{{ Storage::url($client->image->url) }}" 
-                                @else
-                                    src="{{ asset('assets/media/users/blank.png') }}" 
-                                @endif
+                                    @if ($client->image)
+                                        src="{{ Storage::url($client->image->url) }}" 
+                                    @else
+                                        src="{{ asset('assets/media/users/blank.png') }}" 
+                                    @endif
                                 />
                             </div> 
                             <!--begin: Info-->

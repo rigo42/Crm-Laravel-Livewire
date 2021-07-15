@@ -86,6 +86,7 @@
                                 <th>Cuenta</th>
                                 <th>Fecha</th>
                                 <th>Monto</th>
+                                <th>Servicio</th>
                                 <th>Comprobante</th>
                                 <th>status</th>
                                 <th>Correo de confirmación</th>
@@ -118,6 +119,7 @@
                                     <td>{{ $payment->account->name }}</td>
                                     <td>{{ $payment->dateToString() }}</td>
                                     <td>{{ $payment->montoToString() }}</td>
+                                    <td>{{ $payment->service->serviceType->name }}</td>
                                     <td>
                                         @if ($payment->proof)
                                             <span class="badge badge-success">{{ $payment->proof }}</span>

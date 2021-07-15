@@ -43,6 +43,14 @@
                     </a>
                 </li>
                 @endcan
+                @can('proveedores')
+                <li class="menu-item {{ active('provider.*') }}" >
+                    <a href="{{ route('provider.index') }}" class="menu-link">
+                        <i class="menu-icon text-dark fas fa-truck"></i>
+                        <span class="menu-text">Proveedores</span>
+                    </a>
+                </li>
+                @endcan
                 @can('tipo de servicio')
                 <li class="menu-item {{ active('service-type.*') }}">
                     <a href="{{ route('service-type.index') }}" class="menu-link">

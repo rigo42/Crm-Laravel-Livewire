@@ -116,9 +116,10 @@
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-lg-6">
-                                            <label class="col-form-label">Cuenta<span class="text-danger">*</span></label>
-                                            <div wire:ignore wire:key="account">
+                                            <label class="col-form-label">Cuenta {{ $payment->account_id }} <span class="text-danger">*</span></label>
+                                            <div >
                                                 <select 
+                                                    
                                                     wire:model.defer="payment.account_id" 
                                                     class="form-control selectpicker form-control-solid @error('payment.account_id') is-invalid @enderror" 
                                                     data-size="7"
@@ -133,9 +134,10 @@
                                             @error('payment.account_id') <div><span class="text-danger">{{ $message }}</span></div> @enderror
                                         </div>
                                         <div class="col-lg-6">
-                                            <label class="col-form-label">Tipo de pago </label>
-                                            <div>
+                                            <label class="col-form-label">Tipo de pago <span class="text-danger">*</span></label>
+                                            <div >
                                                 <select 
+                                                    
                                                     wire:model.defer="payment.payment_type_id" 
                                                     class="form-control selectpicker form-control-solid @error('payment.payment_type_id') is-invalid @enderror" 
                                                     data-size="7"

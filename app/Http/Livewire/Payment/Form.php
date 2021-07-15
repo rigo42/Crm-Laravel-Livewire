@@ -91,7 +91,7 @@ class Form extends Component
         $this->validate();
         $this->saveUser();
         $this->saveUserByAdmin();
-        
+        $this->validateNull();
         $this->payment->save();
         $this->saveImage();
         session()->flash('alert','Pago registrado con exito');

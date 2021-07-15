@@ -82,10 +82,12 @@
                         <thead>
                             <tr class="text-uppercase">
                                 <th>Cliente</th>
+                                <th>Proveedor</th>
                                 <th>Categoría</th>
                                 <th>Cuenta</th>
                                 <th>Fecha</th>
                                 <th>Monto</th>
+                                <th>Servicio</th>
                                 <th>Usuario que registró el gasto</th>
                                 <th>Acciones</th>
                             </tr>
@@ -117,18 +119,47 @@
                                             <span class="badge badge-secondary"> Ningun cliente</span>
                                         </td>   
                                     @endif
-                                    
+                                    @if ($expense->provider)
+                                        <td style=" padding-right: 100px; ">
+                                            <div class="d-flex align-items-center">
+                                                <div class="symbol symbol-circle symbol-50 mr-3">
+                                                    <img 
+                                                        alt="{{ $expense->provider->name }}" 
+                                                        @if ($expense->provider->image)
+                                                            src="{{ Storage::url($expense->provider->image->url) }}" 
+                                                        @else
+                                                            src="{{ asset('assets/media/users/blank.png') }}" 
+                                                        @endif
+                                                        >
+                                                </div>
+                                                <div class="d-flex flex-column">
+                                                    <span class="text-dark-75 text-hover-primary font-weight-bold font-size-lg">{{ $expense->provider->name }}</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    @else
+                                        <td> 
+                                            <span class="badge badge-light"> Ningun proveedor</span>
+                                        </td>   
+                                    @endif
                                     <td>
                                         @if ($expense->categoryExpense)
                                             {{$expense->categoryExpense->name}}
                                         @else
-                                            <span class="badge badge-secondary">Sin categoría</span>
+                                            <span class="badge badge-light">Sin categoría</span>
                                         @endif
                                     </td>
                                     <td>{{ $expense->account->name }}</td>                                   
                                     <td>{{ $expense->dateToString() }}</td>
                                     <td>{{ $expense->montoToString() }}</td>
                                     <td>
+                                        @if ($expense->service)
+                                            {{ $expense->service->serviceType->name }}
+                                        @else
+                                            <span class="badge badge-light"> Ningun servicio</span>
+                                        @endif
+                                    </td>
+                                    <td style=" padding-right: 100px; "> 
                                         @if ($expense->user)
                                             <div class="d-flex align-items-center">
                                                 <div class="symbol symbol-circle symbol-50 mr-3">

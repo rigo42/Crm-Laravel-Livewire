@@ -344,7 +344,11 @@
                                                             </div>
                                                             <div class="d-flex flex-column">
                                                                 <span class="text-dark-75 font-weight-bold font-size-lg">{{ $user->name }}</span>
-                                                                <span class="text-muted font-weight-bold font-size-sm">{{ $user->company }}</span>
+                                                                <span class="text-muted font-weight-bold font-size-sm">
+                                                                    @foreach ($user->roles as $role)
+                                                                        {{ $role->name.', ' }}
+                                                                    @endforeach    
+                                                                </span>
                                                             </div>
                                                         </div>
                                                     </td>
