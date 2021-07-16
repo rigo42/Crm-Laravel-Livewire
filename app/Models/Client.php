@@ -45,6 +45,11 @@ class Client extends Model
         return $this->hasMany(Expense::class);
     }
 
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
     public function incomeByInvoiceTotal(){
         $invoiceTotal = $this->invoices()->sum('total');
         return '$'.number_format($invoiceTotal, 2, '.', ',');
