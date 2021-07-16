@@ -33,7 +33,7 @@ class CreateClientsTable extends Migration
             $table->string('rfc')->nullable();
 
             //Tools
-            $table->boolean('premium')->nullable()->default(0);
+            $table->integer('stars')->default(0);
             $table->timestamps();
         });
     }

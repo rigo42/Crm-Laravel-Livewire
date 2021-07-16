@@ -1,5 +1,5 @@
 <div class="container">
-    
+
     <div 
         wire:ignore.self wire:key="body-sticky"
         @if (request()->routeIs('client.create') || request()->routeIs('client.edit'))
@@ -35,74 +35,7 @@
 
                             @include('component.error-list')
 
-                            <style>
-                               
-                                .valoracion {
-                                    display: flex!important;
-                                    flex-direction: row-reverse!important;
-                                }
-                                .valoracion button {
-                                    background-color: initial!important;
-                                    border: 0!important;
-                                    color: #5f5050!important;
-                                    transition: 1s all!important;
-                                }
-                                .valoracion button:hover {
-                                    cursor: pointer!important;
-                                    color: #ffa400!important;
-                                    transform: rotate(360deg)!important;
-                                }
-                                button:nth-child(1):hover ~ button {
-                                    color: #ffa400!important;
-                                    transform: rotate(360deg)!important;
-                                }
-                                button:nth-child(2):hover ~ button {
-                                    color: #ffa400!important;
-                                    transform: rotate(360deg)!important;
-                                }
-                                button:nth-child(3):hover ~ button {
-                                    color: #ffa400!important;
-                                    transform: rotate(360deg)!important;
-                                }
-                                button:nth-child(4):hover ~ button {
-                                    color: #ffa400!important;
-                                    transform: rotate(360deg)!important;
-                                }
-                                button:nth-child(5):hover ~ button {
-                                    color: #ffa400!important;
-                                    transform: rotate(360deg)!important;
-                                }
-                            </style>
                             
-                            <div class="valoracion">
-
-                                <!-- Estrella 1 -->
-                                <button>
-                                    <i class="fas fa-star"></i>
-                                </button>
-                        
-                                <!-- Estrella 2 -->
-                                <button>
-                                    <i class="fas fa-star"></i>
-                                </button>
-                        
-                                <!-- Estrella 3 -->
-                                <button>
-                                    <i class="fas fa-star"></i>
-                                </button>
-                        
-                                <!-- Estrella 4 -->
-                                <button>
-                                    <i class="fas fa-star"></i>
-                                </button>
-                        
-                                <!-- Estrella 5 -->
-                                <button>
-                                    <i class="fas fa-star"></i>
-                                </button>
-                        
-                            </div>
-
                             <div class="form-group row">
                                 <label class="col-xl-3 col-lg-3 col-form-label">Imagen </label>
                                 <div class="col-lg-9 col-xl-9">
@@ -303,18 +236,26 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-3 col-form-label">¿Premium?</label>
-                                <div class="col-3">
-                                    <span class="switch switch-outline switch-icon switch-primary">
-                                        <label>
-                                            <input 
-                                                wire:model.defer="client.premium"
-                                                class="@error('client.premium') is-invalid @enderror"
-                                                type="checkbox" />
-                                            <span></span>
-                                        </label>
-                                    </span>
-                                    @error('client.premium') <div><span class="text-danger">{{ $message }}</span></div> @enderror
+                                <label class="col-3">Estrellas </label>
+                                <div class="col-9">
+                                    <div class="star-rating">
+                                        <input wire:model.defer="client.stars" type="radio" name="stars" id="star-a" value="5"/>
+                                        <label for="star-a"></label>
+                                
+                                        <input wire:model.defer="client.stars" type="radio" name="stars" id="star-b" value="4"/>
+                                        <label for="star-b"></label>
+                                
+                                        <input wire:model.defer="client.stars" type="radio" name="stars" id="star-c"  value="3"/>
+                                        <label for="star-c"></label>
+                                
+                                        <input wire:model.defer="client.stars" type="radio" name="stars" id="star-d" value="2"/>
+                                        <label for="star-d"></label>
+                                
+                                        <input wire:model.defer="client.stars" type="radio" name="stars" id="star-e" value="1"/>
+                                        <label for="star-e"></label>
+                                    </div>
+        
+                                    @error('client.stars') <div><span class="text-danger">{{ $message }}</span></div> @enderror
                                 </div>
                             </div>
                         </div>

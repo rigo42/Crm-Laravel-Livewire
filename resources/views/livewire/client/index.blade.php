@@ -46,15 +46,6 @@
                 <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
                     <!--begin::Card-->
                     <div class="card card-custom gutter-b card-stretch">
-
-                        @if ($client->premium)
-                        <!-- Client stars -->
-                        <div class="ribbon ribbon-top ribbon-ver">
-                            <div class="ribbon-target bg-warning" style="top: -2px; left: 20px;">
-                                <i class="fa fa-star text-white"></i>
-                            </div>
-                        </div>
-                        @endif
                         
                         <!--begin::Body-->
                         <div class="card-body pt-4">
@@ -119,12 +110,22 @@
                             <!--begin::Info-->
                             <div class="mb-7">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <span class="text-dark-75 font-weight-bolder mr-2">Tipo:</span>
+                                    <span class="text-dark-75 font-weight-bolder mr-2">Categoría:</span>
                                     @if ($client->categoryClient)
                                         <span class="badge badge-primary font-weight-bold">{{ $client->categoryClient->name }}</span>
                                     @else
                                         <span class="badge badge-secondary font-weight-bold">Ninguno</span>
                                     @endif
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center my-3">
+                                    <div class="">
+                                        <span class="text-dark-75 font-weight-bolder mr-2">Estrellas:</span>
+                                    </div>
+                                    
+                                    <div class="">
+                                        {!! $client->starsToHtml() !!}
+                                    </div>
+                                    
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <span class="text-dark-75 font-weight-bolder mr-2">Correo:</span>

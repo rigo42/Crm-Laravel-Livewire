@@ -1,51 +1,95 @@
-.image-edit {
-    cursor: pointer;
-    position: absolute;
-    right: -10px;
-    top: -10px;
-}
-.image-remove {
-    cursor: pointer;
-    position: absolute;
-    right: -10px;
-    bottom: -10px;
-}
+    .image-edit {
+        cursor: pointer;
+        position: absolute;
+        right: -10px;
+        top: -10px;
+    }
+    .image-remove {
+        cursor: pointer;
+        position: absolute;
+        right: -10px;
+        bottom: -10px;
+    }
 
-.aside-menu .menu-nav > .menu-item > .menu-heading .menu-text, .aside-menu .menu-nav > .menu-item > .menu-link .menu-text{
-    color: #3f4254;
-    font-weight: 500;
-}
+    .aside-menu .menu-nav > .menu-item > .menu-heading .menu-text, .aside-menu .menu-nav > .menu-item > .menu-link .menu-text{
+        color: #3f4254;
+        font-weight: 500;
+    }
 
-.border-gray-300 {
-    border-color: #e4e6ef!important;
-}
+    .border-gray-300 {
+        border-color: #e4e6ef!important;
+    }
 
-.border-dashed {
-    border-style: dashed!important;
-    border-color: #e4e6ef;
-}
+    .border-dashed {
+        border-style: dashed!important;
+        border-color: #e4e6ef;
+    }
 
-.rounded {
-    border-radius: .475rem!important;
-}
+    .rounded {
+        border-radius: .475rem!important;
+    }
 
-.table > tbody > tr {
-    border-bottom-width: 1px;
-    border-bottom-style: dashed;
-    border-bottom-color: #eff2f5;
-}
+    .table > tbody > tr {
+        border-bottom-width: 1px;
+        border-bottom-style: dashed;
+        border-bottom-color: #eff2f5;
+    }
 
-.badge{
-    white-space: break-spaces;
-}
+    .badge{
+        white-space: break-spaces;
+    }
 
-.spinner-center{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
+    .spinner-center{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 
-.content {
-    background-color: #f5f8fa;
-}
+    .content {
+        background-color: #f5f8fa;
+    }
+
+    /* Stars */
+    /* use reverse flexbox to take advantage of flex-direction: reverse */
+    .star-rating {
+        display: flex;
+        align-items: center;
+        width: 160px;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        position: relative;
+    }
+        /* hide the inputs */
+    .star-rating input {
+        display: none;
+    }
+        /* set properties of all labels */
+    .star-rating > label {
+        width: 30px;
+        height: 30px;
+        font-family: Arial;
+        font-size: 30px;
+        transition: 0.2s ease;
+        color: orange;
+    }
+        /* give label a hover state */
+    .star-rating label:hover {
+        color: #ff69b4;
+        transition: 0.2s ease;
+    }
+    .star-rating label:active::before {
+        transform:scale(1.1);
+    }
+        
+    /* set shape of unselected label */
+    .star-rating label::before {
+        content: '\2606';
+        position: absolute;
+        top: 0px;
+        line-height: 26px;
+    }
+    /* set full star shape for checked label and those that come after it */
+    .star-rating input:checked ~ label:before {
+        content:'\2605';
+    }

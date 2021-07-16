@@ -85,4 +85,18 @@ class Client extends Model
         $expenses = $this->expenses()->sum('monto');
         return '$'.number_format($expenses, 2, '.', ',');
     }
+
+    public function starsToHtml(){
+        $starsHtml = '';
+        for ($i = 1; $i <= 5; $i++){  
+            if($i <= $this->stars){
+                $starsHtml .= '<i class="fa fa-star text-warning"></i>';
+            }else{
+                $starsHtml .= '<i class="fa fa-star text-ligth"></i>';
+            }
+
+        }
+            
+        return $starsHtml;
+    }
 }
