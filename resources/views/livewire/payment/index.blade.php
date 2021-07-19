@@ -275,8 +275,7 @@
                     </div>
                 </div>
             </div>
-        @endif
-        @if (isset($client))
+        @elseif(isset($client))
             <div class="card">
                 <div class="card-body">
                     <div class="card-px text-center py-5">
@@ -287,6 +286,30 @@
                     </div>
                 </div>
             </div>
+        @else 
+        <div class="card">
+            <div class="card-body">
+                <div class="card-px text-center py-5">
+                    <h2 class="fs-2x fw-bolder mb-10">Hola! </h2>
+                    <p class="text-gray-400 fs-4 fw-bold mb-10">Al parecer no tienes ningun pago.
+                    <br> Ponga en marcha su CRM añadiendo su primer pago</p>
+                    
+                        <a 
+                            href="{{ 
+                                route('payment.create',[
+                                    'date' => date('Y-m-d'),
+                                    'cutoffDate' => date('Y-m-d'),
+                                ]) 
+                            }}"  
+                            class="btn btn-primary">Agregar un pago
+                        </a>
+                    
+                </div>
+                <div class="text-center px-4 ">
+                    <img class="img-fluid col-6" alt="" src="{{ asset('assets/media/ilustrations/work.png') }}">
+                </div>
+            </div>
+        </div>
         @endif
     @endif
 
