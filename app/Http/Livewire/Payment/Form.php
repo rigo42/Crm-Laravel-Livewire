@@ -42,6 +42,7 @@ class Form extends Component
             'payment.account_id' => 'required|exists:accounts,id',
             'payment.invoice_id' => 'nullable|exists:invoices,id',
             'payment.date' => 'required',
+            'payment.cutoff_date' => 'required',
             'payment.monto' => 'required|numeric',
             'payment.concept' => 'required',
             'payment.note' => 'nullable',
@@ -65,6 +66,10 @@ class Form extends Component
 
         if(request()->date){
             $this->payment->date = request()->date;
+        }
+
+        if(request()->cutoffDate){
+            $this->payment->cutoff_date = request()->cutoffDate;
         }
 
         if(request()->service){
@@ -116,10 +121,8 @@ class Form extends Component
             $this->client = Client::findOrFail($id);
         }else{
             $this->client = new Client();
-            $this->payment->client_id = NULL;
         }
-
-        $this->payment->service_id = NULL;
+       
         $this->serviceAgreement = new Service();
     }
 
@@ -184,9 +187,19 @@ class Form extends Component
     public function validateNull(){
         if($this->payment->invoice_id == ''){
             $this->payment->invoice_id = NULL;
+
         }
-        if($this->payment->proof == ""){
+        if($this->payment->proof == ''){
             $this->payment->proof = NULL;
+
+        }
+        if($this->payment->client_id == ''){
+            $this->payment->client_id = NULL;
+
+        }
+        if($this->payment->service_id == ''){
+            $this->payment->service_id = NULL;
+
         }
     }
 }

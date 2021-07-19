@@ -91,7 +91,8 @@
                                                                 href="{{ 
                                                                         route('payment.create',[
                                                                             'client' => $serviceCutThisDay->client,
-                                                                            'date' => $serviceCutThisDay->payment_date,
+                                                                            'date' => date('Y-m-d'),
+                                                                            'cutoffDate' => date('Y-m-d'),
                                                                             'service' =>$serviceCutThisDay
                                                                         ]) 
                                                                     }}" 
@@ -169,7 +170,8 @@
                                                                 href="{{ 
                                                                         route('payment.create',[
                                                                             'client' => $serviceCutThisWeek->client,
-                                                                            'date' => $serviceCutThisWeek->payment_date,
+                                                                            'date' => date('Y-m-d'),
+                                                                            'cutoffDate' => $serviceCutThisWeek->payment_date,
                                                                             'service' =>$serviceCutThisWeek
                                                                         ]) 
                                                                     }}" 
@@ -246,7 +248,8 @@
                                                                 href="{{ 
                                                                         route('payment.create',[
                                                                             'client' => $serviceCutBack->client,
-                                                                            'date' => $serviceCutBack->payment_date,
+                                                                            'date' => date('Y-m-d'),
+                                                                            'cutoffDate' => $serviceCutBack->payment_date,
                                                                             'service' =>$serviceCutBack
                                                                         ]) 
                                                                     }}" 

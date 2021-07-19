@@ -83,7 +83,7 @@
                                     <div class="form-group row">
                                         <div class="col-lg-6">
                                             <div  wire:ignore wire:key="date">
-                                                <label class="col-form-label">Fecha de pago <span class="text-danger">*</span></label>
+                                                <label class="col-form-label">Fecha de registro <span class="text-danger">*</span></label>
                                                 <div class="input-group input-group-solid">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">
@@ -95,12 +95,35 @@
                                                         value="{{ $payment->date }}"
                                                         type="text" 
                                                         class="date form-control form-control-solid @error('payment.date') is-invalid @enderror"  
-                                                        placeholder="Seleccione la fecha de pago"
+                                                        placeholder="Seleccione la fecha del registro del pago"
                                                         />
                                                 </div>
                                             </div>
                                             @error('payment.date') <span class="text-danger">{{ $message }}</span> @enderror
                                         </div>
+                                        <div class="col-lg-6">
+                                            <div  wire:ignore wire:key="date">
+                                                <label class="col-form-label">Fecha de corte<span class="text-danger">*</span></label>
+                                                <div class="input-group input-group-solid">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="la la-calendar"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input
+                                                        wire:model.defer="payment.cutoff_date"
+                                                        value="{{ $payment->cutoff_date }}"
+                                                        type="text" 
+                                                        class="cutoff_date form-control form-control-solid @error('payment.cutoff_date') is-invalid @enderror"  
+                                                        placeholder="Seleccione la fecha de corte"
+                                                        />
+                                                </div>
+                                            </div>
+                                            @error('payment.cutoff_date') <span class="text-danger">{{ $message }}</span> @enderror
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="form-group row">
                                         <div class="col-lg-6">
                                             <label class="col-form-label">Concepto <span class="text-danger">*</span></label>
                                             <div class="input-group input-group-solid" >
@@ -113,8 +136,6 @@
                                             </div>
                                             @error('payment.concept') <span class="text-danger">{{ $message }}</span> @enderror
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
                                         <div class="col-lg-6">
                                             <label class="col-form-label">Cuenta {{ $payment->account_id }} <span class="text-danger">*</span></label>
                                             <div >
@@ -133,6 +154,8 @@
                                             </div>
                                             @error('payment.account_id') <div><span class="text-danger">{{ $message }}</span></div> @enderror
                                         </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <div class="col-lg-6">
                                             <label class="col-form-label">Tipo de pago <span class="text-danger">*</span></label>
                                             <div >
@@ -152,9 +175,6 @@
                                             <a href="#" data-toggle="modal" data-target="#paymentTypeFormModal" class="text-primary" >Crear nuevo tipo de pago</a>
                                             @error('payment.payment_type_id') <div><span class="text-danger">{{ $message }}</span></div> @enderror
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        
                                         <div class="col-lg-6">
                                             <label class="col-form-label">Cliente <span class="text-danger">*</span></label>
                                             <div wire:ignore wire:key="client" >
@@ -503,7 +523,18 @@
                 @this.set('payment.date', e.target.value);
             });
 
-
+            // Init cutoff date
+            $('.cutoff_date').datepicker({
+                format: "yyyy/mm/dd",
+                todayBtn: "linked",
+                clearBtn: true,
+                todayHighlight: true,
+                autoclose: true,
+                language: 'es',
+                orientation: "bottom left",
+            }).on('changeDate', function(e){
+                @this.set('payment.cutoff_date', e.target.value);
+            });
             
 
         </script>

@@ -47,6 +47,10 @@ class Payment extends Model
         return Carbon::parse($this->date)->toFormattedDateString();
     }
 
+    public function cutoffDateToString(){
+        return Carbon::parse($this->cutoff_date)->toFormattedDateString();
+    }
+
     public function createdAtToString(){
         return Carbon::parse($this->created_at)->toFormattedDateString();
     }

@@ -104,7 +104,13 @@ class Form extends Component
         $this->saveUsers();
         session()->flash('alert','Servicio agregado con exito');
         session()->flash('alert-type', 'success');
-        return redirect()->route('service.show', $this->service);
+
+        if ($this->service->type == 'Proyecto') {
+            return redirect()->route('service.show', $this->service);
+        }else{
+            return redirect()->route('project.show', $this->service);
+        }
+        
     }
 
     public function update(){
@@ -115,7 +121,12 @@ class Form extends Component
         $this->saveUsers();
         session()->flash('alert','Servicio actualizado con exito');
         session()->flash('alert-type', 'success');
-        return redirect()->route('service.show', $this->service);
+
+        if ($this->service->type == 'Proyecto') {
+            return redirect()->route('project.show', $this->service);
+        }else{
+            return redirect()->route('service.show', $this->service);
+        }
     }
 
     public function save(){

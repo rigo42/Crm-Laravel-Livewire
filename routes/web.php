@@ -3,6 +3,7 @@
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Expense\ExpenseController;
+use App\Http\Controllers\Google\GoogleAnalyticsController;
 use App\Http\Controllers\Invoice\InvoiceController;
 use App\Http\Controllers\Payment\PaymentController;
 use App\Http\Controllers\Prospect\ProspectController;
@@ -33,6 +34,8 @@ Route::middleware(['auth'])->group(function () {
         
     //Dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
+    //Dashboard
+    Route::get('/google-analytics', [GoogleAnalyticsController::class, 'index'])->name('google.analytics');
 
     //Setting
     Route::prefix('ajustes')->group(function () {

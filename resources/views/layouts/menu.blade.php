@@ -4,17 +4,21 @@
     <div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1" data-menu-dropdown-timeout="500">
         <!--begin::Menu Nav-->
         <ul class="menu-nav">
+            <li class="menu-section">
+                <h4 class="menu-text">Dashboard</h4>
+                <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
+            </li>
             
             <li class="menu-item {{ active('dashboard.index') }}" >
                 <a href="{{ route('dashboard.index') }}" class="menu-link">
                     <i class="menu-icon text-dark fab fa-buffer"></i>
-                    <span class="menu-text">Dashboard</span>
+                    <span class="menu-text">General</span>
                 </a>
             </li>
-            <li class="menu-item {{ active('user.show') }}" >
-                <a href="{{ route('user.show', auth()->user()) }}" class="menu-link">
-                    <i class="menu-icon text-dark fa fa-user"></i>
-                    <span class="menu-text">Perfil</span>
+            <li class="menu-item {{ active('google.analytics') }}" >
+                <a href="{{ route('google.analytics') }}" class="menu-link">
+                    <i class="menu-icon text-dark fas fa-signal"></i>
+                    <span class="menu-text">Google Analytics</span>
                 </a>
             </li>
 

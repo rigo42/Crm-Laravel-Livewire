@@ -21,7 +21,8 @@ class CreatePaymentsTable extends Migration
             $table->foreignId('payment_type_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignId('account_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignId('invoice_id')->nullable()->constrained()->onDelete('set null');     
-            $table->date('date');       
+            $table->date('date');  
+            $table->date('cutoff_date');       
             $table->double('monto');
             $table->text('concept');
             $table->text('note')->nullable();

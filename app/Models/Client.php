@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -72,6 +73,23 @@ class Client extends Model
         }
 
         return '$'.number_format($pending, 2, '.', ',');
+    }
+
+    public function pendingByPaymentTotal(){
+        
+        $totalMontos = $this->payments()->sum('monto');
+
+        $monthsWithThisService = Carbon::parse($this->start_date)->diffInMonths(now());
+
+        $totalIncomeWouldBe = $this->price * $monthsWithThisService;
+
+        $diffTotal = 0;
+
+        if($totalMontos < $totalIncomeWouldBe){
+            $diffTotal = $totalIncomeWouldBe - $totalMontos;
+        }
+
+        return '$'.number_format($diffTotal, 2, '.', ',');
     }
 
     public function grossIncomeTotal(){

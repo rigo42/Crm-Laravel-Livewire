@@ -35,6 +35,7 @@ class Comment extends Component
             'user_id' => Auth::id(),
             'body' => $this->body,
         ]);
+        $this->reset('body');
         $this->alert('success', 'Comentario agregado con exito');
     }
 
