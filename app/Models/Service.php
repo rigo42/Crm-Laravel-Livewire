@@ -156,14 +156,26 @@ class Service extends Model
             
         }else{
             $monthsWithThisService = Carbon::parse($this->start_date)->diffInMonths(now());
-
-            $totalIncomeWouldBe = $this->price * $monthsWithThisService;
-
             $diffTotal = 0;
 
-            if($totalMontos < $totalIncomeWouldBe){
-                $diffTotal = $totalIncomeWouldBe - $totalMontos;
+            if($monthsWithThisService == 0){
+                $diffTotal = 0;
+    
+                if($totalMontos < $this->price){
+                    $diffTotal = $this->price - $totalMontos;
+                }
+
+            }else{
+                $totalIncomeWouldBe = $this->price * $monthsWithThisService;
+
+                $diffTotal = 0;
+    
+                if($totalMontos < $totalIncomeWouldBe){
+                    $diffTotal = $totalIncomeWouldBe - $totalMontos;
+                }
             }
+
+            
 
             return '$'.number_format($diffTotal, 2, '.', ',');
         }
