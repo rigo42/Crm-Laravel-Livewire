@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Service;
 
-use App\Models\serviceType;
+use App\Models\ServiceType;
 use App\Models\Client;
 use App\Models\Service;
 use App\Models\User;
@@ -75,7 +75,7 @@ class Form extends Component
     public function render()
     {
         $users = User::orderBy('name');
-        $serviceTypes = serviceType::orderBy('id', 'desc')->cursor();
+        $serviceTypes = ServiceType::orderBy('id', 'desc')->cursor();
         $clients = Client::orderBy('id', 'desc');
 
         if(!$this->user->hasRole('Administrador')){
@@ -106,9 +106,9 @@ class Form extends Component
         session()->flash('alert-type', 'success');
 
         if ($this->service->type == 'Proyecto') {
-            return redirect()->route('service.show', $this->service);
-        }else{
             return redirect()->route('project.show', $this->service);
+        }else{
+            return redirect()->route('service.show', $this->service);
         }
         
     }

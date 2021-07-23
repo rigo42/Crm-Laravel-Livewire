@@ -5,19 +5,32 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Service extends Model
 {
-    use HasFactory;
+    use LogsActivity;
 
     protected $guarded = [];
+
+    //Logs
+    protected static $logName = 'Servicios';
+    protected static $logAttributes = ['*'];
+    protected static $logOnlyDirty = true;
+    protected static $submitEmptyLogs = false;
+
+    public function getDescriptionForEvent(string $eventName): string
+    {
+        return "Un servicio ha sido {$eventName}";
+    }
+
     
     public function client(){
         return $this->belongsTo(Client::class);
     }
 
     public function serviceType(){
-        return $this->belongsTo(serviceType::class);
+        return $this->belongsTo(ServiceType::class);
     }
 
     public function users(){
