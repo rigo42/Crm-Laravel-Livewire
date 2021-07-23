@@ -36,5 +36,6 @@ class PermissionSeeder extends Seeder
 
         //News 19/07/2021
         Permission::create(['name' => 'google analytics']);
+        Permission::create(['name' => 'log']);
     }
 }

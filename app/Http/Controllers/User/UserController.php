@@ -59,4 +59,8 @@ class UserController extends Controller
     public function transfer(User $user){
         return view('user.transfer', compact('user'));
     }
+
+    public function log(User $user){
+        return view('user.log', compact('user'));
+    }
 }

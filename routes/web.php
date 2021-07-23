@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Expense\ExpenseController;
 use App\Http\Controllers\Google\GoogleAnalyticsController;
 use App\Http\Controllers\Invoice\InvoiceController;
+use App\Http\Controllers\Log\LogController;
 use App\Http\Controllers\Payment\PaymentController;
 use App\Http\Controllers\Prospect\ProspectController;
 use App\Http\Controllers\Provider\ProviderController;
@@ -57,6 +58,9 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('copias-de-seguridad', BackupController::class)->parameters(['copia-de-seguridad' => 'backup'])->names('setting.backup');
     });
 
+    //log
+    Route::get('logs', [LogController::class, 'index'])->name('log.index');
+
     //User
     Route::resource('usuarios', UserController::class)->parameters(['usuarios' => 'user'])->names('user');
     Route::prefix('usuarios/{user}')->group(function () {
@@ -74,6 +78,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('pagos', [UserController::class, 'payment'])->name('user.payment');
         //Expense
         Route::get('gastos', [UserController::class, 'expense'])->name('user.expense');
+        //Expense
+        Route::get('logs', [UserController::class, 'log'])->name('user.log');
     });
 
     //Prospect
