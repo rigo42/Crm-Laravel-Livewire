@@ -40,6 +40,7 @@ class ComposerStaticInita3e789a14c26dc226e183697307902ee
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
+        '72b1e3f4a2af9b30b3f137b3ec2057fc' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/helpers.php',
         '0c3c22e27afa83be19b4c938f4c6e9ea' => __DIR__ . '/..' . '/spatie/laravel-backup/src/Helpers/functions.php',
         '377b22b161c09ed6e5152de788ca020a' => __DIR__ . '/..' . '/spatie/laravel-permission/src/helpers.php',
         'b4e3f29b106af37a2bb239f73cdf68c7' => __DIR__ . '/../..' . '/app/helpers.php',
@@ -101,6 +102,7 @@ class ComposerStaticInita3e789a14c26dc226e183697307902ee
             'Spatie\\DbDumper\\' => 16,
             'Spatie\\Backup\\' => 14,
             'Spatie\\Analytics\\' => 17,
+            'Spatie\\Activitylog\\' => 19,
         ),
         'R' => 
         array (
@@ -374,6 +376,10 @@ class ComposerStaticInita3e789a14c26dc226e183697307902ee
         array (
             0 => __DIR__ . '/..' . '/spatie/laravel-analytics/src',
         ),
+        'Spatie\\Activitylog\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/laravel-activitylog/src',
+        ),
         'Ramsey\\Uuid\\' => 
         array (
             0 => __DIR__ . '/..' . '/ramsey/uuid/src',
@@ -639,6 +645,7 @@ class ComposerStaticInita3e789a14c26dc226e183697307902ee
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\Dashboard\\DashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/Dashboard/DashboardController.php',
         'App\\Http\\Controllers\\Expense\\ExpenseController' => __DIR__ . '/../..' . '/app/Http/Controllers/Expense/ExpenseController.php',
+        'App\\Http\\Controllers\\Google\\GoogleAnalyticsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Google/GoogleAnalyticsController.php',
         'App\\Http\\Controllers\\Invoice\\InvoiceController' => __DIR__ . '/../..' . '/app/Http/Controllers/Invoice/InvoiceController.php',
         'App\\Http\\Controllers\\Payment\\PaymentController' => __DIR__ . '/../..' . '/app/Http/Controllers/Payment/PaymentController.php',
         'App\\Http\\Controllers\\Prospect\\ProspectController' => __DIR__ . '/../..' . '/app/Http/Controllers/Prospect/ProspectController.php',
@@ -664,6 +671,7 @@ class ComposerStaticInita3e789a14c26dc226e183697307902ee
         'App\\Http\\Livewire\\Dashboard\\GraphStat' => __DIR__ . '/../..' . '/app/Http/Livewire/Dashboard/GraphStat.php',
         'App\\Http\\Livewire\\Expense\\Form' => __DIR__ . '/../..' . '/app/Http/Livewire/Expense/Form.php',
         'App\\Http\\Livewire\\Expense\\Index' => __DIR__ . '/../..' . '/app/Http/Livewire/Expense/Index.php',
+        'App\\Http\\Livewire\\Google\\GoogleAnalytics' => __DIR__ . '/../..' . '/app/Http/Livewire/Google/GoogleAnalytics.php',
         'App\\Http\\Livewire\\Invoice\\Form' => __DIR__ . '/../..' . '/app/Http/Livewire/Invoice/Form.php',
         'App\\Http\\Livewire\\Invoice\\Index' => __DIR__ . '/../..' . '/app/Http/Livewire/Invoice/Index.php',
         'App\\Http\\Livewire\\Layouts\\Rightsidebar\\Profile' => __DIR__ . '/../..' . '/app/Http/Livewire/Layouts/Rightsidebar/Profile.php',
@@ -18405,6 +18413,18 @@ class ComposerStaticInita3e789a14c26dc226e183697307902ee
         'SebastianBergmann\\Type\\UnknownType' => __DIR__ . '/..' . '/sebastian/type/src/UnknownType.php',
         'SebastianBergmann\\Type\\VoidType' => __DIR__ . '/..' . '/sebastian/type/src/VoidType.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'Spatie\\Activitylog\\ActivityLogStatus' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/ActivityLogStatus.php',
+        'Spatie\\Activitylog\\ActivityLogger' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/ActivityLogger.php',
+        'Spatie\\Activitylog\\ActivitylogServiceProvider' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/ActivitylogServiceProvider.php',
+        'Spatie\\Activitylog\\CleanActivitylogCommand' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/CleanActivitylogCommand.php',
+        'Spatie\\Activitylog\\Contracts\\Activity' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/Contracts/Activity.php',
+        'Spatie\\Activitylog\\Exceptions\\CouldNotLogActivity' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/Exceptions/CouldNotLogActivity.php',
+        'Spatie\\Activitylog\\Exceptions\\CouldNotLogChanges' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/Exceptions/CouldNotLogChanges.php',
+        'Spatie\\Activitylog\\Exceptions\\InvalidConfiguration' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/Exceptions/InvalidConfiguration.php',
+        'Spatie\\Activitylog\\Models\\Activity' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/Models/Activity.php',
+        'Spatie\\Activitylog\\Traits\\CausesActivity' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/Traits/CausesActivity.php',
+        'Spatie\\Activitylog\\Traits\\DetectsChanges' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/Traits/DetectsChanges.php',
+        'Spatie\\Activitylog\\Traits\\LogsActivity' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/Traits/LogsActivity.php',
         'Spatie\\Analytics\\Analytics' => __DIR__ . '/..' . '/spatie/laravel-analytics/src/Analytics.php',
         'Spatie\\Analytics\\AnalyticsClient' => __DIR__ . '/..' . '/spatie/laravel-analytics/src/AnalyticsClient.php',
         'Spatie\\Analytics\\AnalyticsClientFactory' => __DIR__ . '/..' . '/spatie/laravel-analytics/src/AnalyticsClientFactory.php',

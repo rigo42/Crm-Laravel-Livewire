@@ -153,12 +153,36 @@
                             
                             <div class="d-flex align-items-center flex-wrap mb-4">
                                 <!--begin: Item-->
+                                <div class="d-flex align-items-center flex-lg-fill mr-5 my-1 text-dark">
+                                    <span class="mr-4">
+                                        <i class="flaticon-price-tag icon-2x font-weight-bold text-dark"></i>
+                                    </span>
+                                    <div class="d-flex flex-column ">
+                                        <span class="font-weight-bolder font-size-sm ">Ingreso bruto</span>
+                                        <span class="font-weight-bolder font-size-h5">
+                                        <span class="font-weight-bold ">{{ $client->grossIncomeTotal() }}</span>
+                                    </div>
+                                </div>
+                                <!--end: Item-->
+                                <!--begin: Item-->
+                                <div class="d-flex align-items-center flex-lg-fill mr-5 my-1 text-danger">
+                                    <span class="mr-4">
+                                        <i class="flaticon-price-tag icon-2x font-weight-bold text-danger"></i>
+                                    </span>
+                                    <div class="d-flex flex-column ">
+                                        <span class="font-weight-bolder font-size-sm ">Pendiente por factura</span>
+                                        <span class="font-weight-bolder font-size-h5">
+                                        <span class="font-weight-bold ">{{ $client->pendingByInvoiceTotal() }}</span>
+                                    </div>
+                                </div>
+                                <!--end: Item-->
+                                <!--begin: Item-->
                                 <div class="d-flex align-items-center flex-lg-fill mr-5 my-1 text-success">
                                     <span class="mr-4">
                                         <i class="flaticon-piggy-bank icon-2x  font-weight-bold  text-success"></i>
                                     </span>
                                     <div class="d-flex flex-column ">
-                                        <span class="font-weight-bolder font-size-sm ">Pagos</span>
+                                        <span class="font-weight-bolder font-size-sm ">Ingreso</span>
                                         <span class="font-weight-bolder font-size-h5">
                                         <span class="font-weight-bold ">{{ $client->paymentTotal() }}</span>
                                     </div>
@@ -170,7 +194,7 @@
                                         <i class="flaticon-confetti icon-2x font-weight-bold text-danger"></i>
                                     </span>
                                     <div class="d-flex flex-column">
-                                        <span class="font-weight-bolder font-size-sm">Gastos</span>
+                                        <span class="font-weight-bolder font-size-sm">Gasto</span>
                                         <span class="font-weight-bolder font-size-h5">
                                         <span class="font-weight-bold">{{ $client->expenseTotal() }}</span>
                                     </div>
