@@ -32,14 +32,19 @@ php artisan key:generate
 ```
 _3.- Deberás de rellenar las variables del archivo .env.example, una vez finalizado le podrás cambiar el nombre a .env_
 
-_3.- Deberás de rellenar las variables del archivo .env.example, una vez finalizado le podrás cambiar el nombre a .env_
+_4.- Deberás de rellenar las variables del archivo .env.example, una vez finalizado le podrás cambiar el nombre a .env_
 __
 
 ### Configuración ⚙️
+
 Google Analytics:
+
 _1.- Habilitar la API de google analytics en [Console Cloud Google](https://console.cloud.google.com/) _
+
 _2.- Deberás de obtener tu credencial de cuenta de servicio de Google y colocarlo el archivo .json en ./storage/google/_
+
 _3.- Deberás de obtener tu VIEW ID de tu página de Google Analytics y colocarlo en la variable de entorno de .env ANALYTICS_VIEW_ID=""_
+
 _4.- Configura el archivo ./config/analytics.php con tu nombre de archivo de tu credencial de cuenta de servicio de Google_
 
 ## Ejecutando las migraciones ⚙️
@@ -69,7 +74,7 @@ _Dependencias de laravel que ayudaron a la construcción del proyecto_
 ## Autores ✒️
 
 
-* **Rigoberto Villa Rodríguez** - *Programador Full Stack* - [villanuevand](https://github.com/rigo42)
+* **Rigoberto Villa Rodríguez** - *Programador Full Stack* - [Rigoberto Villa](https://github.com/rigo42)
 
 
 
