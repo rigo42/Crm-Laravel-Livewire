@@ -1,61 +1,77 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# CRM - Laravel
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+Hola!, CRM - Laravel es un proyecto open source con el cual podrás manejar tus prospectos, clientes y servicios de una manera bastante facil
 
-## About Laravel
+## Comenzando 🚀
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Pre-requisitos 📋
 
-## Learning Laravel
+_Que cosas necesitas para instalar el software y como instalarlas_
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```
+1.- PHP v7.4+
+2.- Servidor XAMMP, WAMPP o Laragon
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Instalación 🔧
 
-## Laravel Sponsors
+_1.- Deberás de instalar las dependencias de laravel con el siguiente comando_
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-### Premium Partners
+```
+composer install
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+_2.- Una vez que se terminen de descargar las dependencias_
 
-## Contributing
+```
+php artisan key:generate
+```
+_3.- Deberás de rellenar las variables del archivo .env.example, una vez finalizado le podrás cambiar el nombre a .env_
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+_3.- Deberás de rellenar las variables del archivo .env.example, una vez finalizado le podrás cambiar el nombre a .env_
+__
 
-## Code of Conduct
+### Configuración ⚙️
+Google Analytics:
+_1.- Habilitar la API de google analytics en [Console Cloud Google](https://console.cloud.google.com/) _
+_2.- Deberás de obtener tu credencial de cuenta de servicio de Google y colocarlo el archivo .json en ./storage/google/_
+_3.- Deberás de obtener tu VIEW ID de tu página de Google Analytics y colocarlo en la variable de entorno de .env ANALYTICS_VIEW_ID=""_
+_4.- Configura el archivo ./config/analytics.php con tu nombre de archivo de tu credencial de cuenta de servicio de Google_
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Ejecutando las migraciones ⚙️
 
-## Security Vulnerabilities
+```
+php artisan migrate
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Construido con 🛠️
 
-## License
+_Dependencias de laravel que ayudaron a la construcción del proyecto_
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+* "aprendible/storage-link-route": "^1.0",
+* "asantibanez/livewire-charts": "^2.3",
+* "fedeisas/laravel-mail-css-inliner": "^4.0",
+* "intervention/image": "^2.5",
+* "jantinnerezo/livewire-alert": "^2.1",
+* "laravel-lang/lang": "~7.0",
+* "laravel/ui": "^3.3",
+* "livewire/livewire": "^2.4",
+* "orangehill/iseed": "^3.0",
+* "spatie/laravel-activitylog": "^3.17",
+* "spatie/laravel-analytics": "^3.11",
+* "spatie/laravel-backup": "^6.16",
+* "spatie/laravel-permission": "^4.0"
+
+## Autores ✒️
+
+
+* **Rigoberto Villa Rodríguez** - *Programador Full Stack* - [villanuevand](https://github.com/rigo42)
+
+
+
+---
+⌨️ con ❤️ por [RigobertoVillaRodríguez](https://github.com/rigo42) 😊
