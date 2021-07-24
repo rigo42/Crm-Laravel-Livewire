@@ -128,7 +128,7 @@
                     </a>
                 </div>
                 @endif 
-                @if($user->can('permisos'))
+                @can('ajustes')
                 <div class="navi-item mb-2">
                     <a href="{{ route('user.permission', $user) }}" class="navi-link py-4 {{ active('user.permission') }}">
                         <span class="navi-icon mr-2">
@@ -143,7 +143,7 @@
                         <span class="navi-text font-size-lg">Permisos directos</span>
                     </a>
                 </div>
-                @endif
+                @endcan
                 <div class="navi-item mb-2">
                     <a href="{{ route('user.transfer', $user) }}" class="navi-link py-4 {{ active('user.trasnfer') }}">
                         <span class="navi-icon mr-2">
