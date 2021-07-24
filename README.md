@@ -58,7 +58,11 @@ __
 
 ### Configuración ⚙️
 
-Google Analytics:
+**Correo:**
+
+_1.- Deberás de configurar las variables de entorno MAIL con tus datos de acceso de tu dominio o datos de prueba con mailtrap o el que prefieras. Esto para el funcionamiento de envios de correo._
+
+**Google Analytics:**
 
 _1.- Habilitar la API de google analytics en [Console Cloud Google](https://console.cloud.google.com/)_
 
@@ -76,7 +80,7 @@ php artisan migrate
 
 ## Construido con 🛠️
 
-_Dependencias de laravel que ayudaron a la construcción del proyecto_
+**_Dependencias de laravel que ayudaron a la construcción del proyecto_**
 
 * "aprendible/storage-link-route": "^1.0",
 * "asantibanez/livewire-charts": "^2.3",
