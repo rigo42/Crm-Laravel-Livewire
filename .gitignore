@@ -3,6 +3,7 @@
 /public/storage
 /storage/*.key
 /storage/google/*
+.vscode
 .env
 .env.backup
 .phpunit.result.cache
