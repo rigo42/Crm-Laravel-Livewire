@@ -48,7 +48,8 @@ class Index extends Component
         }
 
         if($this->search){
-            $logs = $logs->where('name', 'LIKE', "%{$this->search}%");
+            $logs = $logs->where('description', 'LIKE', "%{$this->search}%")
+                            ->orWhere('created_at', 'LIKE', "%{$this->search}%");
         }
 
         $count = $count->count();

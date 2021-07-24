@@ -1,6 +1,26 @@
 # CRM - Laravel
 
-Hola!, CRM - Laravel es un proyecto open source con el cual podrás manejar tus prospectos, clientes y servicios de una manera bastante facil
+Hola!, CRM - Laravel es un proyecto open source creado con livewire, laravel, alpine js, el cual
+te ayudará a tener un control de tus clientes.
+
+## Funcionalidades 📋
+* Dashboard general
+* Google Analytics
+* Gestión de prospectos
+* Convertir prospecto a cliente
+* Gestión de clientes
+* Envío de correo de bienvenida al cliente
+* Gestión de proveedores
+* Gestión de tipos de servicios
+* Gestión de servicios 
+* Gestión de proyectos
+* Gestión de cotizaciones
+* Gestión de facturas (Adjuntar factura)
+* Gestión de pagos
+* Gestión de gastos
+* Gestión de usuarios
+* Configuraciones
+* Logs
 
 ## Comenzando 🚀
 
@@ -22,30 +42,31 @@ _1.- Deberás de instalar las dependencias de laravel con el siguiente comando_
 
 
 ```
+git clone git@github.com:rigo42/Crm-Laravel-Livewire.git
 composer install
 ```
 
-_2.- Una vez que se terminen de descargar las dependencias_
+_2.- Una vez que se terminen de descargar el proyecto y las dependencias_
 
 ```
 php artisan key:generate
 ```
+
 _3.- Deberás de rellenar las variables del archivo .env.example, una vez finalizado le podrás cambiar el nombre a .env_
 
-_4.- Deberás de rellenar las variables del archivo .env.example, una vez finalizado le podrás cambiar el nombre a .env_
 __
 
 ### Configuración ⚙️
 
 Google Analytics:
 
-_1.- Habilitar la API de google analytics en [Console Cloud Google](https://console.cloud.google.com/) _
+_1.- Habilitar la API de google analytics en [Console Cloud Google](https://console.cloud.google.com/)_
 
-_2.- Deberás de obtener tu credencial de cuenta de servicio de Google y colocarlo el archivo .json en ./storage/google/_
+_2.- Deberás de obtener tu credencial de cuenta de servicio de Google en formato json y colocarlo el archivo en ./storage/google/  <- La carpeta "google" deberás crearla_
 
 _3.- Deberás de obtener tu VIEW ID de tu página de Google Analytics y colocarlo en la variable de entorno de .env ANALYTICS_VIEW_ID=""_
 
-_4.- Configura el archivo ./config/analytics.php con tu nombre de archivo de tu credencial de cuenta de servicio de Google_
+_4.- Configura la variable "service_account_credentials_json" del archivo ./config/analytics.php con el nombre de tu archivo que anteriormente descargaste en el paso 2_
 
 ## Ejecutando las migraciones ⚙️
 
@@ -71,12 +92,11 @@ _Dependencias de laravel que ayudaron a la construcción del proyecto_
 * "spatie/laravel-backup": "^6.16",
 * "spatie/laravel-permission": "^4.0"
 
-## Autores ✒️
-
+## Autor ✒️
 
 * **Rigoberto Villa Rodríguez** - *Programador Full Stack* - [Rigoberto Villa](https://github.com/rigo42)
 
 
 
 ---
-⌨️ con ❤️ por [RigobertoVillaRodríguez](https://github.com/rigo42) 😊
+⌨️ con ❤️ por [Rigoberto Villa Rodríguez](https://github.com/rigo42) 😊

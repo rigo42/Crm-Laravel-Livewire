@@ -134,22 +134,25 @@
                     </button>
                     </div>
                     <div class="modal-body">
-                        <div class="d-flex align-items-center">
-                            <div class="symbol symbol-success mr-2">
-                                <img 
-                                    @if ($log->causer->image)
-                                        src="{{ Storage::url($log->causer->image->url) }}" 
-                                    @else
-                                        src="{{ asset('assets/media/users/blank.png') }}" 
-                                    @endif
-                                />
+                        @if ($log->causer)
+                            <div class="d-flex align-items-center">
+                                <div class="symbol symbol-success mr-2">
+                                    <img 
+                                        @if ($log->causer->image)
+                                            src="{{ Storage::url($log->causer->image->url) }}" 
+                                        @else
+                                            src="{{ asset('assets/media/users/blank.png') }}" 
+                                        @endif
+                                    />
+                                </div>
+                                <div class="d-flex flex-column text-left">
+                                    <span class="text-muted font-weight-bold">{{ $log->causer->name }}</span>
+                                    <span class="text-dark-75 font-weight-bold">{{ $log->causer->position }}</span>
+                                </div>
                             </div>
-                            <div class="d-flex flex-column text-left">
-                                <span class="text-muted font-weight-bold">{{ $log->causer->name }}</span>
-                                <span class="text-dark-75 font-weight-bold">{{ $log->causer->position }}</span>
-                            </div>
-                        </div>
-                        <hr>
+                            <hr>
+                        @endif
+                        
                         <pre>@json($log->properties, JSON_PRETTY_PRINT)</pre>
                             
                         
