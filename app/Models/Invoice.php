@@ -5,12 +5,25 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Invoice extends Model
 {
-    use HasFactory;
+    use LogsActivity;
 
     protected $guarded = [];
+
+    //Logs
+    protected static $logName = 'Facturas';
+    protected static $logAttributes = ['*'];
+    protected static $logOnlyDirty = true;
+    protected static $submitEmptyLogs = false;
+
+    public function getDescriptionForEvent(string $eventName): string
+    {
+        return "Una factura ha sido {$eventName}";
+    }
+
 
     public function client(){
         return $this->belongsTo(Client::class);

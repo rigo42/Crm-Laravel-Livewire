@@ -14,22 +14,8 @@
                                 route('payment.create',[
                                     'client' => $service->client,
                                     'date' => date('Y-m-d'),
+                                    'cutoffDate' => $service->due(),
                                     'service' =>$service
-                                ]) 
-                            }}" 
-                            class="btn btn-primary btn-shadow font-weight-bold mr-2 "
-                        >
-                            <i class="fa fa-plus"></i> Nuevo pago
-                        </a>
-                    </div>
-                @endif
-                @if (isset($client))
-                    <div class="card-toolbar">
-                        <a 
-                            href="{{ 
-                                route('payment.create',[
-                                    'client' => $client,
-                                    'date' => date('Y-m-d'),
                                 ]) 
                             }}" 
                             class="btn btn-primary btn-shadow font-weight-bold mr-2 "
@@ -85,6 +71,7 @@
                                 <th>Tipo</th>
                                 <th>Cuenta</th>
                                 <th>Fecha</th>
+                                <th>Corte</th>
                                 <th>Monto</th>
                                 <th>Servicio</th>
                                 <th>Comprobante</th>
@@ -118,8 +105,9 @@
                                     <td>{{$payment->paymentType->name}}</td>
                                     <td>{{ $payment->account->name }}</td>
                                     <td>{{ $payment->dateToString() }}</td>
+                                    <td>{{ $payment->cutoffDateToString() }}</td>
                                     <td>{{ $payment->montoToString() }}</td>
-                                    <td>{{ $payment->service->serviceType->name }}</td>
+                                    <td>{{ $payment->service->serviceType->name }} ({{ $payment->service->priceToString() }})</td>
                                     <td>
                                         @if ($payment->proof)
                                             <span class="badge badge-success">{{ $payment->proof }}</span>
@@ -167,7 +155,7 @@
                                                     >
                                                 </div>
                                                 <div class="d-flex flex-column">
-                                                    <span class="text-dark-75 text-hover-primary font-weight-bold font-size-lg">{{ $payment->user->name }}</span>
+                                                    <span class="text-dark-75 font-weight-bold font-size-lg">{{ $payment->user->name }}</span>
                                                     <span class="text-muted font-weight-bold font-size-sm">{{ $payment->user->position }}</span>
                                                 </div>
                                             </div>
@@ -261,42 +249,68 @@
             <!--end::Body-->
         </div>
     @else
+        @if (isset($service))
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-px text-center py-5">
+                        <h2 class="fs-2x fw-bolder mb-10">Hola! </h2>
+                        <p class="text-gray-400 fs-4 fw-bold mb-10">Al parecer no tienes ningun pago.
+                        <br> Ponga en marcha su CRM añadiendo su primer pago</p>
+                        
+                            <a 
+                                href="{{ 
+                                    route('payment.create',[
+                                        'client' => $service->client,
+                                        'date' => date('Y-m-d'),
+                                        'cutoffDate' => $service->due(),
+                                        'service' =>$service
+                                    ]) 
+                                }}"  
+                                class="btn btn-primary">Agregar un pago
+                            </a>
+                        
+                    </div>
+                    <div class="text-center px-4 ">
+                        <img class="img-fluid col-6" alt="" src="{{ asset('assets/media/ilustrations/work.png') }}">
+                    </div>
+                </div>
+            </div>
+        @elseif(isset($client))
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-px text-center py-5">
+                        <h2 class="fs-2x fw-bolder mb-10">Hola!</h2>
+                        <p class="text-gray-400 fs-4 fw-bold mb-10">Al parecer no tienes ningun pago.
+                        <br> Registra un pago a traves de un servicio</p>
+                        
+                    </div>
+                </div>
+            </div>
+        @else 
         <div class="card">
             <div class="card-body">
                 <div class="card-px text-center py-5">
-                    <h2 class="fs-2x fw-bolder mb-10">Hola!</h2>
+                    <h2 class="fs-2x fw-bolder mb-10">Hola! </h2>
                     <p class="text-gray-400 fs-4 fw-bold mb-10">Al parecer no tienes ningun pago.
                     <br> Ponga en marcha su CRM añadiendo su primer pago</p>
-                    @if (isset($service))
+                    
                         <a 
                             href="{{ 
                                 route('payment.create',[
-                                    'client' => $service->client,
                                     'date' => date('Y-m-d'),
-                                    'service' =>$service
+                                    'cutoffDate' => date('Y-m-d'),
                                 ]) 
                             }}"  
                             class="btn btn-primary">Agregar un pago
                         </a>
-                    @elseif (isset($client))
-                        <a 
-                            href="{{ 
-                                route('payment.create',[
-                                    'client' => $client,
-                                    'date' => date('Y-m-d'),
-                                ]) 
-                            }}"  
-                            class="btn btn-primary">Agregar un pago
-                        </a>
-                    @else
-                        <a href="{{ route('payment.create') }}" class="btn btn-primary">Agregar un pago</a>
-                    @endif
+                    
                 </div>
                 <div class="text-center px-4 ">
                     <img class="img-fluid col-6" alt="" src="{{ asset('assets/media/ilustrations/work.png') }}">
                 </div>
             </div>
         </div>
+        @endif
     @endif
 
     @push('footer')

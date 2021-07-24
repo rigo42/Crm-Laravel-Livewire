@@ -388,7 +388,7 @@
 
     @push('footer')
         <script src="{{ asset('assets/plugins/custom/bfi/bfi.js') }}"></script>
-        {{-- <script src="{{ asset('assets') }}/js/pages/crud/forms/widgets/bootstrap-datepicker.js"></script> --}}
+        <script src="{{ asset('assets') }}/js/pages/crud/forms/widgets/bootstrap-datepicker.js"></script>
         <script>
 
             function app() {

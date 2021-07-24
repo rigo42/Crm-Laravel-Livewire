@@ -46,15 +46,6 @@
                 <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
                     <!--begin::Card-->
                     <div class="card card-custom gutter-b card-stretch">
-
-                        @if ($client->premium)
-                        <!-- Client stars -->
-                        <div class="ribbon ribbon-top ribbon-ver">
-                            <div class="ribbon-target bg-warning" style="top: -2px; left: 20px;">
-                                <i class="fa fa-star text-white"></i>
-                            </div>
-                        </div>
-                        @endif
                         
                         <!--begin::Body-->
                         <div class="card-body pt-4">
@@ -72,12 +63,12 @@
                                         @can('facturas')
                                             <a class="dropdown-item" href="{{ route('invoice.create', ['client' => $client]) }}"><i class="fas fa-file-pdf mr-2"></i> Adjuntar factura</a>
                                         @endcan
-                                        @can('pagos')
+                                        {{-- @can('pagos')
                                             <a class="dropdown-item" href="{{ route('payment.create', ['client' => $client->id]) }}"><i class="fa fa-credit-card mr-2"></i> Generar un pago</a>
                                         @endcan
                                         @can('gastos')
                                             <a class="dropdown-item" href="{{ route('expense.create', ['client' => $client->id]) }}"><i class="fa fa-calculator mr-2"></i> Generar un gasto</a>
-                                        @endcan
+                                        @endcan --}}
                                         <a class="dropdown-item" href="{{ route('client.show', $client) }}"><i class="fa fa-eye mr-2"></i> Ver</a>
                                         <a class="dropdown-item" href="{{ route('client.edit', $client) }}"><i class="fa fa-pen mr-2"></i> Editar</a>
                                         <a class="dropdown-item" href="#" onclick="event.preventDefault(); confirmDestroy({{ $client->id }})"><i class="fa fa-trash mr-2"></i> Eliminar</a>
@@ -119,12 +110,22 @@
                             <!--begin::Info-->
                             <div class="mb-7">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <span class="text-dark-75 font-weight-bolder mr-2">Tipo:</span>
+                                    <span class="text-dark-75 font-weight-bolder mr-2">Categoría:</span>
                                     @if ($client->categoryClient)
                                         <span class="badge badge-primary font-weight-bold">{{ $client->categoryClient->name }}</span>
                                     @else
                                         <span class="badge badge-secondary font-weight-bold">Ninguno</span>
                                     @endif
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center my-3">
+                                    <div class="">
+                                        <span class="text-dark-75 font-weight-bolder mr-2">Estrellas:</span>
+                                    </div>
+                                    
+                                    <div class="">
+                                        {!! $client->starsToHtml() !!}
+                                    </div>
+                                    
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <span class="text-dark-75 font-weight-bolder mr-2">Correo:</span>
@@ -152,12 +153,36 @@
                             
                             <div class="d-flex align-items-center flex-wrap mb-4">
                                 <!--begin: Item-->
+                                <div class="d-flex align-items-center flex-lg-fill mr-5 my-1 text-dark">
+                                    <span class="mr-4">
+                                        <i class="flaticon-price-tag icon-2x font-weight-bold text-dark"></i>
+                                    </span>
+                                    <div class="d-flex flex-column ">
+                                        <span class="font-weight-bolder font-size-sm ">Ingreso bruto</span>
+                                        <span class="font-weight-bolder font-size-h5">
+                                        <span class="font-weight-bold ">{{ $client->grossIncomeTotal() }}</span>
+                                    </div>
+                                </div>
+                                <!--end: Item-->
+                                <!--begin: Item-->
+                                <div class="d-flex align-items-center flex-lg-fill mr-5 my-1 text-danger">
+                                    <span class="mr-4">
+                                        <i class="flaticon-price-tag icon-2x font-weight-bold text-danger"></i>
+                                    </span>
+                                    <div class="d-flex flex-column ">
+                                        <span class="font-weight-bolder font-size-sm ">Pendiente por factura</span>
+                                        <span class="font-weight-bolder font-size-h5">
+                                        <span class="font-weight-bold ">{{ $client->pendingByInvoiceTotal() }}</span>
+                                    </div>
+                                </div>
+                                <!--end: Item-->
+                                <!--begin: Item-->
                                 <div class="d-flex align-items-center flex-lg-fill mr-5 my-1 text-success">
                                     <span class="mr-4">
                                         <i class="flaticon-piggy-bank icon-2x  font-weight-bold  text-success"></i>
                                     </span>
                                     <div class="d-flex flex-column ">
-                                        <span class="font-weight-bolder font-size-sm ">Pagos</span>
+                                        <span class="font-weight-bolder font-size-sm ">Ingreso</span>
                                         <span class="font-weight-bolder font-size-h5">
                                         <span class="font-weight-bold ">{{ $client->paymentTotal() }}</span>
                                     </div>
@@ -169,7 +194,7 @@
                                         <i class="flaticon-confetti icon-2x font-weight-bold text-danger"></i>
                                     </span>
                                     <div class="d-flex flex-column">
-                                        <span class="font-weight-bolder font-size-sm">Gastos</span>
+                                        <span class="font-weight-bolder font-size-sm">Gasto</span>
                                         <span class="font-weight-bolder font-size-h5">
                                         <span class="font-weight-bold">{{ $client->expenseTotal() }}</span>
                                     </div>

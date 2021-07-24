@@ -60,6 +60,8 @@ return [
 
     'logo_ico' => env('APP_LOGO_ICO', null),
 
+    'page-domain' => env('PAGE_DOMAIN', 'https://brandbean.mx'),
+
     
 
     /*

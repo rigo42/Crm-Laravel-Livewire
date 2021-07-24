@@ -34,7 +34,7 @@
                                             wire:model.defer="categoryExpense.name" 
                                             type="text" 
                                             class="form-control form-control-solid @error('categoryExpense.name') is-invalid @enderror"  
-                                            placeholder="Ej: Facebook ads, Cumpleaños..." /> 
+                                            placeholder="Ej: Marketing, Viajes" /> 
                                     </div>
                                     @error('categoryExpense.name') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>

@@ -27,14 +27,6 @@
                 <!--begin::Card-->
                 <div class="card card-custom gutter-b">
 
-                    @if ($client->premium)
-                        <div class="ribbon ribbon-top ribbon-ver">
-                            <div class="ribbon-target bg-warning" style="top: -2px; left: 20px;">
-                                <i class="fa fa-star text-white"></i>
-                            </div>
-                        </div>
-                    @endif
-
                     <div class="card-body">
                         <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
                             <!--begin::Pic-->
@@ -205,15 +197,21 @@
                             </div>
                             <!--end::Header-->
                             <!--begin::Body-->
-                            <div class="card-body py-4">
+                            <div class="card-body py-4 ">
                                 <div class="form-group row my-2">
                                     <label class="col-4 col-form-label">Categoría:</label>
-                                    <div class="col-8">
+                                    <div class="col-8 d-flex align-items-center">
                                         @if ($client->categoryClient)
                                             <span class="badge badge-primary font-weight-bold">{{ $client->categoryClient->name }}</span>
                                         @else
                                             <span class="badge badge-secondary font-weight-bold">Ninguno</span>
                                         @endif
+                                    </div>
+                                </div>
+                                <div class="form-group row my-2">
+                                    <label class="col-4 col-form-label">Estrellas:</label>
+                                    <div class="col-8 d-flex align-items-center">
+                                        {!! $client->starsToHtml() !!}
                                     </div>
                                 </div>
                                 <div class="form-group row my-2">
@@ -288,9 +286,18 @@
                             <div class="card-header card-header-tabs-line">
                                 <div class="card-toolbar">
                                     <ul class="nav nav-tabs nav-tabs-space-lg nav-tabs-line nav-bold nav-tabs-line-3x" role="tablist">
-                                       
                                         <li class="nav-item mr-3">
-                                            <a class="nav-link active" data-toggle="tab" href="#payment">
+                                            <a class="nav-link active" data-toggle="tab" href="#comment">
+                                                <span class="nav-icon mr-2">
+                                                    <span class="svg-icon mr-3">
+                                                        <i class="far fa-comments"></i>
+                                                    </span>
+                                                </span>
+                                                <span class="nav-text">Comentarios</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item mr-3">
+                                            <a class="nav-link" data-toggle="tab" href="#payment">
                                                 <span class="nav-icon mr-2">
                                                     <span class="svg-icon mr-3">
                                                         <i class="fa fa-credit-card"></i>
@@ -358,7 +365,11 @@
                             <div class="card-body px-0">
                                 <div class="tab-content ">
 
-                                    <div class="tab-pane active" id="payment" role="tabpanel">
+                                    <div class="tab-pane active" id="comment" role="tabpanel">
+                                        @livewire('client.comment', ['client' => $client])
+                                    </div>
+
+                                    <div class="tab-pane" id="payment" role="tabpanel">
                                         @livewire('payment.index', ['client' => $client])
                                     </div>
                                     

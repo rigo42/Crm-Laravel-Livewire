@@ -5,12 +5,25 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Quotation extends Model
 {
-    use HasFactory;
+    use LogsActivity;
 
     protected $guarded = [];
+
+    //Logs
+    protected static $logName = 'Cotizaciones';
+    protected static $logAttributes = ['*'];
+    protected static $logOnlyDirty = true;
+    protected static $submitEmptyLogs = false;
+
+    public function getDescriptionForEvent(string $eventName): string
+    {
+        return "Una cotización ha sido {$eventName}";
+    }
+
 
     public function client()
     {

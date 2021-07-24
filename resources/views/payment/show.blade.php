@@ -96,6 +96,18 @@
                                     </div>
                                 </div>
                                 <div class="form-group row my-2">
+                                    <label class="col-4 col-form-label">Fecha de registro:</label>
+                                    <div class="col-8">
+                                        <span class="form-control-plaintext font-weight-bolder">{{ $payment->dateToString() }}</span>
+                                    </div>
+                                </div>
+                                <div class="form-group row my-2">
+                                    <label class="col-4 col-form-label">Fecha de corte:</label>
+                                    <div class="col-8">
+                                        <span class="form-control-plaintext font-weight-bolder">{{ $payment->cutoffDateToString() }}</span>
+                                    </div>
+                                </div>
+                                <div class="form-group row my-2">
                                     <label class="col-4 col-form-label">Cuenta:</label>
                                     <div class="col-8">
                                         <span class="form-control-plaintext font-weight-bolder">{{ $payment->account->name }}</span>
@@ -121,7 +133,7 @@
                                 </div>
                                 <div class="form-group row my-2">
                                     <label class="col-4 col-form-label">¿Correo enviado?</label>
-                                    <div class="col-8">
+                                    <div class="col-8 d-flex align-items-center">
                                         @if ($payment->send_email)
                                             <span class="badge badge-success">Correo enviado</span>
                                         @else
@@ -129,31 +141,22 @@
                                         @endif
                                     </div>
                                 </div>
+                                <div class="form-group row my-2">
+                                    <label class="col-4 col-form-label">Pago registrado por:</label>
+                                    <div class="col-8 d-flex align-items-center">
+                                        <span class="form-control-plaintext font-weight-bolder">
+                                            @if ($payment->user)
+                                                {{ $payment->user->name }}
+                                            @else
+                                                <span class="badge badge-secondary">Usuario eliminado</span>
+                                            @endif
+                                        </span>
+                                    </div>
+                                </div>
                                 
                             </div>
                         </div>
-                        <div class="card bgi-no-repeat card-stretch gutter-b" style="background-position: right top; background-size: 30% auto; background-image: url({{ asset('assets') }}/media/svg/shapes/abstract-4.svg)">
-                            <!--begin::Body-->
-                            <div class="card-body">
-                                @if ($payment->user)
-                                    <a href="{{ route('user.show', $payment->user) }}" class="card-title font-weight-bold text-muted text-hover-primary font-size-h5">Pago realizado por</a>
-                                    <div class="">
-                                        <p class="text-dark-75 font-weight-bolder font-size-h5 m-0">
-                                            @if ($payment->user)
-                                                <span class="badge badge-info">{{ $payment->user->name }}</span>
-                                            @else
-                                                <span class="badge badge-secondary">Ninguno</span>
-                                            @endif
-                                        </p> 
-                                        <br>
-                                        <div class="font-weight-bold text-success mb-5">{{ $payment->created_at->diffforhumans() }} ({{ $payment->createdAtToString() }})</div>
-                                    </div>
-                                @else
-                                    <span class="badge badge-secondary">El usuario que realizó el pago fue eliminado</span>
-                                @endif
-                            </div>
-                            <!--end::Body-->
-                        </div>
+                        
                     </div>
                     <div class="col-xl-8">
                         <div class="card card-custom gutter-b">

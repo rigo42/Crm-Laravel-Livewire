@@ -160,6 +160,14 @@
                         <span class="navi-text font-size-lg">Transferir</span>
                     </a>
                 </div>
+                <div class="navi-item mb-2">
+                    <a href="{{ route('user.log', $user) }}" class="navi-link py-4 {{ active('user.log') }}">
+                        <span class="navi-icon mr-2">
+                            <i class="fa fa-eye"></i>
+                        </span>
+                        <span class="navi-text font-size-lg">Logs</span>
+                    </a>
+                </div>
             </div>
             <!--end::Nav-->
         </div>

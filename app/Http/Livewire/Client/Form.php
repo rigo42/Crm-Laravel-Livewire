@@ -33,7 +33,7 @@ class Form extends Component
         $this->userPresent = User::find(Auth::user()->id);
         $this->client = $client;
         $this->method = $method;
-        $this->userId = $client->user_id;
+        $this->userId = $client->user_id ? $client->user_id : $this->userPresent->id;    
     }
 
     protected function rules()
@@ -49,7 +49,7 @@ class Form extends Component
             'client.social_reason' => 'nullable',
             'client.fiscal_address' => 'nullable',
             'client.rfc' => 'nullable',
-            'client.premium' => 'nullable',
+            'client.stars' => 'nullable',
         ];
 
     }
@@ -66,6 +66,7 @@ class Form extends Component
         $this->validate();
         $this->saveUser();
         $this->saveUserByAdmin();
+        $this->validateNull();
         $this->client->save();
         $this->saveImage();
         try{
@@ -84,6 +85,7 @@ class Form extends Component
         $this->validate();
         $this->saveUser();
         $this->saveUserByAdmin();
+        $this->validateNull();
         $this->client->save();
         $this->saveImage();
         Mail::to($this->client->email)->send(new ClientNew($this->client));
@@ -95,6 +97,7 @@ class Form extends Component
     public function update(){
         $this->validate();
         $this->saveUserByAdmin();
+        $this->validateNull();
         $this->client->update();
         $this->saveImage();
         session()->flash('alert','Cliente actualizado con exito');
@@ -155,6 +158,12 @@ class Form extends Component
         }
         $this->reset('imageTmp');
         $this->alert('success', 'Imagen eliminada con exito');
+    }
+
+    public function validateNull(){
+        if($this->client->stars == NULL){
+            $this->client->stars = 0;
+        }
     }
    
 }

@@ -5,19 +5,32 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Service extends Model
 {
-    use HasFactory;
+    use LogsActivity;
 
     protected $guarded = [];
+
+    //Logs
+    protected static $logName = 'Servicios';
+    protected static $logAttributes = ['*'];
+    protected static $logOnlyDirty = true;
+    protected static $submitEmptyLogs = false;
+
+    public function getDescriptionForEvent(string $eventName): string
+    {
+        return "Un servicio ha sido {$eventName}";
+    }
+
     
     public function client(){
         return $this->belongsTo(Client::class);
     }
 
     public function serviceType(){
-        return $this->belongsTo(serviceType::class);
+        return $this->belongsTo(ServiceType::class);
     }
 
     public function users(){
@@ -68,7 +81,7 @@ class Service extends Model
 
     public function due(){
         if($this->type == 'Proyecto'){
-            return Carbon::parse($this->due_date);
+            return Carbon::parse($this->due_date)->format('Y-m-d');
         }else{
             //now date
             $nowDate = date('Y-m-d');
@@ -135,10 +148,52 @@ class Service extends Model
                 
             }
                 
-            return Carbon::parse(date('Y-m-d', strtotime('+'.$sum.' day', strtotime($nowDate))));
+            return Carbon::parse(date('Y-m-d', strtotime('+'.$sum.' day', strtotime($nowDate))))->format('Y-m-d');
             
             
         }
+    }
+
+    public function pendingByPaymentTotal(){
+        $totalMontos = $this->payments()->sum('monto');
+
+        if ($this->type == 'Proyecto') {
+            if($totalMontos < $this->price){
+                $diffTotal =  $this->price - $totalMontos;
+                
+            }else{
+                $diffTotal = 0;
+            }
+
+            return '$'.number_format($diffTotal, 2, '.', ',');
+            
+        }else{
+            $monthsWithThisService = Carbon::parse($this->start_date)->diffInMonths(now());
+            $diffTotal = 0;
+
+            if($monthsWithThisService == 0){
+                $diffTotal = 0;
+    
+                if($totalMontos < $this->price){
+                    $diffTotal = $this->price - $totalMontos;
+                }
+
+            }else{
+                $totalIncomeWouldBe = $this->price * $monthsWithThisService;
+
+                $diffTotal = 0;
+    
+                if($totalMontos < $totalIncomeWouldBe){
+                    $diffTotal = $totalIncomeWouldBe - $totalMontos;
+                }
+            }
+
+            
+
+            return '$'.number_format($diffTotal, 2, '.', ',');
+        }
+
+        
     }
 
     public function progressByProject(){
@@ -152,9 +207,14 @@ class Service extends Model
             return 0;
         }else{
             $diferenceGeneral = Carbon::parse($start)->diffInDays($due);
-            $diferenceDue = $diferenceGeneral - Carbon::parse($now)->diffInDays($due);
-            $progress = floor((100 * $diferenceDue) / $diferenceGeneral);
-            return $progress;
+            if($diferenceGeneral == 0){
+                return 100;
+            }else{
+                $diferenceDue = $diferenceGeneral - Carbon::parse($now)->diffInDays($due);
+                $progress = floor((100 * $diferenceDue) / $diferenceGeneral);
+                return $progress;
+            }
+            
         }
     }
 
@@ -163,9 +223,10 @@ class Service extends Model
 
         $services = Service::query()
                             ->whereNull('finished')
+                            ->where('type', 'Mensual')
                             ->where('due_day', $thisDay)
                             ->whereDoesntHave('payments', function ($query) {
-                                $query->whereDate('date', date('Y-m-d'));
+                                $query->whereDate('cutoff_date', date('Y-m-d'));
                             })
                             ->whereMonth('start_date', '<', date('m'))
                             ->orWhereYear('start_date', '<', date('Y'))
@@ -193,8 +254,9 @@ class Service extends Model
         $services = Service::query()
                             ->orderBy('due_day', 'desc')
                             ->whereNull('finished')
+                            ->where('type', 'Mensual')
                             ->whereDoesntHave('payments', function ($query) use($firstDayThisWeek, $finishedDayThisWeek) {
-                                $query->whereBetween('date', [$firstDayThisWeek, $finishedDayThisWeek]);
+                                $query->whereBetween('cutoff_date', [$firstDayThisWeek, $finishedDayThisWeek]);
                             })
                             ->whereMonth('start_date', '<', date('m'))
                             ->orWhereYear('start_date', '<', date('Y'))
@@ -246,8 +308,9 @@ class Service extends Model
         $services = Service::query()
                             ->orderBy('due_day', 'desc')
                             ->whereNull('finished')
+                            ->where('type', 'Mensual')
                             ->whereDoesntHave('payments', function ($query) use($firstDateService, $finishedBackCutDateService) {
-                                $query->whereBetween('date', [$firstDateService->format('Y-m-d'), $finishedBackCutDateService->format('Y-m-d')]);
+                                $query->whereBetween('cutoff_date', [$firstDateService->format('Y-m-d'), $finishedBackCutDateService->format('Y-m-d')]);
                             })
                             ->whereMonth('start_date', '<', date('m'))
                             ->orWhereYear('start_date', '<', date('Y'))
@@ -310,4 +373,6 @@ class Service extends Model
 
         return $servicesArray;
     }
+
+    
 }

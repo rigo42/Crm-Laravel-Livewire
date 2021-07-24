@@ -164,7 +164,7 @@
                                         <i class="flaticon-piggy-bank icon-2x font-weight-bold text-success"></i>
                                     </span>
                                     <div class="d-flex flex-column">
-                                        <span class="font-weight-bolder font-size-sm ">Pagos</span>
+                                        <span class="font-weight-bolder font-size-sm ">Ingresos</span>
                                         <span class="font-weight-bolder font-size-h5">
                                         <span class="font-weight-bold ">{{ $service->paymentTotal() }}</span>
                                     </div>
@@ -176,12 +176,27 @@
                                         <i class="flaticon-confetti icon-2x font-weight-bold text-danger"></i>
                                     </span>
                                     <div class="d-flex flex-column">
-                                        <span class="font-weight-bolder font-size-sm">Gastos</span>
+                                        <span class="font-weight-bolder font-size-sm">Egresos</span>
                                         <span class="font-weight-bolder font-size-h5">
                                         <span class="font-weight-bold">{{ $service->expenseTotal() }}</span>
                                     </div>
                                 </div>
                                 <!--end: Item-->
+                                @if ($service->payments()->count())
+                                     <!--begin: Item-->
+                                    <div class="mr-1 col-lg-3 col-auto text-danger border border-dashed rounded mb-4">
+                                        <span class="mr-4">
+                                            <i class="flaticon-piggy-bank icon-2x font-weight-bold text-danger"></i>
+                                        </span>
+                                        <div class="d-flex flex-column">
+                                            <span class="font-weight-bolder font-size-sm">Ingreso faltante</span>
+                                            <span class="font-weight-bolder font-size-h5">
+                                            <span class="font-weight-bold">{{ $service->pendingByPaymentTotal() }}</span>
+                                        </div>
+                                    </div>
+                                    <!--end: Item-->
+                                @endif
+                               
                             </div>
                         </div>
                     </div>

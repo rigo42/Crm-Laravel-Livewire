@@ -4,21 +4,25 @@
     <div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1" data-menu-dropdown-timeout="500">
         <!--begin::Menu Nav-->
         <ul class="menu-nav">
+            <li class="menu-section">
+                <h4 class="menu-text">Dashboard</h4>
+                <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
+            </li>
             
             <li class="menu-item {{ active('dashboard.index') }}" >
                 <a href="{{ route('dashboard.index') }}" class="menu-link">
                     <i class="menu-icon text-dark fab fa-buffer"></i>
-                    <span class="menu-text">Dashboard</span>
+                    <span class="menu-text">General</span>
                 </a>
             </li>
-            <li class="menu-item {{ active('user.show') }}" >
-                <a href="{{ route('user.show', auth()->user()) }}" class="menu-link">
-                    <i class="menu-icon text-dark fa fa-user"></i>
-                    <span class="menu-text">Perfil</span>
+            <li class="menu-item {{ active('google.analytics') }}" >
+                <a href="{{ route('google.analytics') }}" class="menu-link">
+                    <i class="menu-icon text-dark fas fa-signal"></i>
+                    <span class="menu-text">Google Analytics</span>
                 </a>
             </li>
 
-            @canany(['prospectos', 'clientes', 'servicios', 'cotizaciones'])
+            @canany(['prospectos', 'clientes', 'proveedores', 'tipo de servicio', 'servicios', 'proyectos', 'cotizaciones', 'calendario'])
                 
                 <div class="my-5"></div>
 
@@ -93,11 +97,11 @@
             
             @endcanany
 
-            @canany(['facturas', 'facturas'])
+            @canany(['facturas', 'pagos'. 'gastos'])
                 <div class="my-5"></div>
 
                 <li class="menu-section">
-                    <h4 class="menu-text">Facturas y pagos</h4>
+                    <h4 class="menu-text">Cobranza</h4>
                     <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
                 </li>
                 
@@ -128,6 +132,10 @@
             @endcanany
 
             <div class="my-5"></div>
+            <li class="menu-section">
+                <h4 class="menu-text">Ajustes</h4>
+                <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
+            </li>
 
             @can('usuarios')
             <li class="menu-item {{ active('user.*') }}">
@@ -153,6 +161,14 @@
                 <a href="{{ route('setting.welcome.index') }}" class="menu-link">
                     <i class="menu-icon text-dark fa fa-cog"></i>
                     <span class="menu-text">Configuraciones</span>
+                </a>
+            </li>
+            @endcan
+            @can('log')
+            <li class="menu-item {{ active('log.*') }}">
+                <a href="{{ route('log.index') }}" class="menu-link">
+                    <i class="menu-icon text-dark far fa-eye"></i>
+                    <span class="menu-text">Logs</span>
                 </a>
             </li>
             @endcan

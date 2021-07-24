@@ -33,5 +33,9 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'proyectos']);
         Permission::create(['name' => 'proveedores']);
         Permission::create(['name' => 'tipo de servicio']);
+
+        //News 19/07/2021
+        Permission::create(['name' => 'google analytics']);
+        Permission::create(['name' => 'log']);
     }
 }

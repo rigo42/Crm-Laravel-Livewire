@@ -5,12 +5,25 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Payment extends Model
 {
-    use HasFactory;
+    use LogsActivity;
 
     protected $guarded = [];
+
+    //Logs
+    protected static $logName = 'Pagos';
+    protected static $logAttributes = ['*'];
+    protected static $logOnlyDirty = true;
+    protected static $submitEmptyLogs = false;
+
+    public function getDescriptionForEvent(string $eventName): string
+    {
+        return "Un pago ha sido {$eventName}";
+    }
+
 
     public function paymentType()
     {
@@ -45,6 +58,10 @@ class Payment extends Model
 
     public function dateToString(){
         return Carbon::parse($this->date)->toFormattedDateString();
+    }
+
+    public function cutoffDateToString(){
+        return Carbon::parse($this->cutoff_date)->toFormattedDateString();
     }
 
     public function createdAtToString(){

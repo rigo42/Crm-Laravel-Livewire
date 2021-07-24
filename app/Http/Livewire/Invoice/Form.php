@@ -41,6 +41,10 @@ class Form extends Component
             array_push($this->serviceArray, "".$service->id."");
         }
 
+        if($client){
+            $this->clientChange($client->id);
+        }
+
         if(request()->client){
             $this->clientChange(request()->client);
         }
@@ -53,13 +57,10 @@ class Form extends Component
             $service = Service::findOrFail(request()->service);
             $this->invoice->total = $service->price;
             $this->invoice->concept = $service->serviceType->name;
-            array_push($this->serviceArray, "".request()->service."");
+            array_push($this->serviceArray, "".$service->id."");
         }
 
-        if($client){
-            // dd($client);
-            $this->clientChange($client->id);
-        }
+        
     }
 
     public function render()
