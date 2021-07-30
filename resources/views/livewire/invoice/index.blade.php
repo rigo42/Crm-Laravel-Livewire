@@ -179,7 +179,7 @@
                     @endif
                 </div>
                 <div class="text-center px-4 ">
-                    <img class="img-fluid col-6" alt="" src="{{ asset('assets/media/ilustrations/work.png') }}">
+                    <img class="img-fluid col-6" alt="" src="{{ asset('assets/media/ilustrations/files.png') }}">
                 </div>
             </div>
         </div>

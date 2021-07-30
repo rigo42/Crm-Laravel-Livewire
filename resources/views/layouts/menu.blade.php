@@ -146,13 +146,10 @@
             </li>
             @endcan
             @can('reportes')
-            <li class="menu-item">
-                <a class="menu-link">
+            <li class="menu-item {{ active('report.*') }}">
+                <a href="{{ route('report.index') }}" class="menu-link">
                     <i class="menu-icon text-dark fa fa-chart-bar"></i>
                     <span class="menu-text">Reportes</span>
-                    <span class="menu-label">
-                        <span class="label label-warning label-inline">Proximamente</span>
-                    </span>
                 </a>
             </li>
             @endcan

@@ -10,6 +10,7 @@ use App\Http\Controllers\Payment\PaymentController;
 use App\Http\Controllers\Prospect\ProspectController;
 use App\Http\Controllers\Provider\ProviderController;
 use App\Http\Controllers\Quotation\QuotationController;
+use App\Http\Controllers\Report\ReportController;
 use App\Http\Controllers\Service\ProjectController;
 use App\Http\Controllers\Service\ServiceController;
 use App\Http\Controllers\ServiceType\ServiceTypeController;
@@ -115,6 +116,15 @@ Route::middleware(['auth'])->group(function () {
 
     //Expense
     Route::resource('gastos', ExpenseController::class)->parameters(['gastos' => 'expense'])->names('expense');
+
+    //Report
+    Route::prefix('reportes')->group(function () {
+        //Welcome
+        Route::get('/', [ReportController::class, 'index'])->name('report.index');
+        //User
+        Route::get('usuario', [ReportController::class, 'user'])->name('report.user');
+        
+    });
 
 
 });

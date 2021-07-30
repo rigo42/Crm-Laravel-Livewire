@@ -129,7 +129,7 @@
                     <a data-toggle="modal" data-target=".create" href="#" class="btn btn-primary">Agregar tipo de servicio</a>
                 </div>
                 <div class="text-center px-4 ">
-                    <img class="img-fluid col-6" alt="" src="{{ asset('assets/media/ilustrations/work.png') }}">
+                    <img class="img-fluid col-6" alt="" src="{{ asset('assets/media/ilustrations/service-types.png') }}">
                 </div>
             </div>
         </div>

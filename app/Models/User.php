@@ -50,12 +50,16 @@ class User extends Authenticatable
         return $this->hasMany(Prospect::class);
     }
 
-    public function quotations(){
-        return $this->hasMany(Quotation::class);
+    public function services(){
+        return $this->hasManyThrough(Service::class, Client::class);
     }
 
-    public function services(){
-        return $this->belongsToMany(Service::class)->withTimestamps();
+    public function invoices(){
+        return $this->hasManyThrough(Invoice::class, Client::class);
+    }
+
+    public function quotations(){
+        return $this->hasManyThrough(Quotation::class, Client::class);
     }
 
     public function payments(){

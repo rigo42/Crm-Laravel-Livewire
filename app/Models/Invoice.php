@@ -64,12 +64,18 @@ class Invoice extends Model
         $pending = 0;
         $serviceTotal = 0;
         $services = $this->services()->cursor();
-        foreach ($services as $service) {
+
+        if($services->count()){
             
-            $serviceTotal += $service->price;
+            foreach ($services as $service) {
+            
+                $serviceTotal += $service->price;
+            }
+
+            $pending += ($serviceTotal - $invoiceTotal);
         }
 
-        return $pending += ($serviceTotal - $invoiceTotal);
+        return $pending;
 
     }
 }
