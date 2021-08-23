@@ -57,8 +57,7 @@
                             name="remember" 
                             type="checkbox" 
                             {{ old('remember') ? 'checked' : '' }} 
-                            type="checkbox" 
-                            name="remember" />
+                            type="checkbox"/>
                             <span></span>
                         </label>
                         @if (Route::has('password.request'))

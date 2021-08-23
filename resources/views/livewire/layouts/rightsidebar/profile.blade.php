@@ -84,7 +84,7 @@
                 <li class="navi-separator mt-3 opacity-70"></li>
 
                 <li class="navi-footer py-4">
-                    <a class="btn btn-clean font-weight-bold btn-sm" href="#">
+                    <a class="btn btn-clean font-weight-bold btn-sm" href="#" onclick="event.preventDefault; document.getElementById('logout-form').submit()">
                         <span class="svg-icon mr-5"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Navigation\Sign-out.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                 <rect x="0" y="0" width="24" height="24"/>

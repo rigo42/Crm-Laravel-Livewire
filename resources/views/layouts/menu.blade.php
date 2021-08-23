@@ -75,7 +75,7 @@
                 <li class="menu-item {{ active('project.*') }}">
                     <a href="{{ route('project.index') }}" class="menu-link">
                         <i class="menu-icon text-dark fas fa-rocket"></i>
-                        <span class="menu-text">Proyetos</span>
+                        <span class="menu-text">Proyectos</span>
                     </a>
                 </li>
                 @endcan
