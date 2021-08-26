@@ -133,7 +133,7 @@
   <!--<![endif]-->
   <div align="left" class="img-container left autowidth" style="padding-right: 0px;padding-left: 0px;">
   <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="left"><![endif]-->
-  <div style="font-size:1px;line-height:15px"> </div><img alt="Image" border="0" class="left autowidth" src="{{ asset('assets/images/logos/logo.png') }}" style="text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; height: auto; width: 100%; display: block;" title="Image" width="186"/>
+  <div style="font-size:1px;line-height:15px"> </div><img alt="Image" border="0" class="left autowidth" src="{{ asset('assets/media/logos/logo.png') }}" style="text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; height: auto; width: 100%; display: block;" title="Image" width="186"/>
   <div style="font-size:1px;line-height:15px"> </div>
   <!--[if mso]></td></tr></table><![endif]-->
   </div>
@@ -212,7 +212,7 @@
   <div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
   <!--<![endif]-->
   <div align="center" class="img-container center autowidth" style="padding-right: 0px;padding-left: 0px;">
-  <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center" alt="Image" border="0" class="center autowidth" src="{{ asset('assets/gif/ok.gif') }}" style="text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; height: auto; width: 100%; max-width: 250px; display: block;" title="Image" width="250"/>
+  <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img align="center" alt="Image" border="0" class="center autowidth" src="{{ asset('assets/media/email/ok.gif') }}" style="text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; height: auto; width: 100%; max-width: 250px; display: block;" title="Image" width="250"/>
   <!--[if mso]></td></tr></table><![endif]-->
   </div>
   <!--[if (!mso)&(!IE)]><!-->
@@ -330,7 +330,7 @@
   <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 20px; padding-left: 20px; padding-top: 10px; padding-bottom: 10px; font-family: Tahoma, Verdana, sans-serif"><![endif]-->
   <div style="color:#000000;font-family:\'Lato\', Tahoma, Verdana, Segoe, sans-serif;line-height:120%;padding-top:10px;padding-right:20px;padding-bottom:10px;padding-left:20px;">
   <div style="font-size: 12px; line-height: 14px; font-family: \'Lato\', Tahoma, Verdana, Segoe, sans-serif; color: #000000;">
-  <p style="font-size: 14px; line-height: 16px; margin: 0;"><span style="color: #000000; font-size: 14px; line-height: 16px;"><a href="https://beefree.io" style="text-decoration: none; color: #000000;" target="_blank">{{ $payment->createdAtToString() }}</a></span></p>
+  <p style="font-size: 14px; line-height: 16px; margin: 0;"><span style="color: #000000; font-size: 14px; line-height: 16px;"><a href="" style="text-decoration: none; color: #000000;">{{ $payment->createdAtToString() }}</a></span></p>
   </div>
   </div>
   <!--[if mso]></td></tr></table><![endif]-->
@@ -456,9 +456,9 @@
   <table activate="activate" align="center" alignment="alignment" cellpadding="0" cellspacing="0" class="social_table" role="presentation" style="table-layout: fixed; vertical-align: top; border-spacing: 0; border-collapse: undefined; mso-table-tspace: 0; mso-table-rspace: 0; mso-table-bspace: 0; mso-table-lspace: 0;" to="to" valign="top">
   <tbody>
   <tr align="center" style="vertical-align: top; display: inline-block; text-align: center;" valign="top">
-  <td style="word-break: break-word; vertical-align: top; padding-bottom: 5px; padding-right: 8px; padding-left: 8px;" valign="top"><a href="https://www.facebook.com/brandbeanmd/" target="_blank"><img alt="Facebook" height="32" src="{{ asset('assets/images/email/facebook.png') }}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: none; display: block;" title="Facebook" width="32"/></a></td>
+  <td style="word-break: break-word; vertical-align: top; padding-bottom: 5px; padding-right: 8px; padding-left: 8px;" valign="top"><a href="https://www.facebook.com/brandbeanmd/" target="_blank"><img alt="Facebook" height="32" src="{{ asset('assets/media/email/facebook.png') }}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: none; display: block;" title="Facebook" width="32"/></a></td>
   <!--<td style="word-break: break-word; vertical-align: top; padding-bottom: 5px; padding-right: 8px; padding-left: 8px;" valign="top"><a href="https://twitter.com/" target="_blank"><img alt="Twitter" height="32" src="images/twitter@2x.png" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: none; display: block;" title="Twitter" width="32"/></a></td>-->
-  <td style="word-break: break-word; vertical-align: top; padding-bottom: 5px; padding-right: 8px; padding-left: 8px;" valign="top"><a href="https://www.instagram.com/brandbeanmd/" target="_blank"><img alt="Instagram" height="32" src="{{ asset('assets/images/email/instagram.png') }}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: none; display: block;" title="Instagram" width="32"/></a></td>
+  <td style="word-break: break-word; vertical-align: top; padding-bottom: 5px; padding-right: 8px; padding-left: 8px;" valign="top"><a href="https://www.instagram.com/brandbeanmd/" target="_blank"><img alt="Instagram" height="32" src="{{ asset('assets/media/email/instagram.png') }}" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: none; display: block;" title="Instagram" width="32"/></a></td>
   </tr>
   </tbody>
   </table>
